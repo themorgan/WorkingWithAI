@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-26 13:00:00 (Buenos Aires) by Morgan F, to version 1 -->
+<!-- Last updated: 2026-08-26 14:00:00 (Buenos Aires) by Morgan F, to version 2 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -24,10 +24,31 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
 
 ## Analyses (agent-doable)
 
-- [ ] **Populate [IDEAS.md](IDEAS.md) with real content.** It was seeded
-  empty at install time (2026-08-26); the next thread that has an actual
-  idea, prompt, or workflow to record should replace the placeholder bullets.
+- [x] **Populate [IDEAS.md](IDEAS.md) with real content.** Done
+  2026-08-26 → [IDEAS.md](IDEAS.md) now holds the first real brainstorm
+  batch, plus [FIFTEEN_RULES.md](FIFTEEN_RULES.md) promoted out as its own
+  document. The three original placeholder sections (prompts, workflows,
+  incidents) are still empty and open for the next batch.
+- [ ] **Fill in the two open brackets in [FIFTEEN_RULES.md](FIFTEEN_RULES.md).**
+  Rule 8 wants the name of the sharpest editor Morgan has worked with; rule
+  15 wants a real year for "the way you'd have read it in [YEAR]." Both are
+  intentionally left as placeholders rather than filled with something
+  generic — replace them only when a real specific comes to mind.
+- [ ] **Look for contradictions across [IDEAS.md](IDEAS.md) entries**, per
+  the meta-note at the bottom of that file (e.g. rule 9's "build five, kill
+  four" against rule 5's "don't systematize a one-off") — worth a
+  dedicated pass once there's enough material for real tensions to show up.
 
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [ ] **Force deeper AI engagement, or just permit it?** See
+  [IDEAS.md](IDEAS.md) §"Why BestPractice specifically works" → "Open
+  question." Candidate mechanisms: Claude pushing back harder on direct
+  instructions by default, more visible/frequent reminders of the deeper
+  co-creation mode, making automatic rule-extraction more visible so people
+  notice it happening, or having Claude proactively resurface a relevant
+  extracted rule in a new context. Undecided — needs Morgan's call on how
+  paternalistic this repo's own tooling should be toward less technical
+  users.

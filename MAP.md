@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-26 13:00:00 (Buenos Aires) by Morgan F, to version 1 -->
+<!-- Last updated: 2026-08-26 14:00:00 (Buenos Aires) by Morgan F, to version 2 -->
 
 # Repository map — where to find things
 
@@ -16,6 +16,7 @@ Companions: [AGENTS.md](AGENTS.md) (workflow + conventions), [TODO.md](TODO.md)
 | Path | What it is |
 |---|---|
 | [IDEAS.md](IDEAS.md) | **The deliverable.** The brainstorm itself. |
+| [FIFTEEN_RULES.md](FIFTEEN_RULES.md) | Standalone essay promoted out of the brainstorm: fifteen rules for building a company around AI. |
 | [GLOSSARY.md](GLOSSARY.md) | Canonical names — the one list. Use its names; don't invent new ones. |
 | [GETTING_STARTED.md](GETTING_STARTED.md) | Human-facing onboarding, including administrator click-paths (secrets, toggles, default branch). |
 | [README.md](README.md) | What this repo is, in a paragraph, plus the agent-entry block. |
@@ -28,6 +29,8 @@ Companions: [AGENTS.md](AGENTS.md) (workflow + conventions), [TODO.md](TODO.md)
 
 | Part | Backed by |
 |---|---|
+| Frameworks (full essays) | [FIFTEEN_RULES.md](FIFTEEN_RULES.md), linked from [IDEAS.md](IDEAS.md) |
+| Why BestPractice works, observations, meta-notes on this repo's own use | [IDEAS.md](IDEAS.md) |
 | Prompts and phrasing | [IDEAS.md](IDEAS.md) |
 | Workflows | [IDEAS.md](IDEAS.md) |
 | Things that went wrong, and why | [IDEAS.md](IDEAS.md) |
