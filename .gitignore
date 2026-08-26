@@ -1,0 +1,7 @@
+# Baseline ignores — installed once at repo root (INSTALL.md §1).
+# Covers ordinary tool/interpreter caches, not generated deliverables.
+
+__pycache__/
+*.py[cod]
+.DS_Store
+*.swp

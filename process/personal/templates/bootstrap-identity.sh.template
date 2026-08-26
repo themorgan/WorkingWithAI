@@ -1,0 +1,5 @@
+# Personal-pack snippet (process/personal/README.md §3 and §18 step 4): paste
+# into the installed tools/bootstrap.sh, after the BestPractice-freshness
+# notice line. Idempotent — safe to run every session start.
+git config user.name "Morgan F"
+git config user.email "morgan@westegg.com"

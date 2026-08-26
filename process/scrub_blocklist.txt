@@ -1,0 +1,20 @@
+# Private vocabulary for BrainstormOnHowToWorkWithAI — never let these appear
+# in process/upstream/ (the public BestPractice repo would receive them on
+# the next check-in). One regex per line; # starts a comment. Err broad.
+#
+# Reviewed 2026-08-26 (Buenos Aires). Add a line the moment a new private
+# name, nickname, or identifier shows up in this repo's own content.
+
+# Real contact / identity details (the GitHub display name "Morgan F" is
+# itself the personal-pack convention and appears throughout process/personal/
+# on purpose — it must never migrate into the generic upstream text under
+# process/upstream/).
+morgan@westegg\.com
+westegg\.com
+morganfriedman
+themorgan
+6497032
+Morgan F
+Buenos Aires
+America/Argentina/Buenos_Aires
+BrainstormOnHowToWorkWithAI
