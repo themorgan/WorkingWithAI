@@ -1,0 +1,65 @@
+{
+  "upstream": {
+    "repo": "https://github.com/themorgan/RepoPersonalPreferences",
+    "vendored_at": "process/personal",
+    "commit": "c1d27d3f462bec231f08a8ae8de4e25112f069b7",
+    "scrub_blocklist": null,
+    "_note": "commit = RepoPersonalPreferences hash last synced from (initial install, recorded 2026-08-26). scrub_blocklist is deliberately null: this pack's content is Morgan's own private vocabulary by design and is never meant to reach the public BestPractice repo, so scrubbing it against process/scrub_blocklist.txt would be backwards."
+  },
+  "entries": [
+    {
+      "practice": "agents-addendum",
+      "upstream_path": "templates/AGENTS_ADDENDUM.md.template",
+      "local_path": "AGENTS.md",
+      "granularity": "section",
+      "section_marker": "## Personal setup rules (Morgan's pack)",
+      "status": "synced",
+      "notes": "Woven into AGENTS.md right after BestPractice's own Conventions section, including the 0c TODO gate inserted into the merge runbook's numbered list."
+    },
+    {
+      "practice": "upstream-sync-workflow",
+      "upstream_path": "templates/github-actions/upstream-sync.yml.template",
+      "local_path": ".github/workflows/bestpractice-upstream-sync.yml",
+      "granularity": "file",
+      "status": "synced",
+      "notes": "Installed verbatim; cadence left at the template default (weekly, Mondays 12:00 UTC = 09:00 Buenos Aires).",
+      "local_sha256": "5bd3bb2358f48c7121c7b799b264a42efa3df3e3199503d9fb175e9bea50a21e"
+    },
+    {
+      "practice": "light-check-workflow",
+      "upstream_path": "templates/github-actions/light-check.yml.template",
+      "local_path": ".github/workflows/light-check.yml",
+      "granularity": "file",
+      "status": "synced",
+      "notes": "Installed verbatim.",
+      "local_sha256": "f0c2e963d6dae0662fc1f8658089e997e2cf49552d98cc2d76e29bdbbcdc283d"
+    },
+    {
+      "practice": "personal-pack-sync-workflow",
+      "upstream_path": "templates/github-actions/personal-pack-sync.yml.template",
+      "local_path": ".github/workflows/personal-pack-sync.yml",
+      "granularity": "file",
+      "status": "synced",
+      "notes": "Installed verbatim; needs its own repository secret, PERSONAL_PACK_TOKEN, disclosed in GETTING_STARTED.md.",
+      "local_sha256": "7431fda77ade9e26f4337a2c4810aa593ac3933fdc872f42ac5c574e8a6e4682"
+    },
+    {
+      "practice": "bootstrap-identity",
+      "upstream_path": "templates/bootstrap-identity.sh.template",
+      "local_path": "tools/bootstrap.sh",
+      "granularity": "section",
+      "section_marker": "git config user.name",
+      "status": "synced",
+      "notes": "Appended after the BestPractice-freshness notice line in tools/bootstrap.sh."
+    },
+    {
+      "practice": "bootstrap-freshness",
+      "upstream_path": "templates/bootstrap-freshness.sh.template",
+      "local_path": "tools/bootstrap.sh",
+      "granularity": "section",
+      "section_marker": "pack_sync.py fresh",
+      "status": "synced",
+      "notes": "Appended after the personal pack's own identity lines in tools/bootstrap.sh, per process/personal/README.md §16 and §18 step 4. Not exempt here (only RepoPersonalPreferences itself is exempt)."
+    }
+  ]
+}

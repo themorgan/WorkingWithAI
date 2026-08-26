@@ -1,0 +1,284 @@
+<!-- Template: weave this section into AGENTS.md when installing the personal
+     pack (process/personal/README.md), immediately after the "Conventions"
+     section BestPractice's own templates/AGENTS.md.template installs. Also
+     insert the "0c. TODO gate" step into the merge runbook's numbered list,
+     right after step 0b (export gate) — it is written out here for
+     reference but lives physically in the runbook, not in this section. -->
+<!-- Last updated: 2026-08-24 09:26:15 (Buenos Aires) by Morgan F, to version 2 -->
+
+## Personal setup rules (Morgan's pack)
+
+These extend BestPractice's own conventions above; they are this repo's
+personal layer (`process/personal/`), not upstream BestPractice, and they
+never get exported to the public BestPractice repo.
+
+- **On conflict with BestPractice, this pack wins.** BestPractice sets the
+  default; where a rule here and a rule of BestPractice's own genuinely
+  disagree on the same point, this pack's rule governs. Where this pack is
+  silent, BestPractice's own rule stands undisturbed — this pack only
+  narrows or overrides where it actually speaks
+  ([process/personal/README.md](process/personal/README.md) §1).
+
+- **Don't duplicate BestPractice.** This pack exists to add to BestPractice
+  or override it, not restate it. A bullet here that only repeats what
+  BestPractice already establishes on its own gets dropped the next time
+  this file is touched, rather than left as a second copy that can drift
+  out of sync with the first
+  ([process/personal/README.md](process/personal/README.md) §2).
+
+- **Commits are always authored "Morgan F".** Use Morgan's own email
+  address:
+  `git config user.name "Morgan F"` and
+  `git config user.email "morgan@westegg.com"`
+  once per clone ([tools/bootstrap.sh](tools/bootstrap.sh) does this
+  automatically). This
+  replaces, rather than defers to, BestPractice's own "ask before the first
+  commit" default — the identity is already decided, so don't ask. It
+  replaces only the *identity* half: this pack says nothing about
+  co-authorship, so BestPractice's own `Co-Authored-By:` trailer naming the
+  assistant still applies (§1 — where this pack is silent, BestPractice
+  stands).
+
+- **Every date is a Buenos Aires local calendar date**, not the session's
+  system clock. Two places this bites:
+  - Any date written into a document ("as of / verified `<date>`" per
+    BestPractice practice 16, a file's last-updated header below) uses
+    `America/Argentina/Buenos_Aires` local time.
+  - Git commit timestamps: prefix the commit command with
+    `TZ="America/Argentina/Buenos_Aires"` so the recorded author/committer
+    offset is Buenos Aires', not the container's —
+    `TZ="America/Argentina/Buenos_Aires" git commit -m "..."`.
+  (Argentina has held UTC−3 year-round, no daylight saving, since 2009 —
+  verified 2026-08-21; re-verify if this rule is ever touched and the fact
+  seems dated.)
+
+- **Files carry a "last updated" timestamp, who made it, and a version
+  number — near the top, when reasonable.** For a Markdown file: `<!--
+  Last updated: YYYY-MM-DD HH:MM:SS (Buenos Aires) by NAME, to version N
+  -->` as the first line — a full timestamp, hour/minute/second, not just
+  a calendar date; a bare date can't tell two same-day edits apart. `NAME`
+  is whoever made the edit — always "Morgan F" here, the same name every
+  commit is already authored as, so the header shows who last touched the
+  file without a `git blame`. `N` is a plain integer counter private to
+  that one file: 1 the first time the header is added, +1 each subsequent
+  time the file's content changes. The "to version N" phrasing is
+  deliberate — it names that file's own version, not a repo-wide release
+  number, so bumping it is a one-file edit. That's also why installing
+  this rule doesn't mean adding the header to every existing file at once:
+  a file only picks up (or bumps) its header when it's already being
+  edited for some other reason — **only the files actually changed**, never
+  a repo-wide sweep. For a script or config format with comments, the
+  equivalent in that syntax. Skip it where a leading comment would break
+  the file (JSON has none) or where the file is a vendored, byte-for-byte
+  copy under `process/upstream/` — that tree must track upstream exactly,
+  never a local edit. Update the line whenever you touch the file's
+  content, not its formatting alone — same trigger for bumping `N`.
+
+- **Commit messages link the assistant session where the change was
+  planned.** Add a trailer, `Session: <url>` — for Claude Code,
+  `https://claude.ai/code/session_<ID>` (the running session's own ID; ask
+  the harness for it if it isn't already visible). For an unattended run
+  with no chat session behind it (the sync workflows below), use that run's
+  own URL instead. If a tool genuinely has no shareable link, say so in the
+  trailer (`Session: none available (<tool>)`) rather than dropping it
+  silently — the point is a reviewer can always tell whether a link was
+  considered and skipped, or just forgotten.
+
+- **Decide small calls yourself; only stop for big ones.** Default to
+  continuing, not asking. When a judgment call is needed to keep moving and
+  it's small or moderate — a default value, a phrasing choice, picking
+  between two reasonable implementations, an ambiguity that doesn't change
+  the shape of what gets delivered — make the call and note it in **both**
+  the normal end-of-work reply that already lists files touched, *and* the
+  commit message itself, under a "Judgment calls made:" heading (the same
+  pattern the sync workflows already use for their own "Judgment calls to
+  review:" heading — see the sync bullets below). The chat reply is easy to
+  lose once a thread scrolls on; the commit message is what survives into
+  `git log` and the PR diff, so it stays visible to someone reviewing the
+  merged PR later, not just to someone reading the reply in the moment.
+  Skip the heading on a commit that made no judgment calls — don't pad every commit with
+  "none" — but never leave a real one out of the commit message. Reserve
+  stopping and asking for calls that are genuinely big: hard or costly to
+  undo, change what gets delivered or to whom, spend real money, touch
+  credentials or production, or are a toss-up two reasonable people would
+  clearly land differently on.
+
+- **`go` or `merge` as a standalone final sentence means: commit and merge
+  to main.** If Morgan's message, at a point where you've said you're
+  ready, ends with `go` or `merge` as its own sentence — on its own line,
+  or set off by a preceding sentence-ending punctuation mark,
+  case-insensitive — that's authorization, right there, to commit the
+  pending work and merge it into the default branch, using this repo's
+  usual conventions (identity, timestamp, session trailer, gates), without
+  asking again first. "That was perfect. merge" and "Go." both count;
+  "let's merge the two lists" and "go check the logs" don't — the word has
+  to stand alone as the message's last sentence, not appear as part of a
+  longer one. If it's ambiguous whether the trailing word is this shorthand
+  or ordinary language in context, ask rather than assume. This is
+  shorthand for the same authorization the "merge only when the user says
+  so" default above already asks for
+  ([process/personal/README.md](process/personal/README.md) §8).
+
+- **TODO.md gate — step 0c of the merge runbook, before every push.**
+  Immediately after the export gate (0b): re-read this thread's discussion
+  against [TODO.md](TODO.md). Add any idea that came up but never got a
+  line; remove or check off anything this branch has now implemented.
+  `TODO.md` drifting out of sync with what was actually decided is the
+  specific failure this gate exists to catch — do it every push, not just
+  when something feels stale.
+
+- **Agent-relevant instructions in a README or other key file also go in
+  `AGENTS.md`.** A README, `CONTRIBUTING.md`,
+  [GETTING_STARTED.md](GETTING_STARTED.md), or any other key file can pick up its own operational instructions over
+  time — a setup step, a gotcha, a rule about how to work in the repo —
+  written where a human reader would look, not where an agent is told to
+  look. When such a file gains an instruction useful for an agent to know
+  (the operational kind: how to build it, a constraint on how to work, a
+  step an agent would otherwise miss — not general project description or
+  end-user documentation), fold the same instruction into `AGENTS.md` too,
+  in its own words if that reads better there. This runs both directions:
+  whether the instruction lands first in the other file and needs pulling
+  into `AGENTS.md`, or is written into `AGENTS.md` directly and never
+  mirrored back to where a human would expect to read it, either way the
+  same instruction ends up in both places. It doesn't run the other way for
+  content that only belongs in one place — a README's marketing framing has
+  no business in `AGENTS.md`, and `AGENTS.md`'s own meta-structure has no
+  business padding out a README. Check for this at the capture gate (merge
+  runbook step 0) the same way any other captured decision gets folded in
+  ([process/personal/README.md](process/personal/README.md) §10).
+
+- **A light check runs on every commit path**
+  ([.github/workflows/light-check.yml](.github/workflows/light-check.yml),
+  [process/personal/tools/light_check.py](process/personal/tools/light_check.py))
+  — conflict markers, invalid JSON/YAML/Python syntax, secret-shaped
+  strings, broken doc links, and (repo-wide, every run) that
+  `process/personal/` is actually vendored: `process/manifest_personal.json`
+  exists, parses, has entries, and every entry's file exists on disk —
+  catches the pack having been copied in rather than installed per
+  [process/personal/README.md](process/personal/README.md) §18. Run it
+  yourself before committing, the same way you already run
+  [doc_lint.py](process/upstream/tools/doc_lint.py) and
+  [practice_audit.py](process/upstream/tools/practice_audit.py); CI runs it
+  too, so it binds even if a session forgets.
+
+- **LLM integrations stay platform-neutral; OpenRouter is the default
+  assumption.** Any system this pack helps set up that talks to an LLM
+  should be built against a provider-neutral interface — model name, token,
+  and base URL as swappable config, not hard-wired to one vendor's SDK or
+  auth shape — so switching providers, or using whichever token is on hand,
+  is a config change, not a rewrite. Absent other instruction, assume the
+  credential in hand is an OpenRouter token, not a given vendor's own key;
+  OpenRouter's API is itself OpenAI-request-shaped *(verified 2026-08-22)*,
+  so it's also a sensible default shape for the neutral interface itself
+  ([process/personal/README.md](process/personal/README.md) §12).
+
+- **Always fail gracefully.** Any code you write or set up here anticipates
+  its own common failure modes rather than letting them surface as an
+  unhandled crash. Before shipping code that depends on something outside
+  its own control — a required config or environment variable, a file
+  that's supposed to exist, a network call, a third-party credential —
+  check for the absence or failure case on purpose and degrade in a way
+  the caller can act on: a clear error message naming exactly what's
+  missing and how to fix it, a documented fallback/default, or a clean
+  non-zero exit — never a raw stack trace, a silent wrong answer, or a
+  hang ([process/personal/README.md](process/personal/README.md) §13).
+
+- **A scheduled check keeps BestPractice itself current — weekly by
+  default, one line to switch to daily**
+  ([.github/workflows/bestpractice-upstream-sync.yml](.github/workflows/bestpractice-upstream-sync.yml),
+  from
+  [process/personal/templates/github-actions/upstream-sync.yml.template](process/personal/templates/github-actions/upstream-sync.yml.template)):
+  unattended, it takes any upstream update, integrates it with its own
+  judgment, and merges it — recording every judgment call in the commit
+  message. A session that notices the sync's PR merged with judgment
+  calls listed should skim them like any other change; they are flagged
+  precisely because they're the ones worth a second look. Authenticates
+  with either `CLAUDE_CODE_OAUTH_TOKEN` (a Pro/Max subscriber's token from
+  `claude setup-token`) or `ANTHROPIC_API_KEY` — only one is required.
+
+- **A second scheduled check keeps the personal pack itself current —
+  same weekly-default, daily-optional cadence**
+  (`.github/workflows/personal-pack-sync.yml`, from
+  [process/personal/templates/github-actions/personal-pack-sync.yml.template](process/personal/templates/github-actions/personal-pack-sync.yml.template)):
+  same shape as the BestPractice sync above, but for `process/personal/`
+  against its own source, RepoPersonalPreferences (private —
+  [process/manifest_personal.json](process/manifest_personal.json)'s
+  `upstream.repo`/`upstream.commit` track it the same way
+  [process/manifest.json](process/manifest.json) tracks BestPractice). It
+  needs its own repository secret, `PERSONAL_PACK_TOKEN`, since that source
+  repo is private — see
+  [process/personal/README.md](process/personal/README.md) §15. That
+  secret can't be set by any session; every run of the workflow's `check`
+  job warns (a `::warning::` Actions annotation) if the secret is missing —
+  a per-run smoke test, not just a one-time install reminder — but if it's
+  ever missing, say so plainly in your own reply too rather than assuming
+  it's handled.
+
+- **Both scheduled syncs skip cleanly, not loudly, when neither Claude
+  credential is set.** Both check whether `CLAUDE_CODE_OAUTH_TOKEN` or
+  `ANTHROPIC_API_KEY` is set before attempting the update; if their source
+  moved but both are blank, the `update` job is skipped and a
+  `::warning::` lands in that run's summary instead of an auth failure.
+  **If asked to run one of these syncs manually** (or you notice
+  mid-thread that one is overdue and the user wants it done now), you
+  don't need either secret at all — you're already Claude — so just take
+  the update yourself, in-session, following the same steps the workflow
+  would, then remind the user once, plainly, to set
+  `CLAUDE_CODE_OAUTH_TOKEN` or `ANTHROPIC_API_KEY` so future runs don't
+  need to be asked for by hand.
+
+- **A session-start notice asks about drift immediately, not at the
+  end.** `tools/bootstrap.sh` runs both freshness notices on every session
+  start now, no model call needed: `checkin.py fresh` (already wired,
+  BestPractice's own, practice 13) and `pack_sync.py fresh`
+  ([process/personal/tools/pack_sync.py](process/personal/tools/pack_sync.py),
+  wired per
+  [process/personal/README.md](process/personal/README.md) §18 step 4,
+  from
+  [process/personal/templates/bootstrap-freshness.sh.template](process/personal/templates/bootstrap-freshness.sh.template)).
+  Each prints a one-line notice only when its source has moved —
+  `process/manifest.json`'s recorded BestPractice commit against
+  BestPractice's actual HEAD, or `process/manifest_personal.json`'s
+  recorded commit against RepoPersonalPreferences's actual HEAD — silent
+  otherwise, never a gate. Because this runs as part of the same
+  session-start hook that already sets up the environment, raise whichever
+  notice fired as part of catching the member up, not something saved for
+  the end. Taking either update stays deliberate whenever it's raised —
+  never without being asked, since that's the one deliberate difference
+  from the scheduled syncs above, which merge unattended. If asked to
+  proceed, take the update the same way a manually-requested sync already
+  does, opened as a PR the user approves and merges themselves rather than
+  auto-merged. This doesn't replace either scheduled sync — they still
+  bound the gap between sessions when nobody opens the repo; this only
+  closes the narrower gap where a session (and a person to ask) is already
+  here. **Fallback, for whenever a session-start notice didn't fire or
+  drift happened mid-session:** repeat the same cheap `git ls-remote`
+  comparisons at the end of the session too, right after the merge
+  runbook's own steps. **This also has to survive an indirect install:**
+  the comparisons above assume the repo is fully installed, which isn't
+  guaranteed when either tree arrived some way other than a session
+  running the install procedure — a fork, a template-repo copy, or a repo
+  vendored from an *already-dependent* repo rather than from canonical
+  source. So this same check also verifies, whenever `process/upstream/`
+  and/or `process/personal/` is present: does
+  `.github/workflows/bestpractice-upstream-sync.yml` exist, does
+  `.github/workflows/personal-pack-sync.yml` exist, does
+  `tools/bootstrap.sh` actually carry both freshness snippets, and does
+  this repo's own `AGENTS.md` actually carry these woven-in sections? If
+  something's missing, that's an incomplete install, not drift — say so
+  plainly and offer to finish it now, sourced from the canonical repo (the
+  public BestPractice repo; RepoPersonalPreferences for the pack),
+  regardless of which repo the files on disk actually arrived from
+  ([process/personal/README.md](process/personal/README.md) §16).
+
+- **This repo's default branch is `main`, checked once at install.**
+  GitHub only defaults a freshly-created repo to `main` on its own — a
+  repo that predates that default, or arrived some other way (an import,
+  a mirror, an org policy), can still sit on `master` or something else.
+  If this repo's default branch isn't already `main`, set it once — via
+  the GitHub API's repo-update endpoint where the session's tools reach
+  that far, otherwise as a one-click item (Settings → General → Default
+  branch) disclosed in [GETTING_STARTED.md](GETTING_STARTED.md)'s
+  administrator section like any other click-path
+  ([process/personal/README.md](process/personal/README.md) §17). One-time
+  only — no need to recheck it once set.

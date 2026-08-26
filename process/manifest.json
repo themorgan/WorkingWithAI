@@ -1,0 +1,127 @@
+{
+  "upstream": {
+    "repo": "https://github.com/alex137/BestPractice",
+    "vendored_at": "process/upstream",
+    "commit": "47aabda4b44796f2c01591ec9c7e7edf6a1e404d",
+    "_note": "commit = upstream hash last synced (initial install, recorded 2026-08-26)."
+  },
+  "entries": [
+    {
+      "practice": "instructions-file",
+      "upstream_path": "templates/AGENTS.md.template",
+      "local_path": "AGENTS.md",
+      "granularity": "section",
+      "section_marker": "## Merging a thread branch (runbook — follow, don't improvise)",
+      "status": "synced",
+      "notes": "Quick-index and merge runbook adapted to this repo's own subject matter (a brainstorm notebook, not a build/deliverable repo). Extended with a '## Personal setup rules' section woven in from process/personal/templates/AGENTS_ADDENDUM.md.template — see the personal-pack manifest for that section's own entry."
+    },
+    {
+      "practice": "claude-code-instructions-pointer",
+      "upstream_path": "templates/harness/claude-code/CLAUDE.md",
+      "local_path": "CLAUDE.md",
+      "granularity": "file",
+      "status": "synced",
+      "notes": "Installed verbatim.",
+      "local_sha256": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49"
+    },
+    {
+      "practice": "claude-code-settings",
+      "upstream_path": "templates/harness/claude-code/settings.json",
+      "local_path": ".claude/settings.json",
+      "granularity": "file",
+      "status": "synced",
+      "notes": "Added allowlist entries for process/upstream/tools/checkin.py, process/personal/tools/light_check.py, and process/personal/tools/pack_sync.py so the personal pack's own gates don't stall on permission prompts.",
+      "local_sha256": "da29b4ebfa03fcbb1a222a1045229413a51e1e621078a62e6f23003535f887b8"
+    },
+    {
+      "practice": "claude-code-session-hook",
+      "upstream_path": "templates/harness/claude-code/hooks/session-start.sh",
+      "local_path": ".claude/hooks/session-start.sh",
+      "granularity": "file",
+      "status": "synced",
+      "notes": "Installed verbatim.",
+      "local_sha256": "98f91728ced6d746882b9b74168b501775e350dbee7c4860378eb75fb79a80c7"
+    },
+    {
+      "practice": "bootstrap",
+      "upstream_path": "templates/bootstrap.sh",
+      "local_path": "tools/bootstrap.sh",
+      "granularity": "file",
+      "status": "synced",
+      "notes": "Extended with the personal pack's git-identity setup and session-start freshness notice — see process/personal/README.md §3, §16, §18 step 4.",
+      "local_sha256": "2395c949e36e6f1402cf1872741c48e1ae68eb4667a3295977e761c4daeaf891"
+    },
+    {
+      "practice": "gitignore",
+      "upstream_path": "templates/gitignore.template",
+      "local_path": ".gitignore",
+      "granularity": "file",
+      "status": "synced",
+      "notes": "Baseline ignores only; this repo has no generated-deliverable globs of its own yet.",
+      "local_sha256": "cbb8b388aaed4b16ce33d9472ba2235d009bad8e9cefdd371e1c929fc90a3225"
+    },
+    {
+      "practice": "pr-template",
+      "upstream_path": "templates/pull_request_template.md.template",
+      "local_path": ".github/pull_request_template.md",
+      "granularity": "file",
+      "status": "synced",
+      "notes": "Installed verbatim.",
+      "local_sha256": "febafb88b98e14ecd69f98ef6b4f2aa32b666dc3b2675235bf516dd368d4ca62"
+    },
+    {
+      "practice": "doc-lint-action",
+      "upstream_path": "templates/github-actions/doc-lint.yml.template",
+      "local_path": ".github/workflows/bestpractice-docs.yml",
+      "granularity": "file",
+      "status": "synced",
+      "notes": "Runs the vendored linter in place; no adaptation.",
+      "local_sha256": "c0975a80f6716d91d0e9986fd79a5bef7380401e4f03fce779e5a4edcb46b146"
+    },
+    {
+      "practice": "map",
+      "upstream_path": "templates/MAP.md.template",
+      "local_path": "MAP.md",
+      "granularity": "file",
+      "status": "local-only",
+      "notes": "Fully adapted to this repo's own layout — this repo's map is its own subject matter, not upstream-exportable content.",
+      "local_sha256": "ec9f2eebe6e08244b97fbc42f29c9c7fe4a966779090ccfeeb8a49bdc31c36dc"
+    },
+    {
+      "practice": "todo",
+      "upstream_path": "templates/TODO.md.template",
+      "local_path": "TODO.md",
+      "granularity": "file",
+      "status": "local-only",
+      "notes": "This repo's own open-items list, including the recurring BestPractice check-in item; not upstream-exportable content.",
+      "local_sha256": "d9e891ac28f5ffb988d8158f21dbd77b9b1511dd725f724babb50a9e295cb7e4"
+    },
+    {
+      "practice": "glossary",
+      "upstream_path": "templates/GLOSSARY.md.template",
+      "local_path": "GLOSSARY.md",
+      "granularity": "file",
+      "status": "local-only",
+      "notes": "This repo's own canonical names; not upstream-exportable content.",
+      "local_sha256": "8bcc1ce10efb5e14a360f7c76cf59b58f6b065c6dce41b236b0ed51067f96d29"
+    },
+    {
+      "practice": "getting-started",
+      "upstream_path": "templates/GETTING_STARTED.md",
+      "local_path": "GETTING_STARTED.md",
+      "granularity": "file",
+      "status": "local-only",
+      "notes": "Instantiated with this repo's real values (single-member repo today). Structural onboarding improvements are still exportable per INSTALL.md §3 if they generalize.",
+      "local_sha256": "b4d9f08d324e158afa95836874d92879d8012629d568c43f1888b92e35be315a"
+    },
+    {
+      "practice": "readme-agent-entry",
+      "upstream_path": "templates/README_AGENT_ENTRY.md.template",
+      "local_path": "README.md",
+      "granularity": "section",
+      "section_marker": "bestpractice-agent-entry:start",
+      "status": "synced",
+      "notes": "Inserted below this repo's own opening paragraph, per practice 38."
+    }
+  ]
+}

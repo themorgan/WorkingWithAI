@@ -1,0 +1,10 @@
+# Personal-pack snippet (process/personal/README.md §16 and §18 step 4):
+# paste into the installed tools/bootstrap.sh, after the personal pack's
+# own identity lines (process/personal/templates/bootstrap-identity.sh.template).
+# Idempotent, cheap, and non-blocking -- prints a notice only, never gates
+# session start and never takes the update itself (process/personal/README.md
+# §16 -- taking it stays a deliberate, asked-for step). Skip this snippet
+# entirely when installing on RepoPersonalPreferences itself (§16's
+# exemption): the vendored tree there IS upstream for the pack, so
+# comparing it against itself would be circular.
+python3 process/personal/tools/pack_sync.py fresh 2>/dev/null || true
