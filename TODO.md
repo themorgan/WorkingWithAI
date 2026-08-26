@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-26 14:00:00 (Buenos Aires) by Morgan F, to version 2 -->
+<!-- Last updated: 2026-08-26 14:53:22 (Buenos Aires) by Morgan F, to version 3 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -43,12 +43,20 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
 
 ## Decisions (user's call)
 
-- [ ] **Force deeper AI engagement, or just permit it?** See
-  [IDEAS.md](IDEAS.md) §"Why BestPractice specifically works" → "Open
-  question." Candidate mechanisms: Claude pushing back harder on direct
-  instructions by default, more visible/frequent reminders of the deeper
-  co-creation mode, making automatic rule-extraction more visible so people
-  notice it happening, or having Claude proactively resurface a relevant
-  extracted rule in a new context. Undecided — needs Morgan's call on how
-  paternalistic this repo's own tooling should be toward less technical
-  users.
+- [x] **Force deeper AI engagement, or just permit it?** Decided
+  2026-08-26 → done, for the specific form Morgan asked for: **push-back
+  mode**, landed as
+  [§19 of the personal pack](https://github.com/themorgan/RepoPersonalPreferences/blob/main/process/personal/README.md)
+  ([PR #24](https://github.com/themorgan/RepoPersonalPreferences/pull/24)).
+  On writing-and-thinking work only (never code/technical work): argue a
+  genuine counter-case before building on a stated stance, and flag a
+  serious unresolved disagreement before calling a piece done — not a
+  quota, never manufactured, and explicitly distinct from a judgment call
+  or a clarifying question. This resolves the narrower "should Claude push
+  back harder" question from the original brainstorm; the broader
+  "normie"-employee-adoption question (visible rule-extraction, proactive
+  resurfacing of rules) is still open — see [IDEAS.md](IDEAS.md)
+  §"Why BestPractice specifically works" → "Open question" for the rest of
+  it. Once the personal-pack sync pulls §19 into this repo's own
+  `process/personal/` and re-weaves `AGENTS.md`, this repo picks up
+  push-back mode automatically.
