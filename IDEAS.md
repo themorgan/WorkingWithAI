@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 10:55:27 (Buenos Aires) by Morgan F, to version 3 -->
+<!-- Last updated: 2026-08-27 11:40:00 (Buenos Aires) by Morgan F, to version 4 -->
 
 # Ideas — how to work with AI
 
@@ -33,6 +33,14 @@ and push the sharpened version back in.
   visibly non-uniform confidence, situational (not fixed) cost-awareness,
   a structural check for AI-sounding prose, and self-surfacing of dark
   processes.
+- **Where an idea from either essay actually goes next** —
+  [OPERATING_RULES.md](OPERATING_RULES.md), added 2026-08-27. Neither essay
+  above is itself a set of rules anyone follows day to day; this is the
+  document that turns an argument into a checklist actually in force, and
+  tracks which of those checklist items have proven themselves enough to
+  become real company-wide policy in [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences).
+  See [README.md](README.md)'s pipeline explanation and this file's own
+  meta section below for why that middle step exists at all.
 
 ## Why BestPractice specifically works (semi-organized brainstorm)
 
@@ -82,6 +90,14 @@ pushes them there. Candidate mechanisms, none decided yet (this is a
 - Have Claude proactively surface a previously-extracted rule when it's
   relevant in a new context, rather than leaving it inert in a file
   nobody re-reads.
+
+Push-back mode (the first candidate above) is decided and promoted — see
+[OPERATING_RULES.md](OPERATING_RULES.md) item 1. The rest — visible
+reminders, in-your-face rule-extraction, proactive resurfacing — remain
+open; proactive resurfacing specifically also shows up as one of
+[COCREATION_DESIGN.md](COCREATION_DESIGN.md)'s "Memory & context" ideas,
+tracked as a not-yet-ready item in
+[OPERATING_RULES.md](OPERATING_RULES.md) pending real infrastructure.
 
 ## Observations from other conversations
 
@@ -186,6 +202,18 @@ call as much as mine):
   built" against rule 5's "don't systematize a one-off") — that tension is
   often more interesting than either entry alone, and it's the kind of
   thing a single session won't notice but a deliberate re-read will.
+
+**2026-08-27 entry — the pipeline needed a name and a middle stage.** A
+session asked to recommend RepoPersonalPreferences changes based on this
+repo's ideas went straight from brainstorm to "add this to the personal
+pack." Morgan's correction: this repo's actual job is to *try* an idea in
+real work first — going straight from an essay here to a rule that rolls
+out to every project skips the step that's supposed to catch a good-sounding
+idea that doesn't actually hold up. The fix wasn't a new rule, it was
+naming the stage that was missing: [OPERATING_RULES.md](OPERATING_RULES.md),
+sitting between the essays here and RepoPersonalPreferences, holding
+whatever's currently on trial. See [README.md](README.md)'s new pipeline
+section and [TODO.md](TODO.md) for the decision record.
 
 ## Prompts and phrasing
 

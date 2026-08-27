@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-26 13:00:00 (Buenos Aires) by Morgan F, to version 1 -->
+<!-- Last updated: 2026-08-27 11:40:00 (Buenos Aires) by Morgan F, to version 2 -->
 
 # Repository instructions — read me first
 
@@ -12,6 +12,8 @@ keeps this repo well-run.
 |---|---|
 | Canonical names — use these, don't invent new ones | [GLOSSARY.md](GLOSSARY.md) |
 | The brainstorm itself | [IDEAS.md](IDEAS.md) |
+| The three-stage pipeline (idea → operating rule → company policy) | [README.md](README.md) |
+| Rules actually in force now, and promotion candidates | [OPERATING_RULES.md](OPERATING_RULES.md) |
 | Open items: analyses, verifications, decisions | [TODO.md](TODO.md) |
 | Practice layer: vendored BestPractice copy, manifest, scrub blocklist | `process/` |
 
