@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-26 13:00:00 (Buenos Aires) by Morgan F, to version 2 -->
+<!-- Last updated: 2026-08-27 10:55:27 (Buenos Aires) by Morgan F, to version 3 -->
 
 # Ideas — how to work with AI
 
@@ -23,6 +23,16 @@ and push the sharpened version back in.
   workflows only once work actually repeats, hiring for verification over
   production, putting compute in the P&L, killing "dark processes," and
   voice/style as evidence that someone actually thought.
+- **Building AI systems for co-creation** — one level down from the above:
+  how the AI systems themselves should be configured, built, and run so
+  the healthy pattern is the default rather than something a disciplined
+  user has to manufacture by hand:
+  [COCREATION_DESIGN.md](COCREATION_DESIGN.md). Covers durable memory as
+  the default substrate, push-back as a config switch keyed to task shape,
+  arguing in the open instead of posting finished-looking suggestions,
+  visibly non-uniform confidence, situational (not fixed) cost-awareness,
+  a structural check for AI-sounding prose, and self-surfacing of dark
+  processes.
 
 ## Why BestPractice specifically works (semi-organized brainstorm)
 
