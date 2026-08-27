@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-26 14:53:22 (Buenos Aires) by Morgan F, to version 3 -->
+<!-- Last updated: 2026-08-27 11:40:00 (Buenos Aires) by Morgan F, to version 4 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -38,11 +38,68 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   the meta-note at the bottom of that file (e.g. rule 9's "build five, kill
   four" against rule 5's "don't systematize a one-off") — worth a
   dedicated pass once there's enough material for real tensions to show up.
+  Now also item 7 of [OPERATING_RULES.md](OPERATING_RULES.md) — this line
+  and that item are the same recurring job, described from two sides.
+- [ ] **Design real infrastructure for active/proactive resurfacing** —
+  "you decided X six weeks ago, unprompted" (COCREATION_DESIGN.md's
+  "Memory & context", [OPERATING_RULES.md](OPERATING_RULES.md)'s "Not yet
+  ready" list). Needs something that mines and ranks prior decisions rather
+  than only answering when asked; no design proposed yet. **analysis.**
+- [ ] **Design automatic workflow-candidate detection** — mining
+  commit/session history for a recurring task shape, instead of relying
+  solely on [OPERATING_RULES.md](OPERATING_RULES.md) item 4's
+  human-triggered reflex. **analysis.**
+- [ ] **Work out situational, inferred cost-awareness** — COCREATION_DESIGN.md
+  records that a fixed "surface spend per outcome" policy was already
+  proposed and rejected; the open half is inferring *which* posture
+  applies (explicit budget mention, project stage, stated intent) rather
+  than applying one policy everywhere. Passive cost logging is the one
+  piece already worth keeping regardless. **analysis.**
+- [ ] **Formalize the coldstart test as a periodic check** — can a fresh
+  session, given only the memory store, reconstruct the state of any live
+  decision? Currently just a manual audit idea in
+  [OPERATING_RULES.md](OPERATING_RULES.md); worth deciding whether it
+  becomes a recurring item here (like the BestPractice check-in) or stays
+  ad hoc. **decision.**
 
 ## Verify before external use
 
 ## Decisions (user's call)
 
+- [x] **Give this repo an explicit third stage — [OPERATING_RULES.md](OPERATING_RULES.md)
+  — between the brainstorm/essays and RepoPersonalPreferences.** Decided
+  2026-08-27 → done, doc. A session recommending changes to
+  RepoPersonalPreferences straight from this repo's ideas had skipped the
+  step this repo exists to provide: trying an idea in real work before it
+  becomes company-wide policy. Morgan's correction: (1) discover in
+  [IDEAS.md](IDEAS.md) / the promoted essays, (2) try it for real in a new
+  document, (3) only then port proven rules into RepoPersonalPreferences
+  for rollout everywhere. Landed as
+  [OPERATING_RULES.md](OPERATING_RULES.md) (new document, seeded with
+  items 1-2 already promoted from a prior session, items 3-7 as trial
+  rules pulled straight from [COCREATION_DESIGN.md](COCREATION_DESIGN.md)
+  and [FIFTEEN_RULES.md](FIFTEEN_RULES.md), and a "not yet ready" section
+  for ideas that need real infrastructure first — see the five new items
+  above this one), a new "How this repo's ideas become company policy"
+  section in [README.md](README.md), updated [MAP.md](MAP.md) and
+  [GLOSSARY.md](GLOSSARY.md) (new terms: **the pipeline**, **the operating
+  rules**, **promote**/**promotion**), [AGENTS.md](AGENTS.md)'s quick
+  index, and a new dated entry plus an updated open-question note in
+  [IDEAS.md](IDEAS.md). Judgment calls made: (1) named the document
+  the document [OPERATING_RULES.md](OPERATING_RULES.md) rather than
+  something like `COMPANY_RULES.md` —
+  "operating" reads as closer to "what's actually run on" than "company,"
+  which could be misread as employee-facing policy; (2) picked five of
+  COCREATION_DESIGN.md's ideas as concrete enough to state as Trial rules
+  now (argue in the open, the two reflexes, the AI-voice check, the
+  dark-process self-audit, contradiction-scanning) and left the rest —
+  active resurfacing, workflow-candidate mining, situational cost
+  inference, the coldstart test, deeper normie-engagement mechanisms — as
+  open TODO items instead of rules, on the view that they need real
+  infrastructure or more testing before they're checkable the way a Trial
+  rule should be; (3) explicitly did not touch RepoPersonalPreferences in
+  this pass, since promotion only happens once a Trial rule proves itself
+  here, not on day one.
 - [x] **Force deeper AI engagement, or just permit it?** Decided
   2026-08-26 → done, for the specific form Morgan asked for: **push-back
   mode**, landed as
