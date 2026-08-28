@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 09:08:29 (Buenos Aires) by Morgan F, to version 11 -->
+<!-- Last updated: 2026-08-28 10:01:51 (Buenos Aires) by Morgan F, to version 12 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -131,7 +131,38 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   openers already use (its rule 4, "Co-create; don't delegate.", was the
   clearest precedent already in the repo). Two line-wrap artifacts left
   over from the previous edit pass (an orphaned word on its own line in
-  items 2 and 5) were cleaned up in the same pass.
+  items 2 and 5) were cleaned up in the same pass. **Revised again
+  2026-08-28** — two content swaps plus a length pass. In
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md): item 4 ("judgment is scarce,
+  production is not") became "humans should do what humans do best" —
+  judgment, relationships, instinct, reading what's unspoken, pushing
+  people when the moment calls for it, cited to rule 15 ("reserve the
+  permanent hire for what's structurally human") instead of rules 7-8;
+  item 7 dropped "direction must be continuous" for "people manage;
+  agents execute" — plan and oversee like Nix defines a system rather than
+  hand-running it, treating the model as an individual contributor
+  (IC), cited to rule 14 ("give
+  the agents a manager") instead of standing alone. All seven items were
+  also cut to roughly half their prior length, titles and rule citations
+  otherwise unchanged. In [REASONS_WHY.md](REASONS_WHY.md): item 2
+  ("killing a bad version stops being a referendum on the person who made
+  it") was dropped outright, and the rest renumbered 1-6. The old item 5
+  (institutional memory survives a departure) became "the power of
+  documentation is almost magical — nobody ever finds the time, so it's
+  now a background part of the process agents do," with the
+  departure-survives-knowledge point folded in as one example rather than
+  the headline. The old item 6 (judgment work becomes more interesting,
+  not less) became "the deepest problems get caught by instinct, not a
+  checklist" — what a model's checks can't see (a felt-off answer, a
+  disengaging teammate) versus what instinct built on experience catches.
+  Judgment calls made: (1) picked rule 15 and rule 14 as the new
+  citations for items 4 and 7 rather than leaving them uncited, since both
+  rules match the new content more precisely than the ones they replaced;
+  (2) kept each item's opening bold title short enough to match the
+  tightened style from the prior revision, rather than let the halving
+  pass produce a longer title to compensate for a shorter body; (3) left
+  [REASONS_WHY.md](REASONS_WHY.md)'s own length alone — Morgan asked for
+  the halving pass only on [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md).
 - [x] **Rename OPERATING_RULES.md, FIFTEEN_RULES.md, and COCREATION_DESIGN.md
   — all three names read as unclear about what they cover.** Decided
   2026-08-27 → done, doc. Morgan's complaint: `OPERATING_RULES` implies
