@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 10:01:51 (Buenos Aires) by Morgan F, to version 12 -->
+<!-- Last updated: 2026-08-28 12:58:31 (Buenos Aires) by Morgan F, to version 13 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -163,6 +163,32 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   pass produce a longer title to compensate for a shorter body; (3) left
   [REASONS_WHY.md](REASONS_WHY.md)'s own length alone — Morgan asked for
   the halving pass only on [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md).
+  **Revised a third time 2026-08-28** — three changes to
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) and one to
+  [REASONS_WHY.md](REASONS_WHY.md), all Morgan's. Philosophy gained a new
+  item, "every decision carries the situation that produced it" (however
+  small the call, the record says what specific case prompted it), placed
+  third and cited to BestPractice practices 5 and 20, which already
+  require exactly this — Morgan checked that understanding first and it
+  held. The old item 6 (records checked against reality) was dropped as a
+  standalone and folded into item 1 as one sentence, since it is a detail
+  of what a full written record lets you do. "Humans should do what humans
+  do best" moved from item 4 to last, so the order now runs: written
+  record, context is capital, decisions carry their situation,
+  disagreement over compliance, visible processes, people manage / agents
+  execute, humans do what humans do best. In
+  [REASONS_WHY.md](REASONS_WHY.md), item 3 ("how someone's doing stops
+  being a once-a-year guess") was cut as confusing and weak, and replaced
+  in place with the benefit side of the new philosophy item — attaching
+  the situation to a decision heads off confusions nobody sees coming.
+  Judgment calls made: (1) placed the new philosophy item third, directly
+  after "context is capital," since it is that idea's operational form,
+  rather than first as its criticality might suggest; (2) illustrated the
+  new [REASONS_WHY.md](REASONS_WHY.md) item with this repo's own
+  never-hand-merge-`process/upstream/` rule, per Morgan's "PR & merge"
+  steer, rather than inventing an outside example; (3) renumbered the
+  internal cross-reference in "people manage; agents execute" (item 3 →
+  item 4) to follow the reorder.
 - [x] **Rename OPERATING_RULES.md, FIFTEEN_RULES.md, and COCREATION_DESIGN.md
   — all three names read as unclear about what they cover.** Decided
   2026-08-27 → done, doc. Morgan's complaint: `OPERATING_RULES` implies

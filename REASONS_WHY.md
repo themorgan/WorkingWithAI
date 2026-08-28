@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 10:01:51 (Buenos Aires) by Morgan F, to version 2 -->
+<!-- Last updated: 2026-08-28 12:58:31 (Buenos Aires) by Morgan F, to version 3 -->
 
 # Reasons why
 
@@ -29,13 +29,20 @@ reasoning, instead of as a follow-up chore
 mostly disappears. Nobody has to choose between finishing the task and
 writing it up, because the writing already happened while the task did.
 
-**3. How someone's doing stops being a once-a-year guess.** A review
-built on what a manager happens to remember from the last two weeks
-measures recency and rapport dressed up as performance. When contributions
-live somewhere both sides can read at any time, not just when a review is
-scheduled ([IDEAS.md](IDEAS.md)'s "Visibility as an incentive
-mechanism"), someone can see how their own work is landing and adjust
-before the meeting where it would otherwise arrive as news.
+**3. Attaching the situation to a decision heads off the confusions
+nobody sees coming.** This repo's merge runbook says never hand-merge
+`process/upstream/` — re-run the sync instead. As a bare instruction it
+loses the first time someone hits a real conflict there: resolving it by
+hand is the obvious, competent-looking move, and the vendored copy
+quietly stops matching upstream, so the next sync throws a conflict
+nobody can account for and the audit trail says the two were identical
+all along. Carrying the reason inline — this directory is a byte-for-byte
+mirror, and editing it breaks the thing the mirror is for — settles that
+in one read, before the pull request is opened rather than three merges later when
+somebody has to reconstruct what happened. Every rule with its origin
+case attached is that same trade: a sentence written once against a
+problem that would otherwise get diagnosed from scratch by whoever
+inherits it ([OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 3).
 
 **4. The power of documentation is almost magical — the problem was
 never doubting that, it was finding the time.** Everyone already agrees
