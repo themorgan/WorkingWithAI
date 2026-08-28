@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 14:20:00 (Buenos Aires) by Morgan F, to version 15 -->
+<!-- Last updated: 2026-08-28 13:41:04 (Buenos Aires) by Morgan F, to version 16 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -222,6 +222,16 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   cutting further, since the typist/oracle contrast needed the room to
   land; (2) kept the plain subject-predicate title style from the third
   revision's pass rather than reintroducing a riddle-shaped reversal.
+  **Revised a sixth time 2026-08-28** — one typo fix to
+  [REASONS_WHY.md](REASONS_WHY.md), Morgan's. Item 4's title had been left
+  a broken fragment by the fourth revision's trim — "The power of
+  documentation is almost magical — it was finding the time," missing the
+  clause that made "it was finding the time" make sense on its own. Fixed
+  to "The power of documentation is almost magical — since no one finds
+  the time, AI will," which states the item's actual point (the record
+  gets made because the agents make it a background part of the work, not
+  because anyone finds an hour for it) directly in the title instead of
+  leaving it implicit in the body.
 - [x] **Rename OPERATING_RULES.md, FIFTEEN_RULES.md, and COCREATION_DESIGN.md
   — all three names read as unclear about what they cover.** Decided
   2026-08-27 → done, doc. Morgan's complaint: `OPERATING_RULES` implies
