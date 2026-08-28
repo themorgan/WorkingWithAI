@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 08:52:37 (Buenos Aires) by Morgan F, to version 9 -->
+<!-- Last updated: 2026-08-28 09:01:50 (Buenos Aires) by Morgan F, to version 10 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -86,8 +86,8 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) (seven named ideas: text as the
   only thing that persists, context as capital, friction over agreement,
   judgment as the scarce output, legibility over convenience, a record
-  that watches itself, and earned trust for the pipeline itself) and
-  [REASONS_WHY.md](REASONS_WHY.md) (seven subtler benefits: cheap early
+  that watches itself, and direction as continuous rather than a single
+  handoff) and [REASONS_WHY.md](REASONS_WHY.md) (seven subtler benefits: cheap early
   failure, killing ideas losing its social cost, documentation as a
   byproduct, continuous depersonalized evaluation, institutional memory
   outliving any one person, judgment work becoming the promotion path, and
@@ -109,6 +109,16 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   linked both from every index file even though doc_lint's findability
   gate doesn't technically require it for a document with no generated
   numbers, since these are meant to be the first thing a newcomer reads.
+  **Revised same day** — Morgan flagged item 7 (the pipeline's earned-trust
+  point) as the weakest of the seven and asked to swap it for a different
+  core idea: that people need to constantly instruct, guide, tweak, and
+  fix an agent as it creates, not hand off a brief once and collect the
+  result. Landed as the new item 7, "direction is continuous, not a single
+  handoff." He also asked for "understanding the thinking behind the
+  work" — usually the first thing lost when work changes hands — folded
+  into the context paragraph (item 2) rather than made its own item, since
+  it's a specific consequence of that same point rather than a separate
+  idea.
 - [x] **Rename OPERATING_RULES.md, FIFTEEN_RULES.md, and COCREATION_DESIGN.md
   — all three names read as unclear about what they cover.** Decided
   2026-08-27 → done, doc. Morgan's complaint: `OPERATING_RULES` implies

@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 08:48:33 (Buenos Aires) by Morgan F, to version 1 -->
+<!-- Last updated: 2026-08-28 09:01:50 (Buenos Aires) by Morgan F, to version 2 -->
 
 # Our philosophy
 
@@ -33,7 +33,11 @@ scarce is the material that never got commoditized in the first place —
 why the last vendor actually failed, what the customer meant versus what
 they said, which option got killed and why. That material was always
 locked inside one person's head, a form of scarcity no amount of hiring
-solves. Capturing it is capital expenditure in the literal sense: it
+solves. The conclusion alone doesn't fix this — a decision written down
+without the thinking that produced it is nearly as opaque as no decision
+at all, because nobody downstream, human or model, can tell whether the
+reasoning still holds once the situation has moved. Capturing it is
+capital expenditure in the literal sense: it
 produces an asset a competitor can't buy, because renting the same model
 from the same vendor by Thursday afternoon doesn't hand them your reasons
 (rule 1). Counting effort in licenses activated measures the one input
@@ -94,20 +98,20 @@ quality-control theater. It's the only channel left that can report the
 record has started lying to itself, and a system that never checks has no
 way of finding out before a customer does.
 
-**7. An idea earns its way into policy by surviving contact with real
-work, not by being well argued.** A convincing essay isn't evidence that a
-rule should govern anyone's actual work; it's a hypothesis, and hypotheses
-are cheap to write and expensive to be wrong about once they're running
-everywhere. An idea moves from a brainstorm entry to an essay to something
-tried in real sessions to, eventually, a standing rule, and each stage is
-a different kind of test — this is the reasoning behind
-[RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) sitting between the essays
-here and company-wide policy (see [README.md](README.md)'s pipeline
-section). Skipping straight from "this sounds right" to "this is how we
-do things now" skips the one step that would have caught a good-sounding
-idea that doesn't actually hold up. Even a well-reasoned case for a rule
-stays provisional until it's been run against something real and either
-caught a mistake or didn't.
+**7. Direction is continuous, not a single handoff.** "Co-create" (item 3)
+names the posture — argue, don't comply — but there's a separate, more
+basic shift underneath it in what making something with a model actually
+looks like day to day. The old shape is a handoff: describe what you want,
+walk away, come back to a finished thing and edit it. The shape that
+actually works is instructing, guiding, tweaking, and fixing the output
+while it's still being made, not after — catching the wrong turn on
+paragraph two instead of discovering it on paragraph twenty, adjusting the
+plan mid-draft instead of re-briefing from scratch once the whole thing
+has to be redone. A model given a broad brief and left alone commits early
+to one reading of it and runs with that reading, confidently, all the way
+to the end. Staying present through the making, not just at the start and
+the end of it, is what keeps the output converging on the actual intent
+instead of a plausible guess at it.
 
 See [REASONS_WHY.md](REASONS_WHY.md) for what these ideas actually buy in
 practice.
