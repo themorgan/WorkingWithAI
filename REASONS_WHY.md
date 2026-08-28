@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 18:59:19 (Buenos Aires) by Morgan F, to version 8 -->
+<!-- Last updated: 2026-08-28 19:15:00 (Buenos Aires) by Morgan F, to version 9 -->
 
 # Reasons why
 
@@ -83,6 +83,21 @@ stays in a private chat window, the reasoning and the discarded options
 leave with the chat history, and the company never had them. Doing the
 same thinking in the open, in this repo, turns that habit into
 information the company actually keeps (item 4 above).
+
+**9. An intermediate AI layer in front of every action throws off benefits
+nobody asked for.** Put a model between someone's intent and whatever
+actually happens — a commit, a message, a purchase — and side effects
+show up that weren't the point of putting it there. Speaking an
+instruction instead of typing it stops being a tooling problem, since the
+layer already turns language into the action either way. A half-formed
+plan gets contradicted before it fires, the same way a colleague would
+say "wait, that breaks X" — except this one never skips the check because
+it's in a hurry. And the layer that carried out the action already has
+the trace of what happened and why, so the rule that would have caught it
+next time and the record of this time both fall out for free, rather than
+needing someone to write them up afterward (item 4 above). None of that
+was the ask; all of it shows up anyway, purely from where the layer
+sits.
 
 See [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) for the theory behind why these
 particular things happen.
