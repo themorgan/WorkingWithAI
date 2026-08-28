@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 23:09:41 (Buenos Aires) by Morgan F, to version 8 -->
+<!-- Last updated: 2026-08-28 08:52:37 (Buenos Aires) by Morgan F, to version 9 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -77,6 +77,38 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
 
 ## Decisions (user's call)
 
+- [x] **Add a theory-level intro pair: what this is and why it's worth
+  doing, deeper than "co-create as partners."** Decided 2026-08-28 → done,
+  doc. Morgan asked for two documents: one naming and explaining the
+  handful of underlying philosophies this repo's essays assume (not a
+  defense, an explanation), and one listing the less obvious benefits —
+  not generic "better results" or "collaboration is better." Landed as
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) (seven named ideas: text as the
+  only thing that persists, context as capital, friction over agreement,
+  judgment as the scarce output, legibility over convenience, a record
+  that watches itself, and earned trust for the pipeline itself) and
+  [REASONS_WHY.md](REASONS_WHY.md) (seven subtler benefits: cheap early
+  failure, killing ideas losing its social cost, documentation as a
+  byproduct, continuous depersonalized evaluation, institutional memory
+  outliving any one person, judgment work becoming the promotion path, and
+  drift caught before a customer does). Both cross-link each other and
+  cite back to specific rules in
+  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md),
+  [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md), and
+  [IDEAS.md](IDEAS.md) rather than restating them. Wired into
+  [MAP.md](MAP.md), [README.md](README.md), [AGENTS.md](AGENTS.md)'s quick
+  index, and [GETTING_STARTED.md](GETTING_STARTED.md) as the theory-level
+  entry point for a newcomer. Judgment calls made: (1) used Morgan's
+  suggested filenames verbatim rather than inventing alternatives; (2)
+  picked seven items per document rather than a strict "couple" — enough
+  to cover the corpus without any one entry being superficial, which was
+  the specific thing Morgan flagged as missing from "co-create as
+  partners" alone; (3) didn't add new [GLOSSARY.md](GLOSSARY.md) entries —
+  the seven names in each document are paragraph headers local to that
+  document, not canonical vocabulary reused elsewhere in the repo; (4)
+  linked both from every index file even though doc_lint's findability
+  gate doesn't technically require it for a document with no generated
+  numbers, since these are meant to be the first thing a newcomer reads.
 - [x] **Rename OPERATING_RULES.md, FIFTEEN_RULES.md, and COCREATION_DESIGN.md
   — all three names read as unclear about what they cover.** Decided
   2026-08-27 → done, doc. Morgan's complaint: `OPERATING_RULES` implies

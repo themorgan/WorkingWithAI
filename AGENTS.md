@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 23:09:41 (Buenos Aires) by Morgan F, to version 5 -->
+<!-- Last updated: 2026-08-28 08:52:37 (Buenos Aires) by Morgan F, to version 6 -->
 
 # Repository instructions — read me first
 
@@ -10,6 +10,8 @@ keeps this repo well-run.
 
 | Looking for… | Go to |
 |---|---|
+| The theory behind this repo — named, explained, not argued for | [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) |
+| The less obvious benefits those ideas produce | [REASONS_WHY.md](REASONS_WHY.md) |
 | Canonical names — use these, don't invent new ones | [GLOSSARY.md](GLOSSARY.md) |
 | The brainstorm itself | [IDEAS.md](IDEAS.md) |
 | The three-stage pipeline (idea → rules now testing → company policy) | [README.md](README.md) |

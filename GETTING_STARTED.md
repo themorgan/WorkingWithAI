@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 23:05:21 (Buenos Aires) by Morgan F, to version 4 -->
+<!-- Last updated: 2026-08-28 08:52:37 (Buenos Aires) by Morgan F, to version 5 -->
 
 # Getting started with `WorkingWithAI`
 
@@ -13,7 +13,10 @@ within the hour. You do not need to be a programmer.
 
 This particular project is a running brainstorm: [IDEAS.md](IDEAS.md) is
 where prompts, workflows, and observations about working with AI get
-captured as they come up.
+captured as they come up. Want the thinking behind it before the
+how-to? [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) explains the underlying
+ideas, and [REASONS_WHY.md](REASONS_WHY.md) covers what they actually buy
+you.
 
 ## How contributing works — five steps
 
