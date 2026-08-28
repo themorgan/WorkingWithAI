@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 23:09:41 (Buenos Aires) by Morgan F, to version 7 -->
+<!-- Last updated: 2026-08-28 08:52:37 (Buenos Aires) by Morgan F, to version 8 -->
 
 # Repository map — where to find things
 
@@ -17,6 +17,8 @@ Companions: [AGENTS.md](AGENTS.md) (workflow + conventions), [TODO.md](TODO.md)
 
 | Path | What it is |
 |---|---|
+| [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) | Orientation for a newcomer: the handful of underlying theoretical ideas everything else here assumes, named and explained on their own terms. |
+| [REASONS_WHY.md](REASONS_WHY.md) | Orientation's companion: the less obvious benefits those ideas actually produce in practice. |
 | [IDEAS.md](IDEAS.md) | **The deliverable.** The brainstorm itself — pipeline stage 1. |
 | [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) | Standalone essay promoted out of the brainstorm: fifteen rules for building a company around AI. |
 | [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) | Standalone doc promoted out of the brainstorm: how AI systems themselves should be configured, built, and run to make the healthy pattern the default. |

@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 23:09:41 (Buenos Aires) by Morgan F, to version 6 -->
+<!-- Last updated: 2026-08-28 08:52:37 (Buenos Aires) by Morgan F, to version 7 -->
 
 # WorkingWithAI
 
@@ -53,6 +53,11 @@ essay argued for it well. It has to survive stage 2, in this repo, first.
 
 ## What's here
 
+- [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) — the underlying theoretical ideas
+  everything else here assumes, named and explained on their own terms, for
+  anyone who wants to understand this at the theory level before diving
+  into the brainstorm itself. [REASONS_WHY.md](REASONS_WHY.md) is its
+  companion: the less obvious benefits those ideas produce in practice.
 - [IDEAS.md](IDEAS.md) — the brainstorm itself: one entry per idea, prompt,
   workflow, or observation, loosely grouped.
 - [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) —
