@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 14:17:07 (Buenos Aires) by Morgan F, to version 9 -->
+<!-- Last updated: 2026-08-28 14:23:00 (Buenos Aires) by Morgan F, to version 10 -->
 
 # Our philosophy
 
@@ -13,22 +13,22 @@ for it.*
 
 ## The working loop
 
-The same four steps repeat every time, in order:
+The same five steps repeat every time, in order:
 
 1. A spark — an idea, new data, an incoming request, a changed system
    message.
-2. Argue it out with an assistant that has this repo attached, so the
-   argument runs against the actual record instead of a guess (item 4
-   below).
+2. Argue it out with an AI Assistant that has this repo attached, so
+   the argument runs against the actual record instead of a guess
+   (item 4 below).
 3. Most of that arguing happens on GitHub, in the open — a pull
    request, not a chat log only one person can reread (item 5 below).
-4. What survives gets written down with the case that produced it
+4. The AI Assistant produces all the output; you only guide it (item 6
+   below).
+5. What survives gets written down with the case that produced it
    (items 1 and 3 below), so it stays visible to whichever session
    opens this repo next.
 
-[README.md](README.md)'s three-stage pipeline is the same shape from the
-document side: steps 1-2 are stage 1, the open pull request is the
-review gate, the written rule is stages 2 and 3.
+Here is a boildown of the principles guiding us:
 
 **1. If it isn't written down, it doesn't exist.** A decision only in
 someone's head is no decision — it vanishes when they forget or leave.

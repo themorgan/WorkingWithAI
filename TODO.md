@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 14:17:07 (Buenos Aires) by Morgan F, to version 18 -->
+<!-- Last updated: 2026-08-28 14:23:00 (Buenos Aires) by Morgan F, to version 19 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -275,6 +275,29 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   header above the seven ideas for parallelism — Morgan asked only for
   the new section, and adding one to the existing list wasn't part of
   that ask.
+  **Revised a ninth time 2026-08-28** — three more tweaks to "The working
+  loop" section, all Morgan's, same day. A new step inserted between the
+  old steps 3 and 4: the AI Assistant produces all the output, the human
+  only guides it (item 6 below, "people manage; agents execute") — the
+  list is now five steps, not four. "Assistant" became "AI Assistant"
+  throughout the section, to read unambiguously as the software rather
+  than a human role. The closing paragraph that mapped the steps onto
+  [README.md](README.md)'s three-stage pipeline was dropped — Morgan
+  called it confusing and out of place for what this section is, a
+  plain-language lead-in to the seven ideas — and replaced with one
+  transition sentence, "Here is a boildown of the principles guiding
+  us:". Judgment calls made: (1) inserted the new step as position 4
+  (between GitHub and the written-rule step) exactly where Morgan asked,
+  rather than at the end, even though it means the written-rule step's
+  citations ("items 1 and 3 below") now sit one position later in the
+  list; (2) kept "AI Assistant" capitalized as given rather than
+  lowercasing to match this repo's usual "the assistant" style
+  elsewhere (GETTING_STARTED.md, README.md) — Morgan's ask was
+  specifically to make this section read unambiguously, and scoped it
+  to "assistant," not the rest of the repo's terminology; (3) used
+  Morgan's transition sentence verbatim, including its wording, rather
+  than silently correcting what may be a typo ("boildown") — flagged it
+  back to him instead of guessing.
 - [x] **Rename OPERATING_RULES.md, FIFTEEN_RULES.md, and COCREATION_DESIGN.md
   — all three names read as unclear about what they cover.** Decided
   2026-08-27 → done, doc. Morgan's complaint: `OPERATING_RULES` implies
