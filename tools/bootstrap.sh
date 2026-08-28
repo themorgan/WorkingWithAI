@@ -26,3 +26,9 @@ git config user.email "morgan@westegg.com"
 # §16 and §18 step 4): cheap, non-blocking, notice only -- never takes the
 # update itself.
 python3 process/personal/tools/pack_sync.py fresh 2>/dev/null || true
+
+# Voice guidelines session-start freshness notice (AGENTS.md's "Voice"
+# section): same shape as the two notices above, for
+# process/voice/HUMAN_VOICE_RULES.md against its source,
+# VoiceGuidelinesToSoundHuman.
+python3 process/voice/tools/voice_sync.py fresh 2>/dev/null || true

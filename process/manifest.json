@@ -30,8 +30,8 @@
       "local_path": ".claude/settings.json",
       "granularity": "file",
       "status": "synced",
-      "notes": "Added allowlist entries for process/upstream/tools/checkin.py, process/personal/tools/light_check.py, and process/personal/tools/pack_sync.py so the personal pack's own gates don't stall on permission prompts.",
-      "local_sha256": "da29b4ebfa03fcbb1a222a1045229413a51e1e621078a62e6f23003535f887b8"
+      "notes": "Added allowlist entries for process/upstream/tools/checkin.py, process/personal/tools/light_check.py, process/personal/tools/pack_sync.py, and (2026-08-28) process/voice/tools/voice_sync.py, so the personal pack's and voice guidelines' own gates don't stall on permission prompts.",
+      "local_sha256": "472564db504bea8c57dd78ed070cbe5abdf0d1e81fabd2c45c4d29dc7349e625"
     },
     {
       "practice": "claude-code-session-hook",
@@ -48,8 +48,8 @@
       "local_path": "tools/bootstrap.sh",
       "granularity": "file",
       "status": "synced",
-      "notes": "Extended with the personal pack's git-identity setup and session-start freshness notice — see process/personal/README.md §3, §16, §18 step 4.",
-      "local_sha256": "2395c949e36e6f1402cf1872741c48e1ae68eb4667a3295977e761c4daeaf891"
+      "notes": "Extended with the personal pack's git-identity setup and session-start freshness notice (process/personal/README.md §3, §16, §18 step 4), and (2026-08-28) a third freshness line for the voice guidelines — see AGENTS.md's 'Voice' section.",
+      "local_sha256": "fa924dc9dcaf4266922c32ee4dcce9b94f84e614538645d10358ca69456e6e46"
     },
     {
       "practice": "gitignore",
@@ -85,7 +85,7 @@
       "granularity": "file",
       "status": "local-only",
       "notes": "Fully adapted to this repo's own layout — this repo's map is its own subject matter, not upstream-exportable content.",
-      "local_sha256": "ec9f2eebe6e08244b97fbc42f29c9c7fe4a966779090ccfeeb8a49bdc31c36dc"
+      "local_sha256": "40ba27a7ac58760cb9e11839e37e21017c806693786541e525f0a359906f508c"
     },
     {
       "practice": "todo",
@@ -94,7 +94,7 @@
       "granularity": "file",
       "status": "local-only",
       "notes": "This repo's own open-items list, including the recurring BestPractice check-in item; not upstream-exportable content.",
-      "local_sha256": "d9e891ac28f5ffb988d8158f21dbd77b9b1511dd725f724babb50a9e295cb7e4"
+      "local_sha256": "263b972466fc2944d2d026c6edd6ee51edd1cc2518330bf88f8c1ba8bc5a8f32"
     },
     {
       "practice": "glossary",
@@ -103,7 +103,7 @@
       "granularity": "file",
       "status": "local-only",
       "notes": "This repo's own canonical names; not upstream-exportable content.",
-      "local_sha256": "8bcc1ce10efb5e14a360f7c76cf59b58f6b065c6dce41b236b0ed51067f96d29"
+      "local_sha256": "7816b5438b6d4e439a72ba14e1190ea1b07505370b3cb9411aafd2111c476174"
     },
     {
       "practice": "getting-started",
@@ -112,7 +112,7 @@
       "granularity": "file",
       "status": "local-only",
       "notes": "Instantiated with this repo's real values (single-member repo today). Structural onboarding improvements are still exportable per INSTALL.md §3 if they generalize.",
-      "local_sha256": "b4d9f08d324e158afa95836874d92879d8012629d568c43f1888b92e35be315a"
+      "local_sha256": "ff32665e2bbe2e76597d8d9a5d725f26864061311e1a1801a2858057c72b27c0"
     },
     {
       "practice": "readme-agent-entry",

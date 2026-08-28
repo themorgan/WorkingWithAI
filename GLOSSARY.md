@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 11:40:00 (Buenos Aires) by Morgan F, to version 2 -->
+<!-- Last updated: 2026-08-28 09:00:00 (Buenos Aires) by Morgan F, to version 3 -->
 
 # Canonical names
 
@@ -12,6 +12,8 @@ wins — fix the documents.
 | **the pipeline** (three-stage) | How a brainstorm idea becomes company-wide policy: discover (the brainstorm) → try it for real (**the operating rules**) → roll out everywhere (RepoPersonalPreferences's personal pack). | [README.md](README.md) |
 | **the operating rules** | Pipeline stage 2: the practical checklist actually in force in real work now, each rule tagged Trial, Ready to promote, or Promoted. | [OPERATING_RULES.md](OPERATING_RULES.md) |
 | **promote** / **promotion** | Moving a rule from *Trial* to *Ready to promote* to landed as its own section in RepoPersonalPreferences's personal pack — pipeline stage 2 to stage 3. | [OPERATING_RULES.md](OPERATING_RULES.md) "Promotion" |
+| **the voice guidelines** | [HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md), vendored from [VoiceGuidelinesToSoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman): the "don't sound like an LLM" ruleset this repo's own writing follows, chat replies included. | [AGENTS.md](AGENTS.md) "Voice" |
+| **the voice guidelines sync** | The scheduled GitHub Actions workflow (weekly by default) that keeps [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) current with VoiceGuidelinesToSoundHuman. | [AGENTS.md](AGENTS.md) "A third scheduled check keeps the voice guidelines current" |
 | **BestPractice** | The public upstream practice layer this repo vendors and follows. | [process/upstream/README.md](process/upstream/README.md) |
 | **the personal pack** | Morgan's own layer of setup rules, vendored from [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences). | [process/personal/README.md](process/personal/README.md) |
 | **the BestPractice sync** | The scheduled GitHub Actions workflow (weekly by default) that keeps `process/upstream/` current with the public BestPractice repo. | [process/personal/README.md](process/personal/README.md) §14 |

@@ -1,0 +1,20 @@
+{
+  "upstream": {
+    "repo": "https://github.com/themorgan/VoiceGuidelinesToSoundHuman",
+    "vendored_at": "process/voice",
+    "commit": "5e8f87b6a8be0c5e7d016a43b5d6e460d4bde636",
+    "scrub_blocklist": null,
+    "_note": "commit = VoiceGuidelinesToSoundHuman hash last synced from (initial install, recorded 2026-08-28). scrub_blocklist is deliberately null: HUMAN_VOICE_RULES.md is a public-adjacent writing-style deliverable, not proprietary vocabulary that needs scrubbing before it could reach the public BestPractice repo, so the default blocklist check is simply not the relevant gate for this pack."
+  },
+  "entries": [
+    {
+      "practice": "human-voice-rules",
+      "upstream_path": "HUMAN_VOICE_RULES.md",
+      "local_path": "process/voice/HUMAN_VOICE_RULES.md",
+      "granularity": "file",
+      "status": "synced",
+      "notes": "Vendored verbatim from VoiceGuidelinesToSoundHuman's repo root (that repo has no process/ tree of its own -- process/voice/ here is just where this repo chooses to park a single-file vendor). Applied to everything a session writes in this repo, chat replies included, per AGENTS.md's Voice section.",
+      "local_sha256": "e27498b4e3e518f0487e1967131b1d6bc65cc2b96ed4cb73efdfe580e06ad670"
+    }
+  ]
+}

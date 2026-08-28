@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 11:40:00 (Buenos Aires) by Morgan F, to version 1 -->
+<!-- Last updated: 2026-08-28 09:00:00 (Buenos Aires) by Morgan F, to version 2 -->
 
 # Operating rules — what's actually in force
 
@@ -74,17 +74,24 @@ in the reply itself, not just silently in reasoning:
 (FIFTEEN_RULES rule 6; COCREATION_DESIGN: "the two reflexes... belong in
 the system prompt, not just in a human's habit.")
 
-### 5. A structural check for AI-sounding prose — *Trial*
+### 5. Write like a human, not an LLM — *Trial*
 
-Before shipping outward-facing prose (a memo, a doc, a reply meant to
-persuade), check it against FIFTEEN_RULES rule 13's named fingerprints: a
-throat-clearing opener, "not just X, it's Y," an even-handedness that
-refuses to land anywhere, an unrequested bolded summary, a closing line
-explaining what the reader just read. **No tooling exists for this yet** —
-unlike the light check's mechanical scans, this is a manual pass a session
-runs on its own draft before calling it done. If this keeps recurring
-often enough to be worth automating, that is itself an instance of rule 4
-below (a workflow candidate), not a reason to skip the manual version now.
+Superseded its original draft (2026-08-27), which pointed at FIFTEEN_RULES
+rule 13's fingerprints by hand because "no tooling exists for this yet."
+It turned out tooling already existed, just not wired up here: a whole
+repo, [VoiceGuidelinesToSoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman),
+maintains exactly this ruleset — [HUMAN_VOICE_RULES.md](https://github.com/themorgan/VoiceGuidelinesToSoundHuman/blob/main/HUMAN_VOICE_RULES.md),
+already consumed by other repos in production (VoiceDefinitionMorgan,
+VoiceDefinitionCelia, the WriteLike app). Vendored here at
+[process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md)
+(2026-08-28), kept current by its own weekly sync and session-start check
+— see [AGENTS.md](AGENTS.md)'s "Voice" section, which is where the actual
+rule now lives: it governs everything a session writes in this repo,
+chat replies included, not just committed documents. Still *Trial* here
+rather than jumping straight to Promoted — this is the first repo applying
+it to general assistant output rather than only the WriteLike voice-pack
+path, and that's a new use of it worth testing before it becomes a default
+in RepoPersonalPreferences.
 
 ### 6. Dark-process self-audit, including the session's own habits — *Trial*
 
@@ -142,7 +149,8 @@ as open items in [TODO.md](TODO.md):
    other cross-repo change.
 
 *(Origin: a session on 2026-08-27 that had initially recommended landing
-these ideas directly into RepoPersonalPreferences's `process/personal/README.md` —
+these ideas directly into RepoPersonalPreferences's
+[process/personal/README.md](https://github.com/themorgan/RepoPersonalPreferences/blob/main/process/personal/README.md) —
 corrected by Morgan, who wants this repo to actually try a rule out before
 it becomes company-wide policy. See [TODO.md](TODO.md) for the decision
 record.)*

@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 11:40:00 (Buenos Aires) by Morgan F, to version 4 -->
+<!-- Last updated: 2026-08-28 09:00:00 (Buenos Aires) by Morgan F, to version 5 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -66,6 +66,49 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
 
 ## Decisions (user's call)
 
+- [x] **Vendor the voice guidelines in, with their own weekly sync and
+  session-start check.** Decided 2026-08-28 → done, doc. A prior session
+  had flagged item 5 of [OPERATING_RULES.md](OPERATING_RULES.md) ("a
+  structural check for AI-sounding prose") as reinventing something that
+  might already exist. It did: a real repo,
+  [VoiceGuidelinesToSoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman),
+  already maintains [HUMAN_VOICE_RULES.md](https://github.com/themorgan/VoiceGuidelinesToSoundHuman/blob/main/HUMAN_VOICE_RULES.md), in production use by
+  VoiceDefinitionMorgan, VoiceDefinitionCelia, and the WriteLike app.
+  Morgan asked for it in this repo's usual vendoring shape: pulled in and
+  vendored at [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md)
+  (tracked in [process/manifest_voice.json](process/manifest_voice.json)),
+  a weekly sync
+  ([.github/workflows/voice-guidelines-sync.yml](.github/workflows/voice-guidelines-sync.yml),
+  [voice_sync.py](process/voice/tools/voice_sync.py)) mirroring the
+  personal-pack sync's shape, and a third session-start freshness line in
+  [tools/bootstrap.sh](tools/bootstrap.sh). [AGENTS.md](AGENTS.md) gained a
+  new "Voice" section making it the actual standard for everything a
+  session writes here — chat replies included, not only committed
+  documents — and [OPERATING_RULES.md](OPERATING_RULES.md) item 5 now
+  points at it instead of the ad hoc fingerprint list it started with.
+  [MAP.md](MAP.md), [GLOSSARY.md](GLOSSARY.md) (new terms: **the voice
+  guidelines**, **the voice guidelines sync**), [README.md](README.md), and
+  [GETTING_STARTED.md](GETTING_STARTED.md) (the new
+  `VOICEGUIDELINESTOSOUNDHUMAN_TOKEN` secret disclosure) all updated to
+  match. Judgment calls made: (1) reused
+  `VOICEGUIDELINESTOSOUNDHUMAN_TOKEN` as the secret name rather than
+  inventing a new one, since VoiceGuidelinesToSoundHuman's own docs already
+  establish that name for its other consumers (VoiceDefinitionMorgan,
+  VoiceDefinitionCelia) — one less name for that ecosystem to track; (2)
+  tracked only [HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) itself in
+  [process/manifest_voice.json](process/manifest_voice.json), not the new
+  workflow file — the workflow is this repo's own infrastructure, not
+  something vendored from anywhere upstream, so a manifest entry for it
+  would misrepresent what "vendored" means here; (3) kept
+  [OPERATING_RULES.md](OPERATING_RULES.md) item 5 at *Trial* rather than
+  jumping to *Promoted*, since this is the ruleset's first use on general
+  assistant output (chat replies, not just WriteLike's voice-pack
+  rewrites) — a new use worth testing here before it becomes a
+  RepoPersonalPreferences default, same pipeline discipline as everything
+  else in this document; (4) left `WriteLike` (the separate rewriting-app
+  repo, added to this session while confirming which repo was the actual
+  rules source) unvendored — it's the wrong repo for this purpose, kept
+  only for reference.
 - [x] **Give this repo an explicit third stage — [OPERATING_RULES.md](OPERATING_RULES.md)
   — between the brainstorm/essays and RepoPersonalPreferences.** Decided
   2026-08-27 → done, doc. A session recommending changes to
@@ -85,8 +128,8 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   [GLOSSARY.md](GLOSSARY.md) (new terms: **the pipeline**, **the operating
   rules**, **promote**/**promotion**), [AGENTS.md](AGENTS.md)'s quick
   index, and a new dated entry plus an updated open-question note in
-  [IDEAS.md](IDEAS.md). Judgment calls made: (1) named the document
-  the document [OPERATING_RULES.md](OPERATING_RULES.md) rather than
+  [IDEAS.md](IDEAS.md). Judgment calls made: (1) named
+  [OPERATING_RULES.md](OPERATING_RULES.md) that rather than
   something like `COMPANY_RULES.md` —
   "operating" reads as closer to "what's actually run on" than "company,"
   which could be misread as employee-facing policy; (2) picked five of
