@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-26 13:00:00 (Buenos Aires) by Morgan F, to version 1 -->
+<!-- Last updated: 2026-08-27 21:00:00 (Buenos Aires) by Morgan F, to version 2 -->
 
 # Fifteen rules for building a company around AI
 
@@ -142,20 +142,7 @@ and it's the half almost everybody underestimates: you can't ask for five
 built and four killed inside a company where being the person whose version
 got killed is a thing that follows you into your review.
 
-**10. Put compute in the P&L, then freeze headcount.**
-
-Track cost per resolved outcome, tokens included, which is your real
-marginal cost; most companies can give you headcount to the person and
-token spend to the nearest "a lot." Then, as volume grows, refuse to let
-headcount absorb it. Refuse to headcount your way past it at all. The
-constraint is what forces the discovery, since nobody has ever gone looking
-for something they weren't hurting for, and the seat-counter's version of
-this rule is to buy more licenses and hire anyway. A company that staffs its
-way through growth never learns which parts of that growth were
-automatable, because by then the answer sits inside forty employment
-relationships and nobody volunteers to run that analysis.
-
-**11. No dark processes.**
+**10. No dark processes.**
 
 Any workflow you can only trigger by emailing a person becomes the
 bottleneck for everything downstream of it, including the things nobody
@@ -168,7 +155,7 @@ process makes going dark) — a project that sounds technical and is almost
 entirely political, since every dark process is dark for a reason and the
 reason usually has a name and a desk.
 
-**12. Every hire freezes a process in place.**
+**11. Every hire freezes a process in place.**
 
 Hiring somebody to do X is a bet that X won't be automatable inside their
 ramp time, and that bet now loses often enough to price differently (watch
@@ -181,7 +168,7 @@ room where something is physically happening. That list is shorter than it
 was five years ago, and it isn't going to zero. Both halves of that sentence
 matter.
 
-**13. Nothing you ship may sound like it came from an AI.**
+**12. Nothing you ship may sound like it came from an AI.**
 
 Two reasons, and the second carries the weight. The visible one is the
 default register: the throat-clearing opener, the tricolon, the "it's not
@@ -199,7 +186,7 @@ like is the only claim about you a reader can check without doing any work.
 Everything ships rewritten in your own voice, cut by a third, stripped of
 every sentence you wouldn't have said out loud to somebody you respect.
 
-**14. Digitize the edge, where the atoms are.**
+**13. Digitize the edge, where the atoms are.**
 
 If you make, move, install, or repair physical things, the analog frontier
 is where the value sits untouched, and it sits there precisely because
@@ -213,7 +200,7 @@ Convert your physical reality into text at high fidelity and the other
 fourteen rules become available to you. Don't, and you're running on
 anecdote and calling it experience.
 
-**15. Protect human-only zones on purpose, and put them on the calendar.**
+**14. Protect human-only zones on purpose, and put them on the calendar.**
 
 If everyone consumes only summaries, nobody can detect the moment the
 summaries start to drift, and calibration erodes in the one way impossible
@@ -230,10 +217,28 @@ mattered was always in somebody's head, and the whole project is getting
 nearly all of it out — nearly being the operative word, because the part
 you leave in there on purpose is the part that checks the rest.
 
+**15. Give the agents a manager — a human over the loop, not in it.**
+
+"In the loop" quietly became jargon for a rubber stamp: a person clicking
+approve on every step, which slows the system down without actually
+catching anything, since nobody scrutinizes step four thousand the way they
+scrutinized step one. The role that's missing isn't more approval clicks,
+it's someone whose actual job is the fleet of agent-run processes
+themselves — watching where they drift, retuning the prompts and
+guardrails when the drift shows up, deciding when a process that used to
+need a human step doesn't anymore, or newly does. Call the role Manager of
+Agents or don't, but staff the function; agents left running unattended on
+the strength of the day they were configured degrade the way any
+unmaintained system does, quietly, until the day something downstream
+breaks. The manager doesn't approve outputs one at a time — they own the
+process the outputs came from, the way a foreman owns the line instead of
+inspecting every unit off it. Over the loop, not in it: above the system,
+watching its shape, not inside it slowing each cycle down.
+
 ---
 
 **Open placeholders (see [TODO.md](TODO.md)):** rule 8 has an unfilled
-`[NAME OF THE SHARPEST EDITOR...]` bracket; rule 15 has an unfilled
+`[NAME OF THE SHARPEST EDITOR...]` bracket; rule 14 has an unfilled
 `[YEAR]` bracket. Both are intentional — fill them in with real specifics
 when they come to mind rather than inventing something generic to close
 the bracket.
