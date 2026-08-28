@@ -1,4 +1,4 @@
-# Private vocabulary for BrainstormOnHowToWorkWithAI — never let these appear
+# Private vocabulary for WorkingWithAI — never let these appear
 # in process/upstream/ (the public BestPractice repo would receive them on
 # the next check-in). One regex per line; # starts a comment. Err broad.
 #
@@ -17,4 +17,4 @@ themorgan
 Morgan F
 Buenos Aires
 America/Argentina/Buenos_Aires
-BrainstormOnHowToWorkWithAI
+WorkingWithAI
