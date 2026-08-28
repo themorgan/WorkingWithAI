@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-26 13:00:00 (Buenos Aires) by Morgan F, to version 1 -->
+<!-- Last updated: 2026-08-28 09:00:00 (Buenos Aires) by Morgan F, to version 2 -->
 
 # Getting started with `BrainstormOnHowToWorkWithAI`
 
@@ -201,6 +201,26 @@ conversation:
   emits a `::warning::` GitHub Actions annotation, a recurring per-run
   smoke test visible in the Actions UI. Details:
   [process/personal/README.md](process/personal/README.md) §15.
+- **A third scheduled check keeps the voice guidelines current** — same
+  weekly-by-default, daily-optional cadence, pointed at
+  [VoiceGuidelinesToSoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman)
+  (private) — the "write like a human, not an LLM" ruleset this project's
+  own writing follows. **This needs its own repository secret named
+  `VOICEGUIDELINESTOSOUNDHUMAN_TOKEN`** — same kind of token as
+  `PERSONAL_PACK_TOKEN` above, just scoped to a different repo:
+  1. Generate the token at
+     [github.com/settings/tokens?type=beta](https://github.com/settings/tokens?type=beta):
+     resource owner your account, repository access "Only select
+     repositories" → `themorgan/VoiceGuidelinesToSoundHuman` only,
+     permissions **Contents → Read-only**, nothing else. Copy the value
+     immediately — GitHub only shows it once.
+  2. Add it at this repository's **Settings → Secrets and variables →
+     Actions → New repository secret**, named
+     `VOICEGUIDELINESTOSOUNDHUMAN_TOKEN`.
+
+  Same **"Allow auto-merge"** and Actions-can-open-PRs toggles, same
+  Claude-credential requirement, and the same clean-skip behavior if either
+  is missing. Details: [AGENTS.md](AGENTS.md)'s "Voice" section.
 - **Every pull request opens with a standard template** — what changed,
   why, files touched, and a short checklist. An unchecked box on that
   checklist is normal.

@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 11:40:00 (Buenos Aires) by Morgan F, to version 2 -->
+<!-- Last updated: 2026-08-28 09:00:00 (Buenos Aires) by Morgan F, to version 3 -->
 
 # Repository instructions — read me first
 
@@ -14,8 +14,25 @@ keeps this repo well-run.
 | The brainstorm itself | [IDEAS.md](IDEAS.md) |
 | The three-stage pipeline (idea → operating rule → company policy) | [README.md](README.md) |
 | Rules actually in force now, and promotion candidates | [OPERATING_RULES.md](OPERATING_RULES.md) |
+| The voice guidelines (write like a human, not an LLM) | [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) |
 | Open items: analyses, verifications, decisions | [TODO.md](TODO.md) |
 | Practice layer: vendored BestPractice copy, manifest, scrub blocklist | `process/` |
+
+## Voice — every reply and every document
+
+This repo's own writing follows
+[process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md),
+vendored from
+[VoiceGuidelinesToSoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman)
+(tracked in [process/manifest_voice.json](process/manifest_voice.json), kept
+current by a weekly sync plus a session-start check — see "A third scheduled
+check keeps the voice guidelines current" below). It governs **everything a
+session writes here, not just committed documents** — the chat reply itself
+is in scope too. Check outward-facing prose against it before calling a
+piece done; this is [OPERATING_RULES.md](OPERATING_RULES.md) item 5, now
+backed by a real, vendored ruleset instead of a manual checklist. Its own
+§17 sets the precedence rule if that ever conflicts with a more specific,
+person-authored voice pack: the person-specific rules win.
 
 ## Build-environment gotchas — do NOT rediscover these
 
@@ -26,13 +43,15 @@ keeps this repo well-run.
 ## Git / workflow
 
 - Develop on a feature branch; open a PR; merge only when the user says so
-  (except the BestPractice sync and the pack sync, which merge their own
-  PRs unattended — see [process/personal/README.md](process/personal/README.md)
-  §14, §15).
+  (except the BestPractice sync, the pack sync, and the voice guidelines
+  sync, which merge their own PRs unattended — see
+  [process/personal/README.md](process/personal/README.md) §14, §15, and
+  this file's "A third scheduled check keeps the voice guidelines current"
+  below).
 - **Start every thread by merging latest `origin/main` into your branch.**
 - **Then catch the member up.** Summarize what changed on `origin/main`
-  since the last session, including anything either sync merged unattended.
-  Do the same any time she asks "what's new?".
+  since the last session, including anything any of the three syncs merged
+  unattended. Do the same any time she asks "what's new?".
 
 (Session start, in order: `bash tools/bootstrap.sh` — see "Build-environment
 gotchas" above — then these two.)
@@ -56,8 +75,9 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
    this every push.
 1. Fetch and merge `main` locally.
 2. Resolve by fixed per-file-class rules (practice 9):
-   - `process/manifest.json` / `process/manifest_personal.json`: **union**
-     of both sides — never drop an entry or a status.
+   - `process/manifest.json` / `process/manifest_personal.json` /
+     `process/manifest_voice.json`: **union** of both sides — never drop an
+     entry or a status.
    - [TODO.md](TODO.md) and [IDEAS.md](IDEAS.md): **append-only — keep both
      sides' additions.**
    - Same content file edited on both sides: keep both sides' text.
@@ -71,6 +91,11 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
      [pack_sync.py](process/personal/tools/pack_sync.py) `update` last
      mirrored — resolve by re-running that sync
      ([process/personal/README.md](process/personal/README.md) §15).
+   - **[process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md): never hand-merge either,** same
+     reasoning — it must stay byte-identical to whatever
+     [voice_sync.py](process/voice/tools/voice_sync.py) `update` last
+     mirrored from VoiceGuidelinesToSoundHuman; resolve by re-running that
+     sync, not by editing the file directly.
 3. Run the audits — **all must pass before the merge commits**:
    `python3 process/upstream/tools/doc_lint.py`,
    `python3 process/personal/tools/light_check.py`, and
@@ -165,7 +190,7 @@ never get exported to the public BestPractice repo.
   content changes. Only files actually changed pick up or bump the header —
   never a repo-wide sweep. Skip it where a leading comment would break the
   file (JSON has none) or where the file is a vendored, byte-for-byte copy
-  under `process/upstream/` or `process/personal/`.
+  under `process/upstream/`, `process/personal/`, or `process/voice/`.
 
 - **Commit messages link the assistant session where the change was
   planned.** Add a trailer, `Session: <url>` — for Claude Code,
@@ -245,19 +270,32 @@ never get exported to the public BestPractice repo.
   own repository secret, `PERSONAL_PACK_TOKEN`
   ([process/personal/README.md](process/personal/README.md) §15).
 
-- **Both scheduled syncs skip cleanly, not loudly, when neither Claude
+- **A third scheduled check keeps the voice guidelines current**
+  ([.github/workflows/voice-guidelines-sync.yml](.github/workflows/voice-guidelines-sync.yml)):
+  same shape again, pointed at
+  [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md)
+  against [VoiceGuidelinesToSoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman)
+  (private, one file rather than a whole subtree — see
+  [voice_sync.py](process/voice/tools/voice_sync.py)). Needs its own
+  repository secret, `VOICEGUIDELINESTOSOUNDHUMAN_TOKEN` — the same secret
+  name that repo's own docs already use for its other known consumers
+  (VoiceDefinitionMorgan, VoiceDefinitionCelia). Runs fifteen minutes after
+  the personal-pack sync's own weekly slot, same reasoning as that slot's
+  own fifteen-minute offset from the BestPractice sync.
+
+- **All three scheduled syncs skip cleanly, not loudly, when neither Claude
   credential is set.** If asked to run one manually, no secret is needed —
   take the update in-session, then remind Morgan to set one so future
   unattended runs don't need to be asked for by hand.
 
 - **A session-start notice asks about drift immediately, not at the
-  end.** `tools/bootstrap.sh` runs both freshness notices
-  (`checkin.py fresh`, `pack_sync.py fresh`) on every session start — a
-  one-line notice only when a source has moved, never a gate. Raise
-  whichever fired as part of catching the member up. Taking either update
-  stays deliberate whenever it's raised. **Fallback:** repeat the same
-  cheap comparison at the end of the session too, if it wasn't already
-  raised and answered
+  end.** `tools/bootstrap.sh` runs all three freshness notices
+  (`checkin.py fresh`, `pack_sync.py fresh`, `voice_sync.py fresh`) on every
+  session start — a one-line notice only when a source has moved, never a
+  gate. Raise whichever fired as part of catching the member up. Taking
+  any update stays deliberate whenever it's raised. **Fallback:** repeat
+  the same cheap comparison at the end of the session too, if it wasn't
+  already raised and answered
   ([process/personal/README.md](process/personal/README.md) §16).
 
 - **This repo's default branch is `main`, checked once at install.** If it

@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 11:40:00 (Buenos Aires) by Morgan F, to version 2 -->
+<!-- Last updated: 2026-08-28 09:00:00 (Buenos Aires) by Morgan F, to version 3 -->
 
 # BrainstormOnHowToWorkWithAI
 
@@ -64,6 +64,12 @@ essay argued for it well. It has to survive stage 2, in this repo, first.
 - `process/personal/` — Morgan's personal pack, vendored from
   [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences)
   (pipeline stage 3's destination).
+- [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) —
+  the voice guidelines, vendored from
+  [VoiceGuidelinesToSoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman):
+  write like a human, not an LLM. Applies to this repo's own writing —
+  chat replies included, not just committed documents — see
+  [AGENTS.md](AGENTS.md)'s "Voice" section.
 - [AGENTS.md](AGENTS.md), [MAP.md](MAP.md), [TODO.md](TODO.md),
   [GLOSSARY.md](GLOSSARY.md) — this repo's own instantiated BestPractice
   documents.

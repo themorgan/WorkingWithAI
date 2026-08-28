@@ -1,0 +1,218 @@
+# Scheduled, unattended sibling of bestpractice-upstream-sync.yml and
+# personal-pack-sync.yml: checks whether the voice guidelines' source repo,
+# VoiceGuidelinesToSoundHuman (private —
+# https://github.com/themorgan/VoiceGuidelinesToSoundHuman), has moved past
+# process/manifest_voice.json's recorded upstream.commit, and if so, takes
+# the update, integrates it, and merges it — without waiting for a session
+# to notice. See AGENTS.md's "Voice" section.
+#
+# Same shape as personal-pack-sync.yml, including why: VoiceGuidelinesToSoundHuman
+# is PRIVATE, so both jobs need a repository secret with read access to it —
+# VOICEGUIDELINESTOSOUNDHUMAN_TOKEN (a GitHub personal access token —
+# fine-grained, read-only, scoped to just that one repo — is enough; the
+# same secret name that repo's own docs already use for its other known
+# consumers, VoiceDefinitionMorgan and VoiceDefinitionCelia). No workflow
+# here can mint or install that secret; an administrator sets it once by
+# hand (GETTING_STARTED.md's administrator section). `check` costs one
+# authenticated `git ls-remote` and never calls the model, so a quiet run
+# costs nothing. `update` only runs when the file actually moved. Every run
+# of `check` also emits a `::warning::` GitHub Actions annotation if
+# VOICEGUIDELINESTOSOUNDHUMAN_TOKEN isn't set — a per-run smoke test in the
+# Actions UI, not just a one-time install reminder.
+#
+# `check` also verifies a Claude credential is configured — either
+# CLAUDE_CODE_OAUTH_TOKEN or ANTHROPIC_API_KEY, shared with the other two
+# syncs, since `update` calls Claude Code and can't run without one. If the
+# file moved but neither secret is set, `update` is skipped and
+# `note-missing-credential` leaves a `::warning::` in the run's summary
+# instead of an auth failure. A chat session asked to run this sync
+# manually doesn't need either secret at all — it can just take the update
+# itself, in-session, following the same steps below.
+#
+# SECURITY NOTE: the token is passed to the "update" job's Claude Code step
+# as an env var, never interpolated into the prompt text — a
+# `${{ secrets.* }}` expression inside a `prompt:` string would hand the raw
+# token to the model call itself, outside GitHub's own log-masking. The
+# prompt below tells the agent to read $VOICEGUIDELINESTOSOUNDHUMAN_TOKEN
+# from its own environment instead.
+#
+# Frequency defaults to weekly; switching to daily is a one-line swap, same
+# pattern as the other two syncs. Cron is UTC-only, so the line below
+# converts from Buenos Aires local time (America/Argentina/Buenos_Aires,
+# UTC-3 year-round, no DST since 2009 — verified 2026-08-21) by adding 3
+# hours. This slot sits fifteen minutes after the personal-pack sync's own
+# weekly slot (itself fifteen minutes after the BestPractice sync's), so
+# all three never race over the same working tree. To change frequency,
+# comment out the active `- cron:` line and uncomment the other one; to
+# change time of day, adjust either line's hour/minute the same way (keep
+# all three workflows' slots apart).
+name: Voice guidelines sync
+
+on:
+  schedule:
+    # Weekly (default): every Monday at 09:30 Buenos Aires.
+    - cron: '30 12 * * 1'
+    # Daily: uncomment this line and comment out the weekly one above.
+    # - cron: '30 12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Check voice guidelines source
+    runs-on: ubuntu-latest
+    outputs:
+      moved: ${{ steps.check.outputs.moved }}
+      credential_set: ${{ steps.credential-check.outputs.credential_set }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          # actions/checkout's default persist-credentials: true injects the
+          # job's own ephemeral GITHUB_TOKEN (scoped only to THIS repo) as a
+          # git http.extraheader for all of https://github.com/ -- which
+          # silently overrides the x-access-token:$VOICEGUIDELINESTOSOUNDHUMAN_TOKEN@
+          # credentials embedded in the git ls-remote URL below, since both
+          # target github.com. Without this, the check below fails with
+          # "Repository not found" against the voice guidelines source no
+          # matter how correctly the token itself is scoped.
+          persist-credentials: false
+
+      - name: Check whether a Claude credential is set
+        id: credential-check
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          if [ -n "${ANTHROPIC_API_KEY:-}" ] || [ -n "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]; then
+            echo "credential_set=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "credential_set=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Compare recorded commit against the voice guidelines' HEAD
+        id: check
+        env:
+          VOICEGUIDELINESTOSOUNDHUMAN_TOKEN: ${{ secrets.VOICEGUIDELINESTOSOUNDHUMAN_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "${VOICEGUIDELINESTOSOUNDHUMAN_TOKEN:-}" ]; then
+            echo "::warning::VOICEGUIDELINESTOSOUNDHUMAN_TOKEN secret not set -- cannot reach the private voice guidelines source (VoiceGuidelinesToSoundHuman); this sync is skipping this run. Set the VOICEGUIDELINESTOSOUNDHUMAN_TOKEN repository secret (see GETTING_STARTED.md's administrator section) if this is unexpected."
+            echo "moved=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          REPO=$(python3 -c "import json;print(json.load(open('process/manifest_voice.json'))['upstream']['repo'])")
+          RECORDED=$(python3 -c "import json;print(json.load(open('process/manifest_voice.json'))['upstream']['commit'])")
+          AUTHED=$(echo "$REPO" | sed "s#https://#https://x-access-token:${VOICEGUIDELINESTOSOUNDHUMAN_TOKEN}@#")
+          HEAD=$(git ls-remote "$AUTHED" HEAD | cut -f1)
+          echo "recorded=$RECORDED  head=$HEAD"
+          if [ -n "$HEAD" ] && [ "$HEAD" != "$RECORDED" ]; then
+            echo "moved=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "moved=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  note-missing-credential:
+    name: Note skipped run (no Claude credential set)
+    needs: check
+    if: needs.check.outputs.moved == 'true' && needs.check.outputs.credential_set == 'false'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Explain why this run did nothing
+        run: |
+          {
+            echo "The voice guidelines' source has moved, but neither \`CLAUDE_CODE_OAUTH_TOKEN\` nor \`ANTHROPIC_API_KEY\` is set, so this sync could not take the update automatically this time."
+            echo ""
+            echo "Set one of the two secrets at **Settings -> Secrets and variables -> Actions -> New repository secret** so future runs can take the update unattended (see GETTING_STARTED.md's administrator section), or ask a chat session to take this update manually in the meantime."
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+          echo "::warning::Voice guidelines sync skipped: neither CLAUDE_CODE_OAUTH_TOKEN nor ANTHROPIC_API_KEY is set."
+
+  update:
+    name: Take the update, integrate, PR, merge
+    needs: check
+    if: needs.check.outputs.moved == 'true' && needs.check.outputs.credential_set == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # See the same option's comment in the check job above.
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install check dependencies
+        run: python -m pip install cmarkgfm pyyaml
+
+      - name: Run Claude Code to take the update
+        uses: anthropics/claude-code-action@v1
+        env:
+          VOICEGUIDELINESTOSOUNDHUMAN_TOKEN: ${{ secrets.VOICEGUIDELINESTOSOUNDHUMAN_TOKEN }}
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            The voice guidelines' source repo (process/manifest_voice.json
+            upstream.repo — private) has moved since this repo's vendored
+            copy at process/voice/HUMAN_VOICE_RULES.md was last synced.
+            Take the update, unattended:
+
+            1. A VOICEGUIDELINESTOSOUNDHUMAN_TOKEN environment variable is
+               already set in this job for authenticating against the
+               private source repo — never echo it, never write it into a
+               commit message, PR text, code, or a log line; use it only to
+               build an authenticated clone URL, e.g.
+               `https://x-access-token:$VOICEGUIDELINESTOSOUNDHUMAN_TOKEN@github.com/OWNER/REPO.git`
+               (read OWNER/REPO from process/manifest_voice.json
+               upstream.repo). Clone it to a scratch directory.
+            2. Compare: `python3 process/voice/tools/voice_sync.py status
+               <clone>` diffs this repo's process/voice/HUMAN_VOICE_RULES.md
+               against the clone's HUMAN_VOICE_RULES.md and shows the
+               recorded vs. actual commit.
+            3. Mirror the change: `python3 process/voice/tools/voice_sync.py
+               update <clone>` pulls the clone's default branch, overwrites
+               process/voice/HUMAN_VOICE_RULES.md with the clone's copy, and
+               records the new commit into process/manifest_voice.json's
+               upstream.commit in one step — there is no landing-PR phase
+               for this direction, the source repo already IS the
+               canonical copy.
+            4. Run the repo's gates and make sure they all pass before
+               committing anything:
+               python3 process/upstream/tools/doc_lint.py --all
+               python3 process/personal/tools/light_check.py --all
+               python3 process/upstream/tools/practice_audit.py
+
+            Judgment calls you make while merging (a conflict, something
+            that doesn't map cleanly) are exactly what a human should skim
+            before trusting an unattended merge. List every one of them,
+            plainly, in the commit message body under a "Judgment calls to
+            review:" heading. If there are none, say so explicitly rather
+            than omitting the heading.
+
+            Commit as author "Morgan F <morgan@westegg.com>" (reuse the
+            address already used by prior commits in this repo's history —
+            do not guess a different one). Add yourself as Co-Authored-By.
+            Add a trailer `Session: <this workflow run's URL>` — build it
+            from `$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID`
+            — since there is no chat session behind an unattended run.
+
+            Push a branch, open a pull request against the default branch
+            summarizing what the voice guidelines changed and restating the
+            judgment calls from the commit message, wait for this repo's
+            own checks (Markdown lint, light check, practice_audit) to
+            report success on the PR, then merge it. If any check fails and
+            you cannot fix it confidently, leave the PR open, unmerged,
+            with a comment explaining exactly what failed and why you
+            stopped — do not force a merge past a failing check.

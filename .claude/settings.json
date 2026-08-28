@@ -22,7 +22,8 @@
       "Bash(python3 process/upstream/tools/practice_audit.py *)",
       "Bash(python3 process/upstream/tools/checkin.py *)",
       "Bash(python3 process/personal/tools/light_check.py *)",
-      "Bash(python3 process/personal/tools/pack_sync.py *)"
+      "Bash(python3 process/personal/tools/pack_sync.py *)",
+      "Bash(python3 process/voice/tools/voice_sync.py *)"
     ]
   },
   "hooks": {
