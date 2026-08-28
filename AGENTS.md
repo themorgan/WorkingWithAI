@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 22:26:09 (Buenos Aires) by Morgan F, to version 4 -->
+<!-- Last updated: 2026-08-27 23:09:41 (Buenos Aires) by Morgan F, to version 5 -->
 
 # Repository instructions — read me first
 
@@ -12,8 +12,8 @@ keeps this repo well-run.
 |---|---|
 | Canonical names — use these, don't invent new ones | [GLOSSARY.md](GLOSSARY.md) |
 | The brainstorm itself | [IDEAS.md](IDEAS.md) |
-| The three-stage pipeline (idea → operating rule → company policy) | [README.md](README.md) |
-| Rules actually in force now, and promotion candidates | [OPERATING_RULES.md](OPERATING_RULES.md) |
+| The three-stage pipeline (idea → rules now testing → company policy) | [README.md](README.md) |
+| Rules actually in force now, and promotion candidates | [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) |
 | The voice guidelines (write like a human, not an LLM) | [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) |
 | Open items: analyses, verifications, decisions | [TODO.md](TODO.md) |
 | Practice layer: vendored BestPractice copy, manifest, scrub blocklist | `process/` |
@@ -29,7 +29,7 @@ current by a weekly sync plus a session-start check — see "A third scheduled
 check keeps the voice guidelines current" below). It governs **everything a
 session writes here, not just committed documents** — the chat reply itself
 is in scope too. Check outward-facing prose against it before calling a
-piece done; this is [OPERATING_RULES.md](OPERATING_RULES.md) item 5, now
+piece done; this is [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) item 5, now
 backed by a real, vendored ruleset instead of a manual checklist. Its own
 §17 sets the precedence rule if that ever conflicts with a more specific,
 person-authored voice pack: the person-specific rules win.

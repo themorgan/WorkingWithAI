@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 22:26:09 (Buenos Aires) by Morgan F, to version 4 -->
+<!-- Last updated: 2026-08-27 23:09:41 (Buenos Aires) by Morgan F, to version 5 -->
 
 # Canonical names
 
@@ -9,9 +9,9 @@ wins — fix the documents.
 | Name | What it is | Defined in |
 |---|---|---|
 | **the brainstorm** | This repo's one deliverable: the running list of ideas, prompts, and workflows for working with AI. | [IDEAS.md](IDEAS.md) |
-| **the pipeline** (three-stage) | How a brainstorm idea becomes company-wide policy: discover (the brainstorm) → try it for real (**the operating rules**) → roll out everywhere (RepoPersonalPreferences's personal pack). | [README.md](README.md) |
-| **the operating rules** | Pipeline stage 2: the practical checklist actually in force in real work now, each rule tagged Trial, Ready to promote, or Promoted. | [OPERATING_RULES.md](OPERATING_RULES.md) |
-| **promote** / **promotion** | Moving a rule from *Trial* to *Ready to promote* to landed as its own section in RepoPersonalPreferences's personal pack — pipeline stage 2 to stage 3. | [OPERATING_RULES.md](OPERATING_RULES.md) "Promotion" |
+| **the pipeline** (three-stage) | How a brainstorm idea becomes company-wide policy: discover (the brainstorm) → try it for real (**the rules now testing**) → roll out everywhere (RepoPersonalPreferences's personal pack). | [README.md](README.md) |
+| **the rules now testing** | Pipeline stage 2: the practical checklist actually in force in real work now, each rule tagged Trial, Ready to promote, or Promoted. | [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) |
+| **promote** / **promotion** | Moving a rule from *Trial* to *Ready to promote* to landed as its own section in RepoPersonalPreferences's personal pack — pipeline stage 2 to stage 3. | [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) "Promotion" |
 | **the voice guidelines** | [HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md), vendored from [SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman): the "don't sound like an LLM" ruleset this repo's own writing follows, chat replies included. | [AGENTS.md](AGENTS.md) "Voice" |
 | **the voice guidelines sync** | The scheduled GitHub Actions workflow (weekly by default) that keeps [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) current with SoundHuman. | [AGENTS.md](AGENTS.md) "A third scheduled check keeps the voice guidelines current" |
 | **BestPractice** | The public upstream practice layer this repo vendors and follows. | [process/upstream/README.md](process/upstream/README.md) |

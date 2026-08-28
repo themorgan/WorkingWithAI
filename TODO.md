@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 22:26:09 (Buenos Aires) by Morgan F, to version 7 -->
+<!-- Last updated: 2026-08-27 23:09:41 (Buenos Aires) by Morgan F, to version 8 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -37,10 +37,10 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
 
 - [x] **Populate [IDEAS.md](IDEAS.md) with real content.** Done
   2026-08-26 → [IDEAS.md](IDEAS.md) now holds the first real brainstorm
-  batch, plus [FIFTEEN_RULES.md](FIFTEEN_RULES.md) promoted out as its own
+  batch, plus [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) promoted out as its own
   document. The three original placeholder sections (prompts, workflows,
   incidents) are still empty and open for the next batch.
-- [ ] **Fill in the two open brackets in [FIFTEEN_RULES.md](FIFTEEN_RULES.md).**
+- [ ] **Fill in the two open brackets in [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md).**
   Rule 8 wants the name of the sharpest editor Morgan has worked with; rule
   14 wants a real year for "the way you'd have read it in [YEAR]." Both are
   intentionally left as placeholders rather than filled with something
@@ -49,18 +49,18 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   the meta-note at the bottom of that file (e.g. rule 9's "build five, kill
   four" against rule 5's "don't systematize a one-off") — worth a
   dedicated pass once there's enough material for real tensions to show up.
-  Now also item 7 of [OPERATING_RULES.md](OPERATING_RULES.md) — this line
+  Now also item 7 of [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — this line
   and that item are the same recurring job, described from two sides.
 - [ ] **Design real infrastructure for active/proactive resurfacing** —
-  "you decided X six weeks ago, unprompted" (COCREATION_DESIGN.md's
-  "Memory & context", [OPERATING_RULES.md](OPERATING_RULES.md)'s "Not yet
+  "you decided X six weeks ago, unprompted" (AI_GOVERNANCE_TO_COCREATE.md's
+  "Memory & context", [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)'s "Not yet
   ready" list). Needs something that mines and ranks prior decisions rather
   than only answering when asked; no design proposed yet. **analysis.**
 - [ ] **Design automatic workflow-candidate detection** — mining
   commit/session history for a recurring task shape, instead of relying
-  solely on [OPERATING_RULES.md](OPERATING_RULES.md) item 4's
+  solely on [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) item 4's
   human-triggered reflex. **analysis.**
-- [ ] **Work out situational, inferred cost-awareness** — COCREATION_DESIGN.md
+- [ ] **Work out situational, inferred cost-awareness** — AI_GOVERNANCE_TO_COCREATE.md
   records that a fixed "surface spend per outcome" policy was already
   proposed and rejected; the open half is inferring *which* posture
   applies (explicit budget mention, project stage, stated intent) rather
@@ -69,7 +69,7 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
 - [ ] **Formalize the coldstart test as a periodic check** — can a fresh
   session, given only the memory store, reconstruct the state of any live
   decision? Currently just a manual audit idea in
-  [OPERATING_RULES.md](OPERATING_RULES.md); worth deciding whether it
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md); worth deciding whether it
   becomes a recurring item here (like the BestPractice check-in) or stays
   ad hoc. **decision.**
 
@@ -77,9 +77,43 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
 
 ## Decisions (user's call)
 
+- [x] **Rename OPERATING_RULES.md, FIFTEEN_RULES.md, and COCREATION_DESIGN.md
+  — all three names read as unclear about what they cover.** Decided
+  2026-08-27 → done, doc. Morgan's complaint: `OPERATING_RULES` implies
+  something more like company operating procedures than "what's currently
+  on trial"; `FIFTEEN_RULES` doesn't say rules for what; `COCREATION_DESIGN`
+  keeps the right word (co-creation) but leaves DESIGN ambiguous about
+  which aspect it's designing. Renamed to
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md),
+  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), and
+  [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) respectively,
+  each file's title and opening paragraph rewritten (not just the filename)
+  to state its role in the stage-1/stage-2 pair explicitly, cross-linking
+  the other two by their new names. Every reference across
+  [AGENTS.md](AGENTS.md), [GLOSSARY.md](GLOSSARY.md), [MAP.md](MAP.md),
+  [README.md](README.md), [IDEAS.md](IDEAS.md), and this file updated to
+  match, including the canonical term **the operating rules** →
+  **the rules now testing** in [GLOSSARY.md](GLOSSARY.md) (kept in step with
+  the file it names). Judgment calls made: (1) picked
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) for the middle document —
+  Morgan's own suggestion (`STYLE_NOW_TESTING`) didn't fit content that
+  isn't about style, so kept his "current state of what we're trying"
+  framing and swapped in the actual subject; (2) used his suggested
+  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) and
+  [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) verbatim for
+  the other two; (3) while
+  rewriting [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)'s opening
+  paragraph, fixed a pre-existing error found in the same sentence — it
+  called itself "the third stage" of the pipeline, but
+  [README.md](README.md) and [MAP.md](MAP.md) both established it as stage
+  2 (RepoPersonalPreferences is stage 3); (4) left the historical
+  2026-08-27 decision entry below (the one that originally landed
+  `OPERATING_RULES.md`) narrating the old name for its own reasoning, with
+  its links repointed to the new filename and a bracketed note so the
+  record stays readable rather than rewritten.
 - [x] **Vendor the voice guidelines in, with their own weekly sync and
   session-start check.** Decided 2026-08-28 → done, doc. A prior session
-  had flagged item 5 of [OPERATING_RULES.md](OPERATING_RULES.md) ("a
+  had flagged item 5 of [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) ("a
   structural check for AI-sounding prose") as reinventing something that
   might already exist. It did: a real repo,
   [SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman),
@@ -95,7 +129,7 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   [tools/bootstrap.sh](tools/bootstrap.sh). [AGENTS.md](AGENTS.md) gained a
   new "Voice" section making it the actual standard for everything a
   session writes here — chat replies included, not only committed
-  documents — and [OPERATING_RULES.md](OPERATING_RULES.md) item 5 now
+  documents — and [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) item 5 now
   points at it instead of the ad hoc fingerprint list it started with.
   [MAP.md](MAP.md), [GLOSSARY.md](GLOSSARY.md) (new terms: **the voice
   guidelines**, **the voice guidelines sync**), [README.md](README.md), and
@@ -111,7 +145,7 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   workflow file — the workflow is this repo's own infrastructure, not
   something vendored from anywhere upstream, so a manifest entry for it
   would misrepresent what "vendored" means here; (3) kept
-  [OPERATING_RULES.md](OPERATING_RULES.md) item 5 at *Trial* rather than
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) item 5 at *Trial* rather than
   jumping to *Promoted*, since this is the ruleset's first use on general
   assistant output (chat replies, not just WriteLike's voice-pack
   rewrites) — a new use worth testing here before it becomes a
@@ -120,7 +154,7 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   repo, added to this session while confirming which repo was the actual
   rules source) unvendored — it's the wrong repo for this purpose, kept
   only for reference.
-- [x] **Give this repo an explicit third stage — [OPERATING_RULES.md](OPERATING_RULES.md)
+- [x] **Give this repo an explicit third stage — [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)
   — between the brainstorm/essays and RepoPersonalPreferences.** Decided
   2026-08-27 → done, doc. A session recommending changes to
   RepoPersonalPreferences straight from this repo's ideas had skipped the
@@ -129,22 +163,24 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   [IDEAS.md](IDEAS.md) / the promoted essays, (2) try it for real in a new
   document, (3) only then port proven rules into RepoPersonalPreferences
   for rollout everywhere. Landed as
-  [OPERATING_RULES.md](OPERATING_RULES.md) (new document, seeded with
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) (new document, seeded with
   items 1-2 already promoted from a prior session, items 3-7 as trial
-  rules pulled straight from [COCREATION_DESIGN.md](COCREATION_DESIGN.md)
-  and [FIFTEEN_RULES.md](FIFTEEN_RULES.md), and a "not yet ready" section
+  rules pulled straight from [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)
+  and [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), and a "not yet ready" section
   for ideas that need real infrastructure first — see the five new items
   above this one), a new "How this repo's ideas become company policy"
   section in [README.md](README.md), updated [MAP.md](MAP.md) and
   [GLOSSARY.md](GLOSSARY.md) (new terms: **the pipeline**, **the operating
-  rules**, **promote**/**promotion**), [AGENTS.md](AGENTS.md)'s quick
+  rules** [renamed **the rules now testing** in the 2026-08-27 rename below],
+  **promote**/**promotion**), [AGENTS.md](AGENTS.md)'s quick
   index, and a new dated entry plus an updated open-question note in
-  [IDEAS.md](IDEAS.md). Judgment calls made: (1) named
-  [OPERATING_RULES.md](OPERATING_RULES.md) that rather than
+  [IDEAS.md](IDEAS.md). Judgment calls made: (1) named it
+  `OPERATING_RULES.md` (since renamed to
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md), see below) rather than
   something like `COMPANY_RULES.md` —
   "operating" reads as closer to "what's actually run on" than "company,"
   which could be misread as employee-facing policy; (2) picked five of
-  COCREATION_DESIGN.md's ideas as concrete enough to state as Trial rules
+  AI_GOVERNANCE_TO_COCREATE.md's ideas as concrete enough to state as Trial rules
   now (argue in the open, the two reflexes, the AI-voice check, the
   dark-process self-audit, contradiction-scanning) and left the rest —
   active resurfacing, workflow-candidate mining, situational cost

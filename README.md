@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 23:05:21 (Buenos Aires) by Morgan F, to version 5 -->
+<!-- Last updated: 2026-08-27 23:09:41 (Buenos Aires) by Morgan F, to version 6 -->
 
 # WorkingWithAI
 
@@ -29,22 +29,23 @@ one:
 1. **Discover — [IDEAS.md](IDEAS.md).** Raw material: prompts, workflows,
    observations, dropped in as they come up, loosely grouped. When a
    cluster of entries turns into one sustained argument, it gets promoted
-   to its own essay — [FIFTEEN_RULES.md](FIFTEEN_RULES.md) (why to run a
-   company this way) and [COCREATION_DESIGN.md](COCREATION_DESIGN.md) (how
+   to its own essay — [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md)
+   (why to run a company this way) and
+   [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) (how
    the AI systems themselves should be built so that way of working is the
    default) both started as brainstorm entries here.
-2. **Try it for real — [OPERATING_RULES.md](OPERATING_RULES.md).** The
+2. **Try it for real — [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md).** The
    practical checklist actually in force in real work right now, each rule
    tagged *Trial* until it's proven, *Ready to promote* once it is, or
    *Promoted* once it's landed at stage 3. This is where an essay's idea
    gets tested against actual sessions before it becomes a standing rule
    anywhere else.
 3. **Roll out everywhere — [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences).**
-   Once a rule in [OPERATING_RULES.md](OPERATING_RULES.md) has proven
+   Once a rule in [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) has proven
    itself, it gets ported into Morgan's personal pack there, for automatic
    installation into every project he starts — see
-   [OPERATING_RULES.md](OPERATING_RULES.md)'s own "Promotion" section for
-   the mechanics.
+   [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)'s own "Promotion" section
+   for the mechanics.
 
 The point of keeping these separate: nothing becomes company-wide policy
 just because it sounded good in a brainstorm session, or even because an
@@ -54,11 +55,11 @@ essay argued for it well. It has to survive stage 2, in this repo, first.
 
 - [IDEAS.md](IDEAS.md) — the brainstorm itself: one entry per idea, prompt,
   workflow, or observation, loosely grouped.
-- [FIFTEEN_RULES.md](FIFTEEN_RULES.md), [COCREATION_DESIGN.md](COCREATION_DESIGN.md) —
+- [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) —
   full essays promoted out of the brainstorm (pipeline stage 1).
-- [OPERATING_RULES.md](OPERATING_RULES.md) — the practical rules actually in
-  force right now, and candidates for promotion to RepoPersonalPreferences
-  (pipeline stage 2).
+- [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — the practical rules
+  actually being tried right now, and candidates for promotion to
+  RepoPersonalPreferences (pipeline stage 2).
 - `process/upstream/` — the vendored [BestPractice](https://github.com/alex137/BestPractice)
   copy, unmodified.
 - `process/personal/` — Morgan's personal pack, vendored from
