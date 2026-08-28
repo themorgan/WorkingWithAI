@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 15:46:52 (Buenos Aires) by Morgan F, to version 20 -->
+<!-- Last updated: 2026-08-28 15:52:44 (Buenos Aires) by Morgan F, to version 21 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -330,6 +330,15 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   rules are bold paragraph text, not headings, so GitHub can't generate
   a per-rule anchor without restructuring that file, which wasn't asked
   for.
+  **Revised an eleventh time 2026-08-28** — one more change to
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md), Morgan's, same day. Step 4 of
+  the working loop ("the AI Assistant produces all the output; you only
+  guide it") cited only item 4 ("people manage; agents execute"); Morgan
+  pointed out it's equally item 7 ("humans should do what humans do
+  best") — the AI producing the output is exactly the part humans don't
+  do, which is what makes room for the part they do. Added that second
+  citation, which means every one of the seven ideas is now cited by at
+  least one step of the loop.
 - [x] **Rename OPERATING_RULES.md, FIFTEEN_RULES.md, and COCREATION_DESIGN.md
   — all three names read as unclear about what they cover.** Decided
   2026-08-27 → done, doc. Morgan's complaint: `OPERATING_RULES` implies
