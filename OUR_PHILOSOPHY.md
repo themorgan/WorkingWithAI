@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 15:46:52 (Buenos Aires) by Morgan F, to version 11 -->
+<!-- Last updated: 2026-08-28 15:52:44 (Buenos Aires) by Morgan F, to version 12 -->
 
 # Our philosophy
 
@@ -23,8 +23,8 @@ The same five steps repeat every time, in order:
 3. Most of that arguing happens on GitHub, in the open — a pull
    request, not a chat log only one person can reread (items 2 and 3
    below).
-4. The AI Assistant produces all the output; you only guide it (item 4
-   below).
+4. The AI Assistant produces all the output; you only guide it (items 4
+   and 7 below).
 5. What survives gets written down with the case that produced it
    (items 5 and 6 below), so it stays visible to whichever session
    opens this repo next.
