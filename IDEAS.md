@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 21:00:00 (Buenos Aires) by Morgan F, to version 5 -->
+<!-- Last updated: 2026-08-27 23:09:41 (Buenos Aires) by Morgan F, to version 6 -->
 
 # Ideas — how to work with AI
 
@@ -10,14 +10,14 @@ from [MAP.md](MAP.md) when that happens).
 entry below is raw material dropped in from a session, lightly organized.
 Treat it as a standing agenda, not a finished write-up — the point of doing
 this in a repo instead of a doc is that any thread can pick up one entry,
-argue it out with Claude (per [FIFTEEN_RULES.md](FIFTEEN_RULES.md) rule 4),
+argue it out with Claude (per [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 4),
 and push the sharpened version back in.
 
 ## Frameworks
 
 - **Fifteen rules for building a company around AI** — a full essay, promoted
   to its own document because it's one sustained argument rather than a
-  loose list: [FIFTEEN_RULES.md](FIFTEEN_RULES.md). Covers context as the
+  loose list: [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md). Covers context as the
   scarce capital asset, transcription discipline (the "Ghost"), owning
   every word you pass on, co-creating instead of delegating, building
   workflows only once work actually repeats, hiring for verification over
@@ -27,14 +27,14 @@ and push the sharpened version back in.
   how the AI systems themselves should be configured, built, and run so
   the healthy pattern is the default rather than something a disciplined
   user has to manufacture by hand:
-  [COCREATION_DESIGN.md](COCREATION_DESIGN.md). Covers durable memory as
+  [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md). Covers durable memory as
   the default substrate, push-back as a config switch keyed to task shape,
   arguing in the open instead of posting finished-looking suggestions,
   visibly non-uniform confidence, situational (not fixed) cost-awareness,
   a structural check for AI-sounding prose, and self-surfacing of dark
   processes.
 - **Where an idea from either essay actually goes next** —
-  [OPERATING_RULES.md](OPERATING_RULES.md), added 2026-08-27. Neither essay
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md), added 2026-08-27. Neither essay
   above is itself a set of rules anyone follows day to day; this is the
   document that turns an argument into a checklist actually in force, and
   tracks which of those checklist items have proven themselves enough to
@@ -46,7 +46,7 @@ and push the sharpened version back in.
 
 *The premise: BestPractice — the practice layer this repo vendors under
 `process/upstream/` — is being used here as a live case study of rule 4 and
-rule 2 from [FIFTEEN_RULES.md](FIFTEEN_RULES.md): forced co-creation, forced
+rule 2 from [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md): forced co-creation, forced
 transcription. The observations below are about* why *it works, not just
 that it does.*
 
@@ -92,12 +92,12 @@ pushes them there. Candidate mechanisms, none decided yet (this is a
   nobody re-reads.
 
 Push-back mode (the first candidate above) is decided and promoted — see
-[OPERATING_RULES.md](OPERATING_RULES.md) item 1. The rest — visible
+[RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) item 1. The rest — visible
 reminders, in-your-face rule-extraction, proactive resurfacing — remain
 open; proactive resurfacing specifically also shows up as one of
-[COCREATION_DESIGN.md](COCREATION_DESIGN.md)'s "Memory & context" ideas,
+[AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s "Memory & context" ideas,
 tracked as a not-yet-ready item in
-[OPERATING_RULES.md](OPERATING_RULES.md) pending real infrastructure.
+[RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) pending real infrastructure.
 
 ## Observations from other conversations
 
@@ -193,7 +193,7 @@ call as much as mine):
   the disagreement becomes part of the corpus (rule 1), not just the
   conclusion.
 - **When a topic outgrows a bullet, promote it**, exactly as
-  [FIFTEEN_RULES.md](FIFTEEN_RULES.md) just was. A dedicated file gets its
+  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) just was. A dedicated file gets its
   own version history, so you can watch one idea sharpen over many sessions
   instead of only ever seeing its latest state.
 - **Periodically ask Claude to look for contradictions across entries.**
@@ -210,7 +210,7 @@ pack." Morgan's correction: this repo's actual job is to *try* an idea in
 real work first — going straight from an essay here to a rule that rolls
 out to every project skips the step that's supposed to catch a good-sounding
 idea that doesn't actually hold up. The fix wasn't a new rule, it was
-naming the stage that was missing: [OPERATING_RULES.md](OPERATING_RULES.md),
+naming the stage that was missing: [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md),
 sitting between the essays here and RepoPersonalPreferences, holding
 whatever's currently on trial. See [README.md](README.md)'s new pipeline
 section and [TODO.md](TODO.md) for the decision record.

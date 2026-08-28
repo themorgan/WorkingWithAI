@@ -1,16 +1,22 @@
-<!-- Last updated: 2026-08-27 21:00:00 (Buenos Aires) by Morgan F, to version 2 -->
+<!-- Last updated: 2026-08-27 23:09:41 (Buenos Aires) by Morgan F, to version 3 -->
 
-# Building AI systems for co-creation
+# AI governance to co-create
 
-*Promoted out of [IDEAS.md](IDEAS.md), same pattern as
-[FIFTEEN_RULES.md](FIFTEEN_RULES.md) before it. FIFTEEN_RULES.md is about
-running a company around AI; this one is one level down — about how the AI
-systems themselves should be configured, built, and run so that the
-healthy way of working they describe (rule 4's co-creation, in particular,
-but the whole pattern) is the default outcome rather than something a
-disciplined user has to manufacture by hand every time. "Co-creation" here
-is used as the umbrella term for that whole pattern, not narrowly rule 4
-alone — a judgment call; flag it if the scope should split.*
+*Governance for the AI systems themselves: how to configure, build, and
+run them so co-creation — rule 4 of
+[COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), arguing with the
+model in real time rather than delegating to it — is the default outcome,
+not something a disciplined person has to manufacture by hand every
+session. COMPANY_BUILDING_RULES.md is this repo's stage-1 "why" half — the
+case for running a company this way at all; this document is one level
+down, about the systems rather than the company. "Co-creation" here is
+used as the umbrella term for that whole healthy pattern, not narrowly
+rule 4 alone — a judgment call; flag it if the scope should split.
+Promoted out of [IDEAS.md](IDEAS.md), same pattern as
+COMPANY_BUILDING_RULES.md before it. Neither essay is itself a checklist
+anyone follows day to day — [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)
+is where an idea from either one gets tried in real work before it's
+ready to be called a rule.*
 
 ## Memory & context
 

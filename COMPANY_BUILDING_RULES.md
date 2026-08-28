@@ -1,12 +1,20 @@
-<!-- Last updated: 2026-08-27 21:00:00 (Buenos Aires) by Morgan F, to version 2 -->
+<!-- Last updated: 2026-08-27 23:09:41 (Buenos Aires) by Morgan F, to version 3 -->
 
 # Fifteen rules for building a company around AI
 
-*Source essay for the brainstorm — see [IDEAS.md](IDEAS.md) for how this
-connects to the rest and for follow-on discussion. Promoted to its own
-document per the "reorganize once a group gets big enough" rule in
-[IDEAS.md](IDEAS.md), since it's a single sustained argument rather than a
-loose list of entries.*
+*The "why" half of this repo's stage-1 pair — the case for running a
+company this way at all. [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)
+is the "how" half, one level down: what it takes to build the AI systems
+themselves so this becomes the default, rather than something a
+disciplined person has to manufacture by hand every session. Neither essay
+is itself a checklist anyone follows day to day —
+[RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) is where an idea from either
+one gets tried in real work before it's ready to be called a rule. Source
+essay for the brainstorm — see [IDEAS.md](IDEAS.md) for how this connects
+to the rest and for follow-on discussion. Promoted to its own document per
+the "reorganize once a group gets big enough" rule in [IDEAS.md](IDEAS.md),
+since it's a single sustained argument rather than a loose list of
+entries.*
 
 Every founder, every operator, every manager, every person anywhere who has
 ever tried to get something done through other people knows one thing and has
