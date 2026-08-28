@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 23:09:41 (Buenos Aires) by Morgan F, to version 5 -->
+<!-- Last updated: 2026-08-27 23:49:02 (Buenos Aires) by Morgan F, to version 6 -->
 
 # Rules now testing — the current state of what we're trying
 
@@ -80,7 +80,7 @@ reflexes... belong in the system prompt, not just in a human's habit.")
 ### 5. Write like a human, not an LLM — *Trial*
 
 Superseded its original draft (2026-08-27), which pointed at
-COMPANY_BUILDING_RULES rule 12's fingerprints by hand because "no tooling
+COMPANY_BUILDING_RULES rule 11's fingerprints by hand because "no tooling
 exists for this yet."
 It turned out tooling already existed, just not wired up here: a whole
 repo, [SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman),

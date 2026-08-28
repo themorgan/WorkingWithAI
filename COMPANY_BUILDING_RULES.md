@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 23:09:41 (Buenos Aires) by Morgan F, to version 3 -->
+<!-- Last updated: 2026-08-27 23:49:02 (Buenos Aires) by Morgan F, to version 4 -->
 
 # Fifteen rules for building a company around AI
 
@@ -163,20 +163,7 @@ process makes going dark) — a project that sounds technical and is almost
 entirely political, since every dark process is dark for a reason and the
 reason usually has a name and a desk.
 
-**11. Every hire freezes a process in place.**
-
-Hiring somebody to do X is a bet that X won't be automatable inside their
-ramp time, and that bet now loses often enough to price differently (watch
-where the weight sits in that sentence: on *ramp time*. The wager was never
-about the person, it was about the calendar). Near the automation frontier,
-prefer contractors, rotations, secondments, temporary-on-purpose structures
-with an end date written on them at the start. Reserve permanent hires for
-the structurally human: judgment, relationships, accountability, being in a
-room where something is physically happening. That list is shorter than it
-was five years ago, and it isn't going to zero. Both halves of that sentence
-matter.
-
-**12. Nothing you ship may sound like it came from an AI.**
+**11. Nothing you ship may sound like it came from an AI.**
 
 Two reasons, and the second carries the weight. The visible one is the
 default register: the throat-clearing opener, the tricolon, the "it's not
@@ -194,7 +181,7 @@ like is the only claim about you a reader can check without doing any work.
 Everything ships rewritten in your own voice, cut by a third, stripped of
 every sentence you wouldn't have said out loud to somebody you respect.
 
-**13. Digitize the edge, where the atoms are.**
+**12. Digitize the edge, where the atoms are.**
 
 If you make, move, install, or repair physical things, the analog frontier
 is where the value sits untouched, and it sits there precisely because
@@ -208,7 +195,7 @@ Convert your physical reality into text at high fidelity and the other
 fourteen rules become available to you. Don't, and you're running on
 anecdote and calling it experience.
 
-**14. Protect human-only zones on purpose, and put them on the calendar.**
+**13. Protect human-only zones on purpose, and put them on the calendar.**
 
 If everyone consumes only summaries, nobody can detect the moment the
 summaries start to drift, and calibration erodes in the one way impossible
@@ -225,7 +212,7 @@ mattered was always in somebody's head, and the whole project is getting
 nearly all of it out — nearly being the operative word, because the part
 you leave in there on purpose is the part that checks the rest.
 
-**15. Give the agents a manager — a human over the loop, not in it.**
+**14. Give the agents a manager — a human over the loop, not in it.**
 
 "In the loop" quietly became jargon for a rubber stamp: a person clicking
 approve on every step, which slows the system down without actually
@@ -243,10 +230,30 @@ process the outputs came from, the way a foreman owns the line instead of
 inspecting every unit off it. Over the loop, not in it: above the system,
 watching its shape, not inside it slowing each cycle down.
 
+**15. Reserve the permanent hire for what's structurally human.**
+
+Follow every rule on this list to where it actually leads and they land in
+the same place: the roles worth making permanent are the ones built on
+something a model can't do at all. Judgment when the rules run out and
+somebody still has to decide, taste that catches the one paragraph in
+twenty that's quietly wrong, relationships a counterparty trusts because of
+who's on the other end of them, accountability that lands on one name in
+one room rather than a process nobody can point to, the human spark that
+makes someone worth working for and not merely alongside, and —
+increasingly — the discipline of running a fleet of agent-driven processes
+instead of a single task: noticing the drift before a customer does,
+pushing a process further than it would push itself, and pulling it back
+before it overreaches.
+
+That list is shorter than it was five years ago. It isn't going to zero.
+Build the permanent roster around it, and let every role defined by a task
+rather than a capacity stay exactly as temporary as the task turns out to
+be.
+
 ---
 
 **Open placeholders (see [TODO.md](TODO.md)):** rule 8 has an unfilled
-`[NAME OF THE SHARPEST EDITOR...]` bracket; rule 14 has an unfilled
+`[NAME OF THE SHARPEST EDITOR...]` bracket; rule 13 has an unfilled
 `[YEAR]` bracket. Both are intentional — fill them in with real specifics
 when they come to mind rather than inventing something generic to close
 the bracket.
