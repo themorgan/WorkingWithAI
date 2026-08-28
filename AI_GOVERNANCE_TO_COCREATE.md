@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 23:09:41 (Buenos Aires) by Morgan F, to version 3 -->
+<!-- Last updated: 2026-08-27 23:49:02 (Buenos Aires) by Morgan F, to version 4 -->
 
 # AI governance to co-create
 
@@ -94,7 +94,7 @@ worth keeping regardless of which mode is active.
 
 ## Voice & output
 
-**A structural "sounds like AI" check.** Rule 12 names the actual
+**A structural "sounds like AI" check.** Rule 11 names the actual
 fingerprints — the throat-clearing opener, "not just X, it's Y," the
 bolded summary nobody asked for. Those are mechanical enough to check for
 before publishing, rather than relying on a human catching it every time,
@@ -110,8 +110,9 @@ alternative, per rule 10.
 
 **Rotation and temp workflows get periodic check-ins, not baked-in
 expiry.** Earlier draft proposed a hard sunset date written into the
-process file at creation (rule 11's "temporary-on-purpose" framing, taken
-literally). Objection: if a workflow is going well, there's no reason it
+process file at creation (rule 15's "stay exactly as temporary as the task
+turns out to be," taken literally). Objection: if a workflow is going well,
+there's no reason it
 should have to end — the goal isn't churn, it's making sure it's still
 earning its place. The better version is a recurring, low-cost reminder —
 "is this still needed, still the right shape?" — rather than a deadline
@@ -136,6 +137,6 @@ context, not the platform it happens to be sitting in today.
 **Set aside this thread, not carried forward:** a mandatory eval-file gate
 before any output ships (unclear how it generalizes past code, where
 "eval" has an obvious technical meaning); having the AI itself pick which
-raw, unfiltered sample a human reviews for rule 14's human-only zones
+raw, unfiltered sample a human reviews for rule 13's human-only zones
 (the idea didn't land clearly enough in discussion to write down yet —
 worth re-raising once it's sharper, rather than forcing it in now).
