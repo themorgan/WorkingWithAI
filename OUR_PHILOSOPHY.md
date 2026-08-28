@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 12:58:31 (Buenos Aires) by Morgan F, to version 5 -->
+<!-- Last updated: 2026-08-28 13:28:22 (Buenos Aires) by Morgan F, to version 6 -->
 
 # Our philosophy
 
@@ -52,14 +52,19 @@ incident ([PRACTICES.md](process/upstream/PRACTICES.md) practices 5 and
 the agents' job, pulled out of the work as it happens
 ([IDEAS.md](IDEAS.md)'s automatic rule extraction).
 
-**4. Quality comes from disagreement, not compliance.** A model that
-complies with whatever you propose just gives back your own thinking,
-blind spots included. The fix is a mechanism, not a nicer tone: make the
-model argue the other side, find the hole in the logic before you've
-committed (rule 4; [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s
-"argue in the open"). "Co-create as partners" undersells this — the
-useful version is disagreement, deliberately introduced, since agreement
-with yourself can't catch what agreement with yourself produced.
+**4. Coworking with a model means arguing with it.** Instructing it
+treats the model as a typist; polling it for an opinion treats it as an
+oracle. Both skip the part that actually works: put a half-formed
+position to the model, let it push back, push back on its answer in
+turn, until neither of you is just handing the other your own first
+draft. Quality follows from that, among other things — a model that
+only agrees with you hands back your own blind spots — but disagreement
+isn't the point on its own; it's what a real working relationship with
+the model looks like in practice (rule 4;
+[AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s "argue in
+the open"). "Co-create as partners" undersells this — the useful version
+isn't quiet partnership, it's a fight settled on the merits, by whichever
+side turns out to be right.
 
 **5. Processes should be intensely visible, not locked in one person's
 brain.** A workflow whose entire interface is "email me and I'll handle

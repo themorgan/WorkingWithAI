@@ -207,6 +207,21 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   addition; (2) kept item 6's own citations (rule 13,
   [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) item 7) attached to the
   folded-in sentences rather than dropping them.
+  **Revised a fifth time 2026-08-28** — one change to
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md), Morgan's. Item 4 ("quality comes
+  from disagreement, not compliance") became "coworking with a model
+  means arguing with it" — the headline moved off disagreement-produces-
+  quality and onto the working relationship itself: don't instruct the
+  model (typist) and don't just poll it for an opinion (oracle), argue
+  with it and let it argue back until the exchange, not either side
+  alone, settles the question. Disagreement's payoff for quality stays in
+  the paragraph as one reason among several, not the whole point. The
+  rule 4 and [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)
+  "argue in the open" citations carried over unchanged. Judgment calls
+  made: (1) kept the paragraph close to its prior length rather than
+  cutting further, since the typist/oracle contrast needed the room to
+  land; (2) kept the plain subject-predicate title style from the third
+  revision's pass rather than reintroducing a riddle-shaped reversal.
 - [x] **Rename OPERATING_RULES.md, FIFTEEN_RULES.md, and COCREATION_DESIGN.md
   — all three names read as unclear about what they cover.** Decided
   2026-08-27 → done, doc. Morgan's complaint: `OPERATING_RULES` implies
