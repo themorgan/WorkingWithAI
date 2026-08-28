@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 13:41:04 (Buenos Aires) by Morgan F, to version 5 -->
+<!-- Last updated: 2026-08-28 15:46:52 (Buenos Aires) by Morgan F, to version 6 -->
 
 # Reasons why
 
@@ -52,7 +52,7 @@ in one read, before the pull request is opened rather than three merges later wh
 somebody has to reconstruct what happened. Every rule with its origin
 case attached is that same trade: a sentence written once against a
 problem that would otherwise get diagnosed from scratch by whoever
-inherits it ([OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 3).
+inherits it ([OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 6).
 
 **4. The power of documentation is almost magical — since no one finds
 the time, AI will.** Everyone already agrees a good record is worth having: decisions
