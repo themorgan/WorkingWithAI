@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 09:30:00 (Buenos Aires) by Morgan F, to version 6 -->
+<!-- Last updated: 2026-08-27 22:26:09 (Buenos Aires) by Morgan F, to version 7 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -16,6 +16,17 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
 
 ## Recurring
 
+- [ ] **Voice guidelines source renamed SoundHuman (was VoiceGuidelinesToSoundHuman)
+  — low-urgency URL cleanup.** The source repo is renaming itself
+  internally (2026-08-28); this repo's own docs now call it SoundHuman
+  everywhere. [process/manifest_voice.json](process/manifest_voice.json)'s
+  `upstream.repo` URL and the workflow comment in
+  [.github/workflows/voice-guidelines-sync.yml](.github/workflows/voice-guidelines-sync.yml)
+  were deliberately left pointing at the pre-rename URL — the actual
+  GitHub repository hasn't been renamed yet, and GitHub's redirect keeps
+  the old URL working either way, so there's no breakage risk either
+  before or after that rename lands. Once it does, update the URL for
+  freshness (not correctness) — low priority.
 - [ ] **BestPractice check-in:** review `diverged` entries in
   [process/manifest.json](process/manifest.json) and the vendored tree's
   accumulated changes; propose upstream per
@@ -71,7 +82,7 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   had flagged item 5 of [OPERATING_RULES.md](OPERATING_RULES.md) ("a
   structural check for AI-sounding prose") as reinventing something that
   might already exist. It did: a real repo,
-  [VoiceGuidelinesToSoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman),
+  [SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman),
   already maintains [HUMAN_VOICE_RULES.md](https://github.com/themorgan/VoiceGuidelinesToSoundHuman/blob/main/HUMAN_VOICE_RULES.md), in production use by
   VoiceDefinitionMorgan, VoiceDefinitionCelia, and the WriteLike app.
   Morgan asked for it in this repo's usual vendoring shape: pulled in and
@@ -92,7 +103,7 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   `VOICEGUIDELINESTOSOUNDHUMAN_TOKEN` secret disclosure) all updated to
   match. Judgment calls made: (1) reused
   `VOICEGUIDELINESTOSOUNDHUMAN_TOKEN` as the secret name rather than
-  inventing a new one, since VoiceGuidelinesToSoundHuman's own docs already
+  inventing a new one, since SoundHuman's own docs already
   establish that name for its other consumers (VoiceDefinitionMorgan,
   VoiceDefinitionCelia) — one less name for that ecosystem to track; (2)
   tracked only [HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) itself in

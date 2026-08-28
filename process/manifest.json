@@ -48,8 +48,8 @@
       "local_path": "tools/bootstrap.sh",
       "granularity": "file",
       "status": "synced",
-      "notes": "Extended with the personal pack's git-identity setup and session-start freshness notice (process/personal/README.md §3, §16, §18 step 4), and (2026-08-28) a third freshness line for the voice guidelines — see AGENTS.md's 'Voice' section.",
-      "local_sha256": "fa924dc9dcaf4266922c32ee4dcce9b94f84e614538645d10358ca69456e6e46"
+      "notes": "Extended with the personal pack's git-identity setup and session-start freshness notice (process/personal/README.md §3, §16, §18 step 4), and (2026-08-28) a third freshness line for the voice guidelines — see AGENTS.md's 'Voice' section. 2026-08-28: comment updated for the voice guidelines' source repo's internal rename (VoiceGuidelinesToSoundHuman -> SoundHuman) — repo-specific, not exported upstream.",
+      "local_sha256": "18ef50ef1d5158b083091283dfc99f3dce1e37f6e328ee8c1149a65fee3bddfa"
     },
     {
       "practice": "gitignore",

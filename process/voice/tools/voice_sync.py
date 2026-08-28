@@ -32,8 +32,8 @@ check-in loop back to the source.
                               hand first, or pass --force to overwrite.
 
 Run:  python3 process/voice/tools/voice_sync.py fresh
-      python3 process/voice/tools/voice_sync.py status ../VoiceGuidelinesToSoundHuman
-      python3 process/voice/tools/voice_sync.py update ../VoiceGuidelinesToSoundHuman
+      python3 process/voice/tools/voice_sync.py status ../SoundHuman
+      python3 process/voice/tools/voice_sync.py update ../SoundHuman
 """
 import filecmp, json, pathlib, subprocess, sys
 
