@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 14:23:00 (Buenos Aires) by Morgan F, to version 19 -->
+<!-- Last updated: 2026-08-28 15:46:52 (Buenos Aires) by Morgan F, to version 20 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -298,6 +298,38 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   Morgan's transition sentence verbatim, including its wording, rather
   than silently correcting what may be a typo ("boildown") — flagged it
   back to him instead of guessing.
+  **Revised a tenth time 2026-08-28** — four more changes to
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md), Morgan's, same day. Step 3 of
+  the working loop (arguing on GitHub) was the one step citing no idea
+  below, even though it's the mechanism that makes item 2 ("context is
+  capital") real — added that citation alongside the existing one.
+  Reordered the seven ideas to match the order the loop's steps first
+  cite them (old 4, 2, 5, 6, 1, 3, with 7 — never cited by the loop —
+  kept last), renumbering every citation in the loop and the one
+  internal cross-reference inside the new item 4 to match; also
+  repointed [REASONS_WHY.md](REASONS_WHY.md)'s citation of the old item
+  3 to the new item 6. Item 2's opening line, "Context is capital, hours
+  are not," lost its second half — Morgan didn't want the document read
+  as saying hours don't matter. Every "(rule N)" citation naming a
+  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule (as
+  against a BestPractice practice or a
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) rule, both cited
+  elsewhere in the same document) became a link to that file — Morgan
+  had been searching this document itself for rules cited by number and
+  not finding them. Judgment calls made: (1) Morgan asked for a new
+  header reading "The 5 Core Philosophies" after the loop; the list
+  holds seven ideas, not five, so titled it "The 7 Core Philosophies"
+  instead of shipping a header that contradicts its own list, and
+  flagged the correction back to him; (2) the reorder was posed as an
+  open question, not an instruction — did it anyway, since it makes the
+  loop's citations read in ascending order and the only cost outside
+  this file was the one stale reference in
+  [REASONS_WHY.md](REASONS_WHY.md), fixed above; (3) linked every rule
+  citation to the bare file rather than a specific anchor —
+  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md)'s fifteen
+  rules are bold paragraph text, not headings, so GitHub can't generate
+  a per-rule anchor without restructuring that file, which wasn't asked
+  for.
 - [x] **Rename OPERATING_RULES.md, FIFTEEN_RULES.md, and COCREATION_DESIGN.md
   — all three names read as unclear about what they cover.** Decided
   2026-08-27 → done, doc. Morgan's complaint: `OPERATING_RULES` implies
