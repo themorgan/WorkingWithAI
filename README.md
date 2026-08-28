@@ -1,6 +1,6 @@
-<!-- Last updated: 2026-08-27 22:26:09 (Buenos Aires) by Morgan F, to version 4 -->
+<!-- Last updated: 2026-08-27 23:05:21 (Buenos Aires) by Morgan F, to version 5 -->
 
-# BrainstormOnHowToWorkWithAI
+# WorkingWithAI
 
 A running, working notebook for figuring out how to work well with AI
 assistants — prompts that turned out to matter, workflows worth repeating,

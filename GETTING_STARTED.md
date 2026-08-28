@@ -1,6 +1,6 @@
-<!-- Last updated: 2026-08-27 22:26:09 (Buenos Aires) by Morgan F, to version 3 -->
+<!-- Last updated: 2026-08-27 23:05:21 (Buenos Aires) by Morgan F, to version 4 -->
 
-# Getting started with `BrainstormOnHowToWorkWithAI`
+# Getting started with `WorkingWithAI`
 
 Welcome. This project runs on a simple idea: **the project's memory lives
 in its repository, and you work with that memory by talking to an AI
@@ -43,7 +43,7 @@ work at the same time. The whole loop:
 ## Setting up your AI tool
 
 Before any of it works, an administrator must have given your GitHub
-account access to `themorgan/BrainstormOnHowToWorkWithAI` — if you don't
+account access to `themorgan/WorkingWithAI` — if you don't
 have access yet, ask Morgan (morgan@westegg.com). Then follow the section
 for your tool:
 
@@ -54,7 +54,7 @@ The most complete experience, on web, desktop, or phone. *(As of
 
 1. Go to [claude.ai/code](https://claude.ai/code) (or open the Claude
    mobile app's Code area).
-2. Start a new session on `themorgan/BrainstormOnHowToWorkWithAI` — the
+2. Start a new session on `themorgan/WorkingWithAI` — the
    first time, approve the GitHub authorization it requests.
 3. Ask your first question, e.g.: *"Review the project context, then tell
    me what needs my attention."*
@@ -67,7 +67,7 @@ else to set up.
 *(As of 2026-08.)*
 
 1. Open Codex (in ChatGPT or at its own interface) and connect it to
-   `themorgan/BrainstormOnHowToWorkWithAI`.
+   `themorgan/WorkingWithAI`.
 2. Codex follows the project's instruction files automatically.
 3. Give it a task or a question, the same way as any coding session.
 
@@ -79,11 +79,11 @@ conversation is not currently reliable *(as of 2026-08)* — have Codex
 make the changes, or hand them to a teammate who uses Claude Code or
 Codex; the project's automatic checks protect the result either way.
 
-1. Connect the GitHub connector to `themorgan/BrainstormOnHowToWorkWithAI`
+1. Connect the GitHub connector to `themorgan/WorkingWithAI`
    if you haven't.
 2. Start each new project conversation with:
 
-   > Work on `themorgan/BrainstormOnHowToWorkWithAI`. Start with its README
+   > Work on `themorgan/WorkingWithAI`. Start with its README
    > and follow the repository's agent instructions before answering.
 
 3. Then ask your question or describe the change you want.
@@ -104,7 +104,7 @@ the repository, use the same starting instruction as ChatGPT users above.
 Any assistant that can read this repository understands the same one-line
 opener:
 
-> Work on `themorgan/BrainstormOnHowToWorkWithAI`. Start with its README and
+> Work on `themorgan/WorkingWithAI`. Start with its README and
 > follow the repository's agent instructions before answering.
 
 ## Tips while you work
