@@ -1,12 +1,18 @@
 # Scheduled, unattended sibling of bestpractice-upstream-sync.yml and
 # personal-pack-sync.yml: checks whether the voice guidelines' source repo,
-# VoiceGuidelinesToSoundHuman (private —
+# SoundHuman (private —
 # https://github.com/themorgan/VoiceGuidelinesToSoundHuman), has moved past
 # process/manifest_voice.json's recorded upstream.commit, and if so, takes
 # the update, integrates it, and merges it — without waiting for a session
 # to notice. See AGENTS.md's "Voice" section.
 #
-# Same shape as personal-pack-sync.yml, including why: VoiceGuidelinesToSoundHuman
+# (Source repo renamed VoiceGuidelinesToSoundHuman -> SoundHuman internally
+# on 2026-08-28; the URL above is left pointing at the pre-rename name
+# deliberately, since the actual GitHub repository hasn't been renamed yet
+# and GitHub keeps a redirect for the old name either way — not urgent to
+# update.)
+#
+# Same shape as personal-pack-sync.yml, including why: SoundHuman
 # is PRIVATE, so both jobs need a repository secret with read access to it —
 # VOICEGUIDELINESTOSOUNDHUMAN_TOKEN (a GitHub personal access token —
 # fine-grained, read-only, scoped to just that one repo — is enough; the
@@ -99,7 +105,7 @@ jobs:
         run: |
           set -euo pipefail
           if [ -z "${VOICEGUIDELINESTOSOUNDHUMAN_TOKEN:-}" ]; then
-            echo "::warning::VOICEGUIDELINESTOSOUNDHUMAN_TOKEN secret not set -- cannot reach the private voice guidelines source (VoiceGuidelinesToSoundHuman); this sync is skipping this run. Set the VOICEGUIDELINESTOSOUNDHUMAN_TOKEN repository secret (see GETTING_STARTED.md's administrator section) if this is unexpected."
+            echo "::warning::VOICEGUIDELINESTOSOUNDHUMAN_TOKEN secret not set -- cannot reach the private voice guidelines source (SoundHuman); this sync is skipping this run. Set the VOICEGUIDELINESTOSOUNDHUMAN_TOKEN repository secret (see GETTING_STARTED.md's administrator section) if this is unexpected."
             echo "moved=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi

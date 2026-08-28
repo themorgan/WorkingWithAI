@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 09:30:00 (Buenos Aires) by Morgan F, to version 3 -->
+<!-- Last updated: 2026-08-27 22:26:09 (Buenos Aires) by Morgan F, to version 4 -->
 
 # Operating rules — what's actually in force
 
@@ -79,7 +79,7 @@ the system prompt, not just in a human's habit.")
 Superseded its original draft (2026-08-27), which pointed at FIFTEEN_RULES
 rule 12's fingerprints by hand because "no tooling exists for this yet."
 It turned out tooling already existed, just not wired up here: a whole
-repo, [VoiceGuidelinesToSoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman),
+repo, [SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman),
 maintains exactly this ruleset — [HUMAN_VOICE_RULES.md](https://github.com/themorgan/VoiceGuidelinesToSoundHuman/blob/main/HUMAN_VOICE_RULES.md),
 already consumed by other repos in production (VoiceDefinitionMorgan,
 VoiceDefinitionCelia, the WriteLike app). Vendored here at

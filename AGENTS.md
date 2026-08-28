@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 09:00:00 (Buenos Aires) by Morgan F, to version 3 -->
+<!-- Last updated: 2026-08-27 22:26:09 (Buenos Aires) by Morgan F, to version 4 -->
 
 # Repository instructions — read me first
 
@@ -23,7 +23,7 @@ keeps this repo well-run.
 This repo's own writing follows
 [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md),
 vendored from
-[VoiceGuidelinesToSoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman)
+[SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman)
 (tracked in [process/manifest_voice.json](process/manifest_voice.json), kept
 current by a weekly sync plus a session-start check — see "A third scheduled
 check keeps the voice guidelines current" below). It governs **everything a
@@ -94,7 +94,7 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
    - **[process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md): never hand-merge either,** same
      reasoning — it must stay byte-identical to whatever
      [voice_sync.py](process/voice/tools/voice_sync.py) `update` last
-     mirrored from VoiceGuidelinesToSoundHuman; resolve by re-running that
+     mirrored from SoundHuman; resolve by re-running that
      sync, not by editing the file directly.
 3. Run the audits — **all must pass before the merge commits**:
    `python3 process/upstream/tools/doc_lint.py`,
@@ -274,7 +274,7 @@ never get exported to the public BestPractice repo.
   ([.github/workflows/voice-guidelines-sync.yml](.github/workflows/voice-guidelines-sync.yml)):
   same shape again, pointed at
   [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md)
-  against [VoiceGuidelinesToSoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman)
+  against [SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman)
   (private, one file rather than a whole subtree — see
   [voice_sync.py](process/voice/tools/voice_sync.py)). Needs its own
   repository secret, `VOICEGUIDELINESTOSOUNDHUMAN_TOKEN` — the same secret

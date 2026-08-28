@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 09:00:00 (Buenos Aires) by Morgan F, to version 2 -->
+<!-- Last updated: 2026-08-27 22:26:09 (Buenos Aires) by Morgan F, to version 3 -->
 
 # Getting started with `BrainstormOnHowToWorkWithAI`
 
@@ -203,7 +203,7 @@ conversation:
   [process/personal/README.md](process/personal/README.md) §15.
 - **A third scheduled check keeps the voice guidelines current** — same
   weekly-by-default, daily-optional cadence, pointed at
-  [VoiceGuidelinesToSoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman)
+  [SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman)
   (private) — the "write like a human, not an LLM" ruleset this project's
   own writing follows. **This needs its own repository secret named
   `VOICEGUIDELINESTOSOUNDHUMAN_TOKEN`** — same kind of token as

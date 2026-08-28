@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 09:00:00 (Buenos Aires) by Morgan F, to version 3 -->
+<!-- Last updated: 2026-08-27 22:26:09 (Buenos Aires) by Morgan F, to version 4 -->
 
 # BrainstormOnHowToWorkWithAI
 
@@ -66,7 +66,7 @@ essay argued for it well. It has to survive stage 2, in this repo, first.
   (pipeline stage 3's destination).
 - [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) —
   the voice guidelines, vendored from
-  [VoiceGuidelinesToSoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman):
+  [SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman):
   write like a human, not an LLM. Applies to this repo's own writing —
   chat replies included, not just committed documents — see
   [AGENTS.md](AGENTS.md)'s "Voice" section.

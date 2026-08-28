@@ -30,5 +30,5 @@ python3 process/personal/tools/pack_sync.py fresh 2>/dev/null || true
 # Voice guidelines session-start freshness notice (AGENTS.md's "Voice"
 # section): same shape as the two notices above, for
 # process/voice/HUMAN_VOICE_RULES.md against its source,
-# VoiceGuidelinesToSoundHuman.
+# SoundHuman.
 python3 process/voice/tools/voice_sync.py fresh 2>/dev/null || true
