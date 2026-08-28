@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 08:48:33 (Buenos Aires) by Morgan F, to version 1 -->
+<!-- Last updated: 2026-08-28 10:01:51 (Buenos Aires) by Morgan F, to version 2 -->
 
 # Reasons why
 
@@ -19,17 +19,7 @@ from the second bucket into the first
 saved is real but almost beside the point — the actual gain is that a
 wrong idea gets killed before it has time to acquire allies.
 
-**2. Killing a bad version stops being a referendum on the person who made
-it.** Building five options and keeping one only works where throwing out
-four doesn't cost the people who made them anything socially, and cheap
-generation plus a record that shows the process, not just the winner, is
-what makes that possible ([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md)
-rule 9). Once a cut draft reads as "the process worked" instead of "I
-lost," people propose more and defend less, and the group ends up
-choosing from an actually wide set instead of the one thing someone had
-already decided on before the meeting started.
-
-**3. Writing things down stops competing with getting things done.** Most
+**2. Writing things down stops competing with getting things done.** Most
 organizations under-document not because nobody values it, but because
 documenting is a separate task competing for the same hour as the real
 work, and the real work usually wins. When the record gets pulled out as
@@ -39,7 +29,7 @@ reasoning, instead of as a follow-up chore
 mostly disappears. Nobody has to choose between finishing the task and
 writing it up, because the writing already happened while the task did.
 
-**4. How someone's doing stops being a once-a-year guess.** A review
+**3. How someone's doing stops being a once-a-year guess.** A review
 built on what a manager happens to remember from the last two weeks
 measures recency and rapport dressed up as performance. When contributions
 live somewhere both sides can read at any time, not just when a review is
@@ -47,28 +37,36 @@ scheduled ([IDEAS.md](IDEAS.md)'s "Visibility as an incentive
 mechanism"), someone can see how their own work is landing and adjust
 before the meeting where it would otherwise arrive as news.
 
-**5. What the company knows doesn't leave when a person does.** The usual
-version of institutional memory is a handoff project: exit interviews, a
-scramble to pull what's in someone's head before their last day, and a
-quiet, near-universal admission that some of it never got asked about in
-time. A company whose actual knowledge lives in a record that outlives
-any one employment relationship
+**4. The power of documentation is almost magical — the problem was
+never doubting that, it was finding the time.** Everyone already agrees
+a good record is worth having: decisions that don't get re-litigated,
+work that survives whoever made it, a fresh reader who can answer their
+own question instead of cornering someone. What never actually happens
+is someone doing it, because writing it up always loses the hour to
+whatever's due today. Making the record a background part of the
+process the agents already do — pulled out of the work as it happens,
+not scheduled as a follow-up nobody gets to — is what finally delivers
+on that, instead of just agreeing it would be nice. A company whose
+knowledge outlives any one employment relationship
 ([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 2's Ghost)
-skips the scramble. The person leaving becomes a staffing change instead
-of a memory-loss event.
+is one case of this, not the whole of it: the person leaving becomes a
+staffing change instead of a memory-loss event, same as any other
+decision nobody has to reconstruct from memory.
 
-**6. The people best at catching what's wrong get more interesting work,
-not less.** As producing output gets close to free, the scarce skill
-shifts to spotting the one confidently wrong paragraph among twenty right
-ones, a specific and testable ability
-([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 8). Instead
-of "the model does the work" being a threat to the people who used to
-produce it, the ones good at judgment get pulled toward the most senior,
-most interesting problems, because that's where the actual bottleneck
-moved. It's a retention advantage most "AI replaces jobs" framings miss,
-because they're still counting value in units of output.
+**5. The deepest problems get caught by instinct, not by a checklist.**
+A model can flag what fails its own checks — a broken link, a number
+that doesn't add up, a claim that contradicts an earlier one. It has no
+way to notice that a client's answer felt off, that a quiet teammate is
+disengaging, that a plan is technically sound and still wrong for
+reasons nobody wrote down. That kind of catch comes from instinct built
+on experience no record holds — a sense that something's wrong before
+anyone can say why. That instinct is exactly what the senior,
+judgment-heavy work this repo keeps routing to people, not models,
+actually runs on
+([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 8), so the
+skill and the work that needs it end up in the same hands.
 
-**7. Drift gets caught before a customer does.** A system where everyone
+**6. Drift gets caught before a customer does.** A system where everyone
 downstream sees only the polished summary has no way to notice the
 summary has started drifting from what's true, because a slightly wrong
 summary reads exactly as coherent as a correct one. Keeping some raw,
