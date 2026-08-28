@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 16:04:54 (Buenos Aires) by Morgan F, to version 13 -->
+<!-- Last updated: 2026-08-28 19:05:26 (Buenos Aires) by Morgan F, to version 14 -->
 
 # Our philosophy
 
@@ -20,9 +20,9 @@ The same five steps repeat every time, in order:
 2. Argue it out with an AI Assistant that has this repo attached, so
    the argument runs against the actual record instead of a guess
    (item 1 below).
-3. Most of that arguing happens on GitHub, in the open — a pull
-   request, not a chat log only one person can reread (items 2 and 3
-   below).
+3. Most of that arguing happens on GitHub in the open, and the decision
+   and reasoning is tracked there — a pull request, not a secret chat
+   log (items 2 and 3 below).
 4. The AI Assistant produces all the output; you only guide it (items 4
    and 7 below).
 5. What survives gets written down with the case that produced it
