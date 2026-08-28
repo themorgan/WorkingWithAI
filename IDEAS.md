@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 23:09:41 (Buenos Aires) by Morgan F, to version 6 -->
+<!-- Last updated: 2026-08-28 18:59:19 (Buenos Aires) by Morgan F, to version 7 -->
 
 # Ideas — how to work with AI
 
@@ -72,6 +72,10 @@ that it does.*
      this exact mechanism, installed.)
 4. Multiple people can work the same issue simultaneously — version
    control plus AI-assisted merging beats one-person-at-a-time editing.
+5. It works especially well in multilingual contexts: people write and
+   think in whatever language comes naturally, and the AI carries the
+   translation into the repo's shared working language — nobody has to
+   compose in a second language to participate.
 
 ### Open question: forcing deeper engagement, not just permitting it
 
