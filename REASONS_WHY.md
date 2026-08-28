@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 13:13:27 (Buenos Aires) by Morgan F, to version 4 -->
+<!-- Last updated: 2026-08-28 13:41:04 (Buenos Aires) by Morgan F, to version 5 -->
 
 # Reasons why
 
@@ -54,8 +54,8 @@ case attached is that same trade: a sentence written once against a
 problem that would otherwise get diagnosed from scratch by whoever
 inherits it ([OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 3).
 
-**4. The power of documentation is almost magical — it was finding the
-time.** Everyone already agrees a good record is worth having: decisions
+**4. The power of documentation is almost magical — since no one finds
+the time, AI will.** Everyone already agrees a good record is worth having: decisions
 that don't get re-litigated,
 work that survives whoever made it, a fresh reader who can answer their
 own question instead of cornering someone. What never actually happens
