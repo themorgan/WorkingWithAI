@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 14:00:58 (Buenos Aires) by Morgan F, to version 17 -->
+<!-- Last updated: 2026-08-28 14:17:07 (Buenos Aires) by Morgan F, to version 18 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -257,6 +257,24 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   above — the eight names in [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) are
   paragraph headers local to that document, not canonical vocabulary
   reused elsewhere in the repo.
+  **Revised an eighth time 2026-08-28** — Morgan's correction to the
+  seventh revision, same day. Item 8 read fine on its own but he judged
+  the four steps as a preface, not a peer of the seven ideas — an easier,
+  clearer way to bring several of them together before the reader hits
+  the list, not an eighth idea alongside it. Item 8 removed; the same
+  four steps now open a new "The working loop" section right after the
+  intro paragraph and before item 1, restored to Morgan's original
+  numbered-step shape (plain `1.`-`4.` list, not the bold-title paragraph
+  style the seven ideas use) rather than folded into that style. Internal
+  references swapped from "item 4"/"item 5" (ambiguous once the loop has
+  its own steps 1-4) to "item 4 below"/"item 5 below." [README.md](README.md)'s
+  cross-link updated from "item 8" to the section name. Judgment calls
+  made: (1) kept the loop unheaded as its own numbered list rather than
+  bold-paragraph style like items 1-7, since Morgan's own complaint was
+  that the paragraph style buried the steps; (2) didn't add a matching
+  header above the seven ideas for parallelism — Morgan asked only for
+  the new section, and adding one to the existing list wasn't part of
+  that ask.
 - [x] **Rename OPERATING_RULES.md, FIFTEEN_RULES.md, and COCREATION_DESIGN.md
   — all three names read as unclear about what they cover.** Decided
   2026-08-27 → done, doc. Morgan's complaint: `OPERATING_RULES` implies
