@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 09:00:00 (Buenos Aires) by Morgan F, to version 2 -->
+<!-- Last updated: 2026-08-28 09:30:00 (Buenos Aires) by Morgan F, to version 3 -->
 
 # Operating rules — what's actually in force
 
@@ -77,7 +77,7 @@ the system prompt, not just in a human's habit.")
 ### 5. Write like a human, not an LLM — *Trial*
 
 Superseded its original draft (2026-08-27), which pointed at FIFTEEN_RULES
-rule 13's fingerprints by hand because "no tooling exists for this yet."
+rule 12's fingerprints by hand because "no tooling exists for this yet."
 It turned out tooling already existed, just not wired up here: a whole
 repo, [VoiceGuidelinesToSoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman),
 maintains exactly this ruleset — [HUMAN_VOICE_RULES.md](https://github.com/themorgan/VoiceGuidelinesToSoundHuman/blob/main/HUMAN_VOICE_RULES.md),
@@ -99,7 +99,7 @@ Periodically — tie this to the same cadence as the recurring BestPractice
 check-in in [TODO.md](TODO.md) — list workflows whose only interface is a
 human inbox, including the assistant's own ("email Morgan to change this
 config" counts), and propose an addressable alternative (FIFTEEN_RULES
-rule 11; COCREATION_DESIGN "Configure the AI to hunt its own dark
+rule 10; COCREATION_DESIGN "Configure the AI to hunt its own dark
 processes").
 
 ### 7. Contradiction-scanning across the corpus, as a recurring job — *Trial*

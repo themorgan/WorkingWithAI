@@ -94,7 +94,7 @@
       "granularity": "file",
       "status": "local-only",
       "notes": "This repo's own open-items list, including the recurring BestPractice check-in item; not upstream-exportable content.",
-      "local_sha256": "263b972466fc2944d2d026c6edd6ee51edd1cc2518330bf88f8c1ba8bc5a8f32"
+      "local_sha256": "a2a5337ed44294e838c42fb4ae1d3e4d72951f943bd19c4a1e03a42fd6ac9ad7"
     },
     {
       "practice": "glossary",

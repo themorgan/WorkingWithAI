@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 10:55:27 (Buenos Aires) by Morgan F, to version 1 -->
+<!-- Last updated: 2026-08-27 21:00:00 (Buenos Aires) by Morgan F, to version 2 -->
 
 # Building AI systems for co-creation
 
@@ -73,7 +73,7 @@ thing that only happens if someone happens to notice.
 **Cost-awareness should be situational, inferred by the system, not a
 fixed global policy.** Earlier draft of this idea proposed surfacing spend
 per outcome the way CI surfaces test results, framed as a straightforward
-win for rule 10. The objection that landed: whether cost discipline is
+cost-discipline win. The objection that landed: whether cost discipline is
 even the right posture varies by person, project, and moment — sometimes
 you're watching spend closely, sometimes you deliberately want to indulge
 rule 9's "build five, kill four" and let generation be cheap and lavish.
@@ -88,11 +88,11 @@ worth keeping regardless of which mode is active.
 
 ## Voice & output
 
-**A structural "sounds like AI" check.** Rule 13 names the actual
+**A structural "sounds like AI" check.** Rule 12 names the actual
 fingerprints — the throat-clearing opener, "not just X, it's Y," the
 bolded summary nobody asked for. Those are mechanical enough to check for
 before publishing, rather than relying on a human catching it every time,
-which is exactly the kind of single-point-of-failure rule 11 warns about
+which is exactly the kind of single-point-of-failure rule 10 warns about
 elsewhere.
 
 ## Surfacing blind spots
@@ -100,11 +100,11 @@ elsewhere.
 **Configure the AI to hunt its own dark processes.** Have it periodically
 list workflows whose only interface is a human inbox — including its own
 ("email Morgan to change this config" counts) — and propose an addressable
-alternative, per rule 11.
+alternative, per rule 10.
 
 **Rotation and temp workflows get periodic check-ins, not baked-in
 expiry.** Earlier draft proposed a hard sunset date written into the
-process file at creation (rule 12's "temporary-on-purpose" framing, taken
+process file at creation (rule 11's "temporary-on-purpose" framing, taken
 literally). Objection: if a workflow is going well, there's no reason it
 should have to end — the goal isn't churn, it's making sure it's still
 earning its place. The better version is a recurring, low-cost reminder —
@@ -130,6 +130,6 @@ context, not the platform it happens to be sitting in today.
 **Set aside this thread, not carried forward:** a mandatory eval-file gate
 before any output ships (unclear how it generalizes past code, where
 "eval" has an obvious technical meaning); having the AI itself pick which
-raw, unfiltered sample a human reviews for rule 15's human-only zones
+raw, unfiltered sample a human reviews for rule 14's human-only zones
 (the idea didn't land clearly enough in discussion to write down yet —
 worth re-raising once it's sharper, rather than forcing it in now).
