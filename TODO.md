@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 11:40:00 (Buenos Aires) by Morgan F, to version 4 -->
+<!-- Last updated: 2026-08-27 21:00:00 (Buenos Aires) by Morgan F, to version 5 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -31,7 +31,7 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   incidents) are still empty and open for the next batch.
 - [ ] **Fill in the two open brackets in [FIFTEEN_RULES.md](FIFTEEN_RULES.md).**
   Rule 8 wants the name of the sharpest editor Morgan has worked with; rule
-  15 wants a real year for "the way you'd have read it in [YEAR]." Both are
+  14 wants a real year for "the way you'd have read it in [YEAR]." Both are
   intentionally left as placeholders rather than filled with something
   generic — replace them only when a real specific comes to mind.
 - [ ] **Look for contradictions across [IDEAS.md](IDEAS.md) entries**, per

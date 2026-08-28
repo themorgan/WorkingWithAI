@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 11:40:00 (Buenos Aires) by Morgan F, to version 1 -->
+<!-- Last updated: 2026-08-27 21:00:00 (Buenos Aires) by Morgan F, to version 2 -->
 
 # Operating rules — what's actually in force
 
@@ -77,7 +77,7 @@ the system prompt, not just in a human's habit.")
 ### 5. A structural check for AI-sounding prose — *Trial*
 
 Before shipping outward-facing prose (a memo, a doc, a reply meant to
-persuade), check it against FIFTEEN_RULES rule 13's named fingerprints: a
+persuade), check it against FIFTEEN_RULES rule 12's named fingerprints: a
 throat-clearing opener, "not just X, it's Y," an even-handedness that
 refuses to land anywhere, an unrequested bolded summary, a closing line
 explaining what the reader just read. **No tooling exists for this yet** —
@@ -92,7 +92,7 @@ Periodically — tie this to the same cadence as the recurring BestPractice
 check-in in [TODO.md](TODO.md) — list workflows whose only interface is a
 human inbox, including the assistant's own ("email Morgan to change this
 config" counts), and propose an addressable alternative (FIFTEEN_RULES
-rule 11; COCREATION_DESIGN "Configure the AI to hunt its own dark
+rule 10; COCREATION_DESIGN "Configure the AI to hunt its own dark
 processes").
 
 ### 7. Contradiction-scanning across the corpus, as a recurring job — *Trial*

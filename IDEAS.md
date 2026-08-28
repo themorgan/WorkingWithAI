@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 11:40:00 (Buenos Aires) by Morgan F, to version 4 -->
+<!-- Last updated: 2026-08-27 21:00:00 (Buenos Aires) by Morgan F, to version 5 -->
 
 # Ideas — how to work with AI
 
@@ -21,8 +21,8 @@ and push the sharpened version back in.
   scarce capital asset, transcription discipline (the "Ghost"), owning
   every word you pass on, co-creating instead of delegating, building
   workflows only once work actually repeats, hiring for verification over
-  production, putting compute in the P&L, killing "dark processes," and
-  voice/style as evidence that someone actually thought.
+  production, giving agents a human manager over the loop, killing "dark
+  processes," and voice/style as evidence that someone actually thought.
 - **Building AI systems for co-creation** — one level down from the above:
   how the AI systems themselves should be configured, built, and run so
   the healthy pattern is the default rather than something a disciplined
