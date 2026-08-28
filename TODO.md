@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 12:58:31 (Buenos Aires) by Morgan F, to version 13 -->
+<!-- Last updated: 2026-08-28 13:13:27 (Buenos Aires) by Morgan F, to version 14 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -189,6 +189,24 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   steer, rather than inventing an outside example; (3) renumbered the
   internal cross-reference in "people manage; agents execute" (item 3 →
   item 4) to follow the reorder.
+  **Revised a fourth time 2026-08-28** — two more edits to
+  [REASONS_WHY.md](REASONS_WHY.md), both Morgan's. Item 4's opening line
+  ("the problem was never doubting that, it was finding the time") lost
+  the middle clause, now reading "The power of documentation is almost
+  magical — it was finding the time." Items 1 ("being wrong gets cheap
+  while it's still small") and 6 ("drift gets caught before a customer
+  does") were merged into one, keeping item 1's text as the surviving
+  point and folding item 6's drift-detection content in as an example of
+  the same underlying mechanism (catching a problem while it's still
+  small) rather than a separate benefit — Morgan's own framing. The list
+  is now five items, renumbered 1-5 (items 2-5 kept their existing
+  numbers; only the old 6 was removed). Judgment calls made: (1) placed
+  the folded-in drift example at the end of item 1's paragraph, after the
+  existing citation to rule 4, rather than interleaving it mid-paragraph,
+  so the original point stays intact and the example reads as an
+  addition; (2) kept item 6's own citations (rule 13,
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) item 7) attached to the
+  folded-in sentences rather than dropping them.
 - [x] **Rename OPERATING_RULES.md, FIFTEEN_RULES.md, and COCREATION_DESIGN.md
   — all three names read as unclear about what they cover.** Decided
   2026-08-27 → done, doc. Morgan's complaint: `OPERATING_RULES` implies

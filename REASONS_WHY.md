@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 12:58:31 (Buenos Aires) by Morgan F, to version 3 -->
+<!-- Last updated: 2026-08-28 13:13:27 (Buenos Aires) by Morgan F, to version 4 -->
 
 # Reasons why
 
@@ -17,7 +17,17 @@ becomes a deliverable anyone downstream builds on, moves most mistakes
 from the second bucket into the first
 ([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 4). The time
 saved is real but almost beside the point — the actual gain is that a
-wrong idea gets killed before it has time to acquire allies.
+wrong idea gets killed before it has time to acquire allies. Drift is one
+shape this takes: a system where everyone downstream sees only the
+polished summary has no way to notice the summary has started drifting
+from what's true, because a slightly wrong summary reads exactly as
+coherent as a correct one. Keeping some raw, unfiltered contact with the
+actual work on purpose
+([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 13), and
+periodically checking the record against itself for contradictions
+([RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) item 7), gives an
+early-warning channel most organizations don't have: one that can report
+a problem before it shows up as a complaint.
 
 **2. Writing things down stops competing with getting things done.** Most
 organizations under-document not because nobody values it, but because
@@ -44,9 +54,9 @@ case attached is that same trade: a sentence written once against a
 problem that would otherwise get diagnosed from scratch by whoever
 inherits it ([OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 3).
 
-**4. The power of documentation is almost magical — the problem was
-never doubting that, it was finding the time.** Everyone already agrees
-a good record is worth having: decisions that don't get re-litigated,
+**4. The power of documentation is almost magical — it was finding the
+time.** Everyone already agrees a good record is worth having: decisions
+that don't get re-litigated,
 work that survives whoever made it, a fresh reader who can answer their
 own question instead of cornering someone. What never actually happens
 is someone doing it, because writing it up always loses the hour to
@@ -72,17 +82,6 @@ judgment-heavy work this repo keeps routing to people, not models,
 actually runs on
 ([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 8), so the
 skill and the work that needs it end up in the same hands.
-
-**6. Drift gets caught before a customer does.** A system where everyone
-downstream sees only the polished summary has no way to notice the
-summary has started drifting from what's true, because a slightly wrong
-summary reads exactly as coherent as a correct one. Keeping some raw,
-unfiltered contact with the actual work on purpose
-([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 13), and
-periodically checking the record against itself for contradictions
-([RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) item 7), gives an
-early-warning channel most organizations don't have: one that can report
-a problem before it shows up as a complaint.
 
 See [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) for the theory behind why these
 particular things happen.
