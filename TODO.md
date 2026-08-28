@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 13:41:04 (Buenos Aires) by Morgan F, to version 16 -->
+<!-- Last updated: 2026-08-28 14:00:58 (Buenos Aires) by Morgan F, to version 17 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -232,6 +232,31 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   gets made because the agents make it a background part of the work, not
   because anyone finds an hour for it) directly in the title instead of
   leaving it implicit in the body.
+  **Revised a seventh time 2026-08-28** — a new item added to
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md), not a rewrite of an existing
+  one. Morgan described a four-step working loop — a spark (an idea, new
+  data, an incoming request, a changed system message), argued out with
+  an assistant that has this repo attached, mostly (not entirely) in the
+  open on GitHub, settling into a rule with its case attached that
+  everyone can see — and asked where it should live and what he thought
+  of the framing. Landed as new item 8, "the same four steps repeat every
+  time, in order," placed last as a synthesis rather than inserted
+  earlier and forcing a renumber, citing back to items 1, 3, 4, 5 instead
+  of restating them, and cross-linking [README.md](README.md)'s
+  three-stage pipeline as the same shape seen from the document side —
+  which picked up one sentence pointing back. Judgment calls made: (1)
+  put it in [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) rather than a new
+  standalone document — the framing is theory-register ("the new way of
+  working we envision"), and a fourth top-level intro doc would mostly
+  duplicate this file and [README.md](README.md)'s pipeline section
+  rather than add anything a cross-reference couldn't; (2) genericized
+  "Claude/LLM" to "an assistant," matching this repo's platform-neutral
+  terminology ([GETTING_STARTED.md](GETTING_STARTED.md) covers Claude,
+  Codex, ChatGPT, and Gemini as first-class); (3) no new
+  [GLOSSARY.md](GLOSSARY.md) entry, following this file's own precedent
+  above — the eight names in [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) are
+  paragraph headers local to that document, not canonical vocabulary
+  reused elsewhere in the repo.
 - [x] **Rename OPERATING_RULES.md, FIFTEEN_RULES.md, and COCREATION_DESIGN.md
   — all three names read as unclear about what they cover.** Decided
   2026-08-27 → done, doc. Morgan's complaint: `OPERATING_RULES` implies

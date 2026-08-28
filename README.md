@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 08:52:37 (Buenos Aires) by Morgan F, to version 7 -->
+<!-- Last updated: 2026-08-28 14:00:58 (Buenos Aires) by Morgan F, to version 8 -->
 
 # WorkingWithAI
 
@@ -50,6 +50,9 @@ one:
 The point of keeping these separate: nothing becomes company-wide policy
 just because it sounded good in a brainstorm session, or even because an
 essay argued for it well. It has to survive stage 2, in this repo, first.
+For what running this pipeline looks like from inside one session —
+spark, argue, GitHub, rule — see [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md)
+item 8.
 
 ## What's here
 

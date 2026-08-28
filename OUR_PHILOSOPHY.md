@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 14:05:00 (Buenos Aires) by Morgan F, to version 7 -->
+<!-- Last updated: 2026-08-28 14:00:58 (Buenos Aires) by Morgan F, to version 8 -->
 
 # Our philosophy
 
@@ -60,6 +60,18 @@ client meant but didn't say, pushing someone harder when the moment
 calls for it. Optimizing a person to act like a fast, tireless model
 optimizes away what they're for (rule 15) — hold them to that standard,
 not a machine's.
+
+**8. The same four steps repeat every time, in order.** Something starts
+it — an idea, new data, an incoming request, a changed system message. It
+gets argued out with an assistant that has this repo attached, so the
+argument runs against the actual record instead of a guess (item 4). Most
+of that arguing happens in the open, in a pull request rather than a chat
+log only one person can reread (item 5). What survives gets written down
+with the case that produced it (items 1, 3), so it stays visible to
+whichever session opens this repo next. [README.md](README.md)'s
+three-stage pipeline is the same shape from the document side: spark and
+argue make stage 1, the open pull request is the review gate, the written
+rule is stages 2 and 3.
 
 See [REASONS_WHY.md](REASONS_WHY.md) for what these ideas actually buy in
 practice.
