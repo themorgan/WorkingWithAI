@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 15:52:44 (Buenos Aires) by Morgan F, to version 12 -->
+<!-- Last updated: 2026-08-28 16:04:54 (Buenos Aires) by Morgan F, to version 13 -->
 
 # Our philosophy
 
@@ -71,7 +71,10 @@ obsessive ([rule 2](COMPANY_BUILDING_RULES.md), [rule 3](COMPANY_BUILDING_RULES.
 small the call, the record states what case prompted it — a bare
 "always do X" invites relitigation from anyone who wasn't there. The
 case also tests the rule: one that wouldn't have caught it is theater.
-BestPractice already requires this (practices 5, 20); capture is the
+BestPractice already requires this
+([practice 5](process/upstream/PRACTICES.md#5-conventions-cite-the-incident-that-created-them),
+[practice 20](process/upstream/PRACTICES.md#20-mistakes-become-rules-root-cause-the-miss-then-encode-the-prevention));
+capture is the
 agents' job, pulled from the work as it happens (IDEAS.md's rule
 extraction).
 
