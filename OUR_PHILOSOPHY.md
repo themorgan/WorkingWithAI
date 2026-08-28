@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 13:28:22 (Buenos Aires) by Morgan F, to version 6 -->
+<!-- Last updated: 2026-08-28 14:05:00 (Buenos Aires) by Morgan F, to version 7 -->
 
 # Our philosophy
 
@@ -11,85 +11,55 @@ This document names those ideas and explains them on their own terms,
 without re-arguing for them. It's an account of the theory, not a pitch
 for it.*
 
-**1. If it isn't written down, it doesn't exist.** A decision made in a
-hallway survives only as long as the people who were there remember it.
-Treat text as the substrate of memory, not a record of it: a thing
-counts as done only once it's written, since "done in someone's head"
-behaves like "not done." That's what makes transcribing past the point
-of comfort rational, not obsessive (rule 2), and makes "it doesn't leave
-your hands until you'd defend it" coherent (rule 3). A full written
-record also stays checkable against reality rather than only against
-itself — you can re-read it for contradictions, or hand it to a fresh
-session and ask whether it could reconstruct a live decision from the
-record alone (the coldstart test), which is what catches a summary that
-has drifted while still reading as coherent (rule 13).
+**1. If it isn't written down, it doesn't exist.** A decision only in
+someone's head is no decision — it vanishes when they forget or leave.
+Writing it down makes it checkable: reread for contradictions, or hand
+it to a fresh session and see if it alone reconstructs the decision (the
+coldstart test). That's why transcribing past comfort is rational, not
+obsessive (rules 2, 3, 13).
 
-**2. Context is capital. Hours are not.** For most of business history
-the scarce input was time — pay enough hours and the work got done. That
-stopped being true once a model could produce competent output on
-demand. What stayed scarce is what never got commoditized: why the last
-vendor failed, what the customer meant versus what they said, which
-option got killed and why — material that lived in one person's head. A
-conclusion written down without the thinking behind it is nearly as
-opaque as no decision at all. Capturing that thinking is capital
-expenditure: an asset a competitor can't rent by Thursday afternoon
-(rule 1).
+**2. Context is capital, hours are not.** Models produce competent
+output on demand, so hours stopped being scarce. What's still scarce
+never got commoditized: why the last vendor failed, what the customer
+meant, which option got killed and why. Capturing that thinking is
+capital — an asset no competitor can rent by Thursday (rule 1).
 
 **3. Every decision carries the situation that produced it.** However
-small the call, the record says what specific case prompted it. A bare
-instruction — "always do X" — invites relitigation from anyone who
-wasn't in the room and misapplication by everyone else, because nothing
-in it says what it was protecting against. The originating case gives a
-later reader what they need to judge whether the rule still applies to
-the situation in front of them, and it doubles as the rule's own test:
-a guard that wouldn't have caught the case that created it is theater,
-and you can only see that when the case sits next to it. This is the
-practice layer's own standard, not a preference of ours — BestPractice
-requires conventions to cite the incident that created them, and
-requires a mistake to be root-caused into a dated rule carrying that
-incident ([PRACTICES.md](process/upstream/PRACTICES.md) practices 5 and
-20). Doing it by hand loses to whatever's due today, so the capture is
-the agents' job, pulled out of the work as it happens
-([IDEAS.md](IDEAS.md)'s automatic rule extraction).
+small the call, the record states what case prompted it — a bare
+"always do X" invites relitigation from anyone who wasn't there. The
+case also tests the rule: one that wouldn't have caught it is theater.
+BestPractice already requires this (practices 5, 20); capture is the
+agents' job, pulled from the work as it happens (IDEAS.md's rule
+extraction).
 
-**4. Coworking with a model means arguing with it.** Instructing it
-treats the model as a typist; polling it for an opinion treats it as an
-oracle. Both skip the part that actually works: put a half-formed
-position to the model, let it push back, push back on its answer in
-turn, until neither of you is just handing the other your own first
-draft. Quality follows from that, among other things — a model that
-only agrees with you hands back your own blind spots — but disagreement
-isn't the point on its own; it's what a real working relationship with
-the model looks like in practice (rule 4;
+**4. Coworking with a model means arguing with it.** State a half-formed
+position, let the model push back, push back on its answer — keep going
+until the exchange settles it, not either side alone. Instructing makes
+a typist; polling for an opinion makes an oracle. Quality is one payoff:
+agreement just hands back your blind spots (rule 4;
 [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s "argue in
-the open"). "Co-create as partners" undersells this — the useful version
-isn't quiet partnership, it's a fight settled on the merits, by whichever
-side turns out to be right.
+the open").
 
-**5. Processes should be intensely visible, not locked in one person's
-brain.** A workflow whose entire interface is "email me and I'll handle
-it" is invisible to everyone but that person. The idea behind "no dark
-processes" (rule 10) is bigger than tidiness: an organization's actual
-intelligence is what's checkable by anyone with access to the record,
-not what one person knows. Every dark process trades convenience now for
-a blind spot that compounds.
+**5. Processes should be visible, not locked in one person's brain.** A
+workflow whose only interface is "email me and I'll handle it" is
+invisible to everyone else. Bigger than tidiness (rule 10): real
+intelligence is what anyone with the record can check, not what one
+person knows. Every dark process trades convenience now for a
+compounding blind spot.
 
-**6. People manage; agents execute.** The distinctly human contribution
-isn't producing the draft — it's the planning, creativity, and taste
-that decide what gets built and whether it's actually working, the way
-defining a system well beats hand-running each step of it. Treat the
-model as an individual contributor: brief it clearly, stay engaged while
-it works, adjust the plan the moment the first attempt reveals what the
-brief missed — not a spec handed off once and picked up at the end (rule
-14). Same posture as "co-create" (item 4), applied to managing the work.
+**6. People manage; agents execute.** The human contribution is
+planning, taste, judgment — deciding what gets built and whether it
+works, the way defining a system beats hand-running it. Brief the model
+like an individual contributor, stay engaged, adjust the plan as soon as
+the first attempt reveals what the brief missed (rule 14) — same posture
+as item 4, applied to management.
 
-**7. Humans should do what humans do best.** Machines are for
-production; people are for judgment, relationships, instinct, and the
-parts of a situation nobody wrote down — reading a room, sensing what a
-client meant but didn't say, pushing a colleague harder because the
-moment calls for it. Optimizing a person to act like a fast, tireless
-model optimizes away what they're actually good for (rule 15). The
-standard isn't "be a better machine." It's "be a good human."
+**7. Humans should do what humans do best.** Machines produce; people
+bring judgment, relationships, instinct: reading a room, sensing what a
+client meant but didn't say, pushing someone harder when the moment
+calls for it. Optimizing a person to act like a fast, tireless model
+optimizes away what they're for (rule 15) — hold them to that standard,
+not a machine's.
 
 See [REASONS_WHY.md](REASONS_WHY.md) for what these ideas actually buy in
 practice.

@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 13:13:27 (Buenos Aires) by Morgan F, to version 14 -->
+<!-- Last updated: 2026-08-28 14:20:00 (Buenos Aires) by Morgan F, to version 15 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -352,3 +352,37 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   it. Once the personal-pack sync pulls §19 into this repo's own
   `process/personal/` and re-weaves `AGENTS.md`, this repo picks up
   push-back mode automatically.
+- [x] **Halve [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md)'s and
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)'s numbered items, and cut
+  the op-ed voice out of them.** Decided 2026-08-28 → done, doc. Morgan's
+  complaint: the items ran long and leaned on scene-setting rhetoric this
+  repo's own voice guidelines already ban — his example, item 2's opener
+  "For most of business history the scarce input was time — pay enough
+  hours and the work got done," a historical windup before the actual
+  point. Rewrote all seven [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) items
+  and all seven [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) rules,
+  bringing the combined word count of the items themselves from 1,315
+  words to 708 (≈54%) — titles, status tags, and rule/practice citations
+  kept, narrative padding and restated context cut. Item 4 of
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) (from the prior session's
+  rewrite, "coworking with a model means arguing with it") got the same
+  pass. Judgment calls made: (1) didn't touch either document's intro
+  paragraphs, status key, "Not yet ready," or "Promotion" sections —
+  Morgan said "items," and those aren't numbered items, though the
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) intro has the same
+  "not settled policy, not a finished essay, but X" triplet shape and is
+  worth a look if he wants it too; (2) didn't edit
+  [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md)
+  itself — it's vendored from SoundHuman and can't be hand-merged (this
+  file's own merge runbook), and it already bans exactly what Morgan
+  flagged (§1 Selectivity, §5.1's banned "not X, it's Y" contrast, §12's
+  "does the opening state the point, or clear its throat first?"); the
+  gap was this repo not yet applying that rule rigorously to long-form
+  essay content, not a hole in the rule itself; (3) dropped rule 1's
+  "Origin: this repo, 2026-08-26" line and rule 5's superseded-draft
+  history from [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — that
+  provenance still lives in this file's own history, and
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) is the current-state
+  checklist, not the log; (4) cut rule 6's "email Morgan to change this
+  config" example and a few secondary citations for length, keeping the
+  rule-number cite on every item.

@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 23:49:02 (Buenos Aires) by Morgan F, to version 6 -->
+<!-- Last updated: 2026-08-28 14:05:00 (Buenos Aires) by Morgan F, to version 7 -->
 
 # Rules now testing — the current state of what we're trying
 
@@ -43,76 +43,49 @@ mentioning a rule here is not the same as adopting it elsewhere.
 [RepoPersonalPreferences §19](https://github.com/themorgan/RepoPersonalPreferences/blob/main/process/personal/README.md).
 Argue a genuine counter-case before building on a stated stance; flag a
 serious unresolved disagreement before calling a piece done. Never on
-code or other technical work. Origin: this repo, 2026-08-26 (see
-[TODO.md](TODO.md)).
+code or other technical work.
 
 ### 2. Provider-neutral LLM integrations — *Promoted*
 
 [RepoPersonalPreferences §12](https://github.com/themorgan/RepoPersonalPreferences/blob/main/process/personal/README.md).
 Build any LLM integration against a swappable model/token/base-URL
 interface; assume an OpenRouter credential absent other instruction.
-[AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) names this as
-a hedge on COMPANY_BUILDING_RULES rule 1 (context as capital, strandable by
-a vendor switch),
-already required by the pack before this document existed.
+Hedges rule 1 (context as capital).
 
 ### 3. Argue in the open — *Trial*
 
-When reviewing or commenting on writing-and-thinking work (a PR review, a
-comment thread, feedback on a draft), post a stated, half-formed position
-and invite disagreement — instead of a clean, finished-looking
-suggestion. The point is to keep the disagreement itself in the record,
-not just its resolution (COMPANY_BUILDING_RULES rule 4; AI_GOVERNANCE_TO_COCREATE
-"Argue in the open"; IDEAS.md's "PR comments as argument, not just the
-record").
+On writing-and-thinking work — a PR review, comment thread, feedback on
+a draft — post a half-formed position and invite disagreement instead of
+a finished one. Keeps the disagreement in the record, not just its
+resolution (rule 4).
 
 ### 4. Two reflexes, asked out loud mid-task — *Trial*
 
-Before calling a nontrivial piece of work done, state the answer to both,
-in the reply itself, not just silently in reasoning:
+Before calling work done, answer both out loud in the reply:
 
 - Have I done this shape before, or will I again?
-- Is there a way this could be *better* — not just faster?
+- Is there a way this could be better — not just faster?
 
-(COMPANY_BUILDING_RULES rule 6; AI_GOVERNANCE_TO_COCREATE: "the two
-reflexes... belong in the system prompt, not just in a human's habit.")
+(Rule 6.)
 
 ### 5. Write like a human, not an LLM — *Trial*
 
-Superseded its original draft (2026-08-27), which pointed at
-COMPANY_BUILDING_RULES rule 11's fingerprints by hand because "no tooling
-exists for this yet."
-It turned out tooling already existed, just not wired up here: a whole
-repo, [SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman),
-maintains exactly this ruleset — [HUMAN_VOICE_RULES.md](https://github.com/themorgan/VoiceGuidelinesToSoundHuman/blob/main/HUMAN_VOICE_RULES.md),
-already consumed by other repos in production (VoiceDefinitionMorgan,
-VoiceDefinitionCelia, the WriteLike app). Vendored here at
-[process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md)
-(2026-08-28), kept current by its own weekly sync and session-start check
-— see [AGENTS.md](AGENTS.md)'s "Voice" section, which is where the actual
-rule now lives: it governs everything a session writes in this repo,
-chat replies included, not just committed documents. Still *Trial* here
-rather than jumping straight to Promoted — this is the first repo applying
-it to general assistant output rather than only the WriteLike voice-pack
-path, and that's a new use of it worth testing before it becomes a default
-in RepoPersonalPreferences.
+Follow [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md),
+vendored from [SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman)
+and synced automatically ([AGENTS.md](AGENTS.md)'s "Voice" section) —
+governs everything written here, chat replies included. Still *Trial*:
+first repo applying it beyond WriteLike.
 
 ### 6. Dark-process self-audit, including the session's own habits — *Trial*
 
-Periodically — tie this to the same cadence as the recurring BestPractice
-check-in in [TODO.md](TODO.md) — list workflows whose only interface is a
-human inbox, including the assistant's own ("email Morgan to change this
-config" counts), and propose an addressable alternative
-(COMPANY_BUILDING_RULES rule 10; AI_GOVERNANCE_TO_COCREATE "Configure the
-AI to hunt its own dark processes").
+Periodically, same cadence as the BestPractice check-in — list workflows
+whose only interface is a human inbox, the assistant's own included, and
+propose an addressable alternative (rule 10).
 
 ### 7. Contradiction-scanning across the corpus, as a recurring job — *Trial*
 
-Periodically re-read [IDEAS.md](IDEAS.md) (and, now, this document) for
-entries that have come to disagree with each other — the same recurring
-cadence as item 6, not a one-off pass someone has to remember to run
-(IDEAS.md's meta section; AI_GOVERNANCE_TO_COCREATE "Keeping the corpus
-honest").
+Periodically re-read [IDEAS.md](IDEAS.md) and this document for entries
+that now disagree — same cadence as item 6, not a one-off.
 
 ## Not yet ready for this list
 
