@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 08:52:37 (Buenos Aires) by Morgan F, to version 6 -->
+<!-- Last updated: 2026-08-28 16:04:54 (Buenos Aires) by Morgan F, to version 7 -->
 
 # Repository instructions — read me first
 
@@ -31,7 +31,8 @@ current by a weekly sync plus a session-start check — see "A third scheduled
 check keeps the voice guidelines current" below). It governs **everything a
 session writes here, not just committed documents** — the chat reply itself
 is in scope too. Check outward-facing prose against it before calling a
-piece done; this is [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) item 5, now
+piece done; this is [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md#5-write-like-a-human-not-an-llm--trial)
+item 5, now
 backed by a real, vendored ruleset instead of a manual checklist. Its own
 §17 sets the precedence rule if that ever conflicts with a more specific,
 person-authored voice pack: the person-specific rules win.
@@ -63,10 +64,12 @@ gotchas" above — then these two.)
 Conflicts in shared files are EXPECTED. The fast, safe path:
 
 0. **Capture gate — before the merge, in the thread that did the work**
-   (practice 10): did this thread's work imply anything that must be
+   ([practice 10](process/upstream/PRACTICES.md#10-capture-in-the-thread-that-created-the-need--before-the-merge)):
+   did this thread's work imply anything that must be
    captured — a document update, a registry entry, a decision record? Fold
    it now.
-   **0b. Export gate** (practice 14): did this thread improve a *generic*
+   **0b. Export gate** ([practice 14](process/upstream/PRACTICES.md#14-the-practice-export-loop-how-this-repo-propagates)):
+   did this thread improve a *generic*
    BestPractice practice (not the personal pack, which never exports)?
    Fold the abstracted form into `process/upstream/` now, per
    [process/upstream/INSTALL.md](process/upstream/INSTALL.md) §3, and run
@@ -76,7 +79,7 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
    line; remove or check off anything this branch just implemented. Do
    this every push.
 1. Fetch and merge `main` locally.
-2. Resolve by fixed per-file-class rules (practice 9):
+2. Resolve by fixed per-file-class rules ([practice 9](process/upstream/PRACTICES.md#9-a-merge-runbook-with-fixed-per-file-class-rules)):
    - `process/manifest.json` / `process/manifest_personal.json` /
      `process/manifest_voice.json`: **union** of both sides — never drop an
      entry or a status.
@@ -107,34 +110,48 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
 ## Conventions
 
 - **Sections are ordered by the reader's frequency, not the writer's**
-  (practice 36): a document walking through rules in multiple sections puts
+  ([practice 36](process/upstream/PRACTICES.md#36-section-order-follows-the-readers-frequency-not-the-writers-derivation-order)):
+  a document walking through rules in multiple sections puts
   common, everyday content first and rare edge cases / contingencies last,
   unless the subject matter dictates otherwise. Ask: would most readers
   have to scroll past this section to reach the one they opened the
   document for?
-- **PR descriptions come from the diff, not the template** (practice 39):
+- **PR descriptions come from the diff, not the template** ([practice 39](process/upstream/PRACTICES.md#39-a-default-pr-template-captures-the-living-doc-gates--honestly-not-mechanically)):
   write "What changed" / "Why" / "Files touched" from what actually
   happened on this branch. Check a `## Gates` box only when it is actually
   true for this change — an unchecked box, or a "not applicable" note, is
   normal. Never check every box just to make the form look complete.
-- **Doc references are links** (practice 11): relative markdown links,
-  never bare backticked filenames. Use `≈`, not `~`, for "approximately".
+- **Doc references are links** ([practice 11](process/upstream/PRACTICES.md#11-document-references-are-links-approximation-is)):
+  relative markdown links, never bare backticked filenames. This extends
+  to every numbered-list citation, not just filenames: a mention of a
+  specific rule, practice, or other numbered-list entry elsewhere in the
+  repo (`rule 4`, `practice 20`, `item 3`) is always a link to that
+  source — anchored to the specific entry when the source list uses real
+  headings (like [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) or
+  [process/upstream/PRACTICES.md](process/upstream/PRACTICES.md)), or to
+  the bare file when it doesn't (like
+  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), whose fifteen
+  rules are bold paragraph text with no heading to anchor to). Use `≈`,
+  not `~`, for "approximately".
   `python3 process/upstream/tools/doc_lint.py` checks these conventions on
   files changed vs the default branch; run it on what you touch before
   committing.
-- **Volatile rules carry their dates** (practice 16): anything asserted
+- **Volatile rules carry their dates** ([practice 16](process/upstream/PRACTICES.md#16-volatile-rules-carry-their-dates)):
+  anything asserted
   here about an external platform or tool carries *as of / verified
   `<date>`* inline, in Buenos Aires local time (personal pack §4, stricter
   than BestPractice's own default of "the contributor's local calendar
   date" — here, the contributor's local calendar date always means Buenos
   Aires, regardless of where a session physically runs).
-- **Outward-facing documents use the reader's words** (practice 34): this
+- **Outward-facing documents use the reader's words** ([practice 34](process/upstream/PRACTICES.md#34-outward-facing-documents-use-the-readers-vocabulary-not-the-sources)):
+  this
   repo's README and [GETTING_STARTED.md](GETTING_STARTED.md) are read by
   people who are not developers. Terms that name a category are the
   reader's word, a plain equivalent, or glossed inline — never left to a
   glossary. Jargon arrives from the sources a session just read, so run
   the check as a separate pass after drafting.
-- **Reply convention** (practice 12): every reply that created or modified
+- **Reply convention** ([practice 12](process/upstream/PRACTICES.md#12-every-reply-links-the-files-it-touched)):
+  every reply that created or modified
   files ends with a "Files touched" list — branch link + post-merge link +
   one-line description per file.
 

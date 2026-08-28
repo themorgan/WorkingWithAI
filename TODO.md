@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 15:52:44 (Buenos Aires) by Morgan F, to version 21 -->
+<!-- Last updated: 2026-08-28 16:04:54 (Buenos Aires) by Morgan F, to version 22 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -72,6 +72,18 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md); worth deciding whether it
   becomes a recurring item here (like the BestPractice check-in) or stays
   ad hoc. **decision.**
+- [ ] **Link the remaining unlinked numbered-list citations this repo's new
+  convention now requires** ([AGENTS.md](AGENTS.md)'s "Doc references are
+  links"): [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)'s own
+  self-references (`item 1`, `rule 6`, `rule 10`),
+  [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s and
+  [IDEAS.md](IDEAS.md)'s bare `rule N` mentions of
+  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), and
+  [REASONS_WHY.md](REASONS_WHY.md)'s and [IDEAS.md](IDEAS.md)'s
+  `RULES_NOW_TESTING.md item N` mentions that link the file but not the
+  specific item. Deliberately out of the change that added the
+  convention, since it spans documents beyond the one Morgan named.
+  **analysis.**
 
 ## Verify before external use
 
@@ -339,6 +351,41 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   do, which is what makes room for the part they do. Added that second
   citation, which means every one of the seven ideas is now cited by at
   least one step of the loop.
+  **Revised a twelfth time 2026-08-28** — three more changes, Morgan's,
+  same day. First, a new [AGENTS.md](AGENTS.md) convention: every
+  numbered-list citation elsewhere in the repo (a rule, a practice, an
+  item) is always a link to its source — anchored to the specific entry
+  when the source list uses real headings
+  ([RULES_NOW_TESTING.md](RULES_NOW_TESTING.md),
+  [process/upstream/PRACTICES.md](process/upstream/PRACTICES.md)), or to
+  the bare file when it doesn't
+  ([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md)'s bold
+  paragraphs). Brought into compliance immediately:
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 6's `(practices 5, 20)`,
+  and every practice citation already inside
+  [AGENTS.md](AGENTS.md) itself (nine of them, plus its one
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) item citation). Second, a
+  new sixth [REASONS_WHY.md](REASONS_WHY.md) reason: AI is superhuman at
+  turning an incident into a rule, checking it against everything else on
+  the list, and renumbering every cross-reference when an entry moves —
+  upkeep a person defers the moment it gets tedious but a model runs on
+  every pass, at any scale, without leaving a stale reference behind.
+  Third, all five existing [REASONS_WHY.md](REASONS_WHY.md) reasons
+  (plus the new sixth) shortened to roughly half their prior length,
+  matching [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md)'s own brevity — kept
+  every citation and the core claim, cut the worked examples and
+  restatement. Judgment calls made: (1) didn't sweep the rest of the
+  repo's unlinked numbered-list citations
+  ([RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)'s own self-references,
+  [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s and
+  [IDEAS.md](IDEAS.md)'s `rule N` mentions) into this same change — logged
+  as its own open item below instead, since it touches several documents
+  Morgan didn't name; (2) picked word-count targets of roughly 45-55% of
+  each reason's original length rather than a strict half, since a couple
+  of the originals didn't compress cleanly to exactly 50% without cutting
+  a citation; (3) for the new sixth reason, cited this very thread's own
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) renumbering work as the concrete
+  instance, rather than a hypothetical example.
 - [x] **Rename OPERATING_RULES.md, FIFTEEN_RULES.md, and COCREATION_DESIGN.md
   — all three names read as unclear about what they cover.** Decided
   2026-08-27 → done, doc. Morgan's complaint: `OPERATING_RULES` implies
