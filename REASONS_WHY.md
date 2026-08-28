@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 16:04:54 (Buenos Aires) by Morgan F, to version 7 -->
+<!-- Last updated: 2026-08-28 18:59:19 (Buenos Aires) by Morgan F, to version 8 -->
 
 # Reasons why
 
@@ -68,6 +68,21 @@ convenience: rule lists that stay current because upkeep costs the
 model nothing, not because someone finally found the time — this
 thread's own renumbering of [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) is
 one instance.
+
+**7. Working in a second language stops costing quality.** Someone forced
+to compose in an unfamiliar language spends part of their attention on
+translation, and the record gets a thinner version of their actual
+thinking. Letting people write and think in whatever language comes
+naturally, with the AI carrying the translation into the repo's shared
+working language, gets the real version into the record instead
+([IDEAS.md](IDEAS.md)).
+
+**8. A private chat with an LLM is knowledge the company never gets.**
+People already work through problems by talking to a model. When that
+stays in a private chat window, the reasoning and the discarded options
+leave with the chat history, and the company never had them. Doing the
+same thinking in the open, in this repo, turns that habit into
+information the company actually keeps (item 4 above).
 
 See [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) for the theory behind why these
 particular things happen.
