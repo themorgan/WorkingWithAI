@@ -1,3 +1,4 @@
+# Last updated: 2026-08-29 07:25:59 (Buenos Aires) by Morgan F, to version 6
 # Install as .github/workflows/bestpractice-upstream-sync.yml in a repo
 # carrying the personal pack. Scheduled, unattended equivalent of
 # BestPractice's own INSTALL.md §2 ("Take an upstream update"): checks
@@ -20,12 +21,22 @@
 # — but should still remind Morgan to set one so future unattended runs
 # don't need to be asked for.
 #
+# Model pinned to claude-sonnet-5 at effort high (see below) — the
+# account this sync authenticates as (a Pro/Max subscriber's
+# CLAUDE_CODE_OAUTH_TOKEN, or ANTHROPIC_API_KEY) would otherwise decide the
+# runtime default (Sonnet 5 on Pro, Opus 5 on Max or the API), so an
+# unpinned run could silently switch models depending on which secret is
+# configured. Pinning keeps behavior identical either way.
+#
 # Frequency defaults to weekly; switching to daily is a one-line swap.
 # Cron is UTC-only, so both lines below convert from Buenos Aires local
 # time (America/Argentina/Buenos_Aires, UTC-3 year-round, no DST since
 # 2009 — verified 2026-08-21) by adding 3 hours. To change frequency,
 # comment out the active `- cron:` line and uncomment the other one; to
 # change time of day, adjust either line's hour/minute the same way.
+# (This repo's own personal-pack-sync moved to Tuesday 04:15 Buenos Aires
+# to land outside working hours — Alex, BestPractice's owner, lives four
+# hours behind Morgan, so this slot suits him where it is; don't move it.)
 name: BestPractice sync
 
 on:
@@ -83,7 +94,11 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      issues: write
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
       - name: Explain why this run did nothing
         run: |
           {
@@ -92,6 +107,19 @@ jobs:
             echo "Set one of the two secrets at **Settings -> Secrets and variables -> Actions -> New repository secret** so future runs can take the update unattended (see GETTING_STARTED.md's administrator section), or ask a chat session to take this update manually in the meantime."
           } | tee -a "$GITHUB_STEP_SUMMARY"
           echo "::warning::BestPractice sync skipped: neither CLAUDE_CODE_OAUTH_TOKEN nor ANTHROPIC_API_KEY is set."
+
+      - name: Open or update a GitHub issue (process/personal/README.md [`automation-issues`](process/personal/README.md#automation-issues))
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 process/personal/tools/report_automation_issue.py \
+            automation-blocked:bestpractice-sync \
+            "BestPractice sync blocked: no Claude credential set" \
+            "BestPractice has moved upstream, but neither \`CLAUDE_CODE_OAUTH_TOKEN\` nor \`ANTHROPIC_API_KEY\` is set, so the scheduled sync could not take the update.
+
+          Set one of the two secrets at **Settings -> Secrets and variables -> Actions -> New repository secret** (see GETTING_STARTED.md's administrator section), or ask a chat session to take the update manually in the meantime -- it doesn't need either secret, since it's already Claude.
+
+          Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
 
   update:
     name: Take the update, integrate, PR, merge
@@ -121,6 +149,7 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: '--model claude-sonnet-5 --effort high'
           prompt: |
             BestPractice (the public upstream repo recorded in
             process/manifest.json) has moved since this repo's vendored copy
@@ -150,6 +179,17 @@ jobs:
                python3 process/upstream/tools/doc_lint.py --all
                python3 process/personal/tools/light_check.py --all
                python3 process/upstream/tools/practice_audit.py
+            6. Resolve TODO.md's own record of this drift, in the same
+               commit: `python3 process/personal/tools/pack_sync.py resolve
+               bestpractice "unattended sync -- see this PR"`. This update IS
+               the review a session-start notice (process/personal/README.md
+               [`drift-notice`](process/personal/README.md#drift-notice)) would otherwise have been asking a human to do -- if this
+               unattended run got here first, TODO.md's "## Pending Drift
+               Reviews" section (if it has an open `bestpractice` entry)
+               would otherwise sit stale, still claiming the drift is
+               unreviewed after this PR already resolved it. This command is
+               a no-op (prints a note, exits 0) when there's no open entry,
+               so it's always safe to run.
 
             Judgment calls you make while merging (a conflict between an
             upstream change and a local adaptation, a template change that

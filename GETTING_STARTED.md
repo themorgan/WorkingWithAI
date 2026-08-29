@@ -125,13 +125,13 @@ opener:
 - **Your work is credited to Morgan F.** Every commit in this project is
   authored as "Morgan F" (a GitHub noreply address, never a real inbox),
   with the assistant recorded as a co-author. See
-  [process/personal/README.md](process/personal/README.md) §3 if you ever
+  [`commit-author`](process/personal/README.md#commit-author) if you ever
   need to change that.
 - **Small calls happen without asking.** The assistant makes small and
   moderate judgment calls itself and tells you what it decided when the
   work is done, instead of interrupting you for each one. It still stops
   and asks first for anything genuinely big. See
-  [process/personal/README.md](process/personal/README.md) §7.
+  [`small-calls`](process/personal/README.md#small-calls).
 
 ## For the administrator: approving changes
 
@@ -153,7 +153,7 @@ conversation:
 - **A light check runs on every push and pull request** — merge-conflict
   markers, broken syntax, obvious secret-shaped strings, and broken
   in-repo doc links, beyond what the Markdown check looks for. Details:
-  [process/personal/README.md](process/personal/README.md) §11.
+  [`light-check`](process/personal/README.md#light-check).
 - **A scheduled check for BestPractice updates runs unattended — weekly
   by default** (Mondays; a commented-out daily cron line sits right next to
   the active weekly one in the workflow file) and, when upstream has moved,
@@ -178,7 +178,7 @@ conversation:
   summaries if a scheduled run seems to have done nothing. A chat session
   can take the update manually in the meantime without either secret; if it
   does, it should remind you to set one. Details:
-  [process/personal/README.md](process/personal/README.md) §14.
+  [`bestpractice-sync`](process/personal/README.md#bestpractice-sync).
 - **A second scheduled check keeps the personal pack itself current** —
   same weekly-by-default, daily-optional cadence, pointed at
   [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences)
@@ -203,7 +203,7 @@ conversation:
   "can't reach the private repo" as "nothing to sync" — but every such run
   emits a `::warning::` GitHub Actions annotation, a recurring per-run
   smoke test visible in the Actions UI. Details:
-  [process/personal/README.md](process/personal/README.md) §15.
+  [`pack-sync`](process/personal/README.md#pack-sync).
 - **A third scheduled check keeps the voice guidelines current** — same
   weekly-by-default, daily-optional cadence, pointed at
   [SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman)

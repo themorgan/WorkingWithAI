@@ -2,8 +2,9 @@
   "upstream": {
     "repo": "https://github.com/alex137/BestPractice",
     "vendored_at": "process/upstream",
-    "commit": "47aabda4b44796f2c01591ec9c7e7edf6a1e404d",
-    "_note": "commit = upstream hash last synced (initial install, recorded 2026-08-26)."
+    "commit": "c76f06f87e52171dfcfee91bc52e9439cd020409",
+    "_note": "commit = upstream hash last synced (routine update, 2026-08-29, recorded 2026-08-29; verified tree-identical).",
+    "synced_from": "c76f06f87e52171dfcfee91bc52e9439cd020409"
   },
   "entries": [
     {
@@ -13,7 +14,7 @@
       "granularity": "section",
       "section_marker": "## Merging a thread branch (runbook — follow, don't improvise)",
       "status": "synced",
-      "notes": "Quick-index and merge runbook adapted to this repo's own subject matter (a brainstorm notebook, not a build/deliverable repo). Extended with a '## Personal setup rules' section woven in from process/personal/templates/AGENTS_ADDENDUM.md.template — see the personal-pack manifest for that section's own entry."
+      "notes": "Quick-index and merge runbook adapted to this repo's own subject matter (a brainstorm notebook, not a build/deliverable repo). Extended with a '## Personal setup rules' section woven in from process/personal/templates/AGENTS_ADDENDUM.md.template — see the personal-pack manifest for that section's own entry. 2026-08-29 update: propagated the Reply convention bullet's new rendered-view/artifact-link sentence. Deliberately did not instantiate VOICE.md.template/STYLEGUIDE.md.template, newly introduced upstream since this repo's install — this repo already has its own separate voice-guidance layer (process/voice/, from its own source repo), so BestPractice's generic version would be redundant; not tracked as a manifest entry since nothing was installed."
     },
     {
       "practice": "claude-code-instructions-pointer",
@@ -30,8 +31,17 @@
       "local_path": ".claude/settings.json",
       "granularity": "file",
       "status": "synced",
-      "notes": "Added allowlist entries for process/upstream/tools/checkin.py, process/personal/tools/light_check.py, process/personal/tools/pack_sync.py, and (2026-08-28) process/voice/tools/voice_sync.py, so the personal pack's and voice guidelines' own gates don't stall on permission prompts.",
-      "local_sha256": "472564db504bea8c57dd78ed070cbe5abdf0d1e81fabd2c45c4d29dc7349e625"
+      "notes": "Added allowlist entries for process/upstream/tools/checkin.py, process/personal/tools/light_check.py, process/personal/tools/pack_sync.py, and (2026-08-28) process/voice/tools/voice_sync.py, so the personal pack's and voice guidelines' own gates don't stall on permission prompts. 2026-08-29 update: wired the new Stop hook block.",
+      "local_sha256": "7c51c4d0421f7cba96c6dbda58a0631b68fbcf67ee0b6e7f419362f6ddfc5eef"
+    },
+    {
+      "practice": "claude-code-stop-hook",
+      "upstream_path": "templates/harness/claude-code/hooks/stop-git-check.sh",
+      "local_path": ".claude/hooks/stop-git-check.sh",
+      "granularity": "file",
+      "status": "synced",
+      "notes": "Instantiated 2026-08-29 (introduced upstream after this repo's install; INSTALL.md §2 step 3). Installed verbatim.",
+      "local_sha256": "019ea9ecd0262260dbfaa9d0c2d93ad46d6fd27f071ece20a81fd1f02f783817"
     },
     {
       "practice": "claude-code-session-hook",
@@ -48,8 +58,8 @@
       "local_path": "tools/bootstrap.sh",
       "granularity": "file",
       "status": "synced",
-      "notes": "Extended with the personal pack's git-identity setup and session-start freshness notice (process/personal/README.md §3, §16, §18 step 4), and (2026-08-28) a third freshness line for the voice guidelines — see AGENTS.md's 'Voice' section. 2026-08-28: comment updated for the voice guidelines' source repo's internal rename (VoiceGuidelinesToSoundHuman -> SoundHuman) — repo-specific, not exported upstream.",
-      "local_sha256": "18ef50ef1d5158b083091283dfc99f3dce1e37f6e328ee8c1149a65fee3bddfa"
+      "notes": "Extended with the personal pack's git-identity setup and session-start freshness notice (process/personal/README.md#commit-author, #drift-notice, #install step 4), and (2026-08-28) a third freshness line for the voice guidelines — see AGENTS.md's 'Voice' section. 2026-08-28: comment updated for the voice guidelines' source repo's internal rename (VoiceGuidelinesToSoundHuman -> SoundHuman) — repo-specific, not exported upstream. 2026-08-29 update: wrapped the BestPractice and personal-pack freshness lines to persist a fired notice into TODO.md's Pending drift reviews section, matching the current upstream pattern this repo's older install predated; also added a Pending drift reviews section to TODO.md itself.",
+      "local_sha256": "42e6e701cc5cf0368e12ba86016c85611b4dc5e900697ab069094bb37ea2bfee"
     },
     {
       "practice": "gitignore",
@@ -85,7 +95,7 @@
       "granularity": "file",
       "status": "local-only",
       "notes": "Fully adapted to this repo's own layout — this repo's map is its own subject matter, not upstream-exportable content.",
-      "local_sha256": "40ba27a7ac58760cb9e11839e37e21017c806693786541e525f0a359906f508c"
+      "local_sha256": "d8d89c59bd9b00e9e8e5da3008587773860aee55731d61aebf42d0f54e2737c3"
     },
     {
       "practice": "todo",
@@ -94,7 +104,7 @@
       "granularity": "file",
       "status": "local-only",
       "notes": "This repo's own open-items list, including the recurring BestPractice check-in item; not upstream-exportable content.",
-      "local_sha256": "a2a5337ed44294e838c42fb4ae1d3e4d72951f943bd19c4a1e03a42fd6ac9ad7"
+      "local_sha256": "90d150959e87a4ea94c75c7e9b2c3a8139e1dc5cecbcf5c3bb95b6b738e0d077"
     },
     {
       "practice": "glossary",
@@ -103,7 +113,7 @@
       "granularity": "file",
       "status": "local-only",
       "notes": "This repo's own canonical names; not upstream-exportable content.",
-      "local_sha256": "7816b5438b6d4e439a72ba14e1190ea1b07505370b3cb9411aafd2111c476174"
+      "local_sha256": "bea8a5e1e7b4c4a345ad33164e71ba073a98cfb8008d11937e199eba006b02f4"
     },
     {
       "practice": "getting-started",
@@ -112,7 +122,7 @@
       "granularity": "file",
       "status": "local-only",
       "notes": "Instantiated with this repo's real values (single-member repo today). Structural onboarding improvements are still exportable per INSTALL.md §3 if they generalize.",
-      "local_sha256": "ff32665e2bbe2e76597d8d9a5d725f26864061311e1a1801a2858057c72b27c0"
+      "local_sha256": "06c6d14aa3df1581dad89eab20ddbf7937e567539c2e94210275d4206fbec7b9"
     },
     {
       "practice": "readme-agent-entry",

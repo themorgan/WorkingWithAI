@@ -2,9 +2,9 @@
   "upstream": {
     "repo": "https://github.com/themorgan/RepoPersonalPreferences",
     "vendored_at": "process/personal",
-    "commit": "c1d27d3f462bec231f08a8ae8de4e25112f069b7",
+    "commit": "d436be779be155c9aa52fd24bbb240d2af4bb896",
     "scrub_blocklist": null,
-    "_note": "commit = RepoPersonalPreferences hash last synced from (initial install, recorded 2026-08-26). scrub_blocklist is deliberately null: this pack's content is Morgan's own private vocabulary by design and is never meant to reach the public BestPractice repo, so scrubbing it against process/scrub_blocklist.txt would be backwards."
+    "_note": "commit = RepoPersonalPreferences hash last synced (routine update, 2026-08-29; install was 2026-08-26 at c1d27d3f462b). scrub_blocklist is deliberately null: this pack's content is Morgan's own private vocabulary by design and is never meant to reach the public BestPractice repo, so scrubbing it against process/scrub_blocklist.txt would be backwards."
   },
   "entries": [
     {
@@ -14,7 +14,7 @@
       "granularity": "section",
       "section_marker": "## Personal setup rules (Morgan's pack)",
       "status": "synced",
-      "notes": "Woven into AGENTS.md right after BestPractice's own Conventions section, including the 0c TODO gate inserted into the merge runbook's numbered list."
+      "notes": "Woven into AGENTS.md right after BestPractice's own Conventions section, including the 0c TODO gate inserted into the merge runbook's numbered list and the quiet-checks sentence appended to the runbook's step 3. 2026-08-29 re-weave: brought this repo's copy up to the current template -- added morgan-scope, push-back, trim-prose, list-item-parity, deep-check, quiet-checks, rule-links, no-stale-counts, header-caps, private-repo-scrub, content-subdirs, new-rule-placement, and automation-issues bullets, none of which this older install had yet; switched every citation from positional §N to permanent slug form; kept the three-scheduled-sync structure and the voice-guidelines-specific bullets (out of this update's scope) untouched in their existing positions; kept the pack's NY Times-style header-caps default noted but not applied, since this repo already documents its own sentence-case choice."
     },
     {
       "practice": "upstream-sync-workflow",
@@ -22,8 +22,8 @@
       "local_path": ".github/workflows/bestpractice-upstream-sync.yml",
       "granularity": "file",
       "status": "synced",
-      "notes": "Installed verbatim; cadence left at the template default (weekly, Mondays 12:00 UTC = 09:00 Buenos Aires).",
-      "local_sha256": "5bd3bb2358f48c7121c7b799b264a42efa3df3e3199503d9fb175e9bea50a21e"
+      "notes": "Installed from the template; cadence left at the default (weekly, Mondays 12:00 UTC = 09:00 Buenos Aires). 2026-08-29: brought up to the current template -- added the claude_args model pin (claude-sonnet-5, effort high), the automation-issues GitHub-issue reporting step, the TODO.md drift-resolve step, and slug citations, none of which this older install had yet.",
+      "local_sha256": "801c2ce64f1001c1d7c148a7ef622e0e5a36cab455a866daed7d60a65c254519"
     },
     {
       "practice": "light-check-workflow",
@@ -40,8 +40,8 @@
       "local_path": ".github/workflows/personal-pack-sync.yml",
       "granularity": "file",
       "status": "synced",
-      "notes": "Installed verbatim; needs its own repository secret, PERSONAL_PACK_TOKEN, disclosed in GETTING_STARTED.md.",
-      "local_sha256": "7431fda77ade9e26f4337a2c4810aa593ac3933fdc872f42ac5c574e8a6e4682"
+      "notes": "Installed from the template; needs its own repository secret, PERSONAL_PACK_TOKEN, disclosed in GETTING_STARTED.md. 2026-08-29: brought up to the current template -- moved to the new default cadence (weekly, Tuesdays 07:15 UTC = 04:15 Buenos Aires, deliberately outside working hours; previously Mondays 09:15 Buenos Aires), and added the claude_args model pin, the automation-issues GitHub-issue reporting steps, the TODO.md drift-resolve step, and slug citations, none of which this older install had yet.",
+      "local_sha256": "738e39b4c82be2cbe720c14693d14e7faa0172f6289b01cd253de2f77b4e5841"
     },
     {
       "practice": "bootstrap-identity",
@@ -50,7 +50,7 @@
       "granularity": "section",
       "section_marker": "git config user.name",
       "status": "synced",
-      "notes": "Appended after the BestPractice-freshness notice line in tools/bootstrap.sh."
+      "notes": "Appended after the BestPractice-freshness notice line in tools/bootstrap.sh. 2026-08-29: citations switched to slug form."
     },
     {
       "practice": "bootstrap-freshness",
@@ -59,7 +59,7 @@
       "granularity": "section",
       "section_marker": "pack_sync.py fresh",
       "status": "synced",
-      "notes": "Appended after the personal pack's own identity lines in tools/bootstrap.sh, per process/personal/README.md §16 and §18 step 4. Not exempt here (only RepoPersonalPreferences itself is exempt)."
+      "notes": "Appended after the personal pack's own identity lines in tools/bootstrap.sh, per process/personal/README.md#drift-notice and #install step 4. Not exempt here (only RepoPersonalPreferences itself is exempt). 2026-08-29: wrapped to persist a fired notice into TODO.md's new Pending drift reviews section, matching the current template (this repo's install predated that pattern)."
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "_comment": "Claude Code adapter (practice 13). Wires the SessionStart hook (tools/bootstrap.sh) and allowlists the routine safe commands sessions run constantly, including the personal pack's own gates, so work doesn't stall on permission prompts.",
+  "_comment": "Claude Code adapter (practice 13). Wires the SessionStart hook (tools/bootstrap.sh), a Stop hook that blocks ending a turn with uncommitted/untracked/unpushed work, and allowlists the routine safe commands sessions run constantly, including the personal pack's own gates, so work doesn't stall on permission prompts.",
   "permissions": {
     "allow": [
       "Bash(grep *)",
@@ -33,6 +33,16 @@
           {
             "type": "command",
             "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/session-start.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/stop-git-check.sh"
           }
         ]
       }

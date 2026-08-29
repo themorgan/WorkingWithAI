@@ -1,10 +1,37 @@
-# Personal-pack snippet (process/personal/README.md §16 and §18 step 4):
-# paste into the installed tools/bootstrap.sh, after the personal pack's
-# own identity lines (process/personal/templates/bootstrap-identity.sh.template).
-# Idempotent, cheap, and non-blocking -- prints a notice only, never gates
-# session start and never takes the update itself (process/personal/README.md
-# §16 -- taking it stays a deliberate, asked-for step). Skip this snippet
-# entirely when installing on RepoPersonalPreferences itself (§16's
-# exemption): the vendored tree there IS upstream for the pack, so
-# comparing it against itself would be circular.
-python3 process/personal/tools/pack_sync.py fresh 2>/dev/null || true
+# Last updated: 2026-08-28 22:40:00 (Buenos Aires) by Morgan F, to version 5
+# Personal-pack snippet (process/personal/README.md [`drift-notice`](process/personal/README.md#drift-notice) and [`install`](process/personal/README.md#install) step 4):
+# REPLACES the already-installed, unwrapped BestPractice freshness line
+# (process/upstream/templates/bootstrap.sh's own
+# `python3 process/upstream/tools/checkin.py fresh 2>/dev/null || true`,
+# installed by process/upstream/INSTALL.md §1 step 2 before this pack ever
+# runs), and adds the pack's own sibling check, in tools/bootstrap.sh, after
+# the personal pack's identity lines
+# (process/personal/templates/bootstrap-identity.sh.template). Idempotent,
+# cheap, and non-blocking -- both still print a notice only and never gate
+# session start (process/personal/README.md [`drift-notice`](process/personal/README.md#drift-notice) -- taking an update stays a
+# deliberate, asked-for step); wrapping in a capture just ALSO persists the
+# same notice into TODO.md's "## Pending Drift Reviews" section
+# (pack_sync.py record/resolve) instead of leaving it stdout-only, so it
+# can't lose a priority fight against whatever task a session is already
+# doing and go unaddressed (README.md [`drift-notice`](process/personal/README.md#drift-notice) -- origin: a session in a
+# dependent repo missed a BestPractice-drift notice for a full task,
+# 2026-08-27, before catching it only when asked directly -- real name kept
+# out of anything vendored, per README.md [`private-repo-scrub`](process/personal/README.md#private-repo-scrub)).
+#
+# Skip the SECOND block entirely when installing on RepoPersonalPreferences
+# itself ([`drift-notice`](process/personal/README.md#drift-notice)'s exemption): the vendored tree there IS upstream for the
+# pack, so comparing it against itself would be circular -- keep the first
+# block's wrapping there, since that repo genuinely vendors
+# process/upstream/ from the public BestPractice repo like any other.
+
+BESTPRACTICE_NOTICE="$(python3 process/upstream/tools/checkin.py fresh 2>/dev/null)" || BESTPRACTICE_NOTICE=""
+if [ -n "$BESTPRACTICE_NOTICE" ]; then
+  echo "$BESTPRACTICE_NOTICE"
+  python3 process/personal/tools/pack_sync.py record bestpractice "$BESTPRACTICE_NOTICE" 2>/dev/null || true
+fi
+
+PACK_NOTICE="$(python3 process/personal/tools/pack_sync.py fresh 2>/dev/null)" || PACK_NOTICE=""
+if [ -n "$PACK_NOTICE" ]; then
+  echo "$PACK_NOTICE"
+  python3 process/personal/tools/pack_sync.py record personal-pack "$PACK_NOTICE" 2>/dev/null || true
+fi
