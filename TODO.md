@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 16:12:25 (Buenos Aires) by Morgan F, to version 34 -->
+<!-- Last updated: 2026-08-29 16:30:21 (Buenos Aires) by Morgan F, to version 35 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -102,6 +102,16 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   emphasis (drive, execution) more directly, not less.
 
   Session: https://claude.ai/code/session_017Zg3sdbyAygn4L3ShpxTKw
+
+- [x] **Shorten every rule paragraph in [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md)
+  to roughly 60% of its original length.** Done 2026-08-29 → doc.
+  Morgan's. Trimmed the opening paragraph and all 15 rule paragraphs in
+  two passes — the first pass under-cut rules 8-15 (they landed closer
+  to 80-85% of original length), caught and fixed in a second pass once
+  Morgan flagged it. Kept every anchor, link, and the two open
+  placeholder brackets (`hire-for-drive`, `human-only-zones`) intact.
+
+  Session: https://claude.ai/code/session_019JL6ufKp3vdHv6n1drNYoz
 
 - [ ] **Fill in the two open brackets in [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md).**
   Rule 12 wants the name of the sharpest editor Morgan has worked with; rule
