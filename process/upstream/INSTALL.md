@@ -38,9 +38,11 @@ drift and proprietary leakage loud instead of silent.
 > them to describe *your* project specifically — a map of where things
 > live, a to-do list, a page that welcomes new members. Nothing from
 > this step becomes visible to anyone but you until you (or whoever has
-> authority to make it official) approve it — see step 7 below and the [guided
-> install](SETUP.md), which walks an administrator through this exact
-> process in conversation rather than as a technical checklist. The one
+> authority to make it official) approve it: the work is committed on a
+> private branch (step 7), and it becomes official only at the
+> review-and-merge that the [guided install](SETUP.md) walks an
+> administrator through in conversation rather than as a technical
+> checklist. The one
 > decision only you can make: **which private names and code words must
 > never leak into a public file** (step 4) — your assistant cannot guess
 > your project's secrets, so it will ask you directly.
@@ -57,6 +59,23 @@ drift and proprietary leakage loud instead of silent.
    - `templates/MAP.md.template` → `MAP.md`; `templates/TODO.md.template` →
      `TODO.md`; `templates/GLOSSARY.md.template` → `GLOSSARY.md` (or a
      domain-appropriate name).
+   - `templates/VOICE.md.template` → `VOICE.md`; `templates/STYLEGUIDE.md.template`
+     → `STYLEGUIDE.md`. Unlike the files above, these are **not** rewritten
+     with the repo's subject matter — VOICE.md ships with its default
+     writing-style rules unchanged, and STYLEGUIDE.md ships as an empty
+     skeleton. Instead, **prompt the administrator explicitly**: show them
+     VOICE.md's defaults and ask if anything should change; ask whether a
+     formal brand guideline exists (a PDF, a slide deck, a design team's
+     style manual) to fill in STYLEGUIDE.md from. If one exists, read it and
+     transcribe the relevant rules into STYLEGUIDE.md as plain text — never
+     attach, vendor, or link the source document itself into the repo. If no
+     visual identity exists yet, leave STYLEGUIDE.md's sections marked
+     `<undecided>` rather than inventing values. Record both as `local-only`
+     in the manifest (§5) — **neither file is ever exported upstream**
+     (§3–§4): a project's voice and brand are its own identity, not a
+     generic practice, and both live at the repo root rather than under
+     `process/upstream/`, so the check-in tooling structurally never touches
+     them.
    - `templates/GETTING_STARTED.md` → `GETTING_STARTED.md` at the repo
      root: the member-facing onboarding page, one section per kind of AI
      user. (This template keeps a plain `.md` name on purpose — it
@@ -100,7 +119,8 @@ drift and proprietary leakage loud instead of silent.
      E.g. Claude Code: `harness/claude-code/CLAUDE.md` → repo root (a
      one-line import of `AGENTS.md`), `harness/claude-code/settings.json` →
      `.claude/settings.json`, `harness/claude-code/hooks/session-start.sh` →
-     `.claude/hooks/session-start.sh`. Codex reads `AGENTS.md` natively.
+     `.claude/hooks/session-start.sh`, `harness/claude-code/hooks/stop-git-check.sh`
+     → `.claude/hooks/stop-git-check.sh`. Codex reads `AGENTS.md` natively.
      Multiple adapters can be installed side by side.
    - `tools/doc_lint.py` → run it from `process/upstream/tools/` in place,
      or copy to the repo's tools dir if it needs local adaptation.
@@ -139,9 +159,9 @@ drift and proprietary leakage loud instead of silent.
 6. **Root hygiene — the layout rule.** The ONLY files an install may
    create at the dependent repo's root are the instantiated ones:
    `AGENTS.md` (plus a harness pointer such as `CLAUDE.md`), `MAP.md`,
-   `TODO.md`, `GLOSSARY.md`, `GETTING_STARTED.md`, `.gitignore`, and the
-   README entry-block edit — plus `tools/bootstrap.sh`,
-   `.github/workflows/bestpractice-docs.yml`, and
+   `TODO.md`, `GLOSSARY.md`, `GETTING_STARTED.md`, `VOICE.md`,
+   `STYLEGUIDE.md`, `.gitignore`, and the README entry-block edit — plus
+   `tools/bootstrap.sh`, `.github/workflows/bestpractice-docs.yml`, and
    `.github/pull_request_template.md`. Everything else that ships
    with BestPractice (INSTALL.md, PRACTICES.md, SETUP.md,
    GITHUB_ACTIONS.md, MOBILE.md, METHOD.md, GIT.md, templates/, tools/,
@@ -257,6 +277,14 @@ upstream can skip this section entirely:
 
 > Did this thread improve a *generic* practice — a new convention, a
 > sharpened runbook rule, a better audit, a template fix?
+
+`VOICE.md` and `STYLEGUIDE.md` never answer yes to this question, even
+when a thread rewrites them substantially: the *files* are project/company
+identity, not practice, so their content stays local by category, not by
+judgment call. (The default ruleset the `VOICE.md.template` *ships with*
+can still improve — that's a direct edit to the template in this repo,
+made the way any of this repo's own content is edited, not something
+inferred from a dependent repo's customized copy.)
 
 If yes, in the **same branch**:
 
@@ -384,6 +412,14 @@ order records a hash the vendored tree doesn't match.
       "section_marker": "## Merge runbook",
       "status": "synced",
       "notes": "file classes adapted to this repo"
+    },
+    {
+      "practice": "voice",
+      "upstream_path": "templates/VOICE.md.template",
+      "local_path": "VOICE.md",
+      "granularity": "file",
+      "status": "local-only",
+      "notes": "kept the shipped default ruleset as-is at install; never exported (INSTALL.md §3) — a project's voice is its own identity, not a generic practice"
     }
   ]
 }
@@ -479,8 +515,12 @@ on, across the whole lifecycle:
 
 - **At install (§1):** answer two questions — what the project is about,
   and what private names/words must never go public. Then look at what
-  the assistant built and either approve it or ask for changes. See the
-  [guided install](SETUP.md) for the conversational version of this.
+  the assistant built and either approve it or ask for changes. You'll
+  also be shown `VOICE.md`'s default writing-style rules and asked
+  whether to change them, and asked whether a brand guideline exists to
+  fill in `STYLEGUIDE.md` from — both stay entirely local to your project.
+  See the [guided install](SETUP.md) for the conversational version of
+  this.
 - **At every check-in (§4), only if your project gives back at all
   (§3–§4 are both optional):** review the plain-language summary of what's
   being proposed back to the public BestPractice project, and approve,

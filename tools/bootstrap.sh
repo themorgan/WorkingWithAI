@@ -10,22 +10,34 @@ set -euo pipefail
 pip install --quiet cmarkgfm pyyaml 2>/dev/null || \
   echo "WARN: pip install failed - doc_lint strikethrough check and light_check YAML check will be skipped" >&2
 
-# BestPractice upstream freshness notice (see PRACTICES.md practice 13):
-# detection is automated -- one ls-remote against the public upstream,
-# silent when current or offline; TAKING the update stays deliberate
-# (INSTALL.md sec.2) because installs are adaptive and unattended mirrors
-# are the mechanism class that loses content.
-python3 process/upstream/tools/checkin.py fresh 2>/dev/null || true
+# BestPractice upstream freshness notice (see PRACTICES.md practice 13) and
+# the personal pack's own sibling check
+# (process/personal/README.md#drift-notice): detection is automated -- one
+# ls-remote each, silent when current or offline; TAKING an update stays
+# deliberate (INSTALL.md §2) because installs are adaptive and unattended
+# mirrors are the mechanism class that loses content. Each is wrapped to
+# also persist a fired notice into TODO.md's "## Pending drift reviews"
+# section, not just print it -- a stdout-only notice can lose a priority
+# fight against whatever task is already in front of a session (origin: a
+# dependent repo, 2026-08-27 -- real name kept out of anything vendored,
+# per process/personal/README.md#private-repo-scrub).
+BESTPRACTICE_NOTICE="$(python3 process/upstream/tools/checkin.py fresh 2>/dev/null)" || BESTPRACTICE_NOTICE=""
+if [ -n "$BESTPRACTICE_NOTICE" ]; then
+  echo "$BESTPRACTICE_NOTICE"
+  python3 process/personal/tools/pack_sync.py record bestpractice "$BESTPRACTICE_NOTICE" 2>/dev/null || true
+fi
 
-# Personal pack (process/personal/README.md §3 and §18 step 4): commit
-# author identity, every session, idempotent.
+# Personal pack (process/personal/README.md#commit-author and
+# process/personal/README.md#install step 4): commit author identity,
+# every session, idempotent.
 git config user.name "Morgan F"
 git config user.email "morgan@westegg.com"
 
-# Personal pack session-start freshness notice (process/personal/README.md
-# §16 and §18 step 4): cheap, non-blocking, notice only -- never takes the
-# update itself.
-python3 process/personal/tools/pack_sync.py fresh 2>/dev/null || true
+PACK_NOTICE="$(python3 process/personal/tools/pack_sync.py fresh 2>/dev/null)" || PACK_NOTICE=""
+if [ -n "$PACK_NOTICE" ]; then
+  echo "$PACK_NOTICE"
+  python3 process/personal/tools/pack_sync.py record personal-pack "$PACK_NOTICE" 2>/dev/null || true
+fi
 
 # Voice guidelines session-start freshness notice (AGENTS.md's "Voice"
 # section): same shape as the two notices above, for

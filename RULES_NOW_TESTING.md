@@ -33,21 +33,22 @@ mentioning a rule here is not the same as adopting it elsewhere.
 - **Promoted** — already landed in RepoPersonalPreferences. Kept here only
   as a pointer, not restated in full — full restatement would just be a
   second copy of the same rule that can drift out of sync with the first,
-  the same reasoning the personal pack's own §2 gives for not duplicating
-  BestPractice.
+  the same reasoning the personal pack's own
+  [`no-duplication`](process/personal/README.md#no-duplication) gives for
+  not duplicating BestPractice.
 
 ## Rules
 
 ### 1. Push-back mode on writing-and-thinking work — *Promoted*
 
-[RepoPersonalPreferences §19](https://github.com/themorgan/RepoPersonalPreferences/blob/main/process/personal/README.md).
+[`push-back`](process/personal/README.md#push-back).
 Argue a genuine counter-case before building on a stated stance; flag a
 serious unresolved disagreement before calling a piece done. Never on
 code or other technical work.
 
 ### 2. Provider-neutral LLM integrations — *Promoted*
 
-[RepoPersonalPreferences §12](https://github.com/themorgan/RepoPersonalPreferences/blob/main/process/personal/README.md).
+[`llm-neutral`](process/personal/README.md#llm-neutral).
 Build any LLM integration against a swappable model/token/base-URL
 interface; assume an OpenRouter credential absent other instruction.
 Hedges rule 1 (context as capital).
@@ -117,10 +118,12 @@ Tracked instead as open items in [TODO.md](TODO.md):
 
 1. Mark the rule **Ready to promote** here, with a line on what proved it
    out (which sessions, what it caught or avoided).
-2. In a separate session against RepoPersonalPreferences, land it as a new
-   numbered section appended past its current last section — that pack's
-   own convention for adding a rule without a full renumbering pass across
-   every dependent repo's citations (see its §19-§21 for worked examples).
+2. In a separate session against RepoPersonalPreferences, land it in
+   reading-order position among the existing rule groups (not appended to
+   the end), with its own permanent slug and anchor — that pack's own
+   convention for adding a rule without a renumbering pass across every
+   dependent repo's citations, since citations use the slug, not the
+   position ([`new-rule-placement`](process/personal/README.md#new-rule-placement)).
 3. Come back here, mark the rule **Promoted**, and cut its entry down to a
    pointer only, per the status key above.
 4. Note the move in [TODO.md](TODO.md)'s decision record, same as any

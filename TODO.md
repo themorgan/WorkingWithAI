@@ -14,6 +14,19 @@ against what the branch actually discussed — add ideas that came up but
 never got a line here, remove/check items this branch already implements.
 See [AGENTS.md](AGENTS.md) merge runbook step 0c.
 
+## Pending drift reviews
+
+Auto-maintained by `pack_sync.py record` / `resolve`
+([`drift-notice`](process/personal/README.md#drift-notice)) -- a
+session-start freshness notice lands here, not just on stdout, so it
+can't lose a priority fight against whatever task is already in front
+of a session and go unaddressed. `light_check.py` warns on every commit
+while an entry below stays unchecked. Check an item off (or run
+`pack_sync.py resolve <source>`) once its drift has actually been
+reviewed -- the update taken, or deliberately deferred with a reason.
+
+_No open entries yet._
+
 ## Recurring
 
 - [ ] **Voice guidelines source renamed SoundHuman (was VoiceGuidelinesToSoundHuman)
@@ -502,7 +515,7 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
 - [x] **Force deeper AI engagement, or just permit it?** Decided
   2026-08-26 → done, for the specific form Morgan asked for: **push-back
   mode**, landed as
-  [§19 of the personal pack](https://github.com/themorgan/RepoPersonalPreferences/blob/main/process/personal/README.md)
+  [`push-back` of the personal pack](https://github.com/themorgan/RepoPersonalPreferences/blob/main/process/personal/README.md#push-back)
   ([PR #24](https://github.com/themorgan/RepoPersonalPreferences/pull/24)).
   On writing-and-thinking work only (never code/technical work): argue a
   genuine counter-case before building on a stated stance, and flag a
@@ -513,7 +526,8 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   "normie"-employee-adoption question (visible rule-extraction, proactive
   resurfacing of rules) is still open — see [IDEAS.md](IDEAS.md)
   §"Why BestPractice specifically works" → "Open question" for the rest of
-  it. Once the personal-pack sync pulls §19 into this repo's own
+  it. Once the personal-pack sync pulls
+  [`push-back`](process/personal/README.md#push-back) into this repo's own
   `process/personal/` and re-weaves `AGENTS.md`, this repo picks up
   push-back mode automatically.
 - [x] **Halve [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md)'s and
@@ -538,9 +552,10 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
   worth a look if he wants it too; (2) didn't edit
   [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md)
   itself — it's vendored from SoundHuman and can't be hand-merged (this
-  file's own merge runbook), and it already bans exactly what Morgan
-  flagged (§1 Selectivity, §5.1's banned "not X, it's Y" contrast, §12's
-  "does the opening state the point, or clear its throat first?"); the
+  file's own merge runbook), and HUMAN_VOICE_RULES.md already bans exactly
+  what Morgan flagged (§1 Selectivity, §5.1's banned "not X, it's Y"
+  contrast, HUMAN_VOICE_RULES.md's §12 "does the opening state the point,
+  or clear its throat first?"); the
   gap was this repo not yet applying that rule rigorously to long-form
   essay content, not a hole in the rule itself; (3) dropped rule 1's
   "Origin: this repo, 2026-08-26" line and rule 5's superseded-draft
