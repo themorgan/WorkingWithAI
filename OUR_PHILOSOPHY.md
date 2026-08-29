@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 19:05:26 (Buenos Aires) by Morgan F, to version 14 -->
+<!-- Last updated: 2026-08-29 07:43:17 (Buenos Aires) by Morgan F, to version 15 -->
 
 # Our philosophy
 
@@ -59,13 +59,19 @@ like an individual contributor, stay engaged, adjust the plan as soon as
 the first attempt reveals what the brief missed ([rule 14](COMPANY_BUILDING_RULES.md))
 — same posture as item 1, applied to management.
 
-**5. If it isn't written down, it doesn't exist.** A decision only in
-someone's head is no decision — it vanishes when they forget or leave.
-Writing it down makes it checkable: reread for contradictions, or hand
-it to a fresh session and see if it alone reconstructs the decision (the
-coldstart test). That's why transcribing past comfort is rational, not
-obsessive ([rule 2](COMPANY_BUILDING_RULES.md), [rule 3](COMPANY_BUILDING_RULES.md),
-[rule 13](COMPANY_BUILDING_RULES.md)).
+**5. The AI Assistant writes it down, in real time, as the decision
+happens.** Waiting for someone to circle back and log a decision after
+the fact is exactly the discipline that never survives a busy week — so
+this repo puts the writing in the model's hands, not a person's. Because
+every argument in the working loop already runs inside a session with
+the repo attached, the assistant is there at the moment a decision gets
+made, and turns it into a captured learning or a rule as a side effect of
+having the argument at all — no separate transcription step, nothing
+riding on anyone's memory of what got decided ([rule 2](COMPANY_BUILDING_RULES.md);
+[IDEAS.md](IDEAS.md)'s automatic rule extraction, 3a). Checkability follows
+for free: reread the result for contradictions, or hand it to a fresh
+session and see if it alone reconstructs the decision (the coldstart
+test).
 
 **6. Every decision carries the situation that produced it.** However
 small the call, the record states what case prompted it — a bare
