@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 13:47:27 (Buenos Aires) by Morgan F, to version 8 -->
+<!-- Last updated: 2026-08-29 14:42:50 (Buenos Aires) by Morgan F, to version 9 -->
 
 # Rules now testing — the current state of what we're trying
 
@@ -58,12 +58,13 @@ Hedges rule 1 (context as capital).
 On writing-and-thinking work — a PR review, comment thread, feedback on
 a draft — post a half-formed position and invite disagreement instead of
 a finished one. Keeps the disagreement in the record, not just its
-resolution (rule 4).
+resolution (rule 5).
 
-### 4. Two reflexes, asked out loud mid-task — *Trial*
+### 4. Three reflexes, asked out loud mid-task — *Trial*
 
-Before calling work done, answer both out loud in the reply:
+Before calling work done, answer all three out loud in the reply:
 
+- What rules or protocols should come from this?
 - Have I done this shape before, or will I again?
 - Is there a way this could be better — not just faster?
 
@@ -81,7 +82,7 @@ first repo applying it beyond WriteLike.
 
 Periodically, same cadence as the BestPractice check-in — list workflows
 whose only interface is a human inbox, the assistant's own included, and
-propose an addressable alternative (rule 10).
+propose an addressable alternative (rule 8).
 
 ### 7. Contradiction-scanning across the corpus, as a recurring job — *Trial*
 
@@ -93,7 +94,7 @@ that now disagree — same cadence as item 6, not a one-off.
 These ideas from [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)
 need either more real testing or actual infrastructure this repo doesn't
 have yet — writing them as rules now would be systematizing before the
-third instance, exactly what COMPANY_BUILDING_RULES rule 5 warns against.
+third instance, exactly what COMPANY_BUILDING_RULES rule 7 warns against.
 Tracked instead as open items in [TODO.md](TODO.md):
 
 - **Active/proactive resurfacing** ("you decided X six weeks ago,

@@ -1,9 +1,9 @@
-<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 7 -->
+<!-- Last updated: 2026-08-29 14:42:50 (Buenos Aires) by Morgan F, to version 8 -->
 
 # AI governance to co-create
 
 *Governance for the AI systems themselves: how to configure, build, and
-run them so co-creation — rule 4 of
+run them so co-creation — rule 5 of
 [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), arguing with the
 model in real time rather than delegating to it — is the default outcome,
 not something a disciplined person has to manufacture by hand every
@@ -11,7 +11,7 @@ session. COMPANY_BUILDING_RULES.md is this repo's stage-1 "why" half — the
 case for running a company this way at all; this document is one level
 down, about the systems rather than the company. "Co-creation" here is
 used as the umbrella term for that whole healthy pattern, not narrowly
-rule 4 alone — a judgment call; flag it if the scope should split.
+rule 5 alone — a judgment call; flag it if the scope should split.
 Promoted out of [IDEAS.md](IDEAS.md), same pattern as
 COMPANY_BUILDING_RULES.md before it. Neither essay is itself a checklist
 anyone follows day to day — [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)
@@ -48,9 +48,9 @@ genuine counter-case on writing/thinking work, comply on technical
 execution — the switch should track task shape, not sit fixed at the
 system level.
 
-**The two reflexes from rule 6 belong in the system prompt, not just a
+**The three reflexes from rule 6 belong in the system prompt, not just a
 human's habit.** An agent that asks itself "have I done this shape
-before" mid-task, and says so, does more of rule 5's work than a person
+before" mid-task, and says so, does more of rule 7's work than a person
 remembering to ask.
 
 **Argue in the open.** An AI reviewer that holds a half-formed position
@@ -70,7 +70,7 @@ working memory; chat is where the human actually works.
 ## Verification
 
 **Confidence should look non-uniform, because it isn't.** If every claim
-reads with the same even prose confidence, rule 8's "find the one false
+reads with the same even prose confidence, rule 12's "find the one false
 paragraph" skill has nothing to grab onto. Flag the weaker claims — a
 hedge, a citation, an assumption — so a verifier has a place to start.
 
@@ -78,7 +78,7 @@ hedge, a citation, an assumption — so a verifier has a place to start.
 
 **Automatic workflow-candidate detection.** Mine the history itself —
 commits, sessions, transcripts — for recurring task shapes instead of
-relying on a human noticing "this is the third time." Turns rule 5's
+relying on a human noticing "this is the third time." Turns rule 7's
 judgment call into a standing job.
 
 **Cost-awareness should be situational, inferred by the system, not a
@@ -99,7 +99,7 @@ before publishing, rather than relying on a human catching it every time.
 
 **Configure the AI to hunt its own dark processes.** Have it periodically
 list workflows whose only interface is a human inbox — including its own
-— and propose an addressable alternative, per rule 10.
+— and propose an addressable alternative, per rule 8.
 
 **Rotation and temp workflows get periodic check-ins, not baked-in
 expiry.** A hard sunset date, taken literally from rule 15, forces an end
@@ -123,6 +123,6 @@ in today.
 **Set aside this thread, not carried forward:** a mandatory eval-file gate
 before any output ships (unclear how it generalizes past code, where
 "eval" has an obvious technical meaning); having the AI itself pick which
-raw, unfiltered sample a human reviews for rule 13's human-only zones
+raw, unfiltered sample a human reviews for rule 14's human-only zones
 (the idea didn't land clearly enough in discussion to write down yet —
 worth re-raising once it's sharper, rather than forcing it in now).

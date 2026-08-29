@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 11 -->
+<!-- Last updated: 2026-08-29 14:42:50 (Buenos Aires) by Morgan F, to version 12 -->
 
 # Reasons why
 
@@ -11,10 +11,10 @@ describe: the kind that only show up once you've been doing it a while.*
 **1. Being wrong gets cheap while it's still small.** Catching an error
 the same hour costs one correction; catching it three weeks later costs
 the correction plus a meeting reconstructing who approved what
-([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 4). The gain
+([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 5). The gain
 isn't the time saved — a wrong idea dies before it acquires allies.
 Drift is the same failure in slow motion, caught by raw contact with the
-work ([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 13) and
+work ([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 14) and
 periodic contradiction-checks
 ([RULES_NOW_TESTING.md](RULES_NOW_TESTING.md#7-contradiction-scanning-across-the-corpus-as-a-recurring-job--trial)
 item 7).
@@ -50,7 +50,7 @@ doesn't add up. It can't notice a client's answer felt off, or a plan
 that's technically sound yet wrong for reasons nobody wrote down. That
 catch is instinct, not checklist — judgment-heavy work this repo routes
 to people, not models
-([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 8).
+([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 12).
 
 **6. AI is superhuman at building rule lists, and at keeping them
 current.** Turning an incident into a rule, checking it against
@@ -80,7 +80,8 @@ benefits nobody asked for.** Put a model between intent and the action
 weren't the point: speaking an instruction works as well as typing one,
 a half-formed plan gets contradicted before it fires, and the layer
 holds the trace of why, so the rule that catches it next time falls out
-for free (item 4 above).
+for free (item 4 above;
+[COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 4).
 
 See [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) for the theory behind why these
 particular things happen.
