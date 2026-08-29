@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 2 -->
+<!-- Last updated: 2026-08-29 15:38:04 (Buenos Aires) by Morgan F, to version 3 -->
 
 # Humans at our best
 
@@ -17,6 +17,9 @@ this page doesn't replace them.*
 
 ## The list
 
+- **Getting shit done.** Drive: the will to keep pushing something through
+  every stall, handoff, and objection until it's actually finished, not
+  just planned.
 - **Judgment.** Deciding what gets built and whether it works
   ([`people-manage-agents-execute`](OUR_PHILOSOPHY.md#people-manage-agents-execute));
   judgment when the rules run out and somebody still has to decide
@@ -46,6 +49,13 @@ this page doesn't replace them.*
   pushing a process further than it would push itself, and pulling it
   back before it overreaches
   ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
+- **Politics.** Any non-trivial team runs on politics as much as on org
+  charts; reading it and managing it is a human job.
+- **Boundary pushing.** AI tends to under-push the boundaries a situation
+  actually calls for, held back by rules built strict on purpose; a human
+  still has to decide when to lean past them.
+- **The unspoken.** The things a human can do, and sometimes has to, that
+  are hard to say out loud at all.
 
 ## Keeping this current
 

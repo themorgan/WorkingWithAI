@@ -27,6 +27,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 
 - [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (1e06a5349a43; your base d436be779be1) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via WorkingWithAI RPP sync, this session
 - [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (570f86c520fc; your base b10c163a96dd) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via RPP sync: durable-list-anchors + brainstorm-citations, this session
+- [ ] **personal-pack** (2026-08-29): COULD NOT VERIFY: couldn't reach the personal pack's source (https://github.com/themorgan/RepoPersonalPreferences) to check freshness — `git ls-remote` failed (fatal: could not read Username for 'https://github.com': terminal prompts disabled). This is NOT the same as 'confirmed fresh': if you need to know, verify directly instead of trusting this silence (process/personal/README.md#fresh-check-escalation).
 
 ## Recurring
 
