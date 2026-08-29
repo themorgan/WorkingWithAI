@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 19:05:26 (Buenos Aires) by Morgan F, to version 14 -->
+<!-- Last updated: 2026-08-29 07:48:16 (Buenos Aires) by Morgan F, to version 17 -->
 
 # Our philosophy
 
@@ -59,13 +59,13 @@ like an individual contributor, stay engaged, adjust the plan as soon as
 the first attempt reveals what the brief missed ([rule 14](COMPANY_BUILDING_RULES.md))
 — same posture as item 1, applied to management.
 
-**5. If it isn't written down, it doesn't exist.** A decision only in
-someone's head is no decision — it vanishes when they forget or leave.
-Writing it down makes it checkable: reread for contradictions, or hand
-it to a fresh session and see if it alone reconstructs the decision (the
-coldstart test). That's why transcribing past comfort is rational, not
-obsessive ([rule 2](COMPANY_BUILDING_RULES.md), [rule 3](COMPANY_BUILDING_RULES.md),
-[rule 13](COMPANY_BUILDING_RULES.md)).
+**5. Protocols, rules, and preferences get generated automatically.** The
+AI Assistant distills them straight out of the human-AI interaction —
+the guidance, the correction, the back-and-forth of the working loop —
+into a reusable rule the next session inherits automatically, no one
+having sat down to write a policy. `process/personal/` is that mechanism
+running continuously, not a document someone drafted once
+([IDEAS.md](IDEAS.md)'s automatic rule extraction, 3a).
 
 **6. Every decision carries the situation that produced it.** However
 small the call, the record states what case prompted it — a bare
