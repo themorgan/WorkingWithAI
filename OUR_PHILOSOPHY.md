@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 14:50:28 (Buenos Aires) by Morgan F, to version 23 -->
+<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 24 -->
 
 # Our philosophy
 
@@ -19,52 +19,71 @@ The same five steps repeat every time, in order:
    message.
 2. Argue it out with an AI Assistant that has this repo attached, so
    the argument runs against the actual record instead of a guess
-   (item 1 below).
+   ([`arguing-with-the-model`](#arguing-with-the-model)).
 3. Most of that arguing happens on GitHub in the open, and the decision
    and reasoning is tracked there — a pull request, not a secret chat
-   log (items 2 and 3 below).
-4. The AI Assistant produces all the output; you only guide it (items 4
-   and 7 below).
+   log ([`context-is-capital`](#context-is-capital),
+   [`processes-should-be-visible`](#processes-should-be-visible)).
+4. The AI Assistant produces all the output; you only guide it
+   ([`people-manage-agents-execute`](#people-manage-agents-execute),
+   [`humans-do-what-humans-do-best`](#humans-do-what-humans-do-best)).
 5. The decisions, small to big, turn into learnings and shared rules
-   and protocols automatically (items 5 and 6 below), staying visible
-   to whichever session opens this repo next.
+   and protocols automatically
+   ([`rules-generated-automatically`](#rules-generated-automatically),
+   [`decisions-carry-their-situation`](#decisions-carry-their-situation)),
+   staying visible to whichever session opens this repo next.
 
 ## The 7 Core Philosophies
+
+<a id="arguing-with-the-model"></a>
 
 **1. Coworking with a model means arguing with it.** State a half-formed
 position, let the model push back, push back on its answer — keep going
 until the exchange settles it, not either side alone. Instructing makes
 a typist; polling for an opinion makes an oracle. Quality is one payoff:
-agreement just hands back your blind spots ([rule 4](COMPANY_BUILDING_RULES.md),
-[rule 5](COMPANY_BUILDING_RULES.md);
+agreement just hands back your blind spots
+([`ai-chat-as-intermediary`](COMPANY_BUILDING_RULES.md#ai-chat-as-intermediary),
+[`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate);
 [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s "argue in
 the open").
+
+<a id="context-is-capital"></a>
 
 **2. Context is capital.** Models produce competent output on demand, so
 hours stopped being scarce. What's still scarce never got commoditized:
 why the last vendor failed, what the customer meant, which option got
 killed and why. Capturing that thinking is capital — an asset no
-competitor can rent by Thursday ([rule 1](COMPANY_BUILDING_RULES.md)). The
+competitor can rent by Thursday
+([`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset)). The
 same logic covers language: what someone writes in whatever tongue comes
 naturally, with the AI carrying the translation into the shared record,
 keeps the real thinking — a version forced through an unfamiliar language
-on the way in would have been thinner ([REASONS_WHY.md](REASONS_WHY.md)
-item 7).
+on the way in would have been thinner
+([`second-language-stops-costing-quality`](REASONS_WHY.md#second-language-stops-costing-quality)).
+
+<a id="processes-should-be-visible"></a>
 
 **3. Processes should be visible, not locked in one person's brain.** A
 workflow whose only interface is "email me and I'll handle it" is
-invisible to everyone else. Bigger than tidiness ([rule 8](COMPANY_BUILDING_RULES.md)):
+invisible to everyone else. Bigger than tidiness
+([`no-dark-processes`](COMPANY_BUILDING_RULES.md#no-dark-processes)):
 real intelligence is what anyone with the record can check, not what one
 person knows. Every dark process trades convenience now for a
 compounding blind spot.
+
+<a id="people-manage-agents-execute"></a>
 
 **4. People manage; agents execute.** The human contribution is
 planning, taste, judgment — deciding what gets built and whether it
 works, the way defining a system beats hand-running it. Brief the model
 like an individual contributor, stay engaged, adjust the plan as soon as
-the first attempt reveals what the brief missed ([rule 13](COMPANY_BUILDING_RULES.md))
-— same posture as item 1, applied to management. (Full list:
+the first attempt reveals what the brief missed
+([`manager-of-agents`](COMPANY_BUILDING_RULES.md#manager-of-agents))
+— same posture as [`arguing-with-the-model`](#arguing-with-the-model),
+applied to management. (Full list:
 [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md).)
+
+<a id="rules-generated-automatically"></a>
 
 **5. Protocols, rules, and preferences get generated automatically.** The
 AI Assistant distills them straight out of the human-AI interaction —
@@ -77,6 +96,8 @@ rule extraction";
 [practice 20](process/upstream/PRACTICES.md#20-mistakes-become-rules-root-cause-the-miss-then-encode-the-prevention)
 is the same move done by hand).
 
+<a id="decisions-carry-their-situation"></a>
+
 **6. Every decision carries the situation that produced it.** However
 small the call, the record states what case prompted it — a bare
 "always do X" invites relitigation from anyone who wasn't there. The
@@ -85,14 +106,18 @@ BestPractice already requires this
 ([practice 5](process/upstream/PRACTICES.md#5-conventions-cite-the-incident-that-created-them),
 [practice 20](process/upstream/PRACTICES.md#20-mistakes-become-rules-root-cause-the-miss-then-encode-the-prevention));
 capture is the
-agents' job, pulled from the work as it happens (item 5's rule
-extraction).
+agents' job, pulled from the work as it happens
+([`rules-generated-automatically`](#rules-generated-automatically)'s
+rule extraction).
+
+<a id="humans-do-what-humans-do-best"></a>
 
 **7. Humans should do what humans do best.** Machines produce; people
 bring judgment, relationships, instinct: reading a room, sensing what a
 client meant but didn't say, pushing someone harder when the moment
 calls for it. Optimizing a person to act like a fast, tireless model
-optimizes away what they're for ([rule 15](COMPANY_BUILDING_RULES.md)) —
+optimizes away what they're for
+([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)) —
 hold them to that standard, not a machine's. (Full list:
 [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md).)
 

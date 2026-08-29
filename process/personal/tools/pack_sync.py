@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Last updated: 2026-08-29 10:15:00 (Buenos Aires) by Morgan F, to version 6
+# Last updated: 2026-08-29 13:34:00 (Buenos Aires) by Morgan F, to version 7
 """pack_sync.py — keep process/personal/ current with its source repo.
 
 Sibling to process/upstream/tools/checkin.py, but for the personal pack
@@ -21,12 +21,22 @@ instead — the reason this couldn't just be `checkin.py --manifest ...`.
 
   fresh                       Session-start staleness notice: one
                               `git ls-remote` of the manifest's upstream
-                              repo (RepoPersonalPreferences, private —
-                              silently skipped if the ambient git
-                              credentials can't reach it), compared to the
-                              recorded upstream.commit. Prints one line only
-                              when the pack has moved; always exits 0 (a
-                              notice, never a gate).
+                              repo (RepoPersonalPreferences, private),
+                              compared to the recorded upstream.commit.
+                              Prints one line only when the pack has moved;
+                              always exits 0 (a notice, never a gate). A
+                              genuinely unreachable remote (offline, a slow
+                              timeout) stays silent, same as "nothing has
+                              moved" — but a fast, clean failure (no git
+                              credentials for this private repo in this
+                              environment, a 403, "repository not found")
+                              prints a distinct `COULD NOT VERIFY: ...` line
+                              instead of going quiet the same way, since
+                              those two cases are not the same thing and an
+                              environment with no such credentials would
+                              otherwise read as "confirmed fresh" every
+                              single session, forever
+                              (README.md#fresh-check-escalation).
 
   record <source> <notice>    Persist a freshness notice into TODO.md's
                               "## Pending Drift Reviews" section (creating
@@ -231,7 +241,21 @@ def _clone_or_die(arg):
 
 
 def fresh():
-    """Session-start staleness notice: automated detection, deliberate take."""
+    """Session-start staleness notice: automated detection, deliberate take.
+
+    Tells two failure modes apart (README.md#fresh-check-escalation): a
+    genuinely unreachable remote (offline, a slow timeout — no output, no
+    fast error) stays silent, same as "nothing has moved" — that's the
+    original design and it's unchanged. But a fast, clean `git ls-remote`
+    failure (non-zero exit — no credentials for this private repo in this
+    environment, a 403, "repository not found") is a different thing: it
+    means the check didn't run at all, not that it ran and found nothing.
+    Reporting that distinctly matters because in some environments (a
+    sandboxed session with no ambient credentials for a private repo) it
+    fails the exact same way every single time — a standing gap, not a
+    blip — and the old silent-on-any-failure behavior read that as
+    "confirmed fresh" forever.
+    """
     try:
         up = _manifest().get('upstream', {})
         repo, recorded = up.get('repo'), up.get('commit')
@@ -244,6 +268,13 @@ def fresh():
             print(f"NOTICE: the personal pack's source has moved ({head[:12]}; your base "
                   f"{recorded[:12]}) — review at the next session "
                   f"(process/personal/README.md#drift-notice).")
+        elif not head and out.returncode != 0:
+            err = (out.stderr or '').strip().splitlines()
+            err = err[-1] if err else 'no output'
+            print(f"COULD NOT VERIFY: couldn't reach the personal pack's source ({repo}) to "
+                  f"check freshness — `git ls-remote` failed ({err}). This is NOT the same as "
+                  f"'confirmed fresh': if you need to know, verify directly instead of trusting "
+                  f"this silence (process/personal/README.md#fresh-check-escalation).")
     except Exception:
         pass
     return 0

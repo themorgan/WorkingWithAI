@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 14:50:28 (Buenos Aires) by Morgan F, to version 6 -->
+<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 7 -->
 
 # Rules for building a company around AI
 
@@ -28,6 +28,8 @@ ship and run things, then who you hire and keep.
 
 ## Foundations
 
+<a id="capital-asset"></a>
+
 **1. Context is the capital asset.**
 
 The scarce input isn't hours anymore — it's the tacit, never-written-down
@@ -36,6 +38,8 @@ the customer actually meant, which option you already killed and why.
 Capturing that is capital expenditure now, not overhead. A *corpus* is a
 body, and a body dies when you stop feeding it. Your competitor rents the
 same models by Thursday; what nobody can rent is yours.
+
+<a id="transcribe-everything"></a>
 
 **2. Transcribe everything, past the point of comfort.**
 
@@ -49,6 +53,8 @@ companies do the easy 5%; the number that matters is nearer 90%, and
 closing that gap is cultural — people need to hear *compounding*, not
 *recorded*.
 
+<a id="own-every-word"></a>
+
 **3. You own every word you pass on.**
 
 If you didn't read something closely enough to defend it, it doesn't
@@ -61,6 +67,8 @@ fourth paragraph, you haven't finished the work.
 
 ## Working with the model
 
+<a id="ai-chat-as-intermediary"></a>
+
 **4. Treat the AI Chat as the intermediary for the work itself, not a tool you consult on the side.**
 
 Every plan and decision worth a moment's thought runs through it before
@@ -72,6 +80,8 @@ message, the next step — instead of a good idea that never left
 somebody's head. Put a model between intent and action, and arguing
 before you commit becomes the habit, for free.
 
+<a id="co-create-dont-delegate"></a>
+
 **5. Co-create; don't delegate.**
 
 The low-value mode is "produce this for me and I'll edit it." The
@@ -81,6 +91,8 @@ to it. The tell that someone's crossed over: their sessions read like
 fights, not requests. Research and drafting are the beginner uses; the
 real gain is catching your own error an hour after you made it, not three
 weeks later in front of the client.
+
+<a id="three-questions"></a>
 
 **6. Three questions, asked until they're reflexes.**
 
@@ -96,6 +108,8 @@ notices they're asking them, because this is what the AI is doing too:
 *Faster* makes people think about the work they already do. *Better*
 makes them notice the work they'd quietly stopped proposing years ago.
 
+<a id="think-in-workflows"></a>
+
 **7. Think in workflows — and in the protocols and rules that fall out of them.**
 
 Stopping to systematize a one-off is procrastination in a nice suit. First
@@ -109,6 +123,8 @@ and rule alike, and you ship nothing, beautifully diagrammed.
 
 ## Shipping and process
 
+<a id="no-dark-processes"></a>
+
 **8. No dark processes.**
 
 Any workflow you can only trigger by emailing a person becomes the
@@ -120,6 +136,8 @@ going dark. It sounds technical and is almost entirely political — every
 dark process is dark for a reason, and the reason usually has a name and
 a desk.
 
+<a id="build-five-kill-four"></a>
+
 **9. Build five, kill four.**
 
 When an option costs nearly nothing to create, deliberating before
@@ -129,6 +147,8 @@ count. This only works where killing work carries zero social cost, which
 is a culture problem, not a tooling one: you can't ask for five built and
 four killed in a company where being the person whose version got killed
 follows you into your review.
+
+<a id="digitize-the-edge"></a>
 
 **10. Digitize the edge, where the atoms are.**
 
@@ -140,6 +160,8 @@ smell the burnt wiring — it only knows what somebody said into a phone
 before driving off. Convert your physical reality into text at high
 fidelity and the other rules become available to you. Don't, and you're
 running on anecdote and calling it experience.
+
+<a id="no-ai-voice"></a>
 
 **11. Nothing you ship may sound like it came from an AI.**
 
@@ -155,6 +177,8 @@ respect.
 
 ## People
 
+<a id="hire-for-drive"></a>
+
 **12. Hire for drive, "Getting Shit Done," relationships, and taste.**
 
 The bottleneck isn't making things anymore, it's judging them fast and
@@ -166,6 +190,8 @@ Test taste directly: hand the candidate twenty drafts. Somebody like
 [NAME OF THE SHARPEST EDITOR MORGAN HAS WORKED WITH — CHECK], who rejects
 nineteen for a reason they can name, does something the person who
 produces three cannot do at any volume.
+
+<a id="manager-of-agents"></a>
 
 **13. Give the agents a manager — a human over the loop, not in it.**
 
@@ -179,6 +205,8 @@ Manager of Agents or don't, but staff it — agents left running on the
 strength of the day they were configured degrade quietly, until something
 downstream breaks.
 
+<a id="human-only-zones"></a>
+
 **14. Protect human-only zones on purpose, and put them on the calendar.**
 
 If everyone consumes only summaries, nobody can detect the moment the
@@ -189,6 +217,8 @@ for an afternoon and saying nothing, somebody reading the actual source
 the way you'd have read it in [YEAR]. It will feel like deliberate
 inefficiency. Keep it anyway — it's the only part of the system that can
 tell you the rest has started lying to you.
+
+<a id="structurally-human"></a>
 
 **15. Reserve the permanent hire for what's structurally human.**
 
@@ -209,8 +239,8 @@ Build the permanent roster around it.
 
 ---
 
-**Open placeholders (see [TODO.md](TODO.md)):** rule 12 has an unfilled
-`[NAME OF THE SHARPEST EDITOR...]` bracket; rule 14 has an unfilled
-`[YEAR]` bracket. Both are intentional — fill them in with real specifics
-when they come to mind rather than inventing something generic to close
-the bracket.
+**Open placeholders (see [TODO.md](TODO.md)):** [`hire-for-drive`](#hire-for-drive)
+has an unfilled `[NAME OF THE SHARPEST EDITOR...]` bracket;
+[`human-only-zones`](#human-only-zones) has an unfilled `[YEAR]` bracket.
+Both are intentional — fill them in with real specifics when they come to
+mind rather than inventing something generic to close the bracket.

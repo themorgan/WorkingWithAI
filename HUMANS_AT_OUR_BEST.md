@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 1 -->
+<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 2 -->
 
 # Humans at our best
 
@@ -6,39 +6,46 @@
 humans are good at, and what the work should route to them rather than to a
 model — for their own argument, in their own words. This document doesn't
 argue for anything new; it just gathers those partial lists into one place.
-The originals ([OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) items 4 and 7,
-[COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 15) keep their
-own wording and link back here — this page doesn't replace them.*
+The originals
+([`people-manage-agents-execute`](OUR_PHILOSOPHY.md#people-manage-agents-execute)
+and
+[`humans-do-what-humans-do-best`](OUR_PHILOSOPHY.md#humans-do-what-humans-do-best)
+in OUR_PHILOSOPHY.md,
+[`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human) in
+COMPANY_BUILDING_RULES.md) keep their own wording and link back here —
+this page doesn't replace them.*
 
 ## The list
 
 - **Judgment.** Deciding what gets built and whether it works
-  ([OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 4); judgment when the rules
-  run out and somebody still has to decide
-  ([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 15).
+  ([`people-manage-agents-execute`](OUR_PHILOSOPHY.md#people-manage-agents-execute));
+  judgment when the rules run out and somebody still has to decide
+  ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
 - **Taste.** Catching the one paragraph in twenty that's quietly wrong
-  ([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 15;
-  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 4).
+  ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human);
+  [`people-manage-agents-execute`](OUR_PHILOSOPHY.md#people-manage-agents-execute)).
 - **Planning.** Deciding what gets built, the way defining a system beats
-  hand-running it ([OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 4).
+  hand-running it
+  ([`people-manage-agents-execute`](OUR_PHILOSOPHY.md#people-manage-agents-execute)).
 - **Relationships.** A counterparty trusts because of who's on the other
-  end of them ([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md)
-  rule 15); sensing what a client meant but didn't say
-  ([OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 7).
+  end of them
+  ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human));
+  sensing what a client meant but didn't say
+  ([`humans-do-what-humans-do-best`](OUR_PHILOSOPHY.md#humans-do-what-humans-do-best)).
 - **Instinct.** Reading a room, sensing what a client meant but didn't
   say, pushing someone harder when the moment calls for it
-  ([OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 7).
+  ([`humans-do-what-humans-do-best`](OUR_PHILOSOPHY.md#humans-do-what-humans-do-best)).
 - **Accountability.** Landing on one name in one room, rather than a
   process nobody can point to
-  ([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 15).
+  ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
 - **The human spark.** What makes someone worth working for, not merely
-  alongside ([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md)
-  rule 15).
+  alongside
+  ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
 - **Running a fleet of agent-driven processes.** Increasingly a
   human-only skill of its own: noticing the drift before a customer does,
   pushing a process further than it would push itself, and pulling it
   back before it overreaches
-  ([COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 15).
+  ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
 
 ## Keeping this current
 
