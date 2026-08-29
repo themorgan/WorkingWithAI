@@ -1,10 +1,10 @@
 {
   "upstream": {
-    "repo": "https://github.com/themorgan/VoiceGuidelinesToSoundHuman",
+    "repo": "https://github.com/themorgan/SoundHuman",
     "vendored_at": "process/voice",
-    "commit": "5e8f87b6a8be0c5e7d016a43b5d6e460d4bde636",
+    "commit": "70c7b57673b4961f674c68d93c467fcb72a47a17",
     "scrub_blocklist": null,
-    "_note": "commit = SoundHuman hash last synced from (initial install, recorded 2026-08-28). scrub_blocklist is deliberately null: HUMAN_VOICE_RULES.md is a public-adjacent writing-style deliverable, not proprietary vocabulary that needs scrubbing before it could reach the public BestPractice repo, so the default blocklist check is simply not the relevant gate for this pack. 2026-08-28: source repo renamed VoiceGuidelinesToSoundHuman -> SoundHuman internally; upstream.repo URL left pointing at the pre-rename URL deliberately, since the actual GitHub repository hasn't been renamed yet and GitHub's redirect keeps this URL working either way -- update once the rename lands and there's a reason to (not urgent)."
+    "_note": "commit = SoundHuman hash last synced from (routine update, recorded 2026-08-29). scrub_blocklist is deliberately null: HUMAN_VOICE_RULES.md is a public-adjacent writing-style deliverable, not proprietary vocabulary that needs scrubbing before it could reach the public BestPractice repo, so the default blocklist check is simply not the relevant gate for this pack. 2026-08-28: source repo renamed VoiceGuidelinesToSoundHuman -> SoundHuman internally; upstream.repo URL left pointing at the pre-rename URL deliberately, since the actual GitHub repository hadn't been renamed yet at install time. 2026-08-29: the rename has since landed on GitHub itself -- flipped upstream.repo to the new URL while touching this file for an unrelated sync."
   },
   "entries": [
     {
