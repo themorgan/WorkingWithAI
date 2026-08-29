@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 16:16:48 (Buenos Aires) by Morgan F, to version 12 -->
+<!-- Last updated: 2026-08-29 20:01:32 (Buenos Aires) by Morgan F, to version 13 -->
 
 # WorkingWithAI
 
@@ -26,24 +26,26 @@ runs the company on — it passes through three stages, each with its own
 document, and each stage has to actually earn the idea's way to the next
 one:
 
-1. **Discover — [IDEAS.md](IDEAS.md).** Raw material: prompts, workflows,
-   observations, dropped in as they come up, loosely grouped. When a
-   cluster of entries turns into one sustained argument, it gets promoted
-   to its own essay — [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md)
-   (why to run a company this way) and
-   [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) (how
-   the AI systems themselves should be built so that way of working is the
-   default) both started as brainstorm entries here.
+1. **Learn how to work with AI as a partner-in-thought.** Get oriented in
+   the method before the rules: read [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md)
+   for the underlying ideas, [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md)
+   for the principles to build a company around, [AGENTS.md](AGENTS.md) for
+   the rules AI agents actually follow here, and
+   [REASONS_WHY.md](REASONS_WHY.md) for the less obvious benefits those
+   ideas produce.
 2. **Try it for real — [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md).** The
    practical checklist actually in force in real work right now, each rule
    tagged *Trial* until it's proven, *Ready to promote* once it is, or
-   *Promoted* once it's landed at stage 3. This is where an essay's idea
-   gets tested against actual sessions before it becomes a standing rule
-   anywhere else.
-3. **Roll out everywhere — [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences).**
+   *Promoted* once it's landed at stage 3 — these are the rules we've
+   baked into our own repos so far, and you might want to bake them into
+   yours too.
+3. **Roll it out everywhere — [BestPractice](https://github.com/alex137/BestPractice)
+   and [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences).**
    Once a rule in [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) has proven
-   itself, it gets ported into Morgan's personal pack there, for automatic
-   installation into every project he starts — see
+   itself, a genuinely generic rule gets exported into BestPractice first,
+   where any repo can pick it up, and a rule that's specifically Morgan's
+   own gets ported into his personal pack in RepoPersonalPreferences, for
+   automatic installation into every project he starts — see
    [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)'s own "Promotion" section
    for the mechanics.
 
