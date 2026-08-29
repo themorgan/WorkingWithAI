@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 15:56:29 (Buenos Aires) by Morgan F, to version 32 -->
+<!-- Last updated: 2026-08-29 16:04:51 (Buenos Aires) by Morgan F, to version 33 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -27,7 +27,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 
 - [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (1e06a5349a43; your base d436be779be1) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via WorkingWithAI RPP sync, this session
 - [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (570f86c520fc; your base b10c163a96dd) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via RPP sync: durable-list-anchors + brainstorm-citations, this session
-- [ ] **personal-pack** (2026-08-29): COULD NOT VERIFY: couldn't reach the personal pack's source (https://github.com/themorgan/RepoPersonalPreferences) to check freshness — `git ls-remote` failed (fatal: could not read Username for 'https://github.com': terminal prompts disabled). This is NOT the same as 'confirmed fresh': if you need to know, verify directly instead of trusting this silence (process/personal/README.md#fresh-check-escalation).
+- [ ] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (b54461560435; your base 9793691dcecb) — review at the next session (process/personal/README.md#drift-notice).
 
 ## Recurring
 
@@ -139,6 +139,37 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Close the gap [`hire-for-drive`](COMPANY_BUILDING_RULES.md#hire-for-drive)
+  left out of the "what humans are good at" consolidation, and check the
+  rest of [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) for
+  similar missing links.** Decided 2026-08-29 → done, doc. The earlier
+  "Pull the scattered 'what humans are good at' lists into one document"
+  entry above found three source spots for
+  [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md) and missed a fourth:
+  [`hire-for-drive`](COMPANY_BUILDING_RULES.md#hire-for-drive) itself
+  names three of that list's own entries (drive/"Getting shit done,"
+  relationships, taste) without linking there, the exact gap
+  HUMANS_AT_OUR_BEST.md's own "Keeping this current" section asks each
+  source list to close. Added the missing parenthetical there. Reviewed
+  every other rule in the document for a similarly clear, already-argued
+  case (a concept the rule names that some other document treats as the
+  actual mechanism, not just an echo) — found one more:
+  [`no-ai-voice`](COMPANY_BUILDING_RULES.md#no-ai-voice) argues for the
+  style rule but never pointed at what enforces it, so it now also links
+  [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md)
+  and [`write-like-a-human`](RULES_NOW_TESTING.md#write-like-a-human).
+  Judgment calls made: (1) left the many rules other documents already
+  cite *from* (`ai-chat-as-intermediary`, `manager-of-agents`,
+  `think-in-workflows`, and the rest) unchanged — that citation already
+  runs the useful direction, and this document staying the
+  heavily-cited-from essay rather than linking back out to every citing
+  document is the existing, working pattern (see [TODO.md](TODO.md)'s
+  own record below on why rule citations point *at* it); (2) didn't add
+  a "Ghost"/"AI Chat"/"Manager of Agents" glossary entry or cross-link —
+  none of the three is a canonical [GLOSSARY.md](GLOSSARY.md) term, and
+  other documents already link back to this file's own definitions of
+  them rather than the reverse.
 
 - [x] **Give [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)
   the same permanent slugs
