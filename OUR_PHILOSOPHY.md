@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 08:10:57 (Buenos Aires) by Morgan F, to version 18 -->
+<!-- Last updated: 2026-08-29 08:18:04 (Buenos Aires) by Morgan F, to version 19 -->
 
 # Our philosophy
 
@@ -65,7 +65,8 @@ the guidance, the correction, the back-and-forth of the working loop —
 into a reusable rule the next session inherits automatically, no one
 having sat down to write a policy. `process/personal/` is that mechanism
 running continuously, not a document someone drafted once
-([IDEAS.md](IDEAS.md)'s automatic rule extraction, 3a).
+([AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s "automatic
+rule extraction").
 
 **6. Every decision carries the situation that produced it.** However
 small the call, the record states what case prompted it — a bare
