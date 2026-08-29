@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 14:17:07 (Buenos Aires) by Morgan F, to version 9 -->
+<!-- Last updated: 2026-08-29 13:47:27 (Buenos Aires) by Morgan F, to version 10 -->
 
 # WorkingWithAI
 
@@ -75,7 +75,7 @@ spark, argue, GitHub, rule — see
   (pipeline stage 3's destination).
 - [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) —
   the voice guidelines, vendored from
-  [SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman):
+  [SoundHuman](https://github.com/themorgan/SoundHuman):
   write like a human, not an LLM. Applies to this repo's own writing —
   chat replies included, not just committed documents — see
   [AGENTS.md](AGENTS.md)'s "Voice" section.

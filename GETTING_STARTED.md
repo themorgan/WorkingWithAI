@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 08:52:37 (Buenos Aires) by Morgan F, to version 5 -->
+<!-- Last updated: 2026-08-29 13:47:27 (Buenos Aires) by Morgan F, to version 6 -->
 
 # Getting started with `WorkingWithAI`
 
@@ -206,7 +206,7 @@ conversation:
   [`pack-sync`](process/personal/README.md#pack-sync).
 - **A third scheduled check keeps the voice guidelines current** — same
   weekly-by-default, daily-optional cadence, pointed at
-  [SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman)
+  [SoundHuman](https://github.com/themorgan/SoundHuman)
   (private) — the "write like a human, not an LLM" ruleset this project's
   own writing follows. **This needs its own repository secret named
   `VOICEGUIDELINESTOSOUNDHUMAN_TOKEN`** — same kind of token as
@@ -214,7 +214,7 @@ conversation:
   1. Generate the token at
      [github.com/settings/tokens?type=beta](https://github.com/settings/tokens?type=beta):
      resource owner your account, repository access "Only select
-     repositories" → `themorgan/VoiceGuidelinesToSoundHuman` only,
+     repositories" → `themorgan/SoundHuman` only,
      permissions **Contents → Read-only**, nothing else. Copy the value
      immediately — GitHub only shows it once.
   2. Add it at this repository's **Settings → Secrets and variables →

@@ -1,16 +1,10 @@
 # Scheduled, unattended sibling of bestpractice-upstream-sync.yml and
 # personal-pack-sync.yml: checks whether the voice guidelines' source repo,
 # SoundHuman (private —
-# https://github.com/themorgan/VoiceGuidelinesToSoundHuman), has moved past
+# https://github.com/themorgan/SoundHuman), has moved past
 # process/manifest_voice.json's recorded upstream.commit, and if so, takes
 # the update, integrates it, and merges it — without waiting for a session
 # to notice. See AGENTS.md's "Voice" section.
-#
-# (Source repo renamed VoiceGuidelinesToSoundHuman -> SoundHuman internally
-# on 2026-08-28; the URL above is left pointing at the pre-rename name
-# deliberately, since the actual GitHub repository hasn't been renamed yet
-# and GitHub keeps a redirect for the old name either way — not urgent to
-# update.)
 #
 # Same shape as personal-pack-sync.yml, including why: SoundHuman
 # is PRIVATE, so both jobs need a repository secret with read access to it —

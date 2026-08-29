@@ -3,7 +3,7 @@
 
 Sibling to process/personal/tools/pack_sync.py, same shape, for a different
 manifest (process/manifest_voice.json) and source
-(https://github.com/themorgan/VoiceGuidelinesToSoundHuman, private). One
+(https://github.com/themorgan/SoundHuman, private). One
 real difference from pack_sync.py: that source repo has no process/ tree of
 its own — HUMAN_VOICE_RULES.md sits at its repo root — so this tracks a
 single FILE, not a subtree. "Take an update" and "record what was taken"
