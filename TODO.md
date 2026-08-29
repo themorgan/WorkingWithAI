@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 16:04:54 (Buenos Aires) by Morgan F, to version 22 -->
+<!-- Last updated: 2026-08-29 13:21:22 (Buenos Aires) by Morgan F, to version 24 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -25,7 +25,7 @@ while an entry below stays unchecked. Check an item off (or run
 `pack_sync.py resolve <source>`) once its drift has actually been
 reviewed -- the update taken, or deliberately deferred with a reason.
 
-_No open entries yet._
+- [ ] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (1e06a5349a43; your base d436be779be1) — review at the next session (process/personal/README.md#drift-notice).
 
 ## Recurring
 
