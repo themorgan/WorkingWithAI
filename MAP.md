@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 14:50:28 (Buenos Aires) by Morgan F, to version 11 -->
+<!-- Last updated: 2026-08-29 16:16:48 (Buenos Aires) by Morgan F, to version 12 -->
 
 # Repository map — where to find things
 
@@ -32,6 +32,7 @@ Companions: [AGENTS.md](AGENTS.md) (workflow + conventions), [TODO.md](TODO.md)
 | [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) | The voice guidelines — write like a human, not an LLM — vendored from [SoundHuman](https://github.com/themorgan/SoundHuman); see [AGENTS.md](AGENTS.md)'s "Voice" section and [process/manifest_voice.json](process/manifest_voice.json). Governs chat replies, not just committed documents. |
 | [.github/workflows/](.github/workflows/) | The five installed checks: Markdown lint, the light check, the BestPractice sync, the pack sync, and the voice guidelines sync. |
 | [TODO.md](TODO.md) | Cross-session open items. |
+| `doc-recipes/` | Standing rules for individual documents, one `.recipe.md` file per document — see [`doc-recipe`](process/personal/README.md#doc-recipe). |
 
 ## The brainstorm and its pipeline
 
