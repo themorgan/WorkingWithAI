@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 28 -->
+<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 29 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -91,6 +91,36 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Pull the scattered "what humans are good at" lists into one
+  document, and link the originals to it.** Decided 2026-08-29 → done,
+  doc. Morgan noticed several documents each carry their own short list
+  of what humans should focus on, and asked for one consolidated
+  document plus a parenthetical link back to it from each existing list,
+  leaving the existing text unchanged. Found three spots: [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md)
+  item 4 (planning, taste, judgment), [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md)
+  item 7 (judgment, relationships, instinct — reading a room, sensing the
+  unspoken, pushing harder), and [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md)
+  rule 15 (judgment, taste, relationships, accountability, the human
+  spark, and running a fleet of agent-driven processes). Landed as
+  [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md), gathering all of it
+  into one deduplicated list, each entry citing which source document
+  and item/rule it came from. Each of the three spots above got one new
+  parenthetical sentence pointing at the new document; no other wording
+  in any of the three changed. Wired into [MAP.md](MAP.md),
+  [README.md](README.md)'s "What's here," and [AGENTS.md](AGENTS.md)'s
+  quick index. Judgment calls made: (1) treated [REASONS_WHY.md](REASONS_WHY.md)
+  item 5 ("the deepest problems get caught by instinct, not a checklist")
+  as out of scope — it makes one argument about instinct versus
+  checklists, not a multi-item list of human strengths, so it didn't get
+  a parenthetical link; (2) didn't add a new [GLOSSARY.md](GLOSSARY.md)
+  entry — "Humans at our best" is a document title, not a term reused
+  elsewhere in the repo's own vocabulary; (3) placed the new document
+  right after [REASONS_WHY.md](REASONS_WHY.md) in each index, since it's
+  the same kind of small companion reference rather than a top-level
+  essay; (4) added a "Keeping this current" note to the new document
+  itself, so a future new list of the same kind knows to fold in here
+  rather than start a fourth copy.
 
 - [x] **Stop citing a specific point inside [IDEAS.md](IDEAS.md) (the
   brainstorm) as justification from a formal doc — cite the promoted

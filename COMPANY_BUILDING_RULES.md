@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 23:49:02 (Buenos Aires) by Morgan F, to version 4 -->
+<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 5 -->
 
 # Fifteen rules for building a company around AI
 
@@ -243,7 +243,7 @@ makes someone worth working for and not merely alongside, and —
 increasingly — the discipline of running a fleet of agent-driven processes
 instead of a single task: noticing the drift before a customer does,
 pushing a process further than it would push itself, and pulling it back
-before it overreaches.
+before it overreaches. (Full list: [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md).)
 
 That list is shorter than it was five years ago. It isn't going to zero.
 Build the permanent roster around it, and let every role defined by a task

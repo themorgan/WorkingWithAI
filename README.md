@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 13:47:27 (Buenos Aires) by Morgan F, to version 10 -->
+<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 11 -->
 
 # WorkingWithAI
 
@@ -61,6 +61,9 @@ spark, argue, GitHub, rule — see
   anyone who wants to understand this at the theory level before diving
   into the brainstorm itself. [REASONS_WHY.md](REASONS_WHY.md) is its
   companion: the less obvious benefits those ideas produce in practice.
+  [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md) gathers the one list of
+  what humans are good at, referenced in shorter form from several of
+  these documents.
 - [IDEAS.md](IDEAS.md) — the brainstorm itself: one entry per idea, prompt,
   workflow, or observation, loosely grouped.
 - [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) —
