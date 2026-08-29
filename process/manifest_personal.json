@@ -2,9 +2,9 @@
   "upstream": {
     "repo": "https://github.com/themorgan/RepoPersonalPreferences",
     "vendored_at": "process/personal",
-    "commit": "d436be779be155c9aa52fd24bbb240d2af4bb896",
+    "commit": "b10c163a96dde7eeea735e39a37497287734ea01",
     "scrub_blocklist": null,
-    "_note": "commit = RepoPersonalPreferences hash last synced (routine update, 2026-08-29; install was 2026-08-26 at c1d27d3f462b). scrub_blocklist is deliberately null: this pack's content is Morgan's own private vocabulary by design and is never meant to reach the public BestPractice repo, so scrubbing it against process/scrub_blocklist.txt would be backwards."
+    "_note": "commit = RepoPersonalPreferences hash last synced (routine update, recorded 2026-08-29)."
   },
   "entries": [
     {
@@ -14,7 +14,7 @@
       "granularity": "section",
       "section_marker": "## Personal setup rules (Morgan's pack)",
       "status": "synced",
-      "notes": "Woven into AGENTS.md right after BestPractice's own Conventions section, including the 0c TODO gate inserted into the merge runbook's numbered list and the quiet-checks sentence appended to the runbook's step 3. 2026-08-29 re-weave: brought this repo's copy up to the current template -- added morgan-scope, push-back, trim-prose, list-item-parity, deep-check, quiet-checks, rule-links, no-stale-counts, header-caps, private-repo-scrub, content-subdirs, new-rule-placement, and automation-issues bullets, none of which this older install had yet; switched every citation from positional §N to permanent slug form; kept the three-scheduled-sync structure and the voice-guidelines-specific bullets (out of this update's scope) untouched in their existing positions; kept the pack's NY Times-style header-caps default noted but not applied, since this repo already documents its own sentence-case choice."
+      "notes": "Woven into AGENTS.md right after BestPractice's own Conventions section, including the 0c TODO gate inserted into the merge runbook's numbered list and the quiet-checks sentence appended to the runbook's step 3. 2026-08-29 re-weave: brought this repo's copy up to the current template -- added morgan-scope, push-back, trim-prose, list-item-parity, deep-check, quiet-checks, rule-links, no-stale-counts, header-caps, private-repo-scrub, content-subdirs, new-rule-placement, and automation-issues bullets, none of which this older install had yet; switched every citation from positional §N to permanent slug form; kept the three-scheduled-sync structure and the voice-guidelines-specific bullets (out of this update's scope) untouched in their existing positions; kept the pack's NY Times-style header-caps default noted but not applied, since this repo already documents its own sentence-case choice. 2026-08-29 (later same day) upstream sync (RepoPersonalPreferences @ b10c163a96dd): inserted the new generated-file-marker rule in its reading-order position, right after file-header and before session-trailer, verbatim -- now 36 rules, up from 35."
     },
     {
       "practice": "upstream-sync-workflow",
