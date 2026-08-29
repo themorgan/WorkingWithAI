@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 15:44:13 (Buenos Aires) by Morgan F, to version 4 -->
+<!-- Last updated: 2026-08-29 15:47:11 (Buenos Aires) by Morgan F, to version 5 -->
 
 # Humans at our best
 
@@ -35,6 +35,10 @@ this page doesn't replace them.*
   pushing a process further than it would push itself, and pulling it
   back before it overreaches
   ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
+- **Obsessive, creative quality assurance (QA).** AI can run a checklist;
+  only someone who truly, deeply cares hunts every issue — software or
+  otherwise — with the intensity and creativity that real ownership
+  brings.
 - **Relationships.** A counterparty trusts because of who's on the other
   end of them
   ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human));
