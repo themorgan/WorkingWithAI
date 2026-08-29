@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-27 23:49:02 (Buenos Aires) by Morgan F, to version 4 -->
+<!-- Last updated: 2026-08-29 07:51:17 (Buenos Aires) by Morgan F, to version 5 -->
 
 # AI governance to co-create
 
@@ -25,6 +25,16 @@ a special case.** This repo's own repo-as-memory pattern is the proof:
 context only behaves like capital (rule 1) if it survives past the
 session that created it. The general claim is that any AI system meant to
 compound should default to durable, diffable state over ephemeral chat.
+
+**Automatic rule extraction should be a standing capability, not a manual
+habit.** Any AI system built for co-creation should distill protocols,
+rules, and preferences directly out of its interaction with a person — the
+guidance, the correction, the pattern in what got argued out — instead of
+waiting for someone to write a policy by hand afterward. This repo's
+`process/personal/` layer is one instance of that capability running
+continuously (IDEAS.md's automatic rule extraction, 3a); the general claim
+is that the capability belongs in the system's design, not bolted on
+later.
 
 **A coldstart test, run like any other check.** Can a brand-new session,
 given only the memory store and no human in the loop, reconstruct the
