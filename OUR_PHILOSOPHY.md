@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 07:43:17 (Buenos Aires) by Morgan F, to version 15 -->
+<!-- Last updated: 2026-08-29 07:46:10 (Buenos Aires) by Morgan F, to version 16 -->
 
 # Our philosophy
 
@@ -59,19 +59,13 @@ like an individual contributor, stay engaged, adjust the plan as soon as
 the first attempt reveals what the brief missed ([rule 14](COMPANY_BUILDING_RULES.md))
 — same posture as item 1, applied to management.
 
-**5. The AI Assistant writes it down, in real time, as the decision
-happens.** Waiting for someone to circle back and log a decision after
-the fact is exactly the discipline that never survives a busy week — so
-this repo puts the writing in the model's hands, not a person's. Because
-every argument in the working loop already runs inside a session with
-the repo attached, the assistant is there at the moment a decision gets
-made, and turns it into a captured learning or a rule as a side effect of
-having the argument at all — no separate transcription step, nothing
-riding on anyone's memory of what got decided ([rule 2](COMPANY_BUILDING_RULES.md);
-[IDEAS.md](IDEAS.md)'s automatic rule extraction, 3a). Checkability follows
-for free: reread the result for contradictions, or hand it to a fresh
-session and see if it alone reconstructs the decision (the coldstart
-test).
+**5. Protocols, rules, and preferences get generated, not authored.** The
+AI Assistant distills them straight out of the human-AI interaction —
+the guidance, the correction, the back-and-forth of the working loop —
+into a reusable rule the next session inherits automatically, no one
+having sat down to write a policy. `process/personal/` is that mechanism
+running continuously, not a document someone drafted once
+([IDEAS.md](IDEAS.md)'s automatic rule extraction, 3a).
 
 **6. Every decision carries the situation that produced it.** However
 small the call, the record states what case prompted it — a bare
