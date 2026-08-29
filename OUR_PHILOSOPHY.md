@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 07:46:10 (Buenos Aires) by Morgan F, to version 16 -->
+<!-- Last updated: 2026-08-29 07:48:16 (Buenos Aires) by Morgan F, to version 17 -->
 
 # Our philosophy
 
@@ -59,7 +59,7 @@ like an individual contributor, stay engaged, adjust the plan as soon as
 the first attempt reveals what the brief missed ([rule 14](COMPANY_BUILDING_RULES.md))
 — same posture as item 1, applied to management.
 
-**5. Protocols, rules, and preferences get generated, not authored.** The
+**5. Protocols, rules, and preferences get generated automatically.** The
 AI Assistant distills them straight out of the human-AI interaction —
 the guidance, the correction, the back-and-forth of the working loop —
 into a reusable rule the next session inherits automatically, no one
