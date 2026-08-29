@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 07:51:17 (Buenos Aires) by Morgan F, to version 5 -->
+<!-- Last updated: 2026-08-29 07:56:08 (Buenos Aires) by Morgan F, to version 6 -->
 
 # AI governance to co-create
 
@@ -21,126 +21,101 @@ ready to be called a rule.*
 ## Memory & context
 
 **Persistent, versioned, greppable state should be the default shape, not
-a special case.** This repo's own repo-as-memory pattern is the proof:
-context only behaves like capital (rule 1) if it survives past the
-session that created it. The general claim is that any AI system meant to
-compound should default to durable, diffable state over ephemeral chat.
+a special case.** Context only behaves like capital (rule 1) if it
+outlives the session that made it — durable, diffable state should beat
+ephemeral chat by default.
 
 **Automatic rule extraction should be a standing capability, not a manual
-habit.** Any AI system built for co-creation should distill protocols,
-rules, and preferences directly out of its interaction with a person — the
-guidance, the correction, the pattern in what got argued out — instead of
-waiting for someone to write a policy by hand afterward. This repo's
-`process/personal/` layer is one instance of that capability running
-continuously (IDEAS.md's automatic rule extraction, 3a); the general claim
-is that the capability belongs in the system's design, not bolted on
-later.
+habit.** Distill protocols, rules, and preferences straight out of the
+interaction — the guidance, the correction — instead of waiting for
+someone to write policy by hand; `process/personal/` runs this
+continuously (IDEAS.md's 3a).
 
-**A coldstart test, run like any other check.** Can a brand-new session,
-given only the memory store and no human in the loop, reconstruct the
-current state of any live decision? If not, the transcription (rule 2)
-failed somewhere specific and locatable — which makes it testable rather
-than just aspirational.
+**A coldstart test, run like any other check.** Can a fresh session, given
+only the memory store, reconstruct the current state of any live
+decision? If not, the transcription (rule 2) failed somewhere specific
+and locatable.
 
 **Resurfacing should be active, not just searchable.** A system that only
-answers when asked misses the cases nobody thought to ask about. The
-better version notices "you decided X six weeks ago" unprompted, when it's
-relevant to what's happening now — this is IDEAS.md's open question about
-proactive resurfacing, generalized past this one repo.
+answers when asked misses what nobody thought to ask — the better version
+notices "you decided X six weeks ago" unprompted, when it's relevant now.
 
 ## Interaction design
 
-**Push-back as a configuration switch, not a personality quirk.** The
-personal pack's distinction — argue a genuine counter-case on
-writing/thinking work, comply on technical execution — is a general
-pattern worth naming on its own: most AI configurations pick one register
-globally (always-comply or always-argue) and both are wrong for some
-fraction of what they're used for. The switch should track task shape, not
-be fixed at the system level.
+**Push-back as a configuration switch, not a personality quirk.** Argue a
+genuine counter-case on writing/thinking work, comply on technical
+execution — the switch should track task shape, not sit fixed at the
+system level.
 
-**The two reflexes from rule 6 belong in the system prompt, not just in a
-human's habit.** An agent that asks itself "have I done this shape before"
-mid-task, and says so, does more of rule 5's work than a human remembering
-to ask periodically.
+**The two reflexes from rule 6 belong in the system prompt, not just a
+human's habit.** An agent that asks itself "have I done this shape
+before" mid-task, and says so, does more of rule 5's work than a person
+remembering to ask.
 
-**Argue in the open.** An AI reviewer that holds a half-formed position and
-invites disagreement, instead of posting a clean finished-looking
-suggestion, keeps the disagreement itself in the record — this is
-IDEAS.md's "PR comments as argument" idea, generalized past pull requests
-to any AI-reviewed artifact.
+**Argue in the open.** An AI reviewer that holds a half-formed position
+and invites disagreement, rather than posting a clean finished-looking
+suggestion, keeps the disagreement itself in the record.
+
+## Interface
+
+**Chat is the primary interface to every document, not a shortcut around
+them.** The AI constantly creates, tracks, and organizes documents and
+thoughts, and a human can always go read or edit them directly — but most
+human work will be asking the AI questions answered in the docs and
+brainstorming with the AI on what to do, then guiding the AI to do it,
+not reading, writing, or editing docs directly. The docs are the AI's
+working memory; chat is where the human actually works.
 
 ## Verification
 
-**Confidence should look non-uniform, because it isn't.** If every claim in
-an output reads with the same even prose confidence, rule 8's "find the
-one false paragraph" skill has nothing to grab onto. Output that flags its
-own weaker claims — a hedge, a citation, an explicit assumption — gives a
-verifier a place to start instead of forcing them to re-derive everything
-from scratch.
+**Confidence should look non-uniform, because it isn't.** If every claim
+reads with the same even prose confidence, rule 8's "find the one false
+paragraph" skill has nothing to grab onto. Flag the weaker claims — a
+hedge, a citation, an assumption — so a verifier has a place to start.
 
 ## Workflow & cost sensitivity
 
-**Automatic workflow-candidate detection.** Instead of relying on a human
-noticing "this is the third time," mine the history itself — commits,
-sessions, transcripts — for recurring task shapes and surface the
-candidate. Turns rule 5's judgment call into a standing job rather than a
-thing that only happens if someone happens to notice.
+**Automatic workflow-candidate detection.** Mine the history itself —
+commits, sessions, transcripts — for recurring task shapes instead of
+relying on a human noticing "this is the third time." Turns rule 5's
+judgment call into a standing job.
 
 **Cost-awareness should be situational, inferred by the system, not a
-fixed global policy.** Earlier draft of this idea proposed surfacing spend
-per outcome the way CI surfaces test results, framed as a straightforward
-cost-discipline win. The objection that landed: whether cost discipline is
-even the right posture varies by person, project, and moment — sometimes
-you're watching spend closely, sometimes you deliberately want to indulge
-rule 9's "build five, kill four" and let generation be cheap and lavish.
-Making cost visibility a default pressure gets that wrong in whichever
-direction the situation doesn't call for. The harder and more interesting
-design problem is the system inferring *which* situation it's in — reading
-signals like an explicit budget mention, the project's stage (exploring
-vs. shipping), or stated intent ("throw a bunch of options at this" vs.
-"keep this efficient") — rather than applying one policy everywhere. Plain
-cost logging (the passive record, not an optimization target) is still
-worth keeping regardless of which mode is active.
+fixed global policy.** Whether cost discipline is even the right posture
+varies by person, project, and moment — sometimes you want rule 9's
+"build five, kill four" lavishness instead. The harder problem is the
+system inferring which situation it's in — from a budget mention, project
+stage, or stated intent — rather than applying one policy everywhere.
 
 ## Voice & output
 
 **A structural "sounds like AI" check.** Rule 11 names the actual
 fingerprints — the throat-clearing opener, "not just X, it's Y," the
 bolded summary nobody asked for. Those are mechanical enough to check for
-before publishing, rather than relying on a human catching it every time,
-which is exactly the kind of single-point-of-failure rule 10 warns about
-elsewhere.
+before publishing, rather than relying on a human catching it every time.
 
 ## Surfacing blind spots
 
 **Configure the AI to hunt its own dark processes.** Have it periodically
 list workflows whose only interface is a human inbox — including its own
-("email Morgan to change this config" counts) — and propose an addressable
-alternative, per rule 10.
+— and propose an addressable alternative, per rule 10.
 
 **Rotation and temp workflows get periodic check-ins, not baked-in
-expiry.** Earlier draft proposed a hard sunset date written into the
-process file at creation (rule 15's "stay exactly as temporary as the task
-turns out to be," taken literally). Objection: if a workflow is going well,
-there's no reason it
-should have to end — the goal isn't churn, it's making sure it's still
-earning its place. The better version is a recurring, low-cost reminder —
-"is this still needed, still the right shape?" — rather than a deadline
-that forces a decision whether or not one is actually due.
+expiry.** A hard sunset date, taken literally from rule 15, forces an end
+even when a workflow is going well. Better: a recurring, low-cost
+reminder — "is this still needed, still the right shape?"
 
 ## Keeping the corpus honest
 
 **Contradiction-scanning as a recurring job, not a one-off pass.** A
-compounding corpus (rule 1's own metaphor) rots quietly if nothing ever
-re-reads it looking for internal disagreement. Worth standing up as a
-periodic pass in any system holding this kind of accumulated brainstorm,
-not just running once when someone thinks of it.
+compounding corpus (rule 1's own metaphor) rots quietly if nothing
+re-reads it for internal disagreement — worth standing up as a periodic
+pass, not something that only runs once someone thinks of it.
 
-**Provider-neutrality is a hedge on rule 1, not a preference.** The
-personal pack already requires this for LLM integrations in this repo.
-Stated as a general principle: context built against one vendor's tooling
-shouldn't be strandable by a provider switch — the capital asset is the
-context, not the platform it happens to be sitting in today.
+**Provider-neutrality is a hedge on rule 1, not a preference.** Context
+built against one vendor's tooling shouldn't be strandable by a provider
+switch — the capital asset is the context, not the platform it's sitting
+in today.
 
 ---
 
