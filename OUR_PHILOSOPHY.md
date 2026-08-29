@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 07:48:16 (Buenos Aires) by Morgan F, to version 17 -->
+<!-- Last updated: 2026-08-29 08:10:57 (Buenos Aires) by Morgan F, to version 18 -->
 
 # Our philosophy
 
@@ -25,9 +25,9 @@ The same five steps repeat every time, in order:
    log (items 2 and 3 below).
 4. The AI Assistant produces all the output; you only guide it (items 4
    and 7 below).
-5. What survives gets written down with the case that produced it
-   (items 5 and 6 below), so it stays visible to whichever session
-   opens this repo next.
+5. The decisions, small to big, turn into learnings and shared rules
+   and protocols automatically (items 5 and 6 below), staying visible
+   to whichever session opens this repo next.
 
 ## The 7 Core Philosophies
 
