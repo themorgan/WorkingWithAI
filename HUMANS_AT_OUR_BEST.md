@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 15:38:04 (Buenos Aires) by Morgan F, to version 3 -->
+<!-- Last updated: 2026-08-29 15:44:13 (Buenos Aires) by Morgan F, to version 4 -->
 
 # Humans at our best
 
@@ -30,6 +30,11 @@ this page doesn't replace them.*
 - **Planning.** Deciding what gets built, the way defining a system beats
   hand-running it
   ([`people-manage-agents-execute`](OUR_PHILOSOPHY.md#people-manage-agents-execute)).
+- **Running a fleet of agent-driven processes.** Increasingly a
+  human-only skill of its own: noticing the drift before a customer does,
+  pushing a process further than it would push itself, and pulling it
+  back before it overreaches
+  ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
 - **Relationships.** A counterparty trusts because of who's on the other
   end of them
   ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human));
@@ -43,11 +48,6 @@ this page doesn't replace them.*
   ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
 - **The human spark.** What makes someone worth working for, not merely
   alongside
-  ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
-- **Running a fleet of agent-driven processes.** Increasingly a
-  human-only skill of its own: noticing the drift before a customer does,
-  pushing a process further than it would push itself, and pulling it
-  back before it overreaches
   ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
 - **Politics.** Any non-trivial team runs on politics as much as on org
   charts; reading it and managing it is a human job.
