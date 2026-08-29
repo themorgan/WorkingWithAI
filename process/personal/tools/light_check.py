@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Last updated: 2026-08-28 22:40:00 (Buenos Aires) by Morgan F, to version 5
+# Last updated: 2026-08-29 13:04:59 (Buenos Aires) by Morgan F, to version 7
 """light_check.py — personal-pack sanity net, beyond BestPractice's doc_lint.py.
 
 doc_lint.py (process/upstream/tools/doc_lint.py) is Markdown-specific. This
@@ -60,8 +60,14 @@ that isn't a style violation so much as "something obviously went wrong":
      number, because the numbers move whenever the file is reorganized and
      the slugs never do (process/personal/README.md#rule-links). A "§N"
      whose own source file is named right beside it -- "INSTALL.md §2",
-     BestPractice's own numbering -- is fine and is what the check looks
-     for before flagging. Repo-wide, like checks 7-9; process/upstream/ is
+     "HUMAN_VOICE_RULES.md §17" -- is fine: the check recognizes any
+     "<Filename>.md §N" shape generically, not a fixed list of BestPractice's
+     own filenames, so a newly vendored pack's own numbering (found via a
+     real false positive against SoundHuman's HUMAN_VOICE_RULES.md,
+     2026-08-29) needs no separate update here. The one exception is a bare
+     "README.md" -- in this repo's convention that's always this pack's own
+     process/personal/README.md, so it still forces the slug form rather
+     than exempting it. Repo-wide, like checks 7-9; process/upstream/ is
      skipped (a mirror, with its own numbering).
 
 Checks 1-5 are gates (FAIL, exit 1); check 6 is a warning; check 7 is a
@@ -281,16 +287,88 @@ def check_pending_drift(warns):
 
 PACK_README = 'process/personal/README.md'
 RULE_ANCHOR_RE = re.compile(r'<a id="([a-z0-9][a-z0-9-]*)"></a>')
-# A "§N" is BestPractice's own numbering when the file it belongs to is named
-# right before it (same line or the one above): "INSTALL.md §2", "[SETUP.md](…) §5".
-# Local adaptation for this repo: also recognizes HUMAN_VOICE_RULES.md, this
-# repo's third vendored pack (process/voice/, from SoundHuman) -- it carries
-# its own independent §N numbering, unrelated to the personal pack's, and
-# this repo's own AGENTS.md/TODO.md/RULES_NOW_TESTING.md legitimately cite
-# it by number the same way BestPractice's own files are cited. Re-apply
-# this addition after any future mirror from RepoPersonalPreferences.
-UPSTREAM_SECTION_RE = re.compile(
-    r'(INSTALL|SETUP|PRACTICES|GIT|MOBILE|GITHUB_ACTIONS|METHOD|HUMAN_VOICE_RULES)\.md[^\n]{0,60}$')
+# A "§N" belongs to another document's own independent numbering when that
+# file is named nearby: same line, or anywhere in the same unbroken
+# paragraph/list-item/table above it (up to a blank line, a heading, or a
+# bounded lookback, whichever comes first) -- "INSTALL.md §2",
+# "[SETUP.md](…) §5", "HUMAN_VOICE_RULES.md §17", or a table whose caption
+# or intro paragraph names the file once and cites bare "§N" per row after
+# that. Generic by design -- any "<path/Filename>.md" qualifies, not a
+# fixed list of BestPractice's own files, so a newly vendored pack needs no
+# separate update here. The sole exception is a BARE "README.md" with no
+# distinguishing path segment before it: in this repo's convention that
+# always means this pack's own PACK_README, whose rules must still cite by
+# slug -- see _file_qualified below. A README.md reached through some
+# OTHER path (e.g. "process/voicedef/README.md") is a different pack's own
+# file and DOES qualify.
+#
+# "Closest", not "first": a line or paragraph can name more than one file
+# before a "§N" shows up, and only the one nearest the number is what a
+# reader takes as its source. A plain leftmost search picked the WRONG one
+# here more than once (2026-08-29): a stray earlier "README.md" mention on
+# the same line swallowed a later, real "process/voicedef/README.md §14"
+# citation right next to it.
+FILENAME_MD_RE = re.compile(r'([\w./-]*?[A-Za-z0-9_-]+)\.md')
+HEADING_RE = re.compile(r'^#{1,6}\s')
+CONTEXT_LOOKBACK = 30  # lines; bounds cost on a pathologically long paragraph
+
+def _closest_qualifying_name(text):
+    """The "<path/Filename>" (no extension) of the qualifying mention
+    closest to the end of `text`, within 60 chars, or None."""
+    matches = list(FILENAME_MD_RE.finditer(text))
+    if not matches:
+        return None
+    last = matches[-1]
+    if len(text) - last.end() > 60:
+        return None
+    return last.group(1)
+
+def _file_qualified(text):
+    """True if `text` ends with "<path/Filename>.md ... " for some real
+    filename other than a BARE "README.md" (no path prefix), which always
+    means this pack's own PACK_README."""
+    name = _closest_qualifying_name(text)
+    return bool(name) and name.lower() != 'readme'
+
+def _context_qualified(lines, i):
+    """True if a line before line `i` (1-indexed), within the same unbroken
+    paragraph/list-item, names a qualifying file. Walks backward from the
+    line above `i` until a qualifying match, a blank line, or a heading
+    (checked, then stop -- they bound the block), or CONTEXT_LOOKBACK
+    lines, whichever comes first. A markdown table tolerates crossing
+    exactly one blank line, since a table is routinely introduced by an
+    intro paragraph naming its subject once, separated from the table by
+    a single blank line -- MAP.md's own HUMAN_VOICE_RULES.md table does
+    this (found 2026-08-29)."""
+    in_table = lines[i - 1].lstrip().startswith('|')
+    max_blanks = 1 if in_table else 0
+    blanks_seen = 0
+    for j in range(i - 1, max(0, i - 1 - CONTEXT_LOOKBACK), -1):
+        line = lines[j - 1]
+        if _file_qualified(line):
+            return True
+        if HEADING_RE.match(line):
+            break
+        if not line.strip():
+            blanks_seen += 1
+            if blanks_seen > max_blanks:
+                break
+    return False
+
+def _forward_context_qualified(lines, i):
+    """Same idea as _context_qualified, scanning forward from the line
+    after `i` instead of backward. A single flowing sentence can wrap a
+    "§N" and the filename that explains it across source lines in either
+    order -- found 2026-08-29 in a sentence citing the same "§14" twice,
+    the file name only appearing after the first mention."""
+    for j in range(i + 1, min(len(lines), i + CONTEXT_LOOKBACK) + 1):
+        line = lines[j - 1]
+        if _file_qualified(line):
+            return True
+        if not line.strip() or HEADING_RE.match(line):
+            break
+    return False
+
 SLUG_CITATION_RE = re.compile(r'README\.md#([a-z0-9][a-z0-9-]*)')
 # `#slug` is the placeholder the docs use when spelling out the citation form
 # itself ("[`slug`](process/personal/README.md#slug)"), not a real citation.
@@ -303,31 +381,78 @@ def pack_rule_slugs():
         return None
     return set(RULE_ANCHOR_RE.findall(p.read_text(encoding='utf-8', errors='ignore')))
 
+def _exists_locally(name):
+    """True if `name` (a citation target with no ".md", e.g.
+    "HUMAN_VOICE_RULES" or "process/voicedef/README") corresponds to a
+    real file actually present in THIS repo, outside process/upstream/ (a
+    mirror, never a source of independent numbering worth tracking here).
+    A path-qualified name must match that exact path; a bare name matches
+    by basename. This is what tells "HUMAN_VOICE_RULES.md §17" (real,
+    right here) apart from "process/voicedef/README.md §14" (a different
+    repo's own file, which must never be treated as something THIS repo
+    numbers, just because some OTHER local file happens to share a
+    basename with it) -- found 2026-08-29, when collapsing every citation
+    to its bare basename made a mention of an unrelated repo's own
+    "process/voicedef/README.md" register as if THIS repo's own
+    process/personal/README.md were independently numbered, defeating the
+    citation check for the pack's own rules entirely."""
+    if '/' in name:
+        return (ROOT / f'{name}.md').is_file()
+    target = f'{name.lower()}.md'
+    for p in ROOT.rglob('*.md'):
+        parts = p.relative_to(ROOT).parts
+        if parts[:2] == ('process', 'upstream'):
+            continue
+        if p.name.lower() == target:
+            return True
+    return False
+
+def _independently_numbered_files(all_lines_by_file):
+    """Every filename this repo's own docs treat as independently
+    numbered -- i.e. every real, local file ever cited as "<Filename>.md
+    §N" -- so a bare "§N" found INSIDE that very file is recognized as a
+    self-reference (nothing names its own filename to cite itself) rather
+    than a missed pack-rule citation. Found 2026-08-29: HUMAN_VOICE_RULES.md
+    cites its own sections this way throughout, and a table describing its
+    structure elsewhere does the same without repeating the filename on
+    every row."""
+    names = set()
+    for lines in all_lines_by_file.values():
+        for line in lines:
+            for m in re.finditer(r'§\d+', line):
+                name = _closest_qualifying_name(line[:m.start()])
+                if name and name.lower() != 'readme' and _exists_locally(name):
+                    names.add(pathlib.PurePosixPath(name).name.lower() + '.md')
+    return names
+
 def check_rule_citations(fails):
     slugs = pack_rule_slugs()
     if slugs is None:
         return  # no pack installed here — nothing to cite
-    for rel in tracked_text():
-        # process/voice/ is also skipped here: this repo's third vendored
-        # pack (from SoundHuman), with its own independent §N numbering --
-        # local adaptation, same reasoning as process/upstream/'s own skip.
-        if rel.startswith(('process/upstream/', 'process/voice/')) or rel == SELF:
-            continue
-        text = (ROOT / rel).read_text(encoding='utf-8', errors='ignore')
-        lines = text.splitlines()
+    candidates = {rel: (ROOT / rel).read_text(encoding='utf-8', errors='ignore').splitlines()
+                  for rel in tracked_text()
+                  if not rel.startswith('process/upstream/') and rel != SELF}
+    self_numbered = _independently_numbered_files(candidates)
+    for rel, lines in candidates.items():
+        rel_name = pathlib.PurePosixPath(rel).name.lower()
         for i, line in enumerate(lines, 1):
             for m in re.finditer(r'§(\d+)', line):
                 before = line[:m.start()]
-                prev = lines[i - 2] if i >= 2 else ''
-                if UPSTREAM_SECTION_RE.search(before) or UPSTREAM_SECTION_RE.search(prev):
+                if (_file_qualified(before) or _context_qualified(lines, i)
+                        or _forward_context_qualified(lines, i)
+                        or rel_name in self_numbered):
                     continue
                 fails.append(
                     f"RULE CITED BY NUMBER: {rel}:{i}: '§{m.group(1)}' — the "
                     "pack's rules are cited by their permanent slug, "
                     "[`slug`](process/personal/README.md#slug), never by "
                     "heading number (process/personal/README.md#rule-links). "
-                    "If this is BestPractice's own numbering, name its file "
-                    "next to it (\"INSTALL.md §2\").")
+                    "If this is another document's own numbering (BestPractice's "
+                    "own docs, or another vendored pack's own file), name that "
+                    "file next to it (\"INSTALL.md §2\", "
+                    "\"HUMAN_VOICE_RULES.md §17\") — a bare \"README.md\" "
+                    "doesn't count, since that always means this pack's own "
+                    "rules here.")
             for m in SLUG_CITATION_RE.finditer(line):
                 if m.group(1) in PLACEHOLDER_SLUGS:
                     continue

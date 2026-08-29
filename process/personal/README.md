@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 09:00:24 (Buenos Aires) by Morgan F, to version 31 -->
+<!-- Last updated: 2026-08-29 13:05:00 (Buenos Aires) by Morgan F, to version 35 -->
 
 # The Personal Pack
 
@@ -46,9 +46,9 @@ cheap: moving a rule is an edit to this file (and its group table below),
 not a sweep through every citation in every repo the pack is installed into.
 [`light-check`](#light-check) enforces it: a bare `§N`-style reference to a
 rule of this pack fails the check, and a cited slug that doesn't resolve to
-an anchor here fails it too. (`§` still belongs to BestPractice's own
-numbered sections — `INSTALL.md §2` — where the file name sits right next to
-it.)
+an anchor here fails it too. (`§` still belongs to another document's own
+numbering — `INSTALL.md §2`, or SoundHuman's `HUMAN_VOICE_RULES.md §17` —
+where the file name sits right next to it; see [`rule-links`](#rule-links).)
 
 The order itself follows the reader: related rules sit next to each other,
 the everyday ones come before the rare ones (BestPractice practice 36), and
@@ -75,39 +75,42 @@ BestPractice, it gets dropped. The rest, in order:
 | 4 | [`commit-author`](#commit-author) | Commit author and email |
 | 5 | [`buenos-aires-dates`](#buenos-aires-dates) | Buenos Aires dates and commit timestamps |
 | 6 | [`file-header`](#file-header) | Last-updated timestamp, who made it, per-file version |
-| 7 | [`session-trailer`](#session-trailer) | The `Session:` trailer on every commit |
+| 7 | [`generated-file-marker`](#generated-file-marker) | Auto-generated files get a `.generated.<ext>` name and a "don't edit by hand" header instead of `file-header`'s own |
+| 8 | [`session-trailer`](#session-trailer) | The `Session:` trailer on every commit |
 | | **How a session decides, argues, and writes** | |
-| 8 | [`small-calls`](#small-calls) | Decide small calls; only stop for big ones |
-| 9 | [`push-back`](#push-back) | Push-back mode, on writing-and-thinking work only |
-| 10 | [`trim-prose`](#trim-prose) | Trim iteratively-edited prose on two triggers |
-| 11 | [`list-item-parity`](#list-item-parity) | Cocreated list items stay comparable in length; default short |
+| 9 | [`small-calls`](#small-calls) | Decide small calls; only stop for big ones |
+| 10 | [`push-back`](#push-back) | Push-back mode, on writing-and-thinking work only |
+| 11 | [`trim-prose`](#trim-prose) | Trim iteratively-edited prose on two triggers |
+| 12 | [`list-item-parity`](#list-item-parity) | Cocreated list items stay comparable in length; default short |
 | | **How a session lands work** | |
-| 12 | [`go-merge`](#go-merge) | `go`/`merge` as standing merge authorization |
-| 13 | [`todo-gate`](#todo-gate) | TODO.md reconciled before every push |
-| 14 | [`light-check`](#light-check) | The light check, on every commit path |
-| 15 | [`deep-check`](#deep-check) | The deep check: every audit, plus an open-ended coherence review |
-| 16 | [`quiet-checks`](#quiet-checks) | Don't repeat the same backlog explanation every run; "checks passed" is still fine |
-| 17 | [`mirror-into-agents`](#mirror-into-agents) | Agent-relevant instructions mirrored into [AGENTS.md](../../AGENTS.md) |
-| 18 | [`new-rule-placement`](#new-rule-placement) | A new pack rule lands in reading-order position, renumbered and mirrored — never appended |
+| 13 | [`go-merge`](#go-merge) | `go`/`merge` as standing merge authorization |
+| 14 | [`todo-gate`](#todo-gate) | TODO.md reconciled before every push |
+| 15 | [`light-check`](#light-check) | The light check, on every commit path |
+| 16 | [`deep-check`](#deep-check) | The deep check: every audit, plus an open-ended coherence review |
+| 17 | [`quiet-checks`](#quiet-checks) | Don't repeat the same backlog explanation every run; "checks passed" is still fine |
+| 18 | [`mirror-into-agents`](#mirror-into-agents) | Agent-relevant instructions mirrored into [AGENTS.md](../../AGENTS.md) |
+| 19 | [`new-rule-placement`](#new-rule-placement) | A new pack rule lands in reading-order position, renumbered and mirrored — never appended |
 | | **Documentation conventions** | |
-| 19 | [`branch-links`](#branch-links) | A mentioned branch is always a link |
-| 20 | [`rule-links`](#rule-links) | Anything mentioned that has a destination is a link to it — in replies as much as in files |
-| 21 | [`no-stale-counts`](#no-stale-counts) | Don't state a count that will drift; describe it instead |
-| 22 | [`header-caps`](#header-caps) | One header capitalization schema; NY Times headline style by default |
-| 23 | [`private-repo-scrub`](#private-repo-scrub) | Private repo names scrubbed before anything vendors |
+| 20 | [`branch-links`](#branch-links) | A mentioned branch is always a link |
+| 21 | [`rule-links`](#rule-links) | Anything mentioned that has a destination is a link to it — in replies as much as in files |
+| 22 | [`file-mention-links`](#file-mention-links) | In chat and PR/commit text, every file mention is a clickable link, even inside code |
+| 23 | [`no-stale-counts`](#no-stale-counts) | Don't state a count that will drift; describe it instead |
+| 24 | [`header-caps`](#header-caps) | One header capitalization schema; NY Times headline style by default |
+| 25 | [`sensitive-characterization-scrub`](#sensitive-characterization-scrub) | Scrub, or ask first, before committing a strong/negative/sensitive characterization of a real person |
+| 26 | [`private-repo-scrub`](#private-repo-scrub) | Private repo names scrubbed before anything vendors |
 | | **Code this pack helps write** | |
-| 24 | [`llm-neutral`](#llm-neutral) | Platform-neutral LLM integrations; OpenRouter assumed |
-| 25 | [`fail-gracefully`](#fail-gracefully) | Always fail gracefully |
+| 27 | [`llm-neutral`](#llm-neutral) | Platform-neutral LLM integrations; OpenRouter assumed |
+| 28 | [`fail-gracefully`](#fail-gracefully) | Always fail gracefully |
 | | **Installing the pack into a repo** | |
-| 26 | [`default-branch`](#default-branch) | A repo's default branch is `main` |
-| 27 | [`blank-blocklist`](#blank-blocklist) | The scrub blocklist stays blank at install |
-| 28 | [`content-subdirs`](#content-subdirs) | Content-oriented repos group their deliverable content |
-| 29 | [`install`](#install) | The install procedure itself |
+| 29 | [`default-branch`](#default-branch) | A repo's default branch is `main` |
+| 30 | [`blank-blocklist`](#blank-blocklist) | The scrub blocklist stays blank at install |
+| 31 | [`content-subdirs`](#content-subdirs) | Content-oriented repos group their deliverable content |
+| 32 | [`install`](#install) | The install procedure itself |
 | | **Keeping the vendored copies current (the meta rules)** | |
-| 30 | [`bestpractice-sync`](#bestpractice-sync) | The scheduled BestPractice sync |
-| 31 | [`pack-sync`](#pack-sync) | Its sibling: the scheduled pack sync |
-| 32 | [`drift-notice`](#drift-notice) | The session-start drift notice, layered on both |
-| 33 | [`automation-issues`](#automation-issues) | Unattended automation reports its own blockers |
+| 33 | [`bestpractice-sync`](#bestpractice-sync) | The scheduled BestPractice sync |
+| 34 | [`pack-sync`](#pack-sync) | Its sibling: the scheduled pack sync |
+| 35 | [`drift-notice`](#drift-notice) | The session-start drift notice, layered on both |
+| 36 | [`automation-issues`](#automation-issues) | Unattended automation reports its own blockers |
 
 <a id="bestpractice-wins"></a>
 
@@ -269,9 +272,51 @@ has no comment syntax, and anything under `process/upstream/` must stay a
 byte-for-byte mirror of the public repo — never hand-edited, header
 included.
 
+<a id="generated-file-marker"></a>
+
+### 7. Auto-Generated Files Are Named and Marked So Nobody Edits Them by Hand (`generated-file-marker`)
+
+A file a script or process produces — regenerated on demand, never meant to
+carry a hand edit of its own — is easy to mistake for a companion file
+someone maintains directly, especially when the two live in the same
+directory under similar names (a full note and a short auto-generated
+summary of it, say). Two mechanisms make the difference visible without
+opening the file, and this rule asks for both together, not either alone:
+
+- **Naming.** An auto-generated file's own name carries `.generated.`
+  immediately before its extension — `SUMMARY.generated.md`,
+  `metrics.generated.csv`, generalized as `.generated.<ext>` for any file
+  type. It shows up in a directory listing, a `git diff`, and a pull
+  request's file list alike, without anyone needing to open the file first.
+  This is a naming convention, not a location one: it doesn't require a
+  dedicated `generated/` subdirectory (a repo already grouping content per
+  [`content-subdirs`](#content-subdirs) can still do that on top), so it
+  works equally well for one generated file sitting beside its hand-authored
+  source and for a whole batch of them.
+- **Header.** A generated file's first line (or its file format's own
+  comment syntax) reads `<!-- AUTO-GENERATED by <script/process> from
+  <source file(s)> — DO NOT EDIT BY HAND. Regenerate with: <command> -->`.
+  This *replaces* [`file-header`](#file-header)'s own "last updated / by
+  NAME / to version N" header on that file, rather than sitting beside it: a
+  generated file has no hand-edit history of its own worth recording — the
+  "who last touched it, when" a human editor would otherwise look for is
+  exactly what this header is instead warning a human editor away from
+  creating. Skip it only where [`file-header`](#file-header) already skips
+  its own header for the same underlying reason — a format with no comment
+  syntax (JSON), or a vendored byte-for-byte mirror under
+  `process/upstream/`.
+
+Neither mechanism is retroactive on its own: a file only picks up the suffix
+and header once a real generation process for it is actually stood up, the
+same "only the files actually touched" scope [`file-header`](#file-header)
+already uses for its own header rule — this rule gives the convention a
+name and a form, not a mandate to rename files that aren't actually
+generated by anything yet. Not scoped to Morgan — a repo-hygiene habit, like
+[`content-subdirs`](#content-subdirs), not a fact about one person.
+
 <a id="session-trailer"></a>
 
-### 7. Commit Messages Link the Session Where the Change Was Planned (`session-trailer`)
+### 8. Commit Messages Link the Session Where the Change Was Planned (`session-trailer`)
 
 A `Session: <url>` trailer on every commit. For Claude Code,
 `https://claude.ai/code/session_<ID>`. For the unattended sync
@@ -283,7 +328,7 @@ link at all, the trailer says so explicitly (`Session: none available
 
 <a id="small-calls"></a>
 
-### 8. Decide Small Calls Yourself; Only Stop for Big Ones (`small-calls`)
+### 9. Decide Small Calls Yourself; Only Stop for Big Ones (`small-calls`)
 
 Default to continuing, not asking. When a judgment call is needed to keep
 the work moving — filling in a default, picking between two reasonable
@@ -314,7 +359,7 @@ to use, a template's exact phrasing) are small enough to just make.
 
 <a id="push-back"></a>
 
-### 9. Push-Back Mode: Argue, Don't Just Comply, on Writing-and-Thinking Work (`push-back`)
+### 10. Push-Back Mode: Argue, Don't Just Comply, on Writing-and-Thinking Work (`push-back`)
 
 [`small-calls`](#small-calls) governs *judgment calls*: filling in a
 default, picking between two fine implementations, resolving an ambiguity
@@ -372,7 +417,7 @@ so if the calibration drifts.
 
 <a id="trim-prose"></a>
 
-### 10. Trim Iteratively-Edited Prose on Two State-Free Triggers, Not a Running Count (`trim-prose`)
+### 11. Trim Iteratively-Edited Prose on Two State-Free Triggers, Not a Running Count (`trim-prose`)
 
 Prose that gets tweaked repeatedly in the same conversation — a paragraph
 revised, then revised again — tends to only grow: each pass adds a clause or
@@ -408,7 +453,7 @@ of who is driving the session.
 
 <a id="list-item-parity"></a>
 
-### 11. Cocreated List Items Stay Roughly Comparable in Length — Default Short (`list-item-parity`)
+### 12. Cocreated List Items Stay Roughly Comparable in Length — Default Short (`list-item-parity`)
 
 When cowriting a list, or a document with several short-ish sections in a
 row that function like one (each entry covering comparable ground — a set
@@ -450,7 +495,7 @@ of who is driving the session.
 
 <a id="go-merge"></a>
 
-### 12. "go" or "merge" as a Standalone Final Sentence Authorizes Commit + Merge (`go-merge`)
+### 13. "go" or "merge" as a Standalone Final Sentence Authorizes Commit + Merge (`go-merge`)
 
 If Morgan's message, at a point where you've said you're ready to commit (or
 ready to commit and merge), ends with `go` or `merge` standing alone as its
@@ -477,7 +522,7 @@ anyone else driving a change in a repo this pack is installed into.
 
 <a id="todo-gate"></a>
 
-### 13. TODO.md Gets Reconciled Before Every Push (`todo-gate`)
+### 14. TODO.md Gets Reconciled Before Every Push (`todo-gate`)
 
 Woven into the installed [AGENTS.md](../../AGENTS.md)'s merge runbook as
 step 0c, right after BestPractice's own capture gate (0) and export gate
@@ -490,7 +535,7 @@ that" afterthought.
 
 <a id="light-check"></a>
 
-### 14. A Light Check Runs on Every Commit Path (`light-check`)
+### 15. A Light Check Runs on Every Commit Path (`light-check`)
 
 [tools/light_check.py](tools/light_check.py) — merge-conflict markers,
 invalid JSON/YAML/Python syntax, secret-shaped strings (an AWS-style key ID,
@@ -524,7 +569,7 @@ through [`install`](#install) gets caught the moment `light-check.yml` runs
 
 <a id="deep-check"></a>
 
-### 15. The Deep Check: Every Audit, Plus an Open-Ended Coherence Review (`deep-check`)
+### 16. The Deep Check: Every Audit, Plus an Open-Ended Coherence Review (`deep-check`)
 
 BestPractice practice 44 asks every repo for two named check levels, and
 [GLOSSARY.md](../../GLOSSARY.md) names this pack's pair: the **light check**
@@ -624,7 +669,7 @@ commit instead.
 
 <a id="quiet-checks"></a>
 
-### 16. Don't Repeat the Same Backlog Explanation Every Run (`quiet-checks`)
+### 17. Don't Repeat the Same Backlog Explanation Every Run (`quiet-checks`)
 
 The merge runbook's step 3 ([AGENTS.md](../../AGENTS.md)) runs the deep
 check's mechanical half — [doc_lint.py](../upstream/tools/doc_lint.py),
@@ -669,7 +714,7 @@ communicates, not a fact about one person.
 
 <a id="mirror-into-agents"></a>
 
-### 17. Agent-Relevant Instructions in a README or Other Key File Also Go in AGENTS.md (`mirror-into-agents`)
+### 18. Agent-Relevant Instructions in a README or Other Key File Also Go in AGENTS.md (`mirror-into-agents`)
 
 `AGENTS.md` is the file a session is told to read first (BestPractice's own
 entry-point convention); a README, a `CONTRIBUTING.md`, a
@@ -698,7 +743,7 @@ is exactly the kind of drift that gate exists to catch.
 
 <a id="new-rule-placement"></a>
 
-### 18. A New Pack Rule Lands in Reading-Order Position, Never Appended (`new-rule-placement`)
+### 19. A New Pack Rule Lands in Reading-Order Position, Never Appended (`new-rule-placement`)
 
 "The Rules, and Why" (above) already states the design intent — related
 rules sit together, everyday rules before rare ones, and a new rule goes
@@ -752,7 +797,7 @@ Not scoped to Morgan — a documentation-quality habit, like
 
 <a id="branch-links"></a>
 
-### 19. A Mentioned Branch Is Always a Link (`branch-links`)
+### 20. A Mentioned Branch Is Always a Link (`branch-links`)
 
 BestPractice's own practice 11 (doc references are links) covers files at
 the repo's current tree — a relative markdown link, not a bare backticked
@@ -777,7 +822,7 @@ applies regardless of who is driving the session.
 
 <a id="rule-links"></a>
 
-### 20. A Mentioned Rule, Item, or Destination Is Always a Link (`rule-links`)
+### 21. A Mentioned Rule, Item, or Destination Is Always a Link (`rule-links`)
 
 [`branch-links`](#branch-links) closed the gap practice 11 (doc references
 are links) leaves for a git branch — a ref, not a path, so a relative
@@ -830,9 +875,19 @@ The link text is the slug, because the slug is the rule's permanent name
 (see "The Rules, and Why" above). A positional number — a bare `§` followed
 by a digit, or "rule 14" — is never a citation: it names where the rule sits
 today, not which rule it is, and [`light-check`](#light-check) fails a
-commit that uses one for a rule of this pack. `§` still belongs to
-BestPractice's own numbered sections, cited with the file name right next to
-it (`INSTALL.md §2`).
+commit that uses one for a rule of this pack. `§` still belongs to a
+document we don't control the numbering of — BestPractice's own sections
+(`INSTALL.md §2`), or another vendored pack's own numbered file (SoundHuman's
+`HUMAN_VOICE_RULES.md §17`) — cited with that file's name right next to it.
+The check recognizes the shape generically (any `<Filename>.md §N`), not a
+fixed list of filenames, so a newly vendored pack needs no separate update
+here (found via a real false positive against SoundHuman's own numbering,
+2026-08-29), and the same file-qualified form is the general citation for
+any other document's own reference-able, independently-numbered rules or
+protocols too — this repo's included, should one ever gain its own outside
+this file. The one carve-out is a bare `README.md`: in this repo's
+convention that's always this pack's own file, so it still forces the slug
+form rather than exempting it.
 
 That slug half is the only part a script can check. The rest — a commit, a
 PR number, an external page — can't be told from ordinary prose mechanically
@@ -845,9 +900,53 @@ are — like [`branch-links`](#branch-links), it's a documentation-quality
 habit, not a fact about one person, so it applies regardless of who is
 driving the session.
 
+<a id="file-mention-links"></a>
+
+### 22. In Chat and PR/Commit Text, Every File Mention Is a Clickable Link — Even Inside Code (`file-mention-links`)
+
+[`rule-links`](#rule-links) already says a file gets linked "the first time
+it's mentioned," using a relative markdown link, and explicitly leaves a
+filename inside a code span alone — a value, not a reference. Both defaults
+are right for a document actually committed to the repo, where a relative
+link resolves and a reader can scroll back to find the first one. Neither
+holds outside a committed file: a session's own chat replies, and prose
+written straight to GitHub (a PR description, a commit message — the
+"release notes" a member actually reads) aren't part of the repo tree, so a
+relative link doesn't resolve there at all, and a reader skimming a long
+reply or PR body has no "first one" to scroll back to — they want whichever
+mention is in front of them to work.
+
+**The rule, for those two surfaces only** — a chat reply; a PR description,
+issue, or commit message aimed at GitHub — **never inside a document
+actually committed to the repo, where [`rule-links`](#rule-links)'s own
+defaults stand unchanged:**
+
+- Every mention of a specific file in the repo is a clickable link to that
+  file on GitHub, not only the first mention in a given reply or PR body.
+- It stays inside its code span rather than growing a separate marker like a
+  trailing 🔗: `` `AGENTS.md` `` becomes
+  `` [`AGENTS.md`](https://github.com/<owner>/<repo>/blob/<branch>/AGENTS.md) ``
+  — the same monospace text as today, now clickable.
+- Absolute GitHub URLs only
+  (`https://github.com/<owner>/<repo>/blob/<branch>/<path>`) — a relative
+  link doesn't resolve on either surface.
+- **Which branch:** whichever one the discussion is actually about — an open
+  PR's own head branch while it's still open, the default branch once it's
+  merged or the reply isn't tied to a particular PR — the same choice the
+  "Files touched" footer already makes for its own two links (practice 12).
+
+Not mechanically enforced — a chat reply and a PR/commit body both live
+outside anything [`light-check`](#light-check) or [`deep-check`](#deep-check)
+can scan, so this rides on session habit alone, the same as
+[`quiet-checks`](#quiet-checks). Found via a direct ask: a member wanted to
+click whichever file mention was in front of him — in a reply or in a PR
+body — without hunting for wherever the first link happened to land, or
+leaving the page to go find the file by hand. Not scoped to Morgan — a
+documentation habit, like [`branch-links`](#branch-links).
+
 <a id="no-stale-counts"></a>
 
-### 21. Don't State a Count That Will Drift — Describe It Instead (`no-stale-counts`)
+### 23. Don't State a Count That Will Drift — Describe It Instead (`no-stale-counts`)
 
 Prose that cites an exact count of something that changes over time — how
 many numbered rules this pack has, how many warnings a lint tool currently
@@ -888,7 +987,7 @@ habit, like [`trim-prose`](#trim-prose).
 
 <a id="header-caps"></a>
 
-### 22. Header Capitalization: Pick One Consistent Schema — NY Times Headline Style Is the Pack's Default (`header-caps`)
+### 24. Header Capitalization: Pick One Consistent Schema — NY Times Headline Style Is the Pack's Default (`header-caps`)
 
 [AGENTS.md](../../AGENTS.md)'s own Conventions section already states the
 general rule for *this* repo: headers and subheaders at the same rank must
@@ -924,9 +1023,57 @@ Not scoped to Morgan the way [`morgan-scope`](#morgan-scope)'s facts are — a
 documentation-quality default, not a fact about one person, so it applies
 regardless of who is driving the session in a given dependent repo.
 
+<a id="sensitive-characterization-scrub"></a>
+
+### 25. Scrub Sensitive Characterizations of Real People, Unless Told Otherwise (`sensitive-characterization-scrub`)
+
+Assume whoever is driving a session here talks about real people — friends,
+colleagues, prospective partners, anyone the work touches — as candidly and
+directly as they would with a trusted collaborator, because that candor is
+exactly what makes the collaboration useful. That candor is not, on its own,
+safe to carry forward verbatim into anything committed. Found the hard way in
+a dependent repo's own brainstorm notes: a direct, off-the-cuff description
+of a real, named acquaintance — said only for the conversation — made it into
+a committed document, which was then shown to that person, reading back more
+bluntly than intended (the specific text and the fuller account stay in this
+repo's own [TODO.md](../../TODO.md) decision record, never here — per
+[`private-repo-scrub`](#private-repo-scrub), below).
+
+**The rule:** before anything actually gets committed — a document, a
+brainstorm entry, a code comment, a commit message — assume the specific,
+identifiable real people it describes may eventually read it themselves:
+shown to them directly, come across in a repo that stops being private, or
+read over someone's shoulder. Where a description of a real person is
+unusually direct, strong, negative, or otherwise sensitive enough that the
+person themselves might wince reading it, don't commit it as given — soften
+it, or ask first:
+
+- **Default to a euphemism that keeps the substance, not the edge.** A blunt
+  personal trait restated as an indirect institutional or situational one
+  usually does the job — "very well-connected" becomes something like "given
+  the team's strong network," "difficult to work with" becomes something
+  like "a working style this project hasn't fully adapted to." The reader
+  still gets the practical point without it reading as a direct judgment of
+  the person.
+- **Ask, don't guess, when no softened phrasing preserves what the point
+  needs** — or when it's genuinely unclear whether a rewrite is soft enough.
+- This isn't a ban on describing real people, and it doesn't reach the
+  conversation itself — keep talking as openly as usual there. It only gates
+  what actually gets written down: ordinary, neutral, complimentary, or
+  already-public description needs none of this.
+
+Not mechanically enforced — a script can't judge whether a characterization
+is sensitive enough to soften, or already fine as written, so, like
+[`push-back`](#push-back), this rides on the session's own judgment at the
+moment of writing, and on [`deep-check`](#deep-check)'s later review. Not
+scoped to Morgan the way [`morgan-scope`](#morgan-scope)'s facts are — a
+documentation/privacy habit, like [`private-repo-scrub`](#private-repo-scrub)
+below, so it applies to whoever is driving a session in a repo this pack is
+installed into, characterizing whoever they're discussing.
+
 <a id="private-repo-scrub"></a>
 
-### 23. Private Repo Names and Specifics Get Scrubbed Before Anything Vendors or Is Shared (`private-repo-scrub`)
+### 26. Private Repo Names and Specifics Get Scrubbed Before Anything Vendors or Is Shared (`private-repo-scrub`)
 
 Two privacy boundaries look alike but aren't the same one.
 [`blank-blocklist`](#blank-blocklist)'s
@@ -993,7 +1140,7 @@ regardless of who is drafting content in this repo.
 
 <a id="llm-neutral"></a>
 
-### 24. LLM Integrations Stay Platform-Neutral; OpenRouter Is the Default Assumption (`llm-neutral`)
+### 27. LLM Integrations Stay Platform-Neutral; OpenRouter Is the Default Assumption (`llm-neutral`)
 
 Whenever a system this pack helps set up needs to talk to an LLM, build it
 against a provider-neutral interface — model name, API key/token, and base
@@ -1014,7 +1161,7 @@ reason a piece of code built against this rule breaks.
 
 <a id="fail-gracefully"></a>
 
-### 25. Always Fail Gracefully (`fail-gracefully`)
+### 28. Always Fail Gracefully (`fail-gracefully`)
 
 Any code this pack helps write or set up anticipates its own common failure
 modes rather than letting them surface as an unhandled crash. Concretely:
@@ -1035,7 +1182,7 @@ effort yet — check-in remains the outlet if that changes (see
 
 <a id="default-branch"></a>
 
-### 26. A New Repo's Default Branch Is `main`, Set Once at Install (`default-branch`)
+### 29. A New Repo's Default Branch Is `main`, Set Once at Install (`default-branch`)
 
 Two different situations both land here, and they're handled differently —
 telling them apart is the first step:
@@ -1074,7 +1221,7 @@ start applying to every commit after it.
 
 <a id="blank-blocklist"></a>
 
-### 27. Scrub Blocklist Stays Blank at Install — Never Ask, Never Remind (`blank-blocklist`)
+### 30. Scrub Blocklist Stays Blank at Install — Never Ask, Never Remind (`blank-blocklist`)
 
 BestPractice's own install procedure
 ([process/upstream/INSTALL.md](../upstream/INSTALL.md) §1 step 4) asks the
@@ -1105,7 +1252,7 @@ Don't touch it under this rule.
 
 <a id="content-subdirs"></a>
 
-### 28. Content-Oriented Repos: Group Deliverable Content in a Subdirectory — a Recommendation, Not a Rule (`content-subdirs`)
+### 31. Content-Oriented Repos: Group Deliverable Content in a Subdirectory — a Recommendation, Not a Rule (`content-subdirs`)
 
 Every other rule in this pack is something a session does or checks,
 [`push-back`](#push-back) excepted by its own disclaimer. This one is the
@@ -1167,7 +1314,7 @@ actually decides to do it.
 
 <a id="install"></a>
 
-### 29. Installing This Pack into a Repo (`install`)
+### 32. Installing This Pack into a Repo (`install`)
 
 Do this **after** BestPractice itself is installed
 ([process/upstream/INSTALL.md](../upstream/INSTALL.md) §1) — see
@@ -1258,7 +1405,7 @@ would for a from-scratch install.
 
 <a id="bestpractice-sync"></a>
 
-### 30. A Sync Keeps BestPractice Current, Unattended (`bestpractice-sync`)
+### 33. A Sync Keeps BestPractice Current, Unattended (`bestpractice-sync`)
 
 *([`pack-sync`](#pack-sync) is this rule's sibling — the same shape, pointed
 at the personal pack instead of BestPractice. Change one and check the
@@ -1325,7 +1472,7 @@ one of the two so future unattended runs don't need to be asked for by hand.
 
 <a id="pack-sync"></a>
 
-### 31. A Sync Keeps the Personal Pack Itself Current (`pack-sync`)
+### 34. A Sync Keeps the Personal Pack Itself Current (`pack-sync`)
 
 The pack's own analogue of [`bestpractice-sync`](#bestpractice-sync)'s
 BestPractice sync — same shape, a separate workflow and a separate concern.
@@ -1398,7 +1545,7 @@ merge past a failing check.
 
 <a id="drift-notice"></a>
 
-### 32. A Session-Start Notice Asks About Drift Immediately, Not at the End (`drift-notice`)
+### 35. A Session-Start Notice Asks About Drift Immediately, Not at the End (`drift-notice`)
 
 The scheduled syncs ([`bestpractice-sync`](#bestpractice-sync),
 [`pack-sync`](#pack-sync)) close the gap *between* sessions — they run
@@ -1582,7 +1729,7 @@ for dependent repos to instantiate.
 
 <a id="automation-issues"></a>
 
-### 33. Unattended Automation Reports Its Own Blockers as a GitHub Issue (`automation-issues`)
+### 36. Unattended Automation Reports Its Own Blockers as a GitHub Issue (`automation-issues`)
 
 Any unattended job in this repo — today that means the two scheduled syncs
 ([`bestpractice-sync`](#bestpractice-sync), [`pack-sync`](#pack-sync)), and
