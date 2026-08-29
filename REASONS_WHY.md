@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 19:46:33 (Buenos Aires) by Morgan F, to version 10 -->
+<!-- Last updated: 2026-08-29 14:18:56 (Buenos Aires) by Morgan F, to version 11 -->
 
 # Reasons why
 
@@ -80,7 +80,8 @@ benefits nobody asked for.** Put a model between intent and the action
 weren't the point: speaking an instruction works as well as typing one,
 a half-formed plan gets contradicted before it fires, and the layer
 holds the trace of why, so the rule that catches it next time falls out
-for free (item 4 above).
+for free (item 4 above; [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md)
+rule 16).
 
 See [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) for the theory behind why these
 particular things happen.

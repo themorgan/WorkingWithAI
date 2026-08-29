@@ -136,7 +136,7 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
   headings (like [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) or
   [process/upstream/PRACTICES.md](process/upstream/PRACTICES.md)), or to
   the bare file when it doesn't (like
-  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), whose fifteen
+  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), whose sixteen
   rules are bold paragraph text with no heading to anchor to). Use `≈`,
   not `~`, for "approximately".
   `python3 process/upstream/tools/doc_lint.py` checks these conventions on

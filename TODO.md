@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 13:48:35 (Buenos Aires) by Morgan F, to version 27 -->
+<!-- Last updated: 2026-08-29 14:18:56 (Buenos Aires) by Morgan F, to version 28 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -43,6 +43,40 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   batch, plus [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) promoted out as its own
   document. The three original placeholder sections (prompts, workflows,
   incidents) are still empty and open for the next batch.
+  **Revised 2026-08-29** — four changes to
+  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), all Morgan's.
+  (1) Rule 8 ("hire for taste and verification") rewritten around the
+  trait list rule 15 already names for the permanent hire — drive,
+  relationships, taste — with taste kept as one part of that picture, not
+  the headline; retitled "Hire for drive, relationships, and taste — not
+  production," bracket placeholder kept intact. (2) All sixteen rules cut
+  to roughly two-thirds their prior length on average (151 words/rule →
+  99), matching [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md)'s own bullet
+  register rather than a strict half, since a couple of rules (2, the
+  Ghost; 15, the closing trait list) lose real content below that.
+  (3) Rule 5 retitled "Think in workflows — and in the protocols and
+  rules that fall out of them" and its body extended one sentence:
+  systematizing a repeated task and generalizing a repeated correction
+  into a rule are the same reflex one level apart, both automatic
+  byproducts of doing the work rather than a separate write-up — the
+  same idea [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 5 already names
+  from the AI-systems side. (4) Added a new rule 16, "Treat the AI Chat
+  as the intermediary for the work itself, not a tool you consult on the
+  side" — the partner that pushes back before a plan commits and pushes
+  it into happening once it does; cited alongside rule 4 in
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 1 and alongside item 4 in
+  [REASONS_WHY.md](REASONS_WHY.md) item 9, both of which already argued
+  this point without a rule of their own to point back to. "Fifteen" →
+  "sixteen" updated in this file, [AGENTS.md](AGENTS.md), and
+  [MAP.md](MAP.md); left alone in this file's own dated revision-history
+  prose above (line ~361, describing what was true then) since that's a
+  historical record, not a live claim. Judgment calls made: (1) appended
+  rule 16 at the end rather than inserting it near rule 4 where it fits
+  thematically, since every other rule-number citation across the repo
+  (rules 1, 2, 4, 9, 10, 13, 14, 15) would otherwise need renumbering;
+  (2) kept rule 15's own trait list rather than shortening it below
+  readability, since rule 8 now points back to it and it's the one place
+  the list actually lives.
 - [ ] **Fill in the two open brackets in [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md).**
   Rule 8 wants the name of the sharpest editor Morgan has worked with; rule
   14 wants a real year for "the way you'd have read it in [YEAR]." Both are

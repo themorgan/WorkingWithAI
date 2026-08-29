@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 08:23:20 (Buenos Aires) by Morgan F, to version 20 -->
+<!-- Last updated: 2026-08-29 14:18:56 (Buenos Aires) by Morgan F, to version 21 -->
 
 # Our philosophy
 
@@ -35,7 +35,8 @@ The same five steps repeat every time, in order:
 position, let the model push back, push back on its answer — keep going
 until the exchange settles it, not either side alone. Instructing makes
 a typist; polling for an opinion makes an oracle. Quality is one payoff:
-agreement just hands back your blind spots ([rule 4](COMPANY_BUILDING_RULES.md);
+agreement just hands back your blind spots ([rule 4](COMPANY_BUILDING_RULES.md),
+[rule 16](COMPANY_BUILDING_RULES.md);
 [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s "argue in
 the open").
 

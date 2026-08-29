@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 18:59:19 (Buenos Aires) by Morgan F, to version 7 -->
+<!-- Last updated: 2026-08-29 14:18:56 (Buenos Aires) by Morgan F, to version 8 -->
 
 # Ideas — how to work with AI
 
@@ -15,14 +15,16 @@ and push the sharpened version back in.
 
 ## Frameworks
 
-- **Fifteen rules for building a company around AI** — a full essay, promoted
+- **Sixteen rules for building a company around AI** — a full essay, promoted
   to its own document because it's one sustained argument rather than a
   loose list: [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md). Covers context as the
   scarce capital asset, transcription discipline (the "Ghost"), owning
   every word you pass on, co-creating instead of delegating, building
-  workflows only once work actually repeats, hiring for verification over
-  production, giving agents a human manager over the loop, killing "dark
-  processes," and voice/style as evidence that someone actually thought.
+  workflows and rules alike only once work actually repeats, hiring for
+  drive and relationships more than production, giving agents a human
+  manager over the loop, killing "dark processes," voice/style as
+  evidence that someone actually thought, and treating the AI Chat as the
+  intermediary for the work itself.
 - **Building AI systems for co-creation** — one level down from the above:
   how the AI systems themselves should be configured, built, and run so
   the healthy pattern is the default rather than something a disciplined
