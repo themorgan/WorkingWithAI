@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 9 -->
+<!-- Last updated: 2026-08-29 15:56:29 (Buenos Aires) by Morgan F, to version 10 -->
 
 # AI governance to co-create
 
@@ -21,62 +21,81 @@ ready to be called a rule.*
 
 ## Memory & context
 
-**Persistent, versioned, greppable state should be the default shape, not
-a special case.** Context only behaves like capital
+<a id="durable-state-default"></a>
+
+**1. Persistent, versioned, greppable state should be the default shape,
+not a special case.** Context only behaves like capital
 ([`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset)) if it
 outlives the session that made it — durable, diffable state should beat
 ephemeral chat by default.
 
-**Automatic rule extraction should be a standing capability, not a manual
-habit.** Distill protocols, rules, and preferences straight out of the
-interaction — the guidance, the correction — instead of waiting for
+<a id="automatic-rule-extraction"></a>
+
+**2. Automatic rule extraction should be a standing capability, not a
+manual habit.** Distill protocols, rules, and preferences straight out of
+the interaction — the guidance, the correction — instead of waiting for
 someone to write policy by hand; `process/personal/` runs this
 continuously
 ([`rules-generated-automatically`](OUR_PHILOSOPHY.md#rules-generated-automatically);
 [`writing-stops-competing-with-doing`](REASONS_WHY.md#writing-stops-competing-with-doing)).
 
-**A coldstart test, run like any other check.** Can a fresh session, given
-only the memory store, reconstruct the current state of any live
+<a id="coldstart-test"></a>
+
+**3. A coldstart test, run like any other check.** Can a fresh session,
+given only the memory store, reconstruct the current state of any live
 decision? If not, the transcription
 ([`transcribe-everything`](COMPANY_BUILDING_RULES.md#transcribe-everything))
 failed somewhere specific and locatable.
 
-**Resurfacing should be active, not just searchable.** A system that only
-answers when asked misses what nobody thought to ask — the better version
-notices "you decided X six weeks ago" unprompted, when it's relevant now.
+<a id="active-resurfacing"></a>
+
+**4. Resurfacing should be active, not just searchable.** A system that
+only answers when asked misses what nobody thought to ask — the better
+version notices "you decided X six weeks ago" unprompted, when it's
+relevant now.
 
 ## Interaction design
 
-**Push-back as a configuration switch, not a personality quirk.** Argue a
-genuine counter-case on writing/thinking work, comply on technical
-execution — the switch should track task shape, not sit fixed at the
-system level.
+<a id="push-back-as-config-switch"></a>
 
-**The three reflexes from
+**5. Push-back as a configuration switch, not a personality quirk.**
+Argue a genuine counter-case on writing/thinking work, comply on
+technical execution — the switch should track task shape, not sit fixed
+at the system level.
+
+<a id="three-reflexes-in-system-prompt"></a>
+
+**6. The three reflexes from
 [`three-questions`](COMPANY_BUILDING_RULES.md#three-questions) belong in
 the system prompt, not just a human's habit.** An agent that asks itself
 "have I done this shape before" mid-task, and says so, does more of
 [`think-in-workflows`](COMPANY_BUILDING_RULES.md#think-in-workflows)'s
 work than a person remembering to ask.
 
-**Argue in the open.** An AI reviewer that holds a half-formed position
-and invites disagreement, rather than posting a clean finished-looking
-suggestion, keeps the disagreement itself in the record.
+<a id="argue-in-the-open"></a>
+
+**7. Argue in the open.** An AI reviewer that holds a half-formed
+position and invites disagreement, rather than posting a clean
+finished-looking suggestion, keeps the disagreement itself in the record.
 
 ## Interface
 
-**Chat is the primary interface to every document, not a shortcut around
-them.** The AI constantly creates, tracks, and organizes documents and
-thoughts, and a human can always go read or edit them directly — but most
-human work will be asking the AI questions answered in the docs and
+<a id="chat-is-primary-interface"></a>
+
+**8. Chat is the primary interface to every document, not a shortcut
+around them.** The AI constantly creates, tracks, and organizes documents
+and thoughts, and a human can always go read or edit them directly — but
+most human work will be asking the AI questions answered in the docs and
 brainstorming with the AI on what to do, then guiding the AI to do it,
 not reading, writing, or editing docs directly. The docs are the AI's
 working memory; chat is where the human actually works.
 
 ## Verification
 
-**Confidence should look non-uniform, because it isn't.** If every claim
-reads with the same even prose confidence,
+<a id="non-uniform-confidence"></a>
+
+**9. Confidence should look non-uniform, because it isn't.** If every
+claim reads with the same even prose confidence,
 [`hire-for-drive`](COMPANY_BUILDING_RULES.md#hire-for-drive)'s "find the
 one false paragraph" skill has nothing to grab onto. Flag the weaker
 claims — a hedge, a citation, an assumption — so a verifier has a place
@@ -84,13 +103,17 @@ to start.
 
 ## Workflow & cost sensitivity
 
-**Automatic workflow-candidate detection.** Mine the history itself —
+<a id="automatic-workflow-detection"></a>
+
+**10. Automatic workflow-candidate detection.** Mine the history itself —
 commits, sessions, transcripts — for recurring task shapes instead of
 relying on a human noticing "this is the third time." Turns
 [`think-in-workflows`](COMPANY_BUILDING_RULES.md#think-in-workflows)'s
 judgment call into a standing job.
 
-**Cost-awareness should be situational, inferred by the system, not a
+<a id="cost-awareness-situational"></a>
+
+**11. Cost-awareness should be situational, inferred by the system, not a
 fixed global policy.** Whether cost discipline is even the right posture
 varies by person, project, and moment — sometimes you want
 [`build-five-kill-four`](COMPANY_BUILDING_RULES.md#build-five-kill-four)'s
@@ -100,7 +123,9 @@ intent — rather than applying one policy everywhere.
 
 ## Voice & output
 
-**A structural "sounds like AI" check.**
+<a id="structural-ai-voice-check"></a>
+
+**12. A structural "sounds like AI" check.**
 [`no-ai-voice`](COMPANY_BUILDING_RULES.md#no-ai-voice) names the actual
 fingerprints — the throat-clearing opener, "not just X, it's Y," the
 bolded summary nobody asked for. Those are mechanical enough to check for
@@ -108,12 +133,16 @@ before publishing, rather than relying on a human catching it every time.
 
 ## Surfacing blind spots
 
-**Configure the AI to hunt its own dark processes.** Have it periodically
-list workflows whose only interface is a human inbox — including its own
-— and propose an addressable alternative, per
+<a id="ai-hunts-dark-processes"></a>
+
+**13. Configure the AI to hunt its own dark processes.** Have it
+periodically list workflows whose only interface is a human inbox —
+including its own — and propose an addressable alternative, per
 [`no-dark-processes`](COMPANY_BUILDING_RULES.md#no-dark-processes).
 
-**Rotation and temp workflows get periodic check-ins, not baked-in
+<a id="periodic-checkins-not-expiry"></a>
+
+**14. Rotation and temp workflows get periodic check-ins, not baked-in
 expiry.** A hard sunset date, taken literally from
 [`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human),
 forces an end even when a workflow is going well. Better: a recurring,
@@ -121,14 +150,18 @@ low-cost reminder — "is this still needed, still the right shape?"
 
 ## Keeping the corpus honest
 
-**Contradiction-scanning as a recurring job, not a one-off pass.** A
+<a id="contradiction-scanning-recurring"></a>
+
+**15. Contradiction-scanning as a recurring job, not a one-off pass.** A
 compounding corpus
 ([`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset)'s own
 metaphor) rots quietly if nothing re-reads it for internal disagreement —
 worth standing up as a periodic pass, not something that only runs once
 someone thinks of it.
 
-**Provider-neutrality is a hedge on
+<a id="provider-neutrality-hedge"></a>
+
+**16. Provider-neutrality is a hedge on
 [`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset), not a
 preference.** Context built against one vendor's tooling shouldn't be
 strandable by a provider switch — the capital asset is the context, not

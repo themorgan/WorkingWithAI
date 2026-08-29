@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 12 -->
+<!-- Last updated: 2026-08-29 15:56:29 (Buenos Aires) by Morgan F, to version 13 -->
 
 # Repository instructions — read me first
 
@@ -134,6 +134,7 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
   position** ([`durable-list-anchors`](process/personal/README.md#durable-list-anchors)):
   every rule or item in this repo's own essay lists —
   [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md),
+  [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md),
   [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md), [REASONS_WHY.md](REASONS_WHY.md),
   [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — carries its own
   `<a id="slug"></a>` anchor, cited everywhere as
@@ -386,6 +387,7 @@ never get exported to the public BestPractice repo.
   not just a position number.** A list whose entries hold real content
   likely to be cited elsewhere as "item N"/"rule N" (this repo's own
   [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md),
+  [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md),
   [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md), [REASONS_WHY.md](REASONS_WHY.md),
   [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)) gets an `<a id="slug"></a>`
   anchor per entry, cited everywhere as `` `slug` (file.md#slug) ``, never

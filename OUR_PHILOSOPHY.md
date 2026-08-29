@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 24 -->
+<!-- Last updated: 2026-08-29 15:56:29 (Buenos Aires) by Morgan F, to version 25 -->
 
 # Our philosophy
 
@@ -44,8 +44,7 @@ a typist; polling for an opinion makes an oracle. Quality is one payoff:
 agreement just hands back your blind spots
 ([`ai-chat-as-intermediary`](COMPANY_BUILDING_RULES.md#ai-chat-as-intermediary),
 [`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate);
-[AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s "argue in
-the open").
+[`argue-in-the-open`](AI_GOVERNANCE_TO_COCREATE.md#argue-in-the-open)).
 
 <a id="context-is-capital"></a>
 
@@ -91,8 +90,7 @@ the guidance, the correction, the back-and-forth of the working loop —
 into a reusable rule the next session inherits automatically, no one
 having sat down to write a policy. `process/personal/` is that mechanism
 running continuously, not a document someone drafted once
-([AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s "automatic
-rule extraction";
+([`automatic-rule-extraction`](AI_GOVERNANCE_TO_COCREATE.md#automatic-rule-extraction);
 [practice 20](process/upstream/PRACTICES.md#20-mistakes-become-rules-root-cause-the-miss-then-encode-the-prevention)
 is the same move done by hand).
 
