@@ -1,0 +1,31 @@
+#!/bin/bash
+# Last updated: 2026-08-29 15:07:10 (Buenos Aires) by Morgan F, to version 1
+# Personal-pack adapter: Claude Code Stop hook. Install to
+# .claude/hooks/stop-file-links-check.sh, wired as a second entry in the
+# harness's own settings.json "Stop" array (alongside BestPractice's
+# stop-git-check.sh). Enforces process/personal/README.md#file-mention-links
+# on its one automatable surface: blocks the agent from ending a turn whose
+# own reply mentions a real repo file without linking it. The actual scan
+# lives in process/personal/tools/check_file_mention_links.py, which reads
+# the transcript JSONL Claude Code hands this hook on stdin (as
+# transcript_path) and needs no separate install step of its own — it
+# vendors with the rest of process/personal/.
+set -euo pipefail
+
+# Claude Code re-invokes a Stop hook once after it already blocked a stop
+# this turn, with stop_hook_active=true on stdin — exit clean rather than
+# loop if this hook (or another one) already fired.
+input="$(cat)"
+if command -v jq >/dev/null 2>&1; then
+  stop_hook_active="$(echo "$input" | jq -r '.stop_hook_active // empty' 2>/dev/null || true)"
+  [[ "$stop_hook_active" == "true" ]] && exit 0
+fi
+
+git rev-parse --git-dir >/dev/null 2>&1 || exit 0
+
+repo_root="$(git rev-parse --show-toplevel)"
+checker="$repo_root/process/personal/tools/check_file_mention_links.py"
+[[ -f "$checker" ]] || exit 0
+command -v python3 >/dev/null 2>&1 || exit 0
+
+echo "$input" | python3 "$checker"

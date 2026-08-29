@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 14:55:51 (Buenos Aires) by Morgan F, to version 39 -->
+<!-- Last updated: 2026-08-29 15:48:23 (Buenos Aires) by Morgan F, to version 41 -->
 
 # The Personal Pack
 
@@ -75,45 +75,48 @@ BestPractice, it gets dropped. The rest, in order:
 | 4 | [`commit-author`](#commit-author) | Commit author and email |
 | 5 | [`buenos-aires-dates`](#buenos-aires-dates) | Buenos Aires dates and commit timestamps |
 | 6 | [`file-header`](#file-header) | Last-updated timestamp, who made it, per-file version |
-| 7 | [`generated-file-marker`](#generated-file-marker) | Auto-generated files get a `.generated.<ext>` name and a "don't edit by hand" header instead of `file-header`'s own |
-| 8 | [`session-trailer`](#session-trailer) | The `Session:` trailer on every commit |
+| 7 | [`derived-file-marker`](#derived-file-marker) | A derived file — one regeneration replaces — carries a header naming its source, stamp, recipe, and how to regenerate |
+| 8 | [`doc-recipe`](#doc-recipe) | A file's standing rules with reasons, in `doc-recipes/<name>.recipe.md` — never its history |
+| 9 | [`session-trailer`](#session-trailer) | The `Session:` trailer on every commit |
 | | **How a session decides, argues, and writes** | |
-| 9 | [`small-calls`](#small-calls) | Decide small calls; only stop for big ones |
-| 10 | [`push-back`](#push-back) | Push-back mode, on writing-and-thinking work only |
-| 11 | [`trim-prose`](#trim-prose) | Trim iteratively-edited prose on two triggers |
-| 12 | [`list-item-parity`](#list-item-parity) | Cocreated list items stay comparable in length; default short |
+| 10 | [`small-calls`](#small-calls) | Decide small calls; only stop for big ones |
+| 11 | [`rule-scope-ask`](#rule-scope-ask) | When a proposed rule's scope is ambiguous, ask whether it governs one document or the repo |
+| 12 | [`push-back`](#push-back) | Push-back mode, on writing-and-thinking work only |
+| 13 | [`trim-prose`](#trim-prose) | Trim iteratively-edited prose on two triggers |
+| 14 | [`list-item-parity`](#list-item-parity) | Cocreated list items stay comparable in length; default short |
+| 15 | [`list-restraint`](#list-restraint) | A list only when the content is actually a list, not a formatting crutch |
 | | **How a session lands work** | |
-| 13 | [`go-merge`](#go-merge) | `go`/`merge` as standing merge authorization |
-| 14 | [`todo-gate`](#todo-gate) | TODO.md reconciled before every push |
-| 15 | [`light-check`](#light-check) | The light check, on every commit path |
-| 16 | [`deep-check`](#deep-check) | The deep check: every audit, plus an open-ended coherence review |
-| 17 | [`quiet-checks`](#quiet-checks) | Don't repeat the same backlog explanation every run; "checks passed" is still fine |
-| 18 | [`mirror-into-agents`](#mirror-into-agents) | Agent-relevant instructions mirrored into [AGENTS.md](../../AGENTS.md) |
-| 19 | [`new-rule-placement`](#new-rule-placement) | A new pack rule lands in reading-order position, renumbered and mirrored — never appended |
+| 16 | [`go-merge`](#go-merge) | `go`/`merge` as standing merge authorization |
+| 17 | [`todo-gate`](#todo-gate) | TODO.md reconciled before every push |
+| 18 | [`light-check`](#light-check) | The light check, on every commit path |
+| 19 | [`deep-check`](#deep-check) | The deep check: every audit, plus an open-ended coherence review |
+| 20 | [`quiet-checks`](#quiet-checks) | Don't repeat the same backlog explanation every run; "checks passed" is still fine |
+| 21 | [`mirror-into-agents`](#mirror-into-agents) | Agent-relevant instructions mirrored into [AGENTS.md](../../AGENTS.md) |
+| 22 | [`new-rule-placement`](#new-rule-placement) | A new pack rule lands in reading-order position, renumbered and mirrored — never appended |
 | | **Documentation conventions** | |
-| 20 | [`branch-links`](#branch-links) | A mentioned branch is always a link |
-| 21 | [`rule-links`](#rule-links) | Anything mentioned that has a destination is a link to it — in replies as much as in files |
-| 22 | [`durable-list-anchors`](#durable-list-anchors) | A durable numbered list gets a permanent slug and anchor per entry, not just a position number |
-| 23 | [`brainstorm-citations`](#brainstorm-citations) | A formal document cites another formal document, never a specific point inside an explicit brainstorm document |
-| 24 | [`file-mention-links`](#file-mention-links) | In chat and PR/commit text, every file mention is a clickable link, even inside code |
-| 25 | [`no-stale-counts`](#no-stale-counts) | Don't state a count that will drift; describe it instead |
-| 26 | [`header-caps`](#header-caps) | One header capitalization schema; NY Times headline style by default |
-| 27 | [`sensitive-characterization-scrub`](#sensitive-characterization-scrub) | Scrub, or ask first, before committing a strong/negative/sensitive characterization of a real person |
-| 28 | [`private-repo-scrub`](#private-repo-scrub) | Private repo names scrubbed before anything vendors |
+| 23 | [`branch-links`](#branch-links) | A mentioned branch is always a link |
+| 24 | [`rule-links`](#rule-links) | Anything mentioned that has a destination is a link to it — in replies as much as in files |
+| 25 | [`durable-list-anchors`](#durable-list-anchors) | A durable numbered list gets a permanent slug and anchor per entry, not just a position number |
+| 26 | [`brainstorm-citations`](#brainstorm-citations) | A formal document cites another formal document, never a specific point inside an explicit brainstorm document |
+| 27 | [`file-mention-links`](#file-mention-links) | In chat and PR/commit text, every file mention is a clickable link, even inside code |
+| 28 | [`no-stale-counts`](#no-stale-counts) | Don't state a count that will drift; describe it instead |
+| 29 | [`header-caps`](#header-caps) | One header capitalization schema; NY Times headline style by default |
+| 30 | [`sensitive-characterization-scrub`](#sensitive-characterization-scrub) | Scrub, or ask first, before committing a strong/negative/sensitive characterization of a real person |
+| 31 | [`private-repo-scrub`](#private-repo-scrub) | Private repo names scrubbed before anything vendors |
 | | **Code this pack helps write** | |
-| 29 | [`llm-neutral`](#llm-neutral) | Platform-neutral LLM integrations; OpenRouter assumed |
-| 30 | [`fail-gracefully`](#fail-gracefully) | Always fail gracefully |
+| 32 | [`llm-neutral`](#llm-neutral) | Platform-neutral LLM integrations; OpenRouter assumed |
+| 33 | [`fail-gracefully`](#fail-gracefully) | Always fail gracefully |
 | | **Installing the pack into a repo** | |
-| 31 | [`default-branch`](#default-branch) | A repo's default branch is `main` |
-| 32 | [`blank-blocklist`](#blank-blocklist) | The scrub blocklist stays blank at install |
-| 33 | [`content-subdirs`](#content-subdirs) | Content-oriented repos group their deliverable content |
-| 34 | [`install`](#install) | The install procedure itself |
+| 34 | [`default-branch`](#default-branch) | A repo's default branch is `main` |
+| 35 | [`blank-blocklist`](#blank-blocklist) | The scrub blocklist stays blank at install |
+| 36 | [`content-subdirs`](#content-subdirs) | Content-oriented repos group their deliverable content |
+| 37 | [`install`](#install) | The install procedure itself |
 | | **Keeping the vendored copies current (the meta rules)** | |
-| 35 | [`bestpractice-sync`](#bestpractice-sync) | The scheduled BestPractice sync |
-| 36 | [`pack-sync`](#pack-sync) | Its sibling: the scheduled pack sync |
-| 37 | [`drift-notice`](#drift-notice) | The session-start drift notice, layered on both |
-| 38 | [`fresh-check-escalation`](#fresh-check-escalation) | When the freshness check can't reach the source, say so — then verify directly |
-| 39 | [`automation-issues`](#automation-issues) | Unattended automation reports its own blockers |
+| 38 | [`bestpractice-sync`](#bestpractice-sync) | The scheduled BestPractice sync |
+| 39 | [`pack-sync`](#pack-sync) | Its sibling: the scheduled pack sync |
+| 40 | [`drift-notice`](#drift-notice) | The session-start drift notice, layered on both |
+| 41 | [`fresh-check-escalation`](#fresh-check-escalation) | When the freshness check can't reach the source, say so — then verify directly |
+| 42 | [`automation-issues`](#automation-issues) | Unattended automation reports its own blockers |
 
 <a id="bestpractice-wins"></a>
 
@@ -275,51 +278,204 @@ has no comment syntax, and anything under `process/upstream/` must stay a
 byte-for-byte mirror of the public repo — never hand-edited, header
 included.
 
-<a id="generated-file-marker"></a>
+<a id="derived-file-marker"></a>
 
-### 7. Auto-Generated Files Are Named and Marked So Nobody Edits Them by Hand (`generated-file-marker`)
+### 7. A Derived File Is Marked by a Header Naming What Replaces It (`derived-file-marker`)
 
-A file a script or process produces — regenerated on demand, never meant to
-carry a hand edit of its own — is easy to mistake for a companion file
-someone maintains directly, especially when the two live in the same
-directory under similar names (a full note and a short auto-generated
-summary of it, say). Two mechanisms make the difference visible without
-opening the file, and this rule asks for both together, not either alone:
+**The test is replacement, not authorship.** In a repo where an assistant
+writes every document, "auto-generated" stops distinguishing anything —
+everything is machine-written, so the label picks out no subset. What still
+distinguishes one file from another is whether a fresh pass **replaces the
+file wholesale**:
 
-- **Naming.** An auto-generated file's own name carries `.generated.`
-  immediately before its extension — `SUMMARY.generated.md`,
-  `metrics.generated.csv`, generalized as `.generated.<ext>` for any file
-  type. It shows up in a directory listing, a `git diff`, and a pull
-  request's file list alike, without anyone needing to open the file first.
-  This is a naming convention, not a location one: it doesn't require a
-  dedicated `generated/` subdirectory (a repo already grouping content per
-  [`content-subdirs`](#content-subdirs) can still do that on top), so it
-  works equally well for one generated file sitting beside its hand-authored
-  source and for a whole batch of them.
-- **Header.** A generated file's first line (or its file format's own
-  comment syntax) reads `<!-- AUTO-GENERATED by <script/process> from
-  <source file(s)> — DO NOT EDIT BY HAND. Regenerate with: <command> -->`.
-  This *replaces* [`file-header`](#file-header)'s own "last updated / by
-  NAME / to version N" header on that file, rather than sitting beside it: a
-  generated file has no hand-edit history of its own worth recording — the
-  "who last touched it, when" a human editor would otherwise look for is
-  exactly what this header is instead warning a human editor away from
-  creating. Skip it only where [`file-header`](#file-header) already skips
-  its own header for the same underlying reason — a format with no comment
-  syntax (JSON), or a vendored byte-for-byte mirror under
-  `process/upstream/`.
+- **Derived** — regeneration overwrites the file. An edit made directly to
+  it does not survive the next pass, so the file needs a header saying so
+  and saying where the edit should have gone instead.
+- **Agent-maintained** — an assistant edits the file in place,
+  incrementally, and an edit made to it persists. This is an ordinary source
+  file that happens to have a machine author. It takes
+  [`file-header`](#file-header) like any other and needs nothing from this
+  rule. [MAP.md](../../MAP.md) is this kind: an assistant maintains it, but
+  nothing regenerates it from scratch.
 
-Neither mechanism is retroactive on its own: a file only picks up the suffix
-and header once a real generation process for it is actually stood up, the
-same "only the files actually touched" scope [`file-header`](#file-header)
-already uses for its own header rule — this rule gives the convention a
-name and a form, not a mandate to rename files that aren't actually
-generated by anything yet. Not scoped to Morgan — a repo-hygiene habit, like
-[`content-subdirs`](#content-subdirs), not a fact about one person.
+**The header.** A derived file's first lines (in its own comment syntax)
+carry four fields, in this order, followed by the plain-language routing
+sentence:
+
+```
+<!-- DERIVED from brainstorm/foo.md @ a1b2c3d
+     Recipe: brainstorm/doc-recipes/foo.recipe.md
+     Regenerate with: python3 tools/summarize.py brainstorm/foo.md
+     Edits here are safe to make but not durable — regeneration replaces
+     this file. To make a change stick, edit the source or the recipe. -->
+```
+
+The fields are fixed in name and order so a check can read them later; the
+sentence after them is for a person. This header *replaces*
+[`file-header`](#file-header)'s own "last updated / by NAME / to version N"
+line rather than sitting beside it — a file that gets replaced has no
+per-file edit history worth counting. Skip it only where
+[`file-header`](#file-header) already skips its own header for the same
+reason: a format with no comment syntax (JSON), or a vendored byte-for-byte
+mirror under `process/upstream/`.
+
+**The `@ <sha>` stamp is the load-bearing part**, and it exists because
+generation is usually an LLM call, which is not deterministic: re-run it
+against an unchanged source and the prose comes back different. So no
+comparison of *content* can tell a hand edit from an honest re-run — every
+diff looks alike. Recording the source's commit SHA at generation time
+settles it instead, and gives three checkable conditions: the file changed
+while the stamp did not (something edited it by hand), the source has
+advanced past the stamp (the derived file is stale), or the stamp names a
+commit that does not exist (broken). Where the source is a set of files
+rather than one, the field holds the glob and the stamp holds the repo's
+`HEAD` at generation, and staleness means any path matching the glob changed
+since.
+
+**`Regenerate with:` takes a command or a plain instruction.** Much of what
+this pack helps produce is regenerated by asking an assistant, not by
+running a script, and a field that only accepts a shell command would be
+left blank or filled with a lie. When the value is an instruction rather
+than a command, updating the stamp is part of carrying it out — no script
+will do it.
+
+**Editing a derived file is allowed.** The header warns that the edit is not
+durable; it does not forbid making one. An edit to a derived file is a bug
+report against one of its two inputs, and it gets *routed* before the work
+lands — into the source when the edit adds a fact that belongs upstream,
+into the recipe ([`doc-recipe`](#doc-recipe)) when it states how this file
+should read. What must never happen is the edit being left in place to be
+silently destroyed by the next pass.
+
+**There is deliberately no filename marker.** An earlier form of this rule
+required a `.generated.<ext>` suffix alongside the header. It was dropped:
+the word named the wrong axis, the suffix reads as low-value machine exhaust
+on files that are real deliverables, it broke every existing link on
+adoption, and its "DO NOT EDIT BY HAND" became false the moment editing
+became a legitimate way to raise a change — a rule that states something
+false teaches that this pack's rules are approximations. The cost accepted
+is real: nothing marks a derived file in a directory listing or a pull
+request's file list any more. `git grep -l "DERIVED from"` is the index that
+cannot be wrong, and a derived file also gets flagged in
+[MAP.md](../../MAP.md)'s own tables when it is added, riding on the update
+that adding it already requires rather than a separate list to forget.
+
+Not retroactive: a file picks up this header when a real regeneration
+process for it actually exists, the same "only the files actually touched"
+scope [`file-header`](#file-header) uses. Not scoped to Morgan — a
+repo-hygiene habit, like [`content-subdirs`](#content-subdirs).
+
+<a id="doc-recipe"></a>
+
+### 8. A Recipe Holds a File's Standing Rules, with Reasons — Never Its History (`doc-recipe`)
+
+A recipe is the spec for one file: what the next pass should produce, or how
+this document is always to be written. It is **present tense and rewritable**
+— the rules in force now, not a record of how they got that way. That
+distinction is the whole point. A running log of "we added X, then softened
+it, then changed to Y" only grows, is never pruned, and by its tenth entry
+costs more to read than the document it governs; the same drift this repo
+already caught and reversed once in [TODO.md](../../TODO.md)'s own decision
+records, which had turned into essays. History belongs where history already
+lives — `git log`, and this repo's decision records.
+
+**Placement and name.** Recipes live in a `doc-recipes/` subdirectory beside
+the documents they govern, one directory per content directory, and each
+keeps a `.recipe.md` infix: `book/CHAPTER1.md` is governed by
+`book/doc-recipes/CHAPTER1.recipe.md`. The subdirectory exists because a
+recipe sitting beside its document doubles every listing in the directory a
+reader actually browses — a tax on every read, paid to serve a file opened
+rarely. The infix is kept even though the directory already implies it,
+because editor tabs, search results and `git log --name-only` all show bare
+basenames, and two files both displaying as `CHAPTER1.md` is a daily
+confusion. Use the subdirectory from the first recipe onward rather than
+moving to it at some threshold; a threshold buys a little tidiness now in
+exchange for a migration and a batch of stale references later.
+
+**Format.** A [`file-header`](#file-header) like any other source file, a
+title, a `Source:` line when there is one, and a flat list of rules:
+
+```markdown
+<!-- Last updated: 2026-08-29 15:40:12 (Buenos Aires) by Morgan F, to version 3 -->
+
+# Recipe: SUMMARY.md
+
+Source: NOTES.md
+
+- ≈200 words, three paragraphs.
+- Use the project's full name, not the abbreviation — this circulates unattached.
+- Keep the open questions verbatim — compressing them loses the actual asks. (`a1b2c3d`)
+```
+
+One rule per line. A reason rides on the line as an em-dash clause, never as
+a following sentence — and only where a reader might otherwise delete the
+rule as arbitrary. A parameter needs no reason; the first line above is
+complete as it stands. Where the reason will not compress to a clause, it is
+an origin story rather than a standing reason, and the line cites the
+originating commit's short SHA in parentheses instead of retelling it. Cite
+commits rather than [TODO.md](../../TODO.md) entries: decision records are
+plain bullets with no anchors and get restructured wholesale, while a SHA is
+immutable and its message carries the reasoning anyway. There are no
+headings past the title and no history section — a recipe that can be reread
+in ten seconds gets reread, and structure is what ends that.
+
+**`Source:` is what distinguishes the two kinds**, so there is one mechanism
+rather than two. Present, and the file it names is derived
+([`derived-file-marker`](#derived-file-marker)): regeneration replaces it and
+the recipe says what that pass should produce. Absent, and the recipe holds
+standing constraints on a document written directly — *stays under two
+pages, it's what goes to investors*; *never name the client*; *short
+paragraphs only*. Nothing replaces that document; the rules simply always
+apply. A file can become derived later by gaining a `Source:` line, with no
+rename and no migration.
+
+**When a recipe gets created.** For a derived file, at the same moment as
+the file itself, with no judgment call involved — a derived file cannot be
+produced without instructions, and the recipe is only those instructions
+written down instead of left in a prompt to evaporate. Two lines is a
+complete recipe. For a document written directly, never at creation: a
+recipe starts the *second* time the same constraint is restated about that
+file. Until a constraint has been said twice it is a passing preference and
+belongs in the conversation. Expect a handful of lines on an actively-worked
+document and none at all on one written once and left alone.
+
+**When a recipe gets updated**, on two triggers that are the same event seen
+from either side — something was said that will otherwise need saying again.
+Either the output was corrected (the file was edited, or reported wrong, and
+the correction is not a missing fact belonging in the source), or a
+constraint already stated once was stated again. Two habits keep the file
+from becoming the log it is defined against: adding a line means rereading
+the whole recipe, pruning contradictions and near-duplicates while it is
+short enough to make that cheap; and any line the source or a repo-wide
+convention now covers gets deleted rather than kept as harmless.
+
+**A rule appearing in a second recipe was never per-file.** It moves to the
+repo's own conventions — a style guide, `AGENTS.md` — and is deleted from
+both recipes. This is the mirror of the second-restatement trigger above,
+and it exists because the tempting failure runs the other way: a preference
+gets written into whichever recipe was open at the time, and a year later
+the same rule sits in six recipes, phrased six different ways, drifting.
+That is [`no-duplication`](#no-duplication)'s failure distributed instead of
+centralized, which is worse, because nothing points at it. The check is
+cheapest at the moment the second one is written, with both in view. Where
+it is not clear whether a proposed rule is local or general,
+[`rule-scope-ask`](#rule-scope-ask) governs: ask.
+
+**Editing a recipe never triggers a regeneration.** The spec changes when it
+changes; the output catches up when it is regenerated, on request or once
+the stamp shows the source has moved. Keeping the two independent is what
+makes a recipe edit safe to make mid-thought.
+
+Shared or directory-level default recipes are deliberately not specified
+yet — an override mechanism built before there is visible duplication to
+remove is the same mistake as writing a check before there is anything to
+check. Build one when three recipes demonstrably repeat each other. Not
+scoped to Morgan — a repo-hygiene habit, like
+[`derived-file-marker`](#derived-file-marker).
 
 <a id="session-trailer"></a>
 
-### 8. Commit Messages Link the Session Where the Change Was Planned (`session-trailer`)
+### 9. Commit Messages Link the Session Where the Change Was Planned (`session-trailer`)
 
 A `Session: <url>` trailer on every commit. For Claude Code,
 `https://claude.ai/code/session_<ID>`. For the unattended sync
@@ -331,7 +487,7 @@ link at all, the trailer says so explicitly (`Session: none available
 
 <a id="small-calls"></a>
 
-### 9. Decide Small Calls Yourself; Only Stop for Big Ones (`small-calls`)
+### 10. Decide Small Calls Yourself; Only Stop for Big Ones (`small-calls`)
 
 Default to continuing, not asking. When a judgment call is needed to keep
 the work moving — filling in a default, picking between two reasonable
@@ -360,9 +516,44 @@ when genuinely unsure" default toward Morgan's own risk tolerance: most
 calls in day-to-day work here (a wording choice, which of two valid layouts
 to use, a template's exact phrasing) are small enough to just make.
 
+<a id="rule-scope-ask"></a>
+
+### 11. When a Proposed Rule's Scope Is Ambiguous, Ask Which Layer It Belongs To (`rule-scope-ask`)
+
+[`small-calls`](#small-calls) says to decide and keep moving, and by its own
+test — how hard the call is to undo — filing a newly proposed rule at the
+wrong layer looks cheap. This is the carve-out, because the cost that
+matters here is not undoing the mistake but **noticing** it. Both misfilings
+are silent and surface only long after the damage: a rule that is really
+general, filed onto one document, ends up restated across several recipes in
+several phrasings, drifting, with nothing pointing at it
+([`doc-recipe`](#doc-recipe)); a rule that is really local, filed as a repo
+convention, quietly constrains every document in the repo and is never
+connected back to the one file it was meant for.
+
+So when a rule is proposed and it is genuinely unclear whether it governs
+one document or the whole repo, ask — once, in the moment. The ask is nearly
+free precisely then, while the rule is still in front of the person
+proposing it; the same question three weeks later costs them a full reload
+of the context that produced it.
+
+**The test is whether the rule's own text would still make sense applied to
+a different document.** *"Only short paragraphs"* would, so its scope is
+ambiguous and worth asking about. *"Keep the Series A section under one
+page"* names this document's own structure and is local on its face. *"Use
+em dashes, not semicolons"* is plainly a house style rule and goes to the
+repo's conventions. Only the first case warrants stopping; asking on all
+three trains the person to wave the question through.
+
+Ask with a guess and the reason for it, so confirming costs a word rather
+than a paragraph — *"short paragraphs: this document only, or everywhere? I
+would guess everywhere, since it describes how I write rather than what this
+document contains."* Not scoped to Morgan — a habit about how rules get
+filed, like [`new-rule-placement`](#new-rule-placement).
+
 <a id="push-back"></a>
 
-### 10. Push-Back Mode: Argue, Don't Just Comply, on Writing-and-Thinking Work (`push-back`)
+### 12. Push-Back Mode: Argue, Don't Just Comply, on Writing-and-Thinking Work (`push-back`)
 
 [`small-calls`](#small-calls) governs *judgment calls*: filling in a
 default, picking between two fine implementations, resolving an ambiguity
@@ -420,7 +611,7 @@ so if the calibration drifts.
 
 <a id="trim-prose"></a>
 
-### 11. Trim Iteratively-Edited Prose on Two State-Free Triggers, Not a Running Count (`trim-prose`)
+### 13. Trim Iteratively-Edited Prose on Two State-Free Triggers, Not a Running Count (`trim-prose`)
 
 Prose that gets tweaked repeatedly in the same conversation — a paragraph
 revised, then revised again — tends to only grow: each pass adds a clause or
@@ -456,7 +647,7 @@ of who is driving the session.
 
 <a id="list-item-parity"></a>
 
-### 12. Cocreated List Items Stay Roughly Comparable in Length — Default Short (`list-item-parity`)
+### 14. Cocreated List Items Stay Roughly Comparable in Length — Default Short (`list-item-parity`)
 
 When cowriting a list, or a document with several short-ish sections in a
 row that function like one (each entry covering comparable ground — a set
@@ -496,9 +687,54 @@ a writing-quality habit that applies to cowritten prose and documents, not to
 code, scripts, or configuration. Not scoped to Morgan — it applies regardless
 of who is driving the session.
 
+<a id="list-restraint"></a>
+
+### 15. Use a List Only When the Content Is Actually a List — Not as a Formatting Crutch (`list-restraint`)
+
+A bulleted or numbered list is sometimes reached for not because the content
+is a set of discrete, parallel items, but because a list *looks* more
+organized or thorough than the same content written as connected sentences.
+That's the specific pattern this rule targets — a list used as a reflex,
+not because the content calls for one.
+
+**Still an entirely ordinary list — never banned by this rule:** a genuine
+enumeration of discrete, parallel items a reader will scan or reference
+individually — ingredients, steps in a procedure, a set of options, a set of
+findings, a checklist, this pack's own rule table. If someone asks "what are
+the five ingredients for an omelette?", the answer is a five-item list;
+writing it as a paragraph instead would be the worse choice, not the more
+natural one. This rule has no argument with lists like that.
+
+**What it actually catches:** taking content that has connective logic —
+"because," "so," "which means," one point building on the last — and
+reformatting it as bullet fragments that erase those connections, usually
+because it reads as more put-together that way. The tell: reading the
+bullets back as plain sentences joined by ordinary connectives loses nothing
+and reads more naturally; reformatting the connected prose as bullets loses
+the reasoning that tied the points together, leaving a row of fragments that
+merely sit next to each other.
+
+**This is a judgment call, not a mechanical trigger — the same limitation
+[`push-back`](#push-back) states plainly about itself.** Nothing here can
+tell, from the outside, a genuine five-item enumeration from a three-sentence
+argument chopped into three bullets to look thorough; both are "a list" on
+the page. The question to ask: does this content name several parallel,
+roughly interchangeable items the reader will scan or reference individually
+(a list), or does it make one continuous point with reasoning tying it
+together (prose)? When genuinely unsure, prose is the safer default — a
+paragraph that could have been a list costs the reader little, while a list
+that erases an argument's reasoning costs more.
+
+Scoped the same as [`push-back`](#push-back), [`trim-prose`](#trim-prose),
+and [`list-item-parity`](#list-item-parity): prose meant to be read — chat
+replies, docs, memos, brainstorm entries — not code, scripts, configuration,
+or a structured data format (a JSON array is data, not this). Not scoped to
+Morgan — a writing-quality habit, not a fact about one person, so it applies
+regardless of who is driving the session.
+
 <a id="go-merge"></a>
 
-### 13. "go" or "merge" as a Standalone Final Sentence Authorizes Commit + Merge (`go-merge`)
+### 16. "go" or "merge" as a Standalone Final Sentence Authorizes Commit + Merge (`go-merge`)
 
 If Morgan's message, at a point where you've said you're ready to commit (or
 ready to commit and merge), ends with `go` or `merge` standing alone as its
@@ -525,7 +761,7 @@ anyone else driving a change in a repo this pack is installed into.
 
 <a id="todo-gate"></a>
 
-### 14. TODO.md Gets Reconciled Before Every Push (`todo-gate`)
+### 17. TODO.md Gets Reconciled Before Every Push (`todo-gate`)
 
 Woven into the installed [AGENTS.md](../../AGENTS.md)'s merge runbook as
 step 0c, right after BestPractice's own capture gate (0) and export gate
@@ -538,7 +774,7 @@ that" afterthought.
 
 <a id="light-check"></a>
 
-### 15. A Light Check Runs on Every Commit Path (`light-check`)
+### 18. A Light Check Runs on Every Commit Path (`light-check`)
 
 [tools/light_check.py](tools/light_check.py) — merge-conflict markers,
 invalid JSON/YAML/Python syntax, secret-shaped strings (an AWS-style key ID,
@@ -572,7 +808,7 @@ through [`install`](#install) gets caught the moment `light-check.yml` runs
 
 <a id="deep-check"></a>
 
-### 16. The Deep Check: Every Audit, Plus an Open-Ended Coherence Review (`deep-check`)
+### 19. The Deep Check: Every Audit, Plus an Open-Ended Coherence Review (`deep-check`)
 
 BestPractice practice 44 asks every repo for two named check levels, and
 [GLOSSARY.md](../../GLOSSARY.md) names this pack's pair: the **light check**
@@ -677,7 +913,7 @@ commit instead.
 
 <a id="quiet-checks"></a>
 
-### 17. Don't Repeat the Same Backlog Explanation Every Run (`quiet-checks`)
+### 20. Don't Repeat the Same Backlog Explanation Every Run (`quiet-checks`)
 
 The merge runbook's step 3 ([AGENTS.md](../../AGENTS.md)) runs the deep
 check's mechanical half — [doc_lint.py](../upstream/tools/doc_lint.py),
@@ -722,7 +958,7 @@ communicates, not a fact about one person.
 
 <a id="mirror-into-agents"></a>
 
-### 18. Agent-Relevant Instructions in a README or Other Key File Also Go in AGENTS.md (`mirror-into-agents`)
+### 21. Agent-Relevant Instructions in a README or Other Key File Also Go in AGENTS.md (`mirror-into-agents`)
 
 `AGENTS.md` is the file a session is told to read first (BestPractice's own
 entry-point convention); a README, a `CONTRIBUTING.md`, a
@@ -751,7 +987,7 @@ is exactly the kind of drift that gate exists to catch.
 
 <a id="new-rule-placement"></a>
 
-### 19. A New Pack Rule Lands in Reading-Order Position, Never Appended (`new-rule-placement`)
+### 22. A New Pack Rule Lands in Reading-Order Position, Never Appended (`new-rule-placement`)
 
 "The Rules, and Why" (above) already states the design intent — related
 rules sit together, everyday rules before rare ones, and a new rule goes
@@ -805,7 +1041,7 @@ Not scoped to Morgan — a documentation-quality habit, like
 
 <a id="branch-links"></a>
 
-### 20. A Mentioned Branch Is Always a Link (`branch-links`)
+### 23. A Mentioned Branch Is Always a Link (`branch-links`)
 
 BestPractice's own practice 11 (doc references are links) covers files at
 the repo's current tree — a relative markdown link, not a bare backticked
@@ -830,7 +1066,7 @@ applies regardless of who is driving the session.
 
 <a id="rule-links"></a>
 
-### 21. A Mentioned Rule, Item, or Destination Is Always a Link (`rule-links`)
+### 24. A Mentioned Rule, Item, or Destination Is Always a Link (`rule-links`)
 
 [`branch-links`](#branch-links) closed the gap practice 11 (doc references
 are links) leaves for a git branch — a ref, not a path, so a relative
@@ -910,7 +1146,7 @@ driving the session.
 
 <a id="durable-list-anchors"></a>
 
-### 22. A Durable Numbered List Gets a Permanent Slug and Anchor per Entry, Not Just a Position Number (`durable-list-anchors`)
+### 25. A Durable Numbered List Gets a Permanent Slug and Anchor per Entry, Not Just a Position Number (`durable-list-anchors`)
 
 [`rule-links`](#rule-links) already draws this line for the pack's own
 rules: cite by permanent slug — `` [`slug`](process/personal/README.md#slug) `` —
@@ -988,7 +1224,7 @@ the session or which repo the pack is installed into.
 
 <a id="brainstorm-citations"></a>
 
-### 23. A Formal Document Cites Another Formal Document, Never a Specific Point Inside the Brainstorm (`brainstorm-citations`)
+### 26. A Formal Document Cites Another Formal Document, Never a Specific Point Inside the Brainstorm (`brainstorm-citations`)
 
 Some repos keep an explicit brainstorm document — a running, loosely
 organized dump of raw ideas, dropped in as they occur, explicitly not
@@ -1031,7 +1267,7 @@ the session in a repo that keeps a brainstorm document of this kind.
 
 <a id="file-mention-links"></a>
 
-### 24. In Chat and PR/Commit Text, Every File Mention Is a Clickable Link — Even Inside Code (`file-mention-links`)
+### 27. In Chat and PR/Commit Text, Every File Mention Is a Clickable Link — Even Inside Code (`file-mention-links`)
 
 [`rule-links`](#rule-links) already says a file gets linked "the first time
 it's mentioned," using a relative markdown link, and explicitly leaves a
@@ -1064,18 +1300,50 @@ defaults stand unchanged:**
   merged or the reply isn't tied to a particular PR — the same choice the
   "Files touched" footer already makes for its own two links (practice 12).
 
-Not mechanically enforced — a chat reply and a PR/commit body both live
-outside anything [`light-check`](#light-check) or [`deep-check`](#deep-check)
-can scan, so this rides on session habit alone, the same as
-[`quiet-checks`](#quiet-checks). Found via a direct ask: a member wanted to
-click whichever file mention was in front of him — in a reply or in a PR
-body — without hunting for wherever the first link happened to land, or
-leaving the page to go find the file by hand. Not scoped to Morgan — a
-documentation habit, like [`branch-links`](#branch-links).
+**Mechanically enforced on the chat-reply surface**, via a Claude Code Stop
+hook — the harness's own turn-ending checkpoint, the same mechanism the
+`claude-code-stop-hook` entry in [process/manifest.json](../manifest.json)
+already uses for its git-hygiene check. A second hook,
+[.claude/hooks/stop-file-links-check.sh](../../.claude/hooks/stop-file-links-check.sh)
+(wired as a second entry in [.claude/settings.json](../../.claude/settings.json)'s
+own `Stop` array), delegates to
+[process/personal/tools/check_file_mention_links.py](tools/check_file_mention_links.py):
+before a turn is allowed to end, it reads the closing reply that's about to
+be sent — the final contiguous run of text, stopping the moment it walks
+back into a tool call — and looks for a mention of a real tracked file's
+basename that isn't already inside an existing markdown link, blocking the
+stop (forcing a follow-up correction) if it finds one. Deliberately checks
+only that final run, not the whole turn: progress narration written between
+tool calls earlier in the same turn was never meant as a citable deliverable
+the way the closing reply is, and an earlier version of the hook that
+checked the whole turn confirmed the difference in practice — it flagged
+routine "now let's update X" narration instead of anything in the actual
+summary the first time it ran for real. Only mentions outside fenced code
+blocks count, since a markdown link can't render inside one anyway; a
+mention inside a single-backtick code span still counts, per this rule's own
+"even inside code."
+
+This closes the gap the session-habit approach kept missing in practice —
+raised twice by the same direct ask this rule was originally written for,
+which is exactly the failure [`quiet-checks`](#quiet-checks)'s own "a
+promise to remember" pattern predicts. **It only reaches the chat-reply
+surface.** A PR description or commit message still rides on session habit,
+same as before — neither is text a Claude Code hook can see before it's
+posted, so there's no equivalent checkpoint to hook into yet. The check is a
+heuristic, not a perfect reader of intent: it can occasionally flag a
+mention that was never meant as a reference to this repo's own file. A false
+positive is cheap to clear — the fix is the same either way, adding a link —
+so the occasional unnecessary one is an acceptable cost for closing a real,
+repeatedly-missed gap. Harness-specific, like the `claude-code-stop-hook`
+entry in [process/manifest.json](../manifest.json): only a harness with a
+blocking turn-end hook can enforce this mechanically; a harness without one
+falls back to session habit, the same as every surface did before this.
+Not scoped to Morgan — a documentation habit, like
+[`branch-links`](#branch-links).
 
 <a id="no-stale-counts"></a>
 
-### 25. Don't State a Count That Will Drift — Describe It Instead (`no-stale-counts`)
+### 28. Don't State a Count That Will Drift — Describe It Instead (`no-stale-counts`)
 
 Prose that cites an exact count of something that changes over time — how
 many numbered rules this pack has, how many warnings a lint tool currently
@@ -1116,7 +1384,7 @@ habit, like [`trim-prose`](#trim-prose).
 
 <a id="header-caps"></a>
 
-### 26. Header Capitalization: Pick One Consistent Schema — NY Times Headline Style Is the Pack's Default (`header-caps`)
+### 29. Header Capitalization: Pick One Consistent Schema — NY Times Headline Style Is the Pack's Default (`header-caps`)
 
 [AGENTS.md](../../AGENTS.md)'s own Conventions section already states the
 general rule for *this* repo: headers and subheaders at the same rank must
@@ -1154,7 +1422,7 @@ regardless of who is driving the session in a given dependent repo.
 
 <a id="sensitive-characterization-scrub"></a>
 
-### 27. Scrub Sensitive Characterizations of Real People, Unless Told Otherwise (`sensitive-characterization-scrub`)
+### 30. Scrub Sensitive Characterizations of Real People, Unless Told Otherwise (`sensitive-characterization-scrub`)
 
 Assume whoever is driving a session here talks about real people — friends,
 colleagues, prospective partners, anyone the work touches — as candidly and
@@ -1202,7 +1470,7 @@ installed into, characterizing whoever they're discussing.
 
 <a id="private-repo-scrub"></a>
 
-### 28. Private Repo Names and Specifics Get Scrubbed Before Anything Vendors or Is Shared (`private-repo-scrub`)
+### 31. Private Repo Names and Specifics Get Scrubbed Before Anything Vendors or Is Shared (`private-repo-scrub`)
 
 Two privacy boundaries look alike but aren't the same one.
 [`blank-blocklist`](#blank-blocklist)'s
@@ -1269,7 +1537,7 @@ regardless of who is drafting content in this repo.
 
 <a id="llm-neutral"></a>
 
-### 29. LLM Integrations Stay Platform-Neutral; OpenRouter Is the Default Assumption (`llm-neutral`)
+### 32. LLM Integrations Stay Platform-Neutral; OpenRouter Is the Default Assumption (`llm-neutral`)
 
 Whenever a system this pack helps set up needs to talk to an LLM, build it
 against a provider-neutral interface — model name, API key/token, and base
@@ -1290,7 +1558,7 @@ reason a piece of code built against this rule breaks.
 
 <a id="fail-gracefully"></a>
 
-### 30. Always Fail Gracefully (`fail-gracefully`)
+### 33. Always Fail Gracefully (`fail-gracefully`)
 
 Any code this pack helps write or set up anticipates its own common failure
 modes rather than letting them surface as an unhandled crash. Concretely:
@@ -1311,7 +1579,7 @@ effort yet — check-in remains the outlet if that changes (see
 
 <a id="default-branch"></a>
 
-### 31. A New Repo's Default Branch Is `main`, Set Once at Install (`default-branch`)
+### 34. A New Repo's Default Branch Is `main`, Set Once at Install (`default-branch`)
 
 Two different situations both land here, and they're handled differently —
 telling them apart is the first step:
@@ -1350,7 +1618,7 @@ start applying to every commit after it.
 
 <a id="blank-blocklist"></a>
 
-### 32. Scrub Blocklist Stays Blank at Install — Never Ask, Never Remind (`blank-blocklist`)
+### 35. Scrub Blocklist Stays Blank at Install — Never Ask, Never Remind (`blank-blocklist`)
 
 BestPractice's own install procedure
 ([process/upstream/INSTALL.md](../upstream/INSTALL.md) §1 step 4) asks the
@@ -1381,7 +1649,7 @@ Don't touch it under this rule.
 
 <a id="content-subdirs"></a>
 
-### 33. Content-Oriented Repos: Group Deliverable Content in a Subdirectory — a Recommendation, Not a Rule (`content-subdirs`)
+### 36. Content-Oriented Repos: Group Deliverable Content in a Subdirectory — a Recommendation, Not a Rule (`content-subdirs`)
 
 Every other rule in this pack is something a session does or checks,
 [`push-back`](#push-back) excepted by its own disclaimer. This one is the
@@ -1443,7 +1711,7 @@ actually decides to do it.
 
 <a id="install"></a>
 
-### 34. Installing This Pack into a Repo (`install`)
+### 37. Installing This Pack into a Repo (`install`)
 
 Do this **after** BestPractice itself is installed
 ([process/upstream/INSTALL.md](../upstream/INSTALL.md) §1) — see
@@ -1534,7 +1802,7 @@ would for a from-scratch install.
 
 <a id="bestpractice-sync"></a>
 
-### 35. A Sync Keeps BestPractice Current, Unattended (`bestpractice-sync`)
+### 38. A Sync Keeps BestPractice Current, Unattended (`bestpractice-sync`)
 
 *([`pack-sync`](#pack-sync) is this rule's sibling — the same shape, pointed
 at the personal pack instead of BestPractice. Change one and check the
@@ -1601,7 +1869,7 @@ one of the two so future unattended runs don't need to be asked for by hand.
 
 <a id="pack-sync"></a>
 
-### 36. A Sync Keeps the Personal Pack Itself Current (`pack-sync`)
+### 39. A Sync Keeps the Personal Pack Itself Current (`pack-sync`)
 
 The pack's own analogue of [`bestpractice-sync`](#bestpractice-sync)'s
 BestPractice sync — same shape, a separate workflow and a separate concern.
@@ -1674,7 +1942,7 @@ merge past a failing check.
 
 <a id="drift-notice"></a>
 
-### 37. A Session-Start Notice Asks About Drift Immediately, Not at the End (`drift-notice`)
+### 40. A Session-Start Notice Asks About Drift Immediately, Not at the End (`drift-notice`)
 
 The scheduled syncs ([`bestpractice-sync`](#bestpractice-sync),
 [`pack-sync`](#pack-sync)) close the gap *between* sessions — they run
@@ -1858,7 +2126,7 @@ for dependent repos to instantiate.
 
 <a id="fresh-check-escalation"></a>
 
-### 38. When the Freshness Check Can't Reach the Source, Say So — Then Verify Directly (`fresh-check-escalation`)
+### 41. When the Freshness Check Can't Reach the Source, Say So — Then Verify Directly (`fresh-check-escalation`)
 
 [`drift-notice`](#drift-notice)'s personal-pack half runs one `git ls-remote`
 against RepoPersonalPreferences (private) at every session start, and was
@@ -1903,7 +2171,8 @@ process/personal/tools/pack_sync.py status <clone>` against the manifest's
 recorded `upstream.commit`, instead of trusting silence. That is exactly how
 the gap this rule exists for got closed the one time it was hit
 (a dependent repo, 2026-08-29 — the same sync that added
-[`generated-file-marker`](#generated-file-marker),
+[`derived-file-marker`](#derived-file-marker) (then named
+`generated-file-marker`),
 [`file-mention-links`](#file-mention-links), and
 [`sensitive-characterization-scrub`](#sensitive-characterization-scrub) to
 that repo). If no such mechanism exists in that environment either, say so
@@ -1918,7 +2187,7 @@ repo for it to ever fail to reach.
 
 <a id="automation-issues"></a>
 
-### 39. Unattended Automation Reports Its Own Blockers as a GitHub Issue (`automation-issues`)
+### 42. Unattended Automation Reports Its Own Blockers as a GitHub Issue (`automation-issues`)
 
 Any unattended job in this repo — today that means the two scheduled syncs
 ([`bestpractice-sync`](#bestpractice-sync), [`pack-sync`](#pack-sync)), and

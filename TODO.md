@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 16:04:51 (Buenos Aires) by Morgan F, to version 33 -->
+<!-- Last updated: 2026-08-29 16:12:25 (Buenos Aires) by Morgan F, to version 34 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -27,7 +27,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 
 - [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (1e06a5349a43; your base d436be779be1) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via WorkingWithAI RPP sync, this session
 - [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (570f86c520fc; your base b10c163a96dd) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via RPP sync: durable-list-anchors + brainstorm-citations, this session
-- [ ] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (b54461560435; your base 9793691dcecb) — review at the next session (process/personal/README.md#drift-notice).
+- [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (b54461560435; your base 9793691dcecb) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via RPP sync: derived-file-marker + doc-recipe + rule-scope-ask + list-restraint, this session
 
 ## Recurring
 
@@ -139,6 +139,50 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Take the pending personal-pack update (RepoPersonalPreferences @
+  b5446156).** Decided 2026-08-29 → done. Ran
+  `pack_sync.py update ../RepoPersonalPreferences --force` — the only
+  local drift `update` found was this repo's own documented
+  `PENDING_HEADING` sentence-case adaptation in
+  `process/personal/tools/pack_sync.py` (expected; re-applied by hand
+  right after, per the note already on that line). Mirrored
+  `process/personal/README.md`,
+  `process/personal/templates/AGENTS_ADDENDUM.md.template`, and
+  `process/personal/tools/pack_sync.py` verbatim (plus two new files:
+  `process/personal/tools/check_file_mention_links.py` and
+  `process/personal/templates/claude-code/hooks/stop-file-links-check.sh.template`);
+  re-wove [AGENTS.md](AGENTS.md)'s "Personal setup rules" section to
+  match — replaced `generated-file-marker` with `derived-file-marker`,
+  added its new `doc-recipe` sibling, inserted `rule-scope-ask` after
+  `small-calls`, and `list-restraint` after `list-item-parity`, all in
+  reading-order position. [process/manifest_personal.json](process/manifest_personal.json)
+  records the new upstream commit and the re-weave. Judgment call made:
+  the template's `file-mention-links` bullet also grew a new
+  "mechanically enforced" paragraph (a Claude Code Stop hook) in this
+  same upstream update — left unwoven, since this repo never adopted
+  `file-mention-links` at all in any earlier sync (a pre-existing gap,
+  not something this update introduced) and installing it means more
+  than re-weaving text: copying the hook script into `.claude/hooks/`
+  and wiring `.claude/settings.json`. Tracked as its own item below
+  rather than folded into this one.
+
+- [ ] **Adopt `file-mention-links` (currently missing entirely from this
+  repo).** [AGENTS.md](AGENTS.md) has never carried this pack rule —
+  every mention of a repo file in chat/PR/commit text becomes a
+  clickable absolute GitHub URL — even though
+  [process/personal/README.md](process/personal/README.md#file-mention-links)
+  has documented it for a while and RepoPersonalPreferences now
+  mechanically enforces it on itself via a Claude Code Stop hook
+  (`process/personal/tools/check_file_mention_links.py`, wired through
+  `process/personal/templates/claude-code/hooks/stop-file-links-check.sh.template`).
+  Installing it here means: weave the rule's text into
+  [AGENTS.md](AGENTS.md) in reading-order position (right after
+  `rule-links`, its parent rule), copy the hook template into
+  `.claude/hooks/stop-file-links-check.sh`, and wire it into
+  `.claude/settings.json`'s `Stop` hooks. Found while re-weaving the
+  2026-08-29 personal-pack sync above — deliberately not done in that
+  same pass, since it's an install step, not a text mirror.
 
 - [x] **Close the gap [`hire-for-drive`](COMPANY_BUILDING_RULES.md#hire-for-drive)
   left out of the "what humans are good at" consolidation, and check the
