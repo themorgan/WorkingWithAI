@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 16:04:51 (Buenos Aires) by Morgan F, to version 8 -->
+<!-- Last updated: 2026-08-29 16:07:31 (Buenos Aires) by Morgan F, to version 9 -->
 
 # Rules for building a company around AI
 
@@ -110,16 +110,17 @@ makes them notice the work they'd quietly stopped proposing years ago.
 
 <a id="think-in-workflows"></a>
 
-**7. Think in workflows — and in the protocols and rules that fall out of them.**
+**7. Think in patterns, workflows, and protocols.**
 
 Stopping to systematize a one-off is procrastination in a nice suit. First
 time, do it by hand, with the model. Third time you've seen the shape,
-stop — that repetition just handed you the spec for free. The same
-reflex runs one level up: every correction and judgment call is itself a
-repeating shape, so capture it as a rule the moment it does, automatically,
-a byproduct of the work rather than a separate write-up. Never
-systematize and you stay fast forever; systematize everything, workflow
-and rule alike, and you ship nothing, beautifully diagrammed.
+stop — that's a pattern, and it just handed you the spec for a workflow
+for free. A protocol or rule is a different animal: it doesn't need a
+repeating task to justify it, just a single correction or judgment call
+worth remembering, captured the moment it happens rather than written up
+separately. Never systematize and you stay fast forever; systematize
+everything, pattern and protocol alike, and you ship nothing, beautifully
+diagrammed.
 
 ## Shipping and process
 
