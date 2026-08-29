@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 31 -->
+<!-- Last updated: 2026-08-29 15:56:29 (Buenos Aires) by Morgan F, to version 32 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -114,15 +114,17 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   Now also item 7 of [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — this line
   and that item are the same recurring job, described from two sides.
 - [ ] **Design real infrastructure for active/proactive resurfacing** —
-  "you decided X six weeks ago, unprompted" (AI_GOVERNANCE_TO_COCREATE.md's
-  "Memory & context", [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)'s "Not yet
-  ready" list). Needs something that mines and ranks prior decisions rather
+  [`active-resurfacing`](AI_GOVERNANCE_TO_COCREATE.md#active-resurfacing)'s
+  "you decided X six weeks ago, unprompted" test,
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)'s "Not yet
+  ready" list. Needs something that mines and ranks prior decisions rather
   than only answering when asked; no design proposed yet. **analysis.**
 - [ ] **Design automatic workflow-candidate detection** — mining
   commit/session history for a recurring task shape, instead of relying
   solely on [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) item 4's
   human-triggered reflex. **analysis.**
-- [ ] **Work out situational, inferred cost-awareness** — AI_GOVERNANCE_TO_COCREATE.md
+- [ ] **Work out situational, inferred cost-awareness** —
+  [`cost-awareness-situational`](AI_GOVERNANCE_TO_COCREATE.md#cost-awareness-situational)
   records that a fixed "surface spend per outcome" policy was already
   proposed and rejected; the open half is inferring *which* posture
   applies (explicit budget mention, project stage, stated intent) rather
@@ -137,6 +139,58 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Give [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)
+  the same permanent slugs
+  [`durable-list-anchors`](process/personal/README.md#durable-list-anchors)
+  already requires of its sibling essay lists.** Decided 2026-08-29 →
+  done, doc. Morgan noticed [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 1
+  cited AI_GOVERNANCE_TO_COCREATE.md's "argue in the open" by quoted
+  phrase instead of a slug link, and asked whether
+  AI_GOVERNANCE_TO_COCREATE.md should get the same `<a id="slug"></a>`
+  treatment as [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) —
+  it was the one essay list
+  [`durable-list-anchors`](process/personal/README.md#durable-list-anchors)'s
+  own [AGENTS.md](AGENTS.md) bullets had left off their named list, an
+  oversight rather than a deliberate exemption. All sixteen items across
+  its eight thematic sections now carry a running number and a permanent
+  slug, matching [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md)'s
+  format exactly. [AGENTS.md](AGENTS.md)'s two `durable-list-anchors`
+  bullets now name it alongside the other four lists. Every
+  quoted-phrase citation of one of its ideas elsewhere in the repo was
+  converted to the slug form:
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) items 1 and 5,
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)'s "Not yet ready" list,
+  and two open items in this file. Also checked
+  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) itself for the
+  same problem, per Morgan's follow-up question — every existing
+  reference to it already uses the slug form, so nothing needed changing
+  there. Companion change: RepoPersonalPreferences'
+  [GLOSSARY.md](https://github.com/themorgan/RepoPersonalPreferences/blob/main/GLOSSARY.md)
+  picked up a general **slug** entry, since its existing "rule slug"
+  entry only covered the personal pack's own rules, not this pattern
+  generalized to any repo's durable lists.
+  **Judgment calls made:** (1) picked one slug per item from its own
+  wording rather than asking Morgan to name all sixteen
+  (`durable-state-default`, `automatic-rule-extraction`,
+  `coldstart-test`, `active-resurfacing`, `push-back-as-config-switch`,
+  `three-reflexes-in-system-prompt`, `argue-in-the-open`,
+  `chat-is-primary-interface`, `non-uniform-confidence`,
+  `automatic-workflow-detection`, `cost-awareness-situational`,
+  `structural-ai-voice-check`, `ai-hunts-dark-processes`,
+  `periodic-checkins-not-expiry`, `contradiction-scanning-recurring`,
+  `provider-neutrality-hedge`); (2) reused the literal slug
+  `argue-in-the-open` even though
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) already has its own
+  anchor of that name for the trial-rule version of the same idea — the
+  two are the same concept at two pipeline stages, and every citation's
+  file name already disambiguates which one it points to; (3) numbered
+  continuously 1–16 straight through the eight thematic headings rather
+  than restarting per section, matching how
+  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md)'s own four
+  sections number straight through; (4) left the "Set aside this
+  thread" closing note at the bottom of the file unslugged — it's
+  explicitly marked as dropped material, not part of the list.
 
 - [x] **Cite every durable numbered list by permanent slug, not position —
   [`durable-list-anchors`](process/personal/README.md#durable-list-anchors).**

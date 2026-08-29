@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 10 -->
+<!-- Last updated: 2026-08-29 15:56:29 (Buenos Aires) by Morgan F, to version 11 -->
 
 # Rules now testing — the current state of what we're trying
 
@@ -123,10 +123,12 @@ against. Tracked instead as open items in [TODO.md](TODO.md):
   history for recurring task shapes, rather than relying on
   [`three-reflexes-out-loud`](#three-reflexes-out-loud)'s human-triggered
   reflex.
-- **Situational, inferred cost-awareness** — AI_GOVERNANCE_TO_COCREATE's own text
-  records that a fixed "surface spend per outcome" policy was already
-  proposed and rejected in discussion; only the passive log survived.
-  The harder half — inferring *which* posture applies — is still open.
+- **Situational, inferred cost-awareness** —
+  [`cost-awareness-situational`](AI_GOVERNANCE_TO_COCREATE.md#cost-awareness-situational)'s
+  own text records that a fixed "surface spend per outcome" policy was
+  already proposed and rejected in discussion; only the passive log
+  survived. The harder half — inferring *which* posture applies — is
+  still open.
 - **A coldstart test** — can a fresh session, given only the memory store,
   reconstruct the state of any live decision? Worth running periodically,
   but it's a manual audit today, not an automatable gate.
