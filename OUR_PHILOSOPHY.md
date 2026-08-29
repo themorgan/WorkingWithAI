@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 08:18:04 (Buenos Aires) by Morgan F, to version 19 -->
+<!-- Last updated: 2026-08-29 08:23:20 (Buenos Aires) by Morgan F, to version 20 -->
 
 # Our philosophy
 
@@ -66,7 +66,9 @@ into a reusable rule the next session inherits automatically, no one
 having sat down to write a policy. `process/personal/` is that mechanism
 running continuously, not a document someone drafted once
 ([AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s "automatic
-rule extraction").
+rule extraction";
+[practice 20](process/upstream/PRACTICES.md#20-mistakes-become-rules-root-cause-the-miss-then-encode-the-prevention)
+is the same move done by hand).
 
 **6. Every decision carries the situation that produced it.** However
 small the call, the record states what case prompted it — a bare
