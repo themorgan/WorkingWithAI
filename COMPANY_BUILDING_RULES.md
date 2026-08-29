@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 16:22:55 (Buenos Aires) by Morgan F, to version 10 -->
+<!-- Last updated: 2026-08-29 16:28:24 (Buenos Aires) by Morgan F, to version 11 -->
 
 # Rules for building a company around AI
 
@@ -118,24 +118,20 @@ ship nothing, beautifully diagrammed.
 
 **8. No dark processes.**
 
-Any workflow you can only trigger by emailing a person becomes the
-bottleneck for everything downstream — expense approvals and shift
-scheduling as much as anything an engineer would call a system. Go
-process by process and kill the ones whose only interface is somebody's
-inbox: "just email me" is a process going dark. It sounds technical and
-is almost entirely political — every dark process is dark for a reason,
-and the reason has a name and a desk.
+A workflow triggered only by emailing a person becomes the bottleneck
+for everything downstream. Kill every process whose only interface is
+somebody's inbox: "just email me" is a process going dark. It sounds
+technical but is political — every dark process is dark for a reason,
+with a name and a desk attached.
 
 <a id="build-five-kill-four"></a>
 
 **9. Build five, kill four.**
 
-When an option costs nearly nothing to create, deliberating before
-building it is a bad trade. Bring several working versions to the
-meeting, not a deck arguing for one — the killing is the point, not the
-count. This only works where killing work costs nothing socially, which
-is a culture problem, not a tooling one: you can't ask for five built and
-four killed where being the one whose version died follows you into your
+When an option costs nearly nothing to build, deliberating first is a
+bad trade. Bring several working versions, not a deck arguing for one —
+killing is the point, not the count. This only works where killing
+costs nothing socially, not where the loser's fate follows them into
 review.
 
 <a id="digitize-the-edge"></a>
@@ -143,26 +139,21 @@ review.
 **10. Digitize the edge, where the atoms are.**
 
 If you make, move, install, or repair physical things, the untouched
-value sits at the analog frontier — precisely because reaching it is
-annoying: photos of every job, sensor logs, the technician's voice note
-before the next call. The Ghost can't climb the ladder or smell the burnt
-wiring — it only knows what somebody said into a phone before driving
-off. Convert physical reality into text at high fidelity and the other
-rules become available. Don't, and you're running on anecdote, calling it
-experience.
+value sits at the analog frontier, precisely because reaching it is
+annoying: photos of every job, sensor logs, a voice note before the
+next call. The Ghost can't climb a ladder or smell burnt wiring. Convert
+that reality into text and the other rules open up.
 
 <a id="no-ai-voice"></a>
 
 **11. Nothing you ship may sound like it came from an AI.**
 
 The default register — the throat-clearing opener, "it's not just X, it's
-Y," the bolded summary nobody asked for — reads as nobody being home, and
-erodes trust faster than a typo. It's also evidence: output nobody
-rewrote is output nobody thought hard about — the style rule enforces the
-thinking rule. And it's positioning: what you sound like is the only
-claim about you a reader can check for free. Everything ships rewritten
-in your own voice, stripped of anything you wouldn't say out loud to
-someone you respect. (Enforced, not just argued for:
+Y," the bolded summary nobody asked for — reads as nobody home, and
+erodes trust fast. It's evidence too: unrewritten output is output
+nobody thought about — style enforces thinking. And it's positioning:
+what you sound like is the one claim a reader can check for free. Ship
+everything rewritten in your own voice. (Enforced, not just argued for:
 [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md),
 tried here as
 [`write-like-a-human`](RULES_NOW_TESTING.md#write-like-a-human).)
@@ -173,15 +164,13 @@ tried here as
 
 **12. Hire for drive, "Getting Shit Done," relationships, and taste.**
 
-The bottleneck isn't making things anymore, it's judging them fast and
-pushing them into the world — production is the trait models absorbed
-first. Hire the person who gets things done without being managed into
-it, who builds relationships a counterparty trusts, and who has
-taste — one part of that picture, not the headline. Test taste directly:
-hand the candidate twenty drafts. Someone like
-[NAME OF THE SHARPEST EDITOR MORGAN HAS WORKED WITH — CHECK], who rejects
-nineteen for a reason they can name, does something no volume of
-"producing three" can match. (Drive, relationships, and taste
+The bottleneck isn't making things, it's judging them fast and shipping
+them — production is the trait models absorbed first. Hire someone who
+gets things done unmanaged, who builds relationships a counterparty
+trusts, and who has taste — one part of the picture, not the headline.
+Test taste directly: hand the candidate twenty drafts. Someone like
+[NAME OF THE SHARPEST EDITOR MORGAN HAS WORKED WITH — CHECK] rejects
+nineteen for a reason they can name. (Drive, relationships, and taste
 are three entries on the one full list of what stays human — see
 [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md).)
 
@@ -189,40 +178,33 @@ are three entries on the one full list of what stays human — see
 
 **13. Give the agents a manager — a human over the loop, not in it.**
 
-"In the loop" quietly became jargon for a rubber stamp — a person
-approving every step, since nobody scrutinizes step four thousand the way
-they scrutinized step one. What's missing is someone whose job is the
-fleet of agent-run processes itself: watching where they drift, retuning
-prompts and guardrails, deciding when a step needs a human again. Call
-the role Manager of Agents or don't, but staff it — agents left running
-on the day they were configured degrade quietly, until something breaks.
+"In the loop" became jargon for a rubber stamp — approving every step,
+since nobody scrutinizes step four thousand like step one. What's
+missing is someone whose job is the fleet itself: watching drift,
+retuning prompts and guardrails, deciding when a step needs a human
+again. Call the role Manager of Agents or don't, but staff it.
 
 <a id="human-only-zones"></a>
 
 **14. Protect human-only zones on purpose, and put them on the calendar.**
 
-If everyone consumes only summaries, nobody can detect the moment the
-summaries start to drift — everything keeps reading as coherent. So
-mandate raw contact as permanent ritual: founders reading unfiltered
-complaints instead of the sentiment rollup, managers watching real work
-for an afternoon and saying nothing, someone reading the source the way
-you'd have in [YEAR]. It will feel like deliberate inefficiency. Keep it
-anyway — it's the only part of the system that can tell you the rest has
-started lying.
+If everyone consumes only summaries, nobody can detect the moment
+they drift — everything still reads coherent. So mandate raw contact
+as ritual: founders reading unfiltered complaints, managers watching
+real work in silence, someone reading the source the way you'd have
+in [YEAR]. Keep it anyway — it's what tells you the rest is lying.
 
 <a id="structurally-human"></a>
 
 **15. Reserve the permanent hire for what's structurally human.**
 
-Follow every rule here and they land in the same place: the roles worth
+Follow every rule here and they land in one place: the roles worth
 making permanent are built on something a model can't do at all.
 Judgment when the rules run out. Taste that catches the one wrong
 paragraph in twenty. Relationships a counterparty trusts. Accountability
-that lands on one name, not a process nobody can point to. The human
-spark that makes someone worth working for, not merely alongside. And,
-increasingly, the discipline of running a fleet of agent-driven
-processes — pushing one further than it would push itself, pulling it
-back before it overreaches. (Full list:
+on one name, not a faceless process. The human spark that makes someone
+worth working for, not merely alongside. And, increasingly, the
+discipline of running agent-driven processes. (Full list:
 [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md).)
 
 That list is shorter than it was five years ago. It isn't going to zero.
