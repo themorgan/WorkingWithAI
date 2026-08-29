@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 16:07:31 (Buenos Aires) by Morgan F, to version 9 -->
+<!-- Last updated: 2026-08-29 16:28:24 (Buenos Aires) by Morgan F, to version 11 -->
 
 # Rules for building a company around AI
 
@@ -16,15 +16,13 @@ the "reorganize once a group gets big enough" rule in [IDEAS.md](IDEAS.md),
 since it's a single sustained argument rather than a loose list of
 entries.*
 
-Every founder, every operator, every manager, every person anywhere who has
-ever tried to get something done through other people knows one thing and has
-never had a reason to write it down: almost nothing that made the work come
-out right was ever in the work. It was in somebody's head, and then the head
-went to lunch. Survivable for the entire history of commerce. It stopped
-being survivable the week a machine could read everything you own, and the
-rules below all fall out of that, grouped by where they bite: the case
-itself, then how you actually work with the model day to day, then how you
-ship and run things, then who you hire and keep.
+Every founder, every operator, every person who's gotten something done
+through other people knows one thing nobody bothers writing down: what made
+the work come out right was rarely in the work — it was in somebody's head,
+and the head went to lunch. Survivable for the entire history of commerce,
+until a machine could read everything you own. The rules below fall out of
+that, grouped by where they bite: the case itself, then working with the
+model day to day, then shipping and process, then people.
 
 ## Foundations
 
@@ -32,38 +30,35 @@ ship and run things, then who you hire and keep.
 
 **1. Context is the capital asset.**
 
-The scarce input isn't hours anymore — it's the tacit, never-written-down
-stuff that makes a task come out right: why the last vendor failed, what
-the customer actually meant, which option you already killed and why.
-Capturing that is capital expenditure now, not overhead. A *corpus* is a
-body, and a body dies when you stop feeding it. Your competitor rents the
-same models by Thursday; what nobody can rent is yours.
+The scarce input isn't hours anymore — it's the tacit stuff that makes work
+come out right: why the vendor failed, what the customer meant, which
+option you already killed. Capturing it is capital expenditure, not
+overhead. A *corpus* is a body — stop feeding it and it dies. Competitors
+rent the same models by Thursday; what nobody can rent is yours.
 
 <a id="transcribe-everything"></a>
 
 **2. Transcribe everything, past the point of comfort.**
 
 Meetings, calls, site visits, the argument that got resolved and the one
-that didn't — transcribe it, don't erase it. Picture a colleague who's
-been there since the founding, remembers everything, never sleeps, and
-has no eyes or ears, only text. Call it the Ghost — the most experienced
-employee in the building, unable to attend anything. Every meeting you
-leave untranscribed is one more organ you've removed from it. Most
-companies do the easy 5%; the number that matters is nearer 90%, and
-closing that gap is cultural — people need to hear *compounding*, not
+that didn't — transcribe it. Picture a colleague who's been there since
+the founding, remembers everything, never sleeps, with no eyes or ears,
+only text: the Ghost, the most experienced employee in the building,
+unable to attend anything. Every untranscribed meeting removes one more
+organ from it. Most companies do the easy 5%; what matters is nearer 90%,
+and closing that gap is cultural — people need to hear *compounding*, not
 *recorded*.
 
 <a id="own-every-word"></a>
 
 **3. You own every word you pass on.**
 
-If you didn't read something closely enough to defend it, it doesn't
-leave your hands — not to a colleague, a customer, or a deck someone else
-presents while you're on a plane. What actually kills a company is four
-handoffs where everyone skimmed and assumed the person before had read it
-closely. The error surfaces at the customer, the most expensive room and
-the last one you hear about. If you can't answer a question about the
-fourth paragraph, you haven't finished the work.
+If you didn't read something closely enough to defend it, it doesn't leave
+your hands — not to a colleague, a customer, or a deck someone else
+presents while you're on a plane. What kills a company is four handoffs
+where everyone skimmed and assumed the last person read it closely. The
+error surfaces at the customer — the most expensive room, and the last one
+you hear about.
 
 ## Working with the model
 
@@ -71,14 +66,12 @@ fourth paragraph, you haven't finished the work.
 
 **4. Treat the AI Chat as the intermediary for the work itself, not a tool you consult on the side.**
 
-Every plan and decision worth a moment's thought runs through it before
-it runs through anyone else — not because it produces the output, but
-because it's the partner that pushes back: the hole in the logic, the
-option you haven't considered, the version that's actually better. That
-same layer is what pushes things into happening — the commit, the
-message, the next step — instead of a good idea that never left
-somebody's head. Put a model between intent and action, and arguing
-before you commit becomes the habit, for free.
+Every plan worth a thought runs through it before anyone else — not for
+the output, but because it's the partner that pushes back: the hole in the
+logic, the option you missed, the better version. That layer also pushes
+things into happening — the commit, the message, the next step — instead
+of a good idea that never left somebody's head. Put a model between intent
+and action, and arguing before you commit becomes free.
 
 <a id="co-create-dont-delegate"></a>
 
@@ -86,27 +79,26 @@ before you commit becomes the habit, for free.
 
 The low-value mode is "produce this for me and I'll edit it." The
 high-value mode is thinking with the model in real time — arguing the
-opposite side, asking for the hole in your logic before you've committed
-to it. The tell that someone's crossed over: their sessions read like
-fights, not requests. Research and drafting are the beginner uses; the
-real gain is catching your own error an hour after you made it, not three
-weeks later in front of the client.
+opposite side, asking for the hole in your logic before you've committed.
+The tell: sessions that read like fights, not requests. Research and
+drafting are the beginner uses; the real gain is catching your own error
+an hour later, not three weeks later in front of the client.
 
 <a id="three-questions"></a>
 
 **6. Three questions, asked until they're reflexes.**
 
 A long checklist buys you people who spend the day interrogating their
-work instead of doing it. So: three questions, drilled until nobody
-notices they're asking them, because this is what the AI is doing too:
+work instead of doing it. So: three questions, drilled until they're
+reflexes — the same three the AI is running too:
 
 - What rules or protocols should come from this?
 - Have I done this shape before, or will I again? If yes, it's a
   workflow, and you're doing it by hand.
 - Is there a way Claude could make this better? Not faster — better.
 
-*Faster* makes people think about the work they already do. *Better*
-makes them notice the work they'd quietly stopped proposing years ago.
+*Faster* gets people thinking about the work they already do. *Better*
+gets them noticing the work they'd quietly stopped proposing.
 
 <a id="think-in-workflows"></a>
 
@@ -114,13 +106,11 @@ makes them notice the work they'd quietly stopped proposing years ago.
 
 Stopping to systematize a one-off is procrastination in a nice suit. First
 time, do it by hand, with the model. Third time you've seen the shape,
-stop — that's a pattern, and it just handed you the spec for a workflow
-for free. A protocol or rule is a different animal: it doesn't need a
-repeating task to justify it, just a single correction or judgment call
-worth remembering, captured the moment it happens rather than written up
-separately. Never systematize and you stay fast forever; systematize
-everything, pattern and protocol alike, and you ship nothing, beautifully
-diagrammed.
+stop — that's a pattern, and it just handed you the workflow spec for
+free. A protocol is different: it needs no repeating task, just one
+judgment call worth remembering, captured the moment it happens. Never
+systematize and you stay fast forever; systematize everything and you
+ship nothing, beautifully diagrammed.
 
 ## Shipping and process
 
@@ -128,26 +118,21 @@ diagrammed.
 
 **8. No dark processes.**
 
-Any workflow you can only trigger by emailing a person becomes the
-bottleneck for everything downstream of it — expense approvals and shift
-scheduling as much as anything an engineer would call a system. Go
-process by process and kill the ones whose only interface is somebody's
-inbox: "just email me and I'll take care of it" is the sound of a process
-going dark. It sounds technical and is almost entirely political — every
-dark process is dark for a reason, and the reason usually has a name and
-a desk.
+A workflow triggered only by emailing a person becomes the bottleneck
+for everything downstream. Kill every process whose only interface is
+somebody's inbox: "just email me" is a process going dark. It sounds
+technical but is political — every dark process is dark for a reason,
+with a name and a desk attached.
 
 <a id="build-five-kill-four"></a>
 
 **9. Build five, kill four.**
 
-When an option costs nearly nothing to create, deliberating before
-building it is a bad trade. Bring several working versions to the meeting
-instead of a deck arguing for one — the killing is the point, not the
-count. This only works where killing work carries zero social cost, which
-is a culture problem, not a tooling one: you can't ask for five built and
-four killed in a company where being the person whose version got killed
-follows you into your review.
+When an option costs nearly nothing to build, deliberating first is a
+bad trade. Bring several working versions, not a deck arguing for one —
+killing is the point, not the count. This only works where killing
+costs nothing socially, not where the loser's fate follows them into
+review.
 
 <a id="digitize-the-edge"></a>
 
@@ -155,26 +140,20 @@ follows you into your review.
 
 If you make, move, install, or repair physical things, the untouched
 value sits at the analog frontier, precisely because reaching it is
-annoying: photos of every job, sensor logs, the technician's voice note
-before driving to the next call. The Ghost can't climb the ladder or
-smell the burnt wiring — it only knows what somebody said into a phone
-before driving off. Convert your physical reality into text at high
-fidelity and the other rules become available to you. Don't, and you're
-running on anecdote and calling it experience.
+annoying: photos of every job, sensor logs, a voice note before the
+next call. The Ghost can't climb a ladder or smell burnt wiring. Convert
+that reality into text and the other rules open up.
 
 <a id="no-ai-voice"></a>
 
 **11. Nothing you ship may sound like it came from an AI.**
 
 The default register — the throat-clearing opener, "it's not just X, it's
-Y," the bolded summary nobody asked for — reads as nobody being home, and
-erodes trust faster than a typo. It's also evidence: generic output is
-output nobody rewrote, and output nobody rewrote is output nobody
-thought hard about — the style rule enforces the thinking rule. It's
-positioning too: what you sound like is the only claim about you a reader
-can check without doing any work. Everything ships rewritten in your own
-voice, stripped of anything you wouldn't say out loud to someone you
-respect. (Enforced, not just argued for:
+Y," the bolded summary nobody asked for — reads as nobody home, and
+erodes trust fast. It's evidence too: unrewritten output is output
+nobody thought about — style enforces thinking. And it's positioning:
+what you sound like is the one claim a reader can check for free. Ship
+everything rewritten in your own voice. (Enforced, not just argued for:
 [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md),
 tried here as
 [`write-like-a-human`](RULES_NOW_TESTING.md#write-like-a-human).)
@@ -185,15 +164,13 @@ tried here as
 
 **12. Hire for drive, "Getting Shit Done," relationships, and taste.**
 
-The bottleneck isn't making things anymore, it's judging them fast and
-pushing them into the world — production is the trait models absorbed
-first. Hire the person who figures out how to get things done without
-being managed into it, who builds relationships a counterparty actually
-trusts, and who has taste — one part of that picture, not the headline.
-Test taste directly: hand the candidate twenty drafts. Somebody like
-[NAME OF THE SHARPEST EDITOR MORGAN HAS WORKED WITH — CHECK], who rejects
-nineteen for a reason they can name, does something the person who
-produces three cannot do at any volume. (Drive, relationships, and taste
+The bottleneck isn't making things, it's judging them fast and shipping
+them — production is the trait models absorbed first. Hire someone who
+gets things done unmanaged, who builds relationships a counterparty
+trusts, and who has taste — one part of the picture, not the headline.
+Test taste directly: hand the candidate twenty drafts. Someone like
+[NAME OF THE SHARPEST EDITOR MORGAN HAS WORKED WITH — CHECK] rejects
+nineteen for a reason they can name. (Drive, relationships, and taste
 are three entries on the one full list of what stays human — see
 [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md).)
 
@@ -201,43 +178,33 @@ are three entries on the one full list of what stays human — see
 
 **13. Give the agents a manager — a human over the loop, not in it.**
 
-"In the loop" quietly became jargon for a rubber stamp — a person
-clicking approve on every step, since nobody scrutinizes step four
-thousand the way they scrutinized step one. What's missing isn't more
-approval clicks, it's someone whose job is the fleet of agent-run
-processes itself: watching where they drift, retuning prompts and
-guardrails, deciding when a step needs a human again. Call the role
-Manager of Agents or don't, but staff it — agents left running on the
-strength of the day they were configured degrade quietly, until something
-downstream breaks.
+"In the loop" became jargon for a rubber stamp — approving every step,
+since nobody scrutinizes step four thousand like step one. What's
+missing is someone whose job is the fleet itself: watching drift,
+retuning prompts and guardrails, deciding when a step needs a human
+again. Call the role Manager of Agents or don't, but staff it.
 
 <a id="human-only-zones"></a>
 
 **14. Protect human-only zones on purpose, and put them on the calendar.**
 
-If everyone consumes only summaries, nobody can detect the moment the
-summaries start to drift — everything keeps reading as coherent. So
-mandate raw contact as permanent ritual: founders reading unfiltered
-complaints instead of the sentiment rollup, managers watching real work
-for an afternoon and saying nothing, somebody reading the actual source
-the way you'd have read it in [YEAR]. It will feel like deliberate
-inefficiency. Keep it anyway — it's the only part of the system that can
-tell you the rest has started lying to you.
+If everyone consumes only summaries, nobody can detect the moment
+they drift — everything still reads coherent. So mandate raw contact
+as ritual: founders reading unfiltered complaints, managers watching
+real work in silence, someone reading the source the way you'd have
+in [YEAR]. Keep it anyway — it's what tells you the rest is lying.
 
 <a id="structurally-human"></a>
 
 **15. Reserve the permanent hire for what's structurally human.**
 
-Follow every rule on this list to where it leads and they land in the
-same place: the roles worth making permanent are built on something a
-model can't do at all. Judgment when the rules run out. Taste that
-catches the one paragraph in twenty that's quietly wrong. Relationships a
-counterparty trusts because of who's on the other end of them.
-Accountability that lands on one name, not a process nobody can point to.
-The human spark that makes someone worth working for, not merely
-alongside. And, increasingly, the discipline of running a fleet of
-agent-driven processes — pushing one further than it would push itself,
-and pulling it back before it overreaches. (Full list:
+Follow every rule here and they land in one place: the roles worth
+making permanent are built on something a model can't do at all.
+Judgment when the rules run out. Taste that catches the one wrong
+paragraph in twenty. Relationships a counterparty trusts. Accountability
+on one name, not a faceless process. The human spark that makes someone
+worth working for, not merely alongside. And, increasingly, the
+discipline of running agent-driven processes. (Full list:
 [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md).)
 
 That list is shorter than it was five years ago. It isn't going to zero.
