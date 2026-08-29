@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 11 -->
+<!-- Last updated: 2026-08-29 16:16:48 (Buenos Aires) by Morgan F, to version 12 -->
 
 # WorkingWithAI
 
@@ -59,15 +59,18 @@ spark, argue, GitHub, rule — see
 - [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) — the underlying theoretical ideas
   everything else here assumes, named and explained on their own terms, for
   anyone who wants to understand this at the theory level before diving
-  into the brainstorm itself. [REASONS_WHY.md](REASONS_WHY.md) is its
-  companion: the less obvious benefits those ideas produce in practice.
-  [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md) gathers the one list of
-  what humans are good at, referenced in shorter form from several of
-  these documents.
+  into the brainstorm itself.
+- [REASONS_WHY.md](REASONS_WHY.md) — OUR_PHILOSOPHY.md's companion: the
+  less obvious benefits those ideas produce in practice.
+- [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md) — the one list of what
+  humans are good at, referenced in shorter form from several of these
+  documents.
 - [IDEAS.md](IDEAS.md) — the brainstorm itself: one entry per idea, prompt,
   workflow, or observation, loosely grouped.
-- [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) —
-  full essays promoted out of the brainstorm (pipeline stage 1).
+- [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) — a full essay
+  promoted out of the brainstorm (pipeline stage 1).
+- [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) — another
+  full essay promoted out of the brainstorm (pipeline stage 1).
 - [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — the practical rules
   actually being tried right now, and candidates for promotion to
   RepoPersonalPreferences (pipeline stage 2).
@@ -82,9 +85,13 @@ spark, argue, GitHub, rule — see
   write like a human, not an LLM. Applies to this repo's own writing —
   chat replies included, not just committed documents — see
   [AGENTS.md](AGENTS.md)'s "Voice" section.
-- [AGENTS.md](AGENTS.md), [MAP.md](MAP.md), [TODO.md](TODO.md),
-  [GLOSSARY.md](GLOSSARY.md) — this repo's own instantiated BestPractice
-  documents.
+- [AGENTS.md](AGENTS.md) — repository instructions: read this first.
+- [MAP.md](MAP.md) — the repository map, covering the brainstorm and
+  indexing the practice layer.
+- [TODO.md](TODO.md) — open items: analyses, verifications, decisions
+  still waiting on resolution.
+- [GLOSSARY.md](GLOSSARY.md) — canonical names to use, rather than
+  inventing new ones.
 - [GETTING_STARTED.md](GETTING_STARTED.md) — onboarding for a person, plus
   every administrator click-path (repository secrets, Actions toggles, the
   default branch).
