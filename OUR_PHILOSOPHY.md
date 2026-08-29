@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 15:56:29 (Buenos Aires) by Morgan F, to version 25 -->
+<!-- Last updated: 2026-08-29 16:04:55 (Buenos Aires) by Morgan F, to version 26 -->
 
 # Our philosophy
 
@@ -35,20 +35,9 @@ The same five steps repeat every time, in order:
 
 ## The 7 Core Philosophies
 
-<a id="arguing-with-the-model"></a>
-
-**1. Coworking with a model means arguing with it.** State a half-formed
-position, let the model push back, push back on its answer — keep going
-until the exchange settles it, not either side alone. Instructing makes
-a typist; polling for an opinion makes an oracle. Quality is one payoff:
-agreement just hands back your blind spots
-([`ai-chat-as-intermediary`](COMPANY_BUILDING_RULES.md#ai-chat-as-intermediary),
-[`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate);
-[`argue-in-the-open`](AI_GOVERNANCE_TO_COCREATE.md#argue-in-the-open)).
-
 <a id="context-is-capital"></a>
 
-**2. Context is capital.** Models produce competent output on demand, so
+**1. Context is capital.** Models produce competent output on demand, so
 hours stopped being scarce. What's still scarce never got commoditized:
 why the last vendor failed, what the customer meant, which option got
 killed and why. Capturing that thinking is capital — an asset no
@@ -59,6 +48,17 @@ naturally, with the AI carrying the translation into the shared record,
 keeps the real thinking — a version forced through an unfamiliar language
 on the way in would have been thinner
 ([`second-language-stops-costing-quality`](REASONS_WHY.md#second-language-stops-costing-quality)).
+
+<a id="arguing-with-the-model"></a>
+
+**2. Coworking with a model means arguing with it.** State a half-formed
+position, let the model push back, push back on its answer — keep going
+until the exchange settles it, not either side alone. Instructing makes
+a typist; polling for an opinion makes an oracle. Quality is one payoff:
+agreement just hands back your blind spots
+([`ai-chat-as-intermediary`](COMPANY_BUILDING_RULES.md#ai-chat-as-intermediary),
+[`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate);
+[`argue-in-the-open`](AI_GOVERNANCE_TO_COCREATE.md#argue-in-the-open)).
 
 <a id="processes-should-be-visible"></a>
 
