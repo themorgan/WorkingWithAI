@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 16:04:55 (Buenos Aires) by Morgan F, to version 26 -->
+<!-- Last updated: 2026-08-29 16:17:18 (Buenos Aires) by Morgan F, to version 27 -->
 
 # Our philosophy
 
@@ -37,16 +37,23 @@ The same five steps repeat every time, in order:
 
 <a id="context-is-capital"></a>
 
-**1. Context is capital.** Models produce competent output on demand, so
-hours stopped being scarce. What's still scarce never got commoditized:
-why the last vendor failed, what the customer meant, which option got
-killed and why. Capturing that thinking is capital — an asset no
-competitor can rent by Thursday
-([`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset)). The
-same logic covers language: what someone writes in whatever tongue comes
-naturally, with the AI carrying the translation into the shared record,
-keeps the real thinking — a version forced through an unfamiliar language
-on the way in would have been thinner
+**1. Context is capital.** [`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset)
+makes the economic case for why capturing this is worth a company's time.
+This is the narrower question underneath it: capital as *what*, exactly?
+Not the deliverable — the residue the deliverable's own final version
+throws away. The option you tried and killed, and why. The vendor
+who failed, and the specific way. The correction someone made to a
+draft, which only exists at all if the draft it corrected is still
+there to compare against. Two documents can reach the identical
+conclusion and not be the same asset: one carries that residue forward
+for the next session to check its own reasoning against, the other
+reads as if the conclusion had always been obvious. Capturing the
+residue, not just the answer, is the actual habit this repo is built
+to make automatic. The same logic covers language: what someone writes
+in whatever tongue comes naturally, with the AI carrying the
+translation into the shared record, keeps the real thinking — a
+version forced through an unfamiliar language on the way in would have
+been thinner
 ([`second-language-stops-costing-quality`](REASONS_WHY.md#second-language-stops-costing-quality)).
 
 <a id="arguing-with-the-model"></a>
