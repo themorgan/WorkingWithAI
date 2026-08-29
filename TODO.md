@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 13:36:24 (Buenos Aires) by Morgan F, to version 25 -->
+<!-- Last updated: 2026-08-29 13:48:35 (Buenos Aires) by Morgan F, to version 27 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -26,20 +26,10 @@ while an entry below stays unchecked. Check an item off (or run
 reviewed -- the update taken, or deliberately deferred with a reason.
 
 - [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (1e06a5349a43; your base d436be779be1) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via WorkingWithAI RPP sync, this session
+- [ ] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (570f86c520fc; your base b10c163a96dd) — review at the next session (process/personal/README.md#drift-notice).
 
 ## Recurring
 
-- [ ] **Voice guidelines source renamed SoundHuman (was VoiceGuidelinesToSoundHuman)
-  — low-urgency URL cleanup.** The source repo is renaming itself
-  internally (2026-08-28); this repo's own docs now call it SoundHuman
-  everywhere. [process/manifest_voice.json](process/manifest_voice.json)'s
-  `upstream.repo` URL and the workflow comment in
-  [.github/workflows/voice-guidelines-sync.yml](.github/workflows/voice-guidelines-sync.yml)
-  were deliberately left pointing at the pre-rename URL — the actual
-  GitHub repository hasn't been renamed yet, and GitHub's redirect keeps
-  the old URL working either way, so there's no breakage risk either
-  before or after that rename lands. Once it does, update the URL for
-  freshness (not correctness) — low priority.
 - [ ] **BestPractice check-in:** review `diverged` entries in
   [process/manifest.json](process/manifest.json) and the vendored tree's
   accumulated changes; propose upstream per
@@ -101,6 +91,23 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Flip the pre-rename VoiceGuidelinesToSoundHuman URLs to
+  SoundHuman.** Done 2026-08-29 → doc. The rename landed on GitHub
+  2026-08-27; every functional link/URL/repo-name reference across this
+  repo (`process/manifest_voice.json`'s `upstream.repo`,
+  `.github/workflows/voice-guidelines-sync.yml`'s header comment,
+  `process/voice/tools/voice_sync.py`'s docstring, and the SoundHuman
+  links in [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md), [MAP.md](MAP.md),
+  [GLOSSARY.md](GLOSSARY.md), [README.md](README.md),
+  [GETTING_STARTED.md](GETTING_STARTED.md), [AGENTS.md](AGENTS.md), and
+  this file) now point at `themorgan/SoundHuman`. Left untouched, on
+  purpose: the `VOICEGUIDELINESTOSOUNDHUMAN_TOKEN` secret name (kept
+  permanently, per its own decision record above) and every note that
+  narrates the rename event itself (`process/manifest_voice.json`'s and
+  `process/manifest.json`'s own `_note`/notes fields, and this repo's
+  workflow-comment history) — rewriting "renamed X -> Y" to "renamed Y ->
+  Y" would make those sentences nonsensical.
 
 - [x] **Add a theory-level intro pair: what this is and why it's worth
   doing, deeper than "co-create as partners."** Decided 2026-08-28 → done,
@@ -438,8 +445,8 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   had flagged item 5 of [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) ("a
   structural check for AI-sounding prose") as reinventing something that
   might already exist. It did: a real repo,
-  [SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman),
-  already maintains [HUMAN_VOICE_RULES.md](https://github.com/themorgan/VoiceGuidelinesToSoundHuman/blob/main/HUMAN_VOICE_RULES.md), in production use by
+  [SoundHuman](https://github.com/themorgan/SoundHuman),
+  already maintains [HUMAN_VOICE_RULES.md](https://github.com/themorgan/SoundHuman/blob/main/HUMAN_VOICE_RULES.md), in production use by
   VoiceDefinitionMorgan, VoiceDefinitionCelia, and the WriteLike app.
   Morgan asked for it in this repo's usual vendoring shape: pulled in and
   vendored at [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md)

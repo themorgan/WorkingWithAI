@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 13:35:35 (Buenos Aires) by Morgan F, to version 9 -->
+<!-- Last updated: 2026-08-29 13:47:27 (Buenos Aires) by Morgan F, to version 10 -->
 
 # Repository instructions — read me first
 
@@ -25,7 +25,7 @@ keeps this repo well-run.
 This repo's own writing follows
 [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md),
 vendored from
-[SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman)
+[SoundHuman](https://github.com/themorgan/SoundHuman)
 (tracked in [process/manifest_voice.json](process/manifest_voice.json), kept
 current by a weekly sync plus a session-start check — see "A third scheduled
 check keeps the voice guidelines current" below). It governs **everything a
@@ -450,7 +450,7 @@ never get exported to the public BestPractice repo.
   ([.github/workflows/voice-guidelines-sync.yml](.github/workflows/voice-guidelines-sync.yml)):
   same shape again, pointed at
   [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md)
-  against [SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman)
+  against [SoundHuman](https://github.com/themorgan/SoundHuman)
   (private, one file rather than a whole subtree — see
   [voice_sync.py](process/voice/tools/voice_sync.py)). Needs its own
   repository secret, `VOICEGUIDELINESTOSOUNDHUMAN_TOKEN` — the same secret

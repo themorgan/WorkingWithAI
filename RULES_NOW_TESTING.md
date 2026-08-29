@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 14:05:00 (Buenos Aires) by Morgan F, to version 7 -->
+<!-- Last updated: 2026-08-29 13:47:27 (Buenos Aires) by Morgan F, to version 8 -->
 
 # Rules now testing — the current state of what we're trying
 
@@ -72,7 +72,7 @@ Before calling work done, answer both out loud in the reply:
 ### 5. Write like a human, not an LLM — *Trial*
 
 Follow [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md),
-vendored from [SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman)
+vendored from [SoundHuman](https://github.com/themorgan/SoundHuman)
 and synced automatically ([AGENTS.md](AGENTS.md)'s "Voice" section) —
 governs everything written here, chat replies included. Still *Trial*:
 first repo applying it beyond WriteLike.

@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 08:52:37 (Buenos Aires) by Morgan F, to version 8 -->
+<!-- Last updated: 2026-08-29 13:47:27 (Buenos Aires) by Morgan F, to version 9 -->
 
 # Repository map — where to find things
 
@@ -28,7 +28,7 @@ Companions: [AGENTS.md](AGENTS.md) (workflow + conventions), [TODO.md](TODO.md)
 | [README.md](README.md) | What this repo is, in a paragraph, plus the pipeline explanation and the agent-entry block. |
 | `process/upstream/` | Vendored copy of the public BestPractice repo — see [process/manifest.json](process/manifest.json). |
 | `process/personal/` | Morgan's personal pack, vendored from RepoPersonalPreferences — see [process/personal/README.md](process/personal/README.md) and [process/manifest_personal.json](process/manifest_personal.json). Pipeline stage 3's destination lives in that repo, not here. |
-| [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) | The voice guidelines — write like a human, not an LLM — vendored from [SoundHuman](https://github.com/themorgan/VoiceGuidelinesToSoundHuman); see [AGENTS.md](AGENTS.md)'s "Voice" section and [process/manifest_voice.json](process/manifest_voice.json). Governs chat replies, not just committed documents. |
+| [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) | The voice guidelines — write like a human, not an LLM — vendored from [SoundHuman](https://github.com/themorgan/SoundHuman); see [AGENTS.md](AGENTS.md)'s "Voice" section and [process/manifest_voice.json](process/manifest_voice.json). Governs chat replies, not just committed documents. |
 | [.github/workflows/](.github/workflows/) | The five installed checks: Markdown lint, the light check, the BestPractice sync, the pack sync, and the voice guidelines sync. |
 | [TODO.md](TODO.md) | Cross-session open items. |
 
