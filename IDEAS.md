@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 9 -->
+<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 10 -->
 
 # Ideas — how to work with AI
 
@@ -181,6 +181,16 @@ everything via the repo. Same mechanism as 3a/3b above. The other point
 worth keeping from that conversation: having the AI push back harder,
 explicitly, rather than defaulting to compliance — connects directly to the
 open question above.
+
+**Rejecting a request costs less when it comes from AI than from a
+person.** Morgan's observation, not yet tied to a specific practice: saying
+no to an AI assistant's proposal — a suggested plan, a permission ask, a
+piece of pushed-back-on advice — carries less social weight than saying no
+to the same request from a person. No relationship to manage, no face on
+the other side to consider. Worth tracking as a real effect on its own,
+before deciding what (if anything) it should change about how this repo
+works. Not yet slotted into the formal docs; see this chat's reply for
+where it might connect once it's been argued out.
 
 ## Meta: using this repo as "Google Docs on steroids" for brainstorming
 
