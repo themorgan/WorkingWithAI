@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 7 -->
+<!-- Last updated: 2026-08-29 16:04:51 (Buenos Aires) by Morgan F, to version 8 -->
 
 # Rules for building a company around AI
 
@@ -173,7 +173,10 @@ thought hard about — the style rule enforces the thinking rule. It's
 positioning too: what you sound like is the only claim about you a reader
 can check without doing any work. Everything ships rewritten in your own
 voice, stripped of anything you wouldn't say out loud to someone you
-respect.
+respect. (Enforced, not just argued for:
+[process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md),
+tried here as
+[`write-like-a-human`](RULES_NOW_TESTING.md#write-like-a-human).)
 
 ## People
 
@@ -189,7 +192,9 @@ trusts, and who has taste — one part of that picture, not the headline.
 Test taste directly: hand the candidate twenty drafts. Somebody like
 [NAME OF THE SHARPEST EDITOR MORGAN HAS WORKED WITH — CHECK], who rejects
 nineteen for a reason they can name, does something the person who
-produces three cannot do at any volume.
+produces three cannot do at any volume. (Drive, relationships, and taste
+are three entries on the one full list of what stays human — see
+[HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md).)
 
 <a id="manager-of-agents"></a>
 
