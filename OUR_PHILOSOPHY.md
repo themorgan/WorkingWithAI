@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 21 -->
+<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 22 -->
 
 # Our philosophy
 
@@ -62,7 +62,8 @@ planning, taste, judgment — deciding what gets built and whether it
 works, the way defining a system beats hand-running it. Brief the model
 like an individual contributor, stay engaged, adjust the plan as soon as
 the first attempt reveals what the brief missed ([rule 14](COMPANY_BUILDING_RULES.md))
-— same posture as item 1, applied to management.
+— same posture as item 1, applied to management. (Full list:
+[HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md).)
 
 **5. Protocols, rules, and preferences get generated automatically.** The
 AI Assistant distills them straight out of the human-AI interaction —
@@ -91,7 +92,8 @@ bring judgment, relationships, instinct: reading a room, sensing what a
 client meant but didn't say, pushing someone harder when the moment
 calls for it. Optimizing a person to act like a fast, tireless model
 optimizes away what they're for ([rule 15](COMPANY_BUILDING_RULES.md)) —
-hold them to that standard, not a machine's.
+hold them to that standard, not a machine's. (Full list:
+[HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md).)
 
 See [REASONS_WHY.md](REASONS_WHY.md) for what these ideas actually buy in
 practice.

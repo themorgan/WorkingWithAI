@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 13:47:27 (Buenos Aires) by Morgan F, to version 10 -->
+<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 11 -->
 
 # Repository instructions — read me first
 
@@ -12,6 +12,7 @@ keeps this repo well-run.
 |---|---|
 | The theory behind this repo — named, explained, not argued for | [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) |
 | The less obvious benefits those ideas produce | [REASONS_WHY.md](REASONS_WHY.md) |
+| What humans are good at — the one full list | [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md) |
 | Canonical names — use these, don't invent new ones | [GLOSSARY.md](GLOSSARY.md) |
 | The brainstorm itself | [IDEAS.md](IDEAS.md) |
 | The three-stage pipeline (idea → rules now testing → company policy) | [README.md](README.md) |
