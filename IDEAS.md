@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 18:59:19 (Buenos Aires) by Morgan F, to version 7 -->
+<!-- Last updated: 2026-08-29 14:42:50 (Buenos Aires) by Morgan F, to version 8 -->
 
 # Ideas — how to work with AI
 
@@ -10,18 +10,20 @@ from [MAP.md](MAP.md) when that happens).
 entry below is raw material dropped in from a session, lightly organized.
 Treat it as a standing agenda, not a finished write-up — the point of doing
 this in a repo instead of a doc is that any thread can pick up one entry,
-argue it out with Claude (per [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 4),
+argue it out with Claude (per [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 5),
 and push the sharpened version back in.
 
 ## Frameworks
 
-- **Fifteen rules for building a company around AI** — a full essay, promoted
+- **Rules for building a company around AI** — a full essay, promoted
   to its own document because it's one sustained argument rather than a
   loose list: [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md). Covers context as the
   scarce capital asset, transcription discipline (the "Ghost"), owning
-  every word you pass on, co-creating instead of delegating, building
-  workflows only once work actually repeats, hiring for verification over
-  production, giving agents a human manager over the loop, killing "dark
+  every word you pass on, treating the AI Chat as the intermediary for
+  the work itself, co-creating instead of delegating, building
+  workflows and the rules that fall out of them only once work actually
+  repeats, hiring for drive, relationships, and taste over production,
+  giving agents a human manager over the loop, killing "dark
   processes," and voice/style as evidence that someone actually thought.
 - **Building AI systems for co-creation** — one level down from the above:
   how the AI systems themselves should be configured, built, and run so
@@ -45,7 +47,7 @@ and push the sharpened version back in.
 ## Why BestPractice specifically works (semi-organized brainstorm)
 
 *The premise: BestPractice — the practice layer this repo vendors under
-`process/upstream/` — is being used here as a live case study of rule 4 and
+`process/upstream/` — is being used here as a live case study of rule 5 and
 rule 2 from [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md): forced co-creation, forced
 transcription. The observations below are about* why *it works, not just
 that it does.*
@@ -190,7 +192,7 @@ call as much as mine):
   identifiable**, the way the "forcing deeper engagement" question above
   just did — that's the mechanism in 3a/3b, applied to this repo's own
   practice of self-reflection, not just to code.
-- **Use PR review comments as the argument, not just the record.** Rule 4
+- **Use PR review comments as the argument, not just the record.** Rule 5
   (co-create, don't delegate) suggests the highest-value use of this repo
   isn't "paste a finished thought" but "open a PR with a half-formed one and
   have the back-and-forth happen as review comments" — the transcript of
@@ -203,9 +205,24 @@ call as much as mine):
 - **Periodically ask Claude to look for contradictions across entries.**
   Loosely-grouped brainstorm entries accumulated over many sessions will
   eventually disagree with each other (e.g., rule 9's "kill four of five
-  built" against rule 5's "don't systematize a one-off") — that tension is
+  built" against rule 7's "don't systematize a one-off") — that tension is
   often more interesting than either entry alone, and it's the kind of
   thing a single session won't notice but a deliberate re-read will.
+
+**2026-08-29 entry — a dropped rule, worth reconsidering later.**
+[COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) used to carry a
+rule, "own the spec and the eval before you own the output" — whoever
+writes the acceptance criteria sets the direction, and if you can't say
+how you'd know the result is right, you don't have a project. Morgan
+flagged that it sits in tension with rule 9, "build five, kill four":
+one says commit to a definition of "good" before you build, the other
+says building fast and killing four of five is often the better move
+when an option costs nearly nothing. Removed rather than resolved — the
+call was that owning the spec is real but doesn't earn a standalone rule
+next to one that can read as its opposite. Worth a real pass later: is
+this actually a contradiction, or two rules for two different situations
+(cheap-to-build options vs. a project with real acceptance criteria) that
+just needed sharper scoping instead of a cut?
 
 **2026-08-27 entry — the pipeline needed a name and a middle stage.** A
 session asked to recommend RepoPersonalPreferences changes based on this

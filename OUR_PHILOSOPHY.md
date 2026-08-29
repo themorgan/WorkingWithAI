@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 21 -->
+<!-- Last updated: 2026-08-29 14:42:50 (Buenos Aires) by Morgan F, to version 22 -->
 
 # Our philosophy
 
@@ -35,7 +35,8 @@ The same five steps repeat every time, in order:
 position, let the model push back, push back on its answer — keep going
 until the exchange settles it, not either side alone. Instructing makes
 a typist; polling for an opinion makes an oracle. Quality is one payoff:
-agreement just hands back your blind spots ([rule 4](COMPANY_BUILDING_RULES.md);
+agreement just hands back your blind spots ([rule 4](COMPANY_BUILDING_RULES.md),
+[rule 5](COMPANY_BUILDING_RULES.md);
 [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s "argue in
 the open").
 
@@ -52,7 +53,7 @@ item 7).
 
 **3. Processes should be visible, not locked in one person's brain.** A
 workflow whose only interface is "email me and I'll handle it" is
-invisible to everyone else. Bigger than tidiness ([rule 10](COMPANY_BUILDING_RULES.md)):
+invisible to everyone else. Bigger than tidiness ([rule 8](COMPANY_BUILDING_RULES.md)):
 real intelligence is what anyone with the record can check, not what one
 person knows. Every dark process trades convenience now for a
 compounding blind spot.
@@ -61,7 +62,7 @@ compounding blind spot.
 planning, taste, judgment — deciding what gets built and whether it
 works, the way defining a system beats hand-running it. Brief the model
 like an individual contributor, stay engaged, adjust the plan as soon as
-the first attempt reveals what the brief missed ([rule 14](COMPANY_BUILDING_RULES.md))
+the first attempt reveals what the brief missed ([rule 13](COMPANY_BUILDING_RULES.md))
 — same posture as item 1, applied to management.
 
 **5. Protocols, rules, and preferences get generated automatically.** The

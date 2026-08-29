@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 13:47:27 (Buenos Aires) by Morgan F, to version 9 -->
+<!-- Last updated: 2026-08-29 14:42:50 (Buenos Aires) by Morgan F, to version 10 -->
 
 # Repository map — where to find things
 
@@ -20,7 +20,7 @@ Companions: [AGENTS.md](AGENTS.md) (workflow + conventions), [TODO.md](TODO.md)
 | [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) | Orientation for a newcomer: the handful of underlying theoretical ideas everything else here assumes, named and explained on their own terms. |
 | [REASONS_WHY.md](REASONS_WHY.md) | Orientation's companion: the less obvious benefits those ideas actually produce in practice. |
 | [IDEAS.md](IDEAS.md) | **The deliverable.** The brainstorm itself — pipeline stage 1. |
-| [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) | Standalone essay promoted out of the brainstorm: fifteen rules for building a company around AI. |
+| [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) | Standalone essay promoted out of the brainstorm: rules for building a company around AI. |
 | [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) | Standalone doc promoted out of the brainstorm: how AI systems themselves should be configured, built, and run to make the healthy pattern the default. |
 | [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) | Pipeline stage 2 — the practical rules actually being tried in real work right now, tagged Trial / Ready to promote / Promoted. |
 | [GLOSSARY.md](GLOSSARY.md) | Canonical names — the one list. Use its names; don't invent new ones. |

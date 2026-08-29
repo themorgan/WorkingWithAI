@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 28 -->
+<!-- Last updated: 2026-08-29 14:42:50 (Buenos Aires) by Morgan F, to version 29 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -43,14 +43,72 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   batch, plus [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) promoted out as its own
   document. The three original placeholder sections (prompts, workflows,
   incidents) are still empty and open for the next batch.
+- [x] **Restructure [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md):
+  drop the count from the title, cut a rule, reword two, and group the
+  rest into named sections.** Done 2026-08-29 → doc. Seven changes,
+  Morgan's, in one pass. (1) Title "Fifteen rules for building a company
+  around AI" → "Rules for building a company around AI" — a count in a
+  title drifts every time a rule is added or cut, so it's gone from the
+  title, the opening paragraph, and every cross-reference that named it
+  (this file, [AGENTS.md](AGENTS.md), [IDEAS.md](IDEAS.md),
+  [MAP.md](MAP.md)) — the file's own
+  [`no-stale-counts`](process/personal/README.md#no-stale-counts).
+  (2) Rule 1's title dropped ", Labor isn't" — read as needlessly
+  dismissive of labor; the body already makes the point without it.
+  (3) The old rule 6 rewritten from two reflexes to three, adding "What
+  rules or protocols should come from this?" as the first question —
+  the reflex that generates a rule live, matching rule 7's own point
+  about capturing corrections automatically.
+  (4) The old rule 7, "own the spec and the eval before you own the
+  output," removed — Morgan flagged it sits in tension with rule 9's
+  "build five, kill four" (commit to a definition of good before
+  building vs. building fast and killing most of it). Not resolved,
+  just cut; logged as a 2026-08-29 entry in [IDEAS.md](IDEAS.md) to
+  revisit later — is it a real contradiction or two rules for two
+  different situations that needed sharper scoping instead.
+  (5) The hiring rule retitled "Hire for drive, 'Getting Shit Done,'
+  relationships, and taste" (was "hire for taste and verification, not
+  production") — Morgan's emphasis is specifically people who figure
+  out how to get things done, with taste as one part of that picture,
+  not the headline; the blunter ", not production" framing is gone.
+  (6) A new rule, "treat the AI Chat as the intermediary for the work
+  itself, not a tool you consult on the side" — the partner that pushes
+  back before a plan commits and pushes it into happening once it
+  does — added and placed early (new rule 4) rather than at the end,
+  since Morgan called it core.
+  (7) The full list regrouped under four named sections — Foundations;
+  Working with the model; Shipping and process; People — ordered so the
+  "various roles of humans" rule (permanent hire, what's structurally
+  human) stays last, as Morgan asked. Removing rule 7 and moving rule 16
+  meant renumbering the whole list; every "(rule N)" citation across
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md), [REASONS_WHY.md](REASONS_WHY.md),
+  [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md), and
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) was updated to match;
+  historical "Revised Nth time" log entries elsewhere in this file were
+  left alone, per this file's own precedent of not rewriting the record
+  of what was true when it was written.
+  Judgment calls made: (1) kept rules as bold paragraphs rather than
+  real Markdown headings even with the new section structure, since
+  giving each rule its own heading was a bigger typographic change than
+  asked and would have obsoleted [AGENTS.md](AGENTS.md)'s citation-style
+  reasoning ("no heading to anchor to") for the whole file, not just this
+  edit; (2) named the four sections descriptively (not numbered) rather
+  than inventing punchier titles, to keep them from reading as a second
+  numbering scheme competing with the rules' own; (3) kept the hiring
+  rule's phrase "Getting Shit Done" close to Morgan's own wording rather
+  than softening it, since the whole point of that edit was to state the
+  emphasis (drive, execution) more directly, not less.
+
+  Session: https://claude.ai/code/session_017Zg3sdbyAygn4L3ShpxTKw
+
 - [ ] **Fill in the two open brackets in [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md).**
-  Rule 8 wants the name of the sharpest editor Morgan has worked with; rule
+  Rule 12 wants the name of the sharpest editor Morgan has worked with; rule
   14 wants a real year for "the way you'd have read it in [YEAR]." Both are
   intentionally left as placeholders rather than filled with something
   generic — replace them only when a real specific comes to mind.
 - [ ] **Look for contradictions across [IDEAS.md](IDEAS.md) entries**, per
   the meta-note at the bottom of that file (e.g. rule 9's "build five, kill
-  four" against rule 5's "don't systematize a one-off") — worth a
+  four" against rule 7's "don't systematize a one-off") — worth a
   dedicated pass once there's enough material for real tensions to show up.
   Now also item 7 of [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — this line
   and that item are the same recurring job, described from two sides.
@@ -78,7 +136,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 - [ ] **Link the remaining unlinked numbered-list citations this repo's new
   convention now requires** ([AGENTS.md](AGENTS.md)'s "Doc references are
   links"): [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)'s own
-  self-references (`item 1`, `rule 6`, `rule 10`),
+  self-references (`item 1`, `rule 6`, `rule 8`),
   [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s and
   [IDEAS.md](IDEAS.md)'s bare `rule N` mentions of
   [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), and
