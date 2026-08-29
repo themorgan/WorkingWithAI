@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-28 19:46:33 (Buenos Aires) by Morgan F, to version 10 -->
+<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 11 -->
 
 # Reasons why
 
@@ -23,8 +23,8 @@ item 7).
 Documenting usually loses to the real work competing for the same hour.
 Pulling the record out as a byproduct of working in the open — rules,
 open items, reasoning — instead of a follow-up chore
-([IDEAS.md](IDEAS.md)'s automatic extraction) removes that tax: the
-writing already happened while the task did.
+([OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 5's automatic extraction)
+removes that tax: the writing already happened while the task did.
 
 **3. Attaching the situation to a decision heads off the confusions
 nobody sees coming.** This repo's merge runbook says never hand-merge
@@ -65,7 +65,7 @@ attention on translation, and the record gets a thinner version of
 their actual thinking. Letting people write and think in whatever
 language comes naturally, with the AI carrying the translation into the
 repo's shared working language, gets the real version into the record
-instead ([IDEAS.md](IDEAS.md)).
+instead ([OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 2).
 
 **8. A private chat with an LLM is knowledge the company never gets.**
 People already work through problems by talking to a model. When that

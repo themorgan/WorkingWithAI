@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 13:48:35 (Buenos Aires) by Morgan F, to version 27 -->
+<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 28 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -91,6 +91,34 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Stop citing a specific point inside [IDEAS.md](IDEAS.md) (the
+  brainstorm) as justification from a formal doc — cite the promoted
+  formal-doc treatment instead.** Decided 2026-08-29 → done, doc. Morgan
+  flagged [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s
+  "automatic rule extraction" bullet citing "IDEAS.md's 3a" — an unvetted
+  brainstorm entry doesn't earn the weight of backing a claim in a formal
+  document. Re-pointed it at [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 5
+  and [REASONS_WHY.md](REASONS_WHY.md) item 2, which already state the same
+  idea formally. Fixed the same pattern everywhere else it showed up:
+  OUR_PHILOSOPHY.md item 6's own "(IDEAS.md's rule extraction)" now points
+  at its own item 5; REASONS_WHY.md item 2's "(IDEAS.md's automatic
+  extraction)" now points at OUR_PHILOSOPHY.md item 5. REASONS_WHY.md item 7
+  (working in a second language) had no formal-doc home yet for its
+  IDEAS.md citation, so folded a short corollary into OUR_PHILOSOPHY.md item
+  2 ("context is capital" extends to language) and re-pointed the citation
+  there. The general rule this establishes — a formal doc cites another
+  formal doc, never a specific brainstorm entry; add the idea to a formal
+  doc first, then link — is now a new rule in
+  [the personal pack](https://github.com/themorgan/RepoPersonalPreferences/blob/main/process/personal/README.md)
+  (slug `brainstorm-citations`; lands here on the next personal-pack sync),
+  so this gets caught going forward rather than needing another sweep
+  later. Judgment call: picked OUR_PHILOSOPHY.md item
+  2 (context is capital) as the language idea's new home, since "capturing
+  real thinking instead of a diminished version" is the same logic the item
+  already argues, rather than opening it as its own numbered core
+  philosophy (which would force renumbering every "item N" cross-reference
+  that depends on the current seven).
 
 - [x] **Flip the pre-rename VoiceGuidelinesToSoundHuman URLs to
   SoundHuman.** Done 2026-08-29 → doc. The rename landed on GitHub
