@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 13:05:00 (Buenos Aires) by Morgan F, to version 35 -->
+<!-- Last updated: 2026-08-29 14:55:51 (Buenos Aires) by Morgan F, to version 39 -->
 
 # The Personal Pack
 
@@ -93,24 +93,27 @@ BestPractice, it gets dropped. The rest, in order:
 | | **Documentation conventions** | |
 | 20 | [`branch-links`](#branch-links) | A mentioned branch is always a link |
 | 21 | [`rule-links`](#rule-links) | Anything mentioned that has a destination is a link to it — in replies as much as in files |
-| 22 | [`file-mention-links`](#file-mention-links) | In chat and PR/commit text, every file mention is a clickable link, even inside code |
-| 23 | [`no-stale-counts`](#no-stale-counts) | Don't state a count that will drift; describe it instead |
-| 24 | [`header-caps`](#header-caps) | One header capitalization schema; NY Times headline style by default |
-| 25 | [`sensitive-characterization-scrub`](#sensitive-characterization-scrub) | Scrub, or ask first, before committing a strong/negative/sensitive characterization of a real person |
-| 26 | [`private-repo-scrub`](#private-repo-scrub) | Private repo names scrubbed before anything vendors |
+| 22 | [`durable-list-anchors`](#durable-list-anchors) | A durable numbered list gets a permanent slug and anchor per entry, not just a position number |
+| 23 | [`brainstorm-citations`](#brainstorm-citations) | A formal document cites another formal document, never a specific point inside an explicit brainstorm document |
+| 24 | [`file-mention-links`](#file-mention-links) | In chat and PR/commit text, every file mention is a clickable link, even inside code |
+| 25 | [`no-stale-counts`](#no-stale-counts) | Don't state a count that will drift; describe it instead |
+| 26 | [`header-caps`](#header-caps) | One header capitalization schema; NY Times headline style by default |
+| 27 | [`sensitive-characterization-scrub`](#sensitive-characterization-scrub) | Scrub, or ask first, before committing a strong/negative/sensitive characterization of a real person |
+| 28 | [`private-repo-scrub`](#private-repo-scrub) | Private repo names scrubbed before anything vendors |
 | | **Code this pack helps write** | |
-| 27 | [`llm-neutral`](#llm-neutral) | Platform-neutral LLM integrations; OpenRouter assumed |
-| 28 | [`fail-gracefully`](#fail-gracefully) | Always fail gracefully |
+| 29 | [`llm-neutral`](#llm-neutral) | Platform-neutral LLM integrations; OpenRouter assumed |
+| 30 | [`fail-gracefully`](#fail-gracefully) | Always fail gracefully |
 | | **Installing the pack into a repo** | |
-| 29 | [`default-branch`](#default-branch) | A repo's default branch is `main` |
-| 30 | [`blank-blocklist`](#blank-blocklist) | The scrub blocklist stays blank at install |
-| 31 | [`content-subdirs`](#content-subdirs) | Content-oriented repos group their deliverable content |
-| 32 | [`install`](#install) | The install procedure itself |
+| 31 | [`default-branch`](#default-branch) | A repo's default branch is `main` |
+| 32 | [`blank-blocklist`](#blank-blocklist) | The scrub blocklist stays blank at install |
+| 33 | [`content-subdirs`](#content-subdirs) | Content-oriented repos group their deliverable content |
+| 34 | [`install`](#install) | The install procedure itself |
 | | **Keeping the vendored copies current (the meta rules)** | |
-| 33 | [`bestpractice-sync`](#bestpractice-sync) | The scheduled BestPractice sync |
-| 34 | [`pack-sync`](#pack-sync) | Its sibling: the scheduled pack sync |
-| 35 | [`drift-notice`](#drift-notice) | The session-start drift notice, layered on both |
-| 36 | [`automation-issues`](#automation-issues) | Unattended automation reports its own blockers |
+| 35 | [`bestpractice-sync`](#bestpractice-sync) | The scheduled BestPractice sync |
+| 36 | [`pack-sync`](#pack-sync) | Its sibling: the scheduled pack sync |
+| 37 | [`drift-notice`](#drift-notice) | The session-start drift notice, layered on both |
+| 38 | [`fresh-check-escalation`](#fresh-check-escalation) | When the freshness check can't reach the source, say so — then verify directly |
+| 39 | [`automation-issues`](#automation-issues) | Unattended automation reports its own blockers |
 
 <a id="bestpractice-wins"></a>
 
@@ -622,7 +625,12 @@ below:
   click-path that points at something that moved or no longer exists; a
   positional number cited as if it were a name
   ([`rule-links`](#rule-links)); numbering that skips, repeats, or runs out
-  of order.
+  of order; an orphaned name — a repo, tool, or file this repo mentions by a
+  name it no longer goes by, once a rename elsewhere left the old name
+  sitting in this repo's own prose. The trigger is a rename the session
+  already knows about — it made the rename, or was told about it — not a
+  standing audit of every name this repo happens to mention; nothing here
+  watches other repos for renames on its own.
 - **Fragments** — a sentence, note, or heading left behind by an earlier
   edit: a "temporary" caveat whose occasion has passed, a note about a
   reorganization that already happened.
@@ -900,9 +908,130 @@ are — like [`branch-links`](#branch-links), it's a documentation-quality
 habit, not a fact about one person, so it applies regardless of who is
 driving the session.
 
+<a id="durable-list-anchors"></a>
+
+### 22. A Durable Numbered List Gets a Permanent Slug and Anchor per Entry, Not Just a Position Number (`durable-list-anchors`)
+
+[`rule-links`](#rule-links) already draws this line for the pack's own
+rules: cite by permanent slug — `` [`slug`](process/personal/README.md#slug) `` —
+never by the heading number, because the number moves whenever the file
+is reorganized and the slug never does. This rule generalizes that same
+fix to any repo's own content, not just this pack: **a numbered list
+whose entries hold real, durable content — standing rules, named ideas,
+arguments meant to last — likely to be cited elsewhere as "item N" or
+"rule N," gets the identical treatment.** Each entry gets a permanent
+`<a id="slug"></a>` anchor; every citation to it, anywhere, uses
+`` `slug` (file.md#slug) ``; the visible number stays in the list purely as
+reading-order furniture nobody actually cites.
+
+**Found the hard way, in a dependent repo.** A session
+folded a new idea into an existing numbered item as an awkward corollary,
+specifically to dodge the sweep of renumbering every "item N"
+cross-reference a plain insertion would have forced — the exact failure
+this rule exists to prevent. A slugged list has nothing to renumber:
+insert the new entry wherever it actually belongs, in reading order, and
+every existing citation keeps working untouched. Position-only numbering
+makes every future insertion a choice between distorting the list's own
+logical order (bolting the idea onto whatever's nearby) or paying for a
+repo-wide citation sweep; a slug removes that choice, the same removal
+[`new-rule-placement`](#new-rule-placement) already banks on for this
+pack's own rules.
+
+**Which lists this covers, and which it doesn't.** The line is whether an
+entry is genuinely likely to be **cited elsewhere, by position, on its
+own** — a repo's own core-philosophy list, a numbered rules-for-running-
+the-company essay, a rules-in-force checklist are exactly this shape. A
+**short bullet list** — three or four quick options, a table row set, a
+"not yet ready" set of open questions — doesn't need it: the overhead of
+assigning and maintaining slugs would outweigh any benefit, since nothing
+outside the list is likely to reference one bullet by position in the
+first place. This extends to an explicit brainstorm document's own
+numbered entries too, where one exists
+([`brainstorm-citations`](#brainstorm-citations), below, governs whether a
+*formal* document may cite one — this rule is orthogonal, about whether
+the brainstorm's own internal cross-references, like one entry noting
+it's "a corollary of" an earlier one, survive the brainstorm's own
+append-only growth without drifting).
+
+**Mechanics, matching [`rule-links`](#rule-links)'s own form exactly:**
+
+- An `<a id="slug"></a>` immediately above each entry — its own heading if
+  the list already uses real headings, or immediately before the bold
+  lead-in paragraph if it doesn't (COMPANY_BUILDING_RULES.md's fifteen
+  rules are exactly this second shape today: bold paragraphs, no
+  headings — the anchor works the same either way, since it's an
+  invisible HTML target, not a heading itself).
+- The slug is assigned once, at the entry's creation, and never changes —
+  not when the list is reordered, split, or the entry is retitled.
+  [`no-stale-counts`](#no-stale-counts) already asks not to state a count
+  that will drift; a positional citation is the same failure applied to
+  an individual entry instead of a total.
+- Every citation, in every file and in chat, uses `` `slug` (file.md#slug) `` —
+  never a bare "item N" / "rule N", the same failure
+  [`rule-links`](#rule-links) already calls out for this pack's own rules,
+  now extended to any repo's own durable lists.
+- The visible position number stays in the heading or paragraph lead-in as
+  a reading-order aid for a human skimming top to bottom — it is not, and
+  never becomes, a citable identifier.
+
+**A heading-based list still needs its own explicit anchor, not just
+GitHub's auto-generated one.** GitHub derives a heading's anchor from its
+rendered text, number included (`### 7. Contradiction-Scanning...` becomes
+`#7-contradiction-scanning...`) — so even a list that already uses real
+headings silently breaks every citation to it the moment an entry is
+renumbered, unless an explicit `<a id="slug"></a>` decouples the two the
+same way this pack's own rules already do.
+
+Not scoped to Morgan — a documentation-quality habit, like
+[`rule-links`](#rule-links), so it applies regardless of who is driving
+the session or which repo the pack is installed into.
+
+<a id="brainstorm-citations"></a>
+
+### 23. A Formal Document Cites Another Formal Document, Never a Specific Point Inside the Brainstorm (`brainstorm-citations`)
+
+Some repos keep an explicit brainstorm document — a running, loosely
+organized dump of raw ideas, dropped in as they occur, explicitly not
+vetted prose (the same "raw material versus deliverable" distinction
+[`content-subdirs`](#content-subdirs) already draws, one level up: the
+brainstorm is where an idea starts, not where it's meant to be trusted
+from). [`rule-links`](#rule-links) says anything mentioned gets a link to
+its destination; that default has a blind spot here. A **formal
+document** — an essay, a theory or reasons write-up, a rules-in-force
+checklist, anything meant to state a settled or settling claim — citing a
+specific entry, numbered item, or open question inside the brainstorm as
+that claim's own support borrows a credibility the brainstorm entry never
+earned: it's raw material precisely because nobody has argued it through
+yet, so pointing at it as though it were backing is citing an idea to
+itself.
+
+**The rule: a formal document links another formal document for a
+substantive point, never a specific entry inside a brainstorm document.**
+If the idea a formal document wants to cite hasn't actually been promoted
+into some formal document's own text yet, don't cite the brainstorm entry
+as a stand-in — add the idea to whichever formal document it fits (a
+sentence, a corollary, a new small item — [`list-item-parity`](#list-item-parity)
+governs how), then link there instead. This is the "promote a cluster of
+brainstorm entries once they earn a formal document" move a repo with
+this kind of pipeline typically already has, applied one level down: to a
+single citation, not a whole section.
+
+**What this doesn't reach:** a document's own provenance note ("promoted
+out of the brainstorm," "started as a brainstorm entry") states a true
+fact about that document's history, not a citation used as support for a
+claim, and stays fine linking to the brainstorm directly. Likewise,
+linking the brainstorm document itself as an object — pointing a reader
+there to browse it, or noting where new raw material should go — isn't
+the pattern this rule catches; only a specific interior point cited as
+justification is.
+
+Not scoped to Morgan — a documentation-quality habit, like
+[`rule-links`](#rule-links), so it applies regardless of who is driving
+the session in a repo that keeps a brainstorm document of this kind.
+
 <a id="file-mention-links"></a>
 
-### 22. In Chat and PR/Commit Text, Every File Mention Is a Clickable Link — Even Inside Code (`file-mention-links`)
+### 24. In Chat and PR/Commit Text, Every File Mention Is a Clickable Link — Even Inside Code (`file-mention-links`)
 
 [`rule-links`](#rule-links) already says a file gets linked "the first time
 it's mentioned," using a relative markdown link, and explicitly leaves a
@@ -946,7 +1075,7 @@ documentation habit, like [`branch-links`](#branch-links).
 
 <a id="no-stale-counts"></a>
 
-### 23. Don't State a Count That Will Drift — Describe It Instead (`no-stale-counts`)
+### 25. Don't State a Count That Will Drift — Describe It Instead (`no-stale-counts`)
 
 Prose that cites an exact count of something that changes over time — how
 many numbered rules this pack has, how many warnings a lint tool currently
@@ -987,7 +1116,7 @@ habit, like [`trim-prose`](#trim-prose).
 
 <a id="header-caps"></a>
 
-### 24. Header Capitalization: Pick One Consistent Schema — NY Times Headline Style Is the Pack's Default (`header-caps`)
+### 26. Header Capitalization: Pick One Consistent Schema — NY Times Headline Style Is the Pack's Default (`header-caps`)
 
 [AGENTS.md](../../AGENTS.md)'s own Conventions section already states the
 general rule for *this* repo: headers and subheaders at the same rank must
@@ -1025,7 +1154,7 @@ regardless of who is driving the session in a given dependent repo.
 
 <a id="sensitive-characterization-scrub"></a>
 
-### 25. Scrub Sensitive Characterizations of Real People, Unless Told Otherwise (`sensitive-characterization-scrub`)
+### 27. Scrub Sensitive Characterizations of Real People, Unless Told Otherwise (`sensitive-characterization-scrub`)
 
 Assume whoever is driving a session here talks about real people — friends,
 colleagues, prospective partners, anyone the work touches — as candidly and
@@ -1073,7 +1202,7 @@ installed into, characterizing whoever they're discussing.
 
 <a id="private-repo-scrub"></a>
 
-### 26. Private Repo Names and Specifics Get Scrubbed Before Anything Vendors or Is Shared (`private-repo-scrub`)
+### 28. Private Repo Names and Specifics Get Scrubbed Before Anything Vendors or Is Shared (`private-repo-scrub`)
 
 Two privacy boundaries look alike but aren't the same one.
 [`blank-blocklist`](#blank-blocklist)'s
@@ -1140,7 +1269,7 @@ regardless of who is drafting content in this repo.
 
 <a id="llm-neutral"></a>
 
-### 27. LLM Integrations Stay Platform-Neutral; OpenRouter Is the Default Assumption (`llm-neutral`)
+### 29. LLM Integrations Stay Platform-Neutral; OpenRouter Is the Default Assumption (`llm-neutral`)
 
 Whenever a system this pack helps set up needs to talk to an LLM, build it
 against a provider-neutral interface — model name, API key/token, and base
@@ -1161,7 +1290,7 @@ reason a piece of code built against this rule breaks.
 
 <a id="fail-gracefully"></a>
 
-### 28. Always Fail Gracefully (`fail-gracefully`)
+### 30. Always Fail Gracefully (`fail-gracefully`)
 
 Any code this pack helps write or set up anticipates its own common failure
 modes rather than letting them surface as an unhandled crash. Concretely:
@@ -1182,7 +1311,7 @@ effort yet — check-in remains the outlet if that changes (see
 
 <a id="default-branch"></a>
 
-### 29. A New Repo's Default Branch Is `main`, Set Once at Install (`default-branch`)
+### 31. A New Repo's Default Branch Is `main`, Set Once at Install (`default-branch`)
 
 Two different situations both land here, and they're handled differently —
 telling them apart is the first step:
@@ -1221,7 +1350,7 @@ start applying to every commit after it.
 
 <a id="blank-blocklist"></a>
 
-### 30. Scrub Blocklist Stays Blank at Install — Never Ask, Never Remind (`blank-blocklist`)
+### 32. Scrub Blocklist Stays Blank at Install — Never Ask, Never Remind (`blank-blocklist`)
 
 BestPractice's own install procedure
 ([process/upstream/INSTALL.md](../upstream/INSTALL.md) §1 step 4) asks the
@@ -1252,7 +1381,7 @@ Don't touch it under this rule.
 
 <a id="content-subdirs"></a>
 
-### 31. Content-Oriented Repos: Group Deliverable Content in a Subdirectory — a Recommendation, Not a Rule (`content-subdirs`)
+### 33. Content-Oriented Repos: Group Deliverable Content in a Subdirectory — a Recommendation, Not a Rule (`content-subdirs`)
 
 Every other rule in this pack is something a session does or checks,
 [`push-back`](#push-back) excepted by its own disclaimer. This one is the
@@ -1314,7 +1443,7 @@ actually decides to do it.
 
 <a id="install"></a>
 
-### 32. Installing This Pack into a Repo (`install`)
+### 34. Installing This Pack into a Repo (`install`)
 
 Do this **after** BestPractice itself is installed
 ([process/upstream/INSTALL.md](../upstream/INSTALL.md) §1) — see
@@ -1405,7 +1534,7 @@ would for a from-scratch install.
 
 <a id="bestpractice-sync"></a>
 
-### 33. A Sync Keeps BestPractice Current, Unattended (`bestpractice-sync`)
+### 35. A Sync Keeps BestPractice Current, Unattended (`bestpractice-sync`)
 
 *([`pack-sync`](#pack-sync) is this rule's sibling — the same shape, pointed
 at the personal pack instead of BestPractice. Change one and check the
@@ -1472,7 +1601,7 @@ one of the two so future unattended runs don't need to be asked for by hand.
 
 <a id="pack-sync"></a>
 
-### 34. A Sync Keeps the Personal Pack Itself Current (`pack-sync`)
+### 36. A Sync Keeps the Personal Pack Itself Current (`pack-sync`)
 
 The pack's own analogue of [`bestpractice-sync`](#bestpractice-sync)'s
 BestPractice sync — same shape, a separate workflow and a separate concern.
@@ -1545,7 +1674,7 @@ merge past a failing check.
 
 <a id="drift-notice"></a>
 
-### 35. A Session-Start Notice Asks About Drift Immediately, Not at the End (`drift-notice`)
+### 37. A Session-Start Notice Asks About Drift Immediately, Not at the End (`drift-notice`)
 
 The scheduled syncs ([`bestpractice-sync`](#bestpractice-sync),
 [`pack-sync`](#pack-sync)) close the gap *between* sessions — they run
@@ -1727,9 +1856,69 @@ be circular. Only the *template* lives here, at
 [templates/github-actions/personal-pack-sync.yml.template](templates/github-actions/personal-pack-sync.yml.template),
 for dependent repos to instantiate.
 
+<a id="fresh-check-escalation"></a>
+
+### 38. When the Freshness Check Can't Reach the Source, Say So — Then Verify Directly (`fresh-check-escalation`)
+
+[`drift-notice`](#drift-notice)'s personal-pack half runs one `git ls-remote`
+against RepoPersonalPreferences (private) at every session start, and was
+built deliberately silent on any failure — offline, a timeout, a transient
+blip — treating it the same as "nothing has moved," because a notice that
+turns out to mean only "the network hiccuped" would be worse than no notice
+at all. That silence assumption breaks down for one case it wasn't built to
+handle: an environment with no git credentials for a private repo at all,
+ever — not a blip, a standing gap. There, `git ls-remote` fails the exact
+same way every single session, so the existing design reads it as
+"confirmed current" indefinitely, masking real drift for as long as that
+environment exists (found directly: a dependent repo's session, 2026-08-29,
+where `git ls-remote` against RepoPersonalPreferences came back `fatal:
+could not read Username for 'https://github.com': terminal prompts
+disabled` — a fast, clean failure, not a hang).
+
+**The mechanical half.** [tools/pack_sync.py](tools/pack_sync.py)'s `fresh()`
+now tells the two failure modes apart. `git ls-remote` returning nothing
+because it genuinely found nothing — an unreachable host, a dead network, a
+slow timeout — still prints nothing, unchanged: offline stays quiet, exactly
+as [`drift-notice`](#drift-notice) already documents. But a `git ls-remote`
+that comes back with a real, fast error (a non-zero exit) now prints one
+line — `COULD NOT VERIFY: ...`, naming the repo and the error, pointing back
+here — instead of vanishing into the same silent branch. That line rides
+every mechanism [`drift-notice`](#drift-notice) already built for its own
+`NOTICE:` line: raised at session start, captured and recorded into
+[TODO.md](../../TODO.md)'s `## Pending Drift Reviews` under the same
+`personal-pack` source slug, warned on by [`light-check`](#light-check)
+while the entry stays open, resolved the same way
+(`pack_sync.py resolve personal-pack [note]`). The scheduled sync
+([`pack-sync`](#pack-sync)) is unaffected — its own `check` job runs an
+authenticated `git ls-remote` directly and never calls `fresh()`.
+
+**The judgment half, for whichever session sees that line.** "Could not
+verify" is not "confirmed fresh" — don't read the absence of a `NOTICE:`
+line as an answer once a `COULD NOT VERIFY:` line has said the check itself
+didn't run. If the environment offers any way to reach the source directly —
+attaching a GitHub repo to the session read-only, an available `gh`/API
+credential, anything short of pushing to it — use it: clone or attach
+RepoPersonalPreferences, then compare with `python3
+process/personal/tools/pack_sync.py status <clone>` against the manifest's
+recorded `upstream.commit`, instead of trusting silence. That is exactly how
+the gap this rule exists for got closed the one time it was hit
+(a dependent repo, 2026-08-29 — the same sync that added
+[`generated-file-marker`](#generated-file-marker),
+[`file-mention-links`](#file-mention-links), and
+[`sensitive-characterization-scrub`](#sensitive-characterization-scrub) to
+that repo). If no such mechanism exists in that environment either, say so
+plainly instead of reporting the sync as current: "personal-pack freshness
+could not be verified in this environment" is honest, where silence that
+reads as "nothing to do" is not.
+
+**Doesn't apply to RepoPersonalPreferences on itself** — the same exemption
+[`drift-notice`](#drift-notice) already carries: this repo's own
+`process/personal/` *is* the pack's source, so there is no separate source
+repo for it to ever fail to reach.
+
 <a id="automation-issues"></a>
 
-### 36. Unattended Automation Reports Its Own Blockers as a GitHub Issue (`automation-issues`)
+### 39. Unattended Automation Reports Its Own Blockers as a GitHub Issue (`automation-issues`)
 
 Any unattended job in this repo — today that means the two scheduled syncs
 ([`bestpractice-sync`](#bestpractice-sync), [`pack-sync`](#pack-sync)), and

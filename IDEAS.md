@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 14:42:50 (Buenos Aires) by Morgan F, to version 8 -->
+<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 9 -->
 
 # Ideas — how to work with AI
 
@@ -10,7 +10,8 @@ from [MAP.md](MAP.md) when that happens).
 entry below is raw material dropped in from a session, lightly organized.
 Treat it as a standing agenda, not a finished write-up — the point of doing
 this in a repo instead of a doc is that any thread can pick up one entry,
-argue it out with Claude (per [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) rule 5),
+argue it out with Claude (per
+[`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate)),
 and push the sharpened version back in.
 
 ## Frameworks
@@ -47,10 +48,12 @@ and push the sharpened version back in.
 ## Why BestPractice specifically works (semi-organized brainstorm)
 
 *The premise: BestPractice — the practice layer this repo vendors under
-`process/upstream/` — is being used here as a live case study of rule 5 and
-rule 2 from [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md): forced co-creation, forced
-transcription. The observations below are about* why *it works, not just
-that it does.*
+`process/upstream/` — is being used here as a live case study of
+[`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate)
+and
+[`transcribe-everything`](COMPANY_BUILDING_RULES.md#transcribe-everything):
+forced co-creation, forced transcription. The observations below are
+about* why *it works, not just that it does.*
 
 1. It's a structure for working with AI as a partner-in-thought, rather
    than the two usual extremes for non-dev work: blindly handing it
@@ -98,7 +101,8 @@ pushes them there. Candidate mechanisms, none decided yet (this is a
   nobody re-reads.
 
 Push-back mode (the first candidate above) is decided and promoted — see
-[RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) item 1. The rest — visible
+[`push-back-writing-thinking`](RULES_NOW_TESTING.md#push-back-writing-thinking).
+The rest — visible
 reminders, in-your-face rule-extraction, proactive resurfacing — remain
 open; proactive resurfacing specifically also shows up as one of
 [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s "Memory & context" ideas,
@@ -192,29 +196,35 @@ call as much as mine):
   identifiable**, the way the "forcing deeper engagement" question above
   just did — that's the mechanism in 3a/3b, applied to this repo's own
   practice of self-reflection, not just to code.
-- **Use PR review comments as the argument, not just the record.** Rule 5
-  (co-create, don't delegate) suggests the highest-value use of this repo
-  isn't "paste a finished thought" but "open a PR with a half-formed one and
-  have the back-and-forth happen as review comments" — the transcript of
-  the disagreement becomes part of the corpus (rule 1), not just the
-  conclusion.
+- **Use PR review comments as the argument, not just the record.**
+  [`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate)
+  suggests the highest-value use of this repo isn't "paste a finished
+  thought" but "open a PR with a half-formed one and have the
+  back-and-forth happen as review comments" — the transcript of the
+  disagreement becomes part of the corpus
+  ([`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset)), not just
+  the conclusion.
 - **When a topic outgrows a bullet, promote it**, exactly as
   [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) just was. A dedicated file gets its
   own version history, so you can watch one idea sharpen over many sessions
   instead of only ever seeing its latest state.
 - **Periodically ask Claude to look for contradictions across entries.**
   Loosely-grouped brainstorm entries accumulated over many sessions will
-  eventually disagree with each other (e.g., rule 9's "kill four of five
-  built" against rule 7's "don't systematize a one-off") — that tension is
-  often more interesting than either entry alone, and it's the kind of
-  thing a single session won't notice but a deliberate re-read will.
+  eventually disagree with each other (e.g.,
+  [`build-five-kill-four`](COMPANY_BUILDING_RULES.md#build-five-kill-four)'s
+  "kill four of five built" against
+  [`think-in-workflows`](COMPANY_BUILDING_RULES.md#think-in-workflows)'s
+  "don't systematize a one-off") — that tension is often more interesting
+  than either entry alone, and it's the kind of thing a single session
+  won't notice but a deliberate re-read will.
 
 **2026-08-29 entry — a dropped rule, worth reconsidering later.**
 [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) used to carry a
 rule, "own the spec and the eval before you own the output" — whoever
 writes the acceptance criteria sets the direction, and if you can't say
 how you'd know the result is right, you don't have a project. Morgan
-flagged that it sits in tension with rule 9, "build five, kill four":
+flagged that it sits in tension with
+[`build-five-kill-four`](COMPANY_BUILDING_RULES.md#build-five-kill-four):
 one says commit to a definition of "good" before you build, the other
 says building fast and killing four of five is often the better move
 when an option costs nearly nothing. Removed rather than resolved — the

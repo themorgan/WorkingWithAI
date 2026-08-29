@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 11 -->
+<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 12 -->
 
 # Repository instructions — read me first
 
@@ -32,8 +32,8 @@ current by a weekly sync plus a session-start check — see "A third scheduled
 check keeps the voice guidelines current" below). It governs **everything a
 session writes here, not just committed documents** — the chat reply itself
 is in scope too. Check outward-facing prose against it before calling a
-piece done; this is [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md#5-write-like-a-human-not-an-llm--trial)
-item 5, now
+piece done; this is
+[`write-like-a-human`](RULES_NOW_TESTING.md#write-like-a-human), now
 backed by a real, vendored ruleset instead of a manual checklist.
 HUMAN_VOICE_RULES.md's own §17 sets the precedence rule if that ever
 conflicts with a more specific, person-authored voice pack: the
@@ -129,18 +129,23 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
   true for this change — an unchecked box, or a "not applicable" note, is
   normal. Never check every box just to make the form look complete.
 - **Doc references are links** ([practice 11](process/upstream/PRACTICES.md#11-document-references-are-links-approximation-is)):
-  relative markdown links, never bare backticked filenames. This extends
-  to every numbered-list citation, not just filenames: a mention of a
-  specific rule, practice, or other numbered-list entry elsewhere in the
-  repo (`rule 4`, `practice 20`, `item 3`) is always a link to that
-  source — anchored to the specific entry when the source list uses real
-  headings (like [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) or
-  [process/upstream/PRACTICES.md](process/upstream/PRACTICES.md)), or to
-  the bare file when it doesn't (like
-  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), whose rules are
-  bold paragraph text with no heading to anchor to). Use `≈`,
-  not `~`, for "approximately".
-  `python3 process/upstream/tools/doc_lint.py` checks these conventions on
+  relative markdown links, never bare backticked filenames.
+- **A durable numbered list is cited by permanent slug, never by
+  position** ([`durable-list-anchors`](process/personal/README.md#durable-list-anchors)):
+  every rule or item in this repo's own essay lists —
+  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md),
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md), [REASONS_WHY.md](REASONS_WHY.md),
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — carries its own
+  `<a id="slug"></a>` anchor, cited everywhere as
+  `` `slug` (file.md#slug) ``, never as a bare "rule 4" or "item 3". This
+  supersedes the older split between "anchored when the source list uses
+  real headings" and "linked to the bare file when it doesn't" — every one
+  of these lists gets an explicit anchor now, headed or not, since even a
+  heading's own GitHub-auto-generated anchor bakes in the position number
+  and breaks the same way on renumbering. A short bullet list (not one of
+  the four lists above) doesn't need this. Use `≈`, not `~`, for
+  "approximately".
+  `python3 process/upstream/tools/doc_lint.py` checks link conventions on
   files changed vs the default branch; run it on what you touch before
   committing.
 - **Volatile rules carry their dates** ([practice 16](process/upstream/PRACTICES.md#16-volatile-rules-carry-their-dates)):
@@ -376,6 +381,26 @@ never get exported to the public BestPractice repo.
   never by heading number — the number moves whenever the file is
   reorganized, the slug never does
   ([`rule-links`](process/personal/README.md#rule-links)).
+
+- **A durable numbered list gets a permanent slug and anchor per entry,
+  not just a position number.** A list whose entries hold real content
+  likely to be cited elsewhere as "item N"/"rule N" (this repo's own
+  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md),
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md), [REASONS_WHY.md](REASONS_WHY.md),
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)) gets an `<a id="slug"></a>`
+  anchor per entry, cited everywhere as `` `slug` (file.md#slug) ``, never
+  a bare number — even a list that already has real headings, since
+  GitHub's own auto-generated anchor still bakes the position number in.
+  A short bullet list is exempt
+  ([`durable-list-anchors`](process/personal/README.md#durable-list-anchors)).
+
+- **A formal document cites another formal document, never a specific
+  point inside an explicit brainstorm document.** [IDEAS.md](IDEAS.md) is
+  raw material, not vetted prose; a formal document citing a specific
+  brainstorm entry as a claim's own support borrows credibility that
+  entry never earned. If the idea hasn't been promoted into a formal
+  document's own text yet, add it there first, then link there instead
+  ([`brainstorm-citations`](process/personal/README.md#brainstorm-citations)).
 
 - **Don't state a count that will drift — describe it instead.** "Several
   findings," not an exact number, unless the count is the actual point

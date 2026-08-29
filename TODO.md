@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 14:50:28 (Buenos Aires) by Morgan F, to version 30 -->
+<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 31 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -26,7 +26,7 @@ while an entry below stays unchecked. Check an item off (or run
 reviewed -- the update taken, or deliberately deferred with a reason.
 
 - [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (1e06a5349a43; your base d436be779be1) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via WorkingWithAI RPP sync, this session
-- [ ] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (570f86c520fc; your base b10c163a96dd) — review at the next session (process/personal/README.md#drift-notice).
+- [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (570f86c520fc; your base b10c163a96dd) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via RPP sync: durable-list-anchors + brainstorm-citations, this session
 
 ## Recurring
 
@@ -133,22 +133,70 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md); worth deciding whether it
   becomes a recurring item here (like the BestPractice check-in) or stays
   ad hoc. **decision.**
-- [ ] **Link the remaining unlinked numbered-list citations this repo's new
-  convention now requires** ([AGENTS.md](AGENTS.md)'s "Doc references are
-  links"): [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)'s own
-  self-references (`item 1`, `rule 6`, `rule 8`),
-  [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s and
-  [IDEAS.md](IDEAS.md)'s bare `rule N` mentions of
-  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), and
-  [REASONS_WHY.md](REASONS_WHY.md)'s and [IDEAS.md](IDEAS.md)'s
-  `RULES_NOW_TESTING.md item N` mentions that link the file but not the
-  specific item. Deliberately out of the change that added the
-  convention, since it spans documents beyond the one Morgan named.
-  **analysis.**
-
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Cite every durable numbered list by permanent slug, not position —
+  [`durable-list-anchors`](process/personal/README.md#durable-list-anchors).**
+  Decided 2026-08-29 → done, doc. Direct follow-on from the
+  brainstorm-citations fix below: giving REASONS_WHY.md item 7's idea a
+  home in [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) required a corollary
+  bolted onto an existing item specifically to avoid renumbering every
+  "item N" cross-reference a clean insertion would have forced — Morgan
+  flagged that as the same problem the personal pack's own
+  [`rule-links`](process/personal/README.md#rule-links) already solved
+  for its own rules (cite by slug, never by number), generalized. New
+  personal-pack rule (companion PR against RepoPersonalPreferences, its
+  own TODO.md decision record); pulled into this repo via a personal-pack
+  sync in the same session, along with the still-pending
+  [`brainstorm-citations`](process/personal/README.md#brainstorm-citations)
+  sync from the last one. Implemented here on the four lists it names:
+  every rule in [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md)
+  (15), every item in [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) (7) and
+  [REASONS_WHY.md](REASONS_WHY.md) (9), and every rule in
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) (7, already headed — still
+  needed an explicit anchor, since GitHub's own auto-generated heading
+  anchor bakes the position number in too) now carries a permanent
+  `<a id="slug"></a>`. Every existing "rule N"/"item N" citation across
+  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md),
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md), [REASONS_WHY.md](REASONS_WHY.md),
+  [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md),
+  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md),
+  [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md), and [IDEAS.md](IDEAS.md)
+  (its own numbered brainstorm list left unslugged — see judgment call
+  below) was converted to the slug form in the same pass — this repo's
+  own version of the "unlinked numbered-list citations" backlog item
+  above, now closed by construction rather than by a separate linking
+  pass. [AGENTS.md](AGENTS.md)'s "Doc references are links" convention
+  rewritten to state the unified rule, superseding its old
+  "anchored-headings vs. bare-file" split. **Judgment calls made:** (1)
+  did not add anchors to [IDEAS.md](IDEAS.md)'s own numbered brainstorm
+  list (points 1–5, with 3a/3b) — it's append-only by this repo's own
+  convention, so position-drift risk is much lower than the essay lists,
+  and [`brainstorm-citations`](process/personal/README.md#brainstorm-citations)
+  already discourages a *formal* document from citing it by position
+  going forward, reducing the practical need; did update the plain "rule
+  N" mentions inside [IDEAS.md](IDEAS.md) itself that cite
+  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) to the new slug
+  form, since those were already citation-convention violations
+  independent of this rule. (2) Rejected the "§ + filename + slug"
+  citation form Morgan floated when asking for this — kept "§" meaning
+  exactly what it already means in this repo (BestPractice's own
+  independently-numbered `practice N`), and used
+  [`rule-links`](process/personal/README.md#rule-links)'s existing
+  `` `slug` (file.md#slug) `` form as-is for this repo's own lists; see
+  RepoPersonalPreferences' own TODO.md for the same call made there,
+  where the rule itself was written. (3) Also brought this repo's
+  vendored `process/personal/` tree current with RepoPersonalPreferences
+  (commit `9793691d`, up from `b10c163a96d`) as part of the same session,
+  since the new rule had to exist there before it could be applied here —
+  re-wove `AGENTS.md` with both new bullets, and manually re-applied this
+  repo's own `PENDING_HEADING` sentence-case adaptation in
+  `process/personal/tools/pack_sync.py` after the mirror (a documented,
+  recurring manual step — the automatic `update` command refused to
+  overwrite it precisely because it's a real, intentional divergence, not
+  drift).
 
 - [x] **Pull the scattered "what humans are good at" lists into one
   document, and link the originals to it.** Decided 2026-08-29 → done,

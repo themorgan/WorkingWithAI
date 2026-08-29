@@ -7,7 +7,7 @@
      pre-existing backlog every time ...") to the end of the runbook's step 3
      (the three audits) — both are written out here for reference but live
      physically in the runbook, not in this section. -->
-<!-- Last updated: 2026-08-29 13:05:00 (Buenos Aires) by Morgan F, to version 26 -->
+<!-- Last updated: 2026-08-29 13:34:00 (Buenos Aires) by Morgan F, to version 27 -->
 
 ## Personal Setup Rules (Morgan's Pack)
 
@@ -385,6 +385,43 @@ never get exported to the public BestPractice repo.
   [`branch-links`](process/personal/README.md#branch-links)
   ([`rule-links`](process/personal/README.md#rule-links)).
 
+- **A durable numbered list gets a permanent slug and anchor per entry,
+  not just a position number.** Extends [`rule-links`](process/personal/README.md#rule-links)'s
+  own "cite by slug, never by number" rule — stated there only for this
+  pack's own rules — to any repo's own content: a list whose entries hold
+  real, durable content likely to be cited elsewhere as "item N"/"rule N"
+  (a core-philosophy list, a numbered rules-for-the-company essay, a
+  rules-in-force checklist) gets an `<a id="slug"></a>` anchor per entry —
+  on the heading if it has one, immediately before the bold lead-in
+  paragraph if it doesn't — cited everywhere as `` `slug` (file.md#slug) ``,
+  with the visible number left as pure reading-order furniture nobody
+  cites. Even a list that already uses real headings needs this
+  explicitly: GitHub's auto-generated anchor bakes the number into the
+  slug, so it still breaks on renumbering without an anchor that decouples
+  the two. Doesn't reach a short bullet list (a few quick options, a
+  checklist) that nothing outside it is likely to cite by position. Found
+  the hard way when a session folded a new idea into an existing numbered
+  item as an awkward corollary specifically to dodge a renumbering sweep —
+  exactly the failure this rule exists to prevent. Not scoped to Morgan —
+  a documentation-quality habit, like
+  [`rule-links`](process/personal/README.md#rule-links)
+  ([`durable-list-anchors`](process/personal/README.md#durable-list-anchors)).
+
+- **A formal document cites another formal document, never a specific
+  point inside an explicit brainstorm document.** Some repos keep a
+  running, loosely organized brainstorm doc — raw ideas, not vetted prose.
+  A formal document (an essay, a theory or reasons write-up, a
+  rules-in-force checklist) citing a specific brainstorm entry as a
+  claim's own support borrows credibility that entry never earned. If the
+  idea hasn't been promoted into some formal document's own text yet,
+  don't cite the brainstorm as a stand-in — add it to whichever formal
+  document fits, then link there instead. Doesn't reach a document's own
+  provenance note ("promoted out of the brainstorm") or a link to the
+  brainstorm document as an object, only a specific interior point cited
+  as justification. Not scoped to Morgan — a documentation-quality habit,
+  like [`rule-links`](process/personal/README.md#rule-links)
+  ([`brainstorm-citations`](process/personal/README.md#brainstorm-citations)).
+
 - **In chat and PR/commit text, every file mention is a clickable link —
   even inside code.** [`rule-links`](process/personal/README.md#rule-links)
   links a file the first time it's mentioned, using a relative link, and
@@ -642,6 +679,26 @@ never get exported to the public BestPractice repo.
   public BestPractice repo; RepoPersonalPreferences for the pack),
   regardless of which repo the files on disk actually arrived from
   ([`drift-notice`](process/personal/README.md#drift-notice)).
+
+- **When the freshness check can't reach the source, that's not the same as
+  "confirmed fresh" — say so, then verify directly.** `pack_sync.py fresh`'s
+  personal-pack half is silent on a genuinely unreachable remote (offline, a
+  slow timeout) — same as "nothing has moved," by design. But some
+  environments have no git credentials at all for RepoPersonalPreferences
+  (private) — a sandboxed session, say — where every `fresh` check fails the
+  same fast, clean way, every single time: not a blip, a standing gap. For
+  that case `fresh` prints a distinct `COULD NOT VERIFY: ...` line instead of
+  going silent — captured, recorded into `TODO.md`'s `## Pending Drift
+  Reviews`, warned on, and resolved exactly like the `NOTICE:` line above.
+  If you see that line, don't treat the absence of a `NOTICE:` as an answer —
+  if the environment offers any way to reach RepoPersonalPreferences directly
+  (attaching the GitHub repo to the session read-only, an available
+  credential, anything short of pushing to it), use it: clone or attach it,
+  then run `python3 process/personal/tools/pack_sync.py status <clone>`
+  against the manifest's recorded `upstream.commit` instead of trusting
+  silence. If no such mechanism exists either, say so plainly rather than
+  reporting the pack as current
+  ([`fresh-check-escalation`](process/personal/README.md#fresh-check-escalation)).
 
 - **Unattended automation reports its own blockers as a GitHub issue, not
   only a log line.** Any scheduled/unattended job in this repo that hits

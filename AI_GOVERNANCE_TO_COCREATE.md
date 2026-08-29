@@ -1,17 +1,18 @@
-<!-- Last updated: 2026-08-29 14:42:50 (Buenos Aires) by Morgan F, to version 8 -->
+<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 9 -->
 
 # AI governance to co-create
 
 *Governance for the AI systems themselves: how to configure, build, and
-run them so co-creation — rule 5 of
-[COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), arguing with the
-model in real time rather than delegating to it — is the default outcome,
-not something a disciplined person has to manufacture by hand every
-session. COMPANY_BUILDING_RULES.md is this repo's stage-1 "why" half — the
-case for running a company this way at all; this document is one level
-down, about the systems rather than the company. "Co-creation" here is
-used as the umbrella term for that whole healthy pattern, not narrowly
-rule 5 alone — a judgment call; flag it if the scope should split.
+run them so co-creation —
+[`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate),
+arguing with the model in real time rather than delegating to it — is the
+default outcome, not something a disciplined person has to manufacture by
+hand every session. COMPANY_BUILDING_RULES.md is this repo's stage-1
+"why" half — the case for running a company this way at all; this
+document is one level down, about the systems rather than the company.
+"Co-creation" here is used as the umbrella term for that whole healthy
+pattern, not narrowly `co-create-dont-delegate` alone — a judgment call;
+flag it if the scope should split.
 Promoted out of [IDEAS.md](IDEAS.md), same pattern as
 COMPANY_BUILDING_RULES.md before it. Neither essay is itself a checklist
 anyone follows day to day — [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)
@@ -21,7 +22,8 @@ ready to be called a rule.*
 ## Memory & context
 
 **Persistent, versioned, greppable state should be the default shape, not
-a special case.** Context only behaves like capital (rule 1) if it
+a special case.** Context only behaves like capital
+([`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset)) if it
 outlives the session that made it — durable, diffable state should beat
 ephemeral chat by default.
 
@@ -29,13 +31,15 @@ ephemeral chat by default.
 habit.** Distill protocols, rules, and preferences straight out of the
 interaction — the guidance, the correction — instead of waiting for
 someone to write policy by hand; `process/personal/` runs this
-continuously ([OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 5;
-[REASONS_WHY.md](REASONS_WHY.md) item 2).
+continuously
+([`rules-generated-automatically`](OUR_PHILOSOPHY.md#rules-generated-automatically);
+[`writing-stops-competing-with-doing`](REASONS_WHY.md#writing-stops-competing-with-doing)).
 
 **A coldstart test, run like any other check.** Can a fresh session, given
 only the memory store, reconstruct the current state of any live
-decision? If not, the transcription (rule 2) failed somewhere specific
-and locatable.
+decision? If not, the transcription
+([`transcribe-everything`](COMPANY_BUILDING_RULES.md#transcribe-everything))
+failed somewhere specific and locatable.
 
 **Resurfacing should be active, not just searchable.** A system that only
 answers when asked misses what nobody thought to ask — the better version
@@ -48,10 +52,12 @@ genuine counter-case on writing/thinking work, comply on technical
 execution — the switch should track task shape, not sit fixed at the
 system level.
 
-**The three reflexes from rule 6 belong in the system prompt, not just a
-human's habit.** An agent that asks itself "have I done this shape
-before" mid-task, and says so, does more of rule 7's work than a person
-remembering to ask.
+**The three reflexes from
+[`three-questions`](COMPANY_BUILDING_RULES.md#three-questions) belong in
+the system prompt, not just a human's habit.** An agent that asks itself
+"have I done this shape before" mid-task, and says so, does more of
+[`think-in-workflows`](COMPANY_BUILDING_RULES.md#think-in-workflows)'s
+work than a person remembering to ask.
 
 **Argue in the open.** An AI reviewer that holds a half-formed position
 and invites disagreement, rather than posting a clean finished-looking
@@ -70,27 +76,32 @@ working memory; chat is where the human actually works.
 ## Verification
 
 **Confidence should look non-uniform, because it isn't.** If every claim
-reads with the same even prose confidence, rule 12's "find the one false
-paragraph" skill has nothing to grab onto. Flag the weaker claims — a
-hedge, a citation, an assumption — so a verifier has a place to start.
+reads with the same even prose confidence,
+[`hire-for-drive`](COMPANY_BUILDING_RULES.md#hire-for-drive)'s "find the
+one false paragraph" skill has nothing to grab onto. Flag the weaker
+claims — a hedge, a citation, an assumption — so a verifier has a place
+to start.
 
 ## Workflow & cost sensitivity
 
 **Automatic workflow-candidate detection.** Mine the history itself —
 commits, sessions, transcripts — for recurring task shapes instead of
-relying on a human noticing "this is the third time." Turns rule 7's
+relying on a human noticing "this is the third time." Turns
+[`think-in-workflows`](COMPANY_BUILDING_RULES.md#think-in-workflows)'s
 judgment call into a standing job.
 
 **Cost-awareness should be situational, inferred by the system, not a
 fixed global policy.** Whether cost discipline is even the right posture
-varies by person, project, and moment — sometimes you want rule 9's
-"build five, kill four" lavishness instead. The harder problem is the
-system inferring which situation it's in — from a budget mention, project
-stage, or stated intent — rather than applying one policy everywhere.
+varies by person, project, and moment — sometimes you want
+[`build-five-kill-four`](COMPANY_BUILDING_RULES.md#build-five-kill-four)'s
+lavishness instead. The harder problem is the system inferring which
+situation it's in — from a budget mention, project stage, or stated
+intent — rather than applying one policy everywhere.
 
 ## Voice & output
 
-**A structural "sounds like AI" check.** Rule 11 names the actual
+**A structural "sounds like AI" check.**
+[`no-ai-voice`](COMPANY_BUILDING_RULES.md#no-ai-voice) names the actual
 fingerprints — the throat-clearing opener, "not just X, it's Y," the
 bolded summary nobody asked for. Those are mechanical enough to check for
 before publishing, rather than relying on a human catching it every time.
@@ -99,30 +110,36 @@ before publishing, rather than relying on a human catching it every time.
 
 **Configure the AI to hunt its own dark processes.** Have it periodically
 list workflows whose only interface is a human inbox — including its own
-— and propose an addressable alternative, per rule 8.
+— and propose an addressable alternative, per
+[`no-dark-processes`](COMPANY_BUILDING_RULES.md#no-dark-processes).
 
 **Rotation and temp workflows get periodic check-ins, not baked-in
-expiry.** A hard sunset date, taken literally from rule 15, forces an end
-even when a workflow is going well. Better: a recurring, low-cost
-reminder — "is this still needed, still the right shape?"
+expiry.** A hard sunset date, taken literally from
+[`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human),
+forces an end even when a workflow is going well. Better: a recurring,
+low-cost reminder — "is this still needed, still the right shape?"
 
 ## Keeping the corpus honest
 
 **Contradiction-scanning as a recurring job, not a one-off pass.** A
-compounding corpus (rule 1's own metaphor) rots quietly if nothing
-re-reads it for internal disagreement — worth standing up as a periodic
-pass, not something that only runs once someone thinks of it.
+compounding corpus
+([`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset)'s own
+metaphor) rots quietly if nothing re-reads it for internal disagreement —
+worth standing up as a periodic pass, not something that only runs once
+someone thinks of it.
 
-**Provider-neutrality is a hedge on rule 1, not a preference.** Context
-built against one vendor's tooling shouldn't be strandable by a provider
-switch — the capital asset is the context, not the platform it's sitting
-in today.
+**Provider-neutrality is a hedge on
+[`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset), not a
+preference.** Context built against one vendor's tooling shouldn't be
+strandable by a provider switch — the capital asset is the context, not
+the platform it's sitting in today.
 
 ---
 
 **Set aside this thread, not carried forward:** a mandatory eval-file gate
 before any output ships (unclear how it generalizes past code, where
 "eval" has an obvious technical meaning); having the AI itself pick which
-raw, unfiltered sample a human reviews for rule 14's human-only zones
+raw, unfiltered sample a human reviews for
+[`human-only-zones`](COMPANY_BUILDING_RULES.md#human-only-zones)
 (the idea didn't land clearly enough in discussion to write down yet —
 worth re-raising once it's sharper, rather than forcing it in now).
