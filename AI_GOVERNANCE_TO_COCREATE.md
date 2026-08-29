@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 07:56:08 (Buenos Aires) by Morgan F, to version 6 -->
+<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 7 -->
 
 # AI governance to co-create
 
@@ -29,7 +29,8 @@ ephemeral chat by default.
 habit.** Distill protocols, rules, and preferences straight out of the
 interaction — the guidance, the correction — instead of waiting for
 someone to write policy by hand; `process/personal/` runs this
-continuously (IDEAS.md's 3a).
+continuously ([OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) item 5;
+[REASONS_WHY.md](REASONS_WHY.md) item 2).
 
 **A coldstart test, run like any other check.** Can a fresh session, given
 only the memory store, reconstruct the current state of any live

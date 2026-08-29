@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 08:23:20 (Buenos Aires) by Morgan F, to version 20 -->
+<!-- Last updated: 2026-08-29 14:13:08 (Buenos Aires) by Morgan F, to version 21 -->
 
 # Our philosophy
 
@@ -43,7 +43,12 @@ the open").
 hours stopped being scarce. What's still scarce never got commoditized:
 why the last vendor failed, what the customer meant, which option got
 killed and why. Capturing that thinking is capital — an asset no
-competitor can rent by Thursday ([rule 1](COMPANY_BUILDING_RULES.md)).
+competitor can rent by Thursday ([rule 1](COMPANY_BUILDING_RULES.md)). The
+same logic covers language: what someone writes in whatever tongue comes
+naturally, with the AI carrying the translation into the shared record,
+keeps the real thinking — a version forced through an unfamiliar language
+on the way in would have been thinner ([REASONS_WHY.md](REASONS_WHY.md)
+item 7).
 
 **3. Processes should be visible, not locked in one person's brain.** A
 workflow whose only interface is "email me and I'll handle it" is
@@ -78,7 +83,7 @@ BestPractice already requires this
 ([practice 5](process/upstream/PRACTICES.md#5-conventions-cite-the-incident-that-created-them),
 [practice 20](process/upstream/PRACTICES.md#20-mistakes-become-rules-root-cause-the-miss-then-encode-the-prevention));
 capture is the
-agents' job, pulled from the work as it happens (IDEAS.md's rule
+agents' job, pulled from the work as it happens (item 5's rule
 extraction).
 
 **7. Humans should do what humans do best.** Machines produce; people
