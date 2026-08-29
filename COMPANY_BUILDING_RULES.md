@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 14:42:50 (Buenos Aires) by Morgan F, to version 5 -->
+<!-- Last updated: 2026-08-29 14:50:28 (Buenos Aires) by Morgan F, to version 6 -->
 
 # Rules for building a company around AI
 
@@ -201,7 +201,8 @@ Accountability that lands on one name, not a process nobody can point to.
 The human spark that makes someone worth working for, not merely
 alongside. And, increasingly, the discipline of running a fleet of
 agent-driven processes — pushing one further than it would push itself,
-and pulling it back before it overreaches.
+and pulling it back before it overreaches. (Full list:
+[HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md).)
 
 That list is shorter than it was five years ago. It isn't going to zero.
 Build the permanent roster around it.
