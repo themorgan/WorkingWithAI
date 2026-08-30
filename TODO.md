@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-30 19:37:38 (Buenos Aires) by Morgan F, to version 36 -->
+<!-- Last updated: 2026-08-30 20:46:49 (Buenos Aires) by Morgan F, to version 37 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -28,7 +28,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 - [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (1e06a5349a43; your base d436be779be1) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via WorkingWithAI RPP sync, this session
 - [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (570f86c520fc; your base b10c163a96dd) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via RPP sync: durable-list-anchors + brainstorm-citations, this session
 - [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (b54461560435; your base 9793691dcecb) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via RPP sync: derived-file-marker + doc-recipe + rule-scope-ask + list-restraint, this session
-- [ ] **personal-pack** (2026-08-30): COULD NOT VERIFY: couldn't reach the personal pack's source (https://github.com/themorgan/RepoPersonalPreferences) to check freshness — `git ls-remote` failed (fatal: could not read Username for 'https://github.com': terminal prompts disabled). This is NOT the same as 'confirmed fresh': if you need to know, verify directly instead of trusting this silence (process/personal/README.md#fresh-check-escalation).
+- [ ] **personal-pack** (2026-08-30): NOTICE: the personal pack's source has moved (cb3a00a6d14f; your base b54461560435) — review at the next session (process/personal/README.md#drift-notice).
 - [ ] **bestpractice** (2026-08-30): NOTICE: BestPractice upstream has moved (88ecf7fbce5e; your base c76f06f87e52) — review at the next check-in (process/upstream/INSTALL.md sec.2/sec.4).
 
 ## Recurring
@@ -151,6 +151,14 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [ ] **Successor name for BestPractice + RepoPersonalPreferences**
+  (2026-08-30). Names brainstormed in the RepoPersonalPreferences thread
+  (Precedent, Handover, Cairn, Casebook, Throughline, Groundwork,
+  HouseRules); the decision lives in that repo's own TODO. Whatever lands,
+  this repo's [README.md](README.md) pipeline stage 3 and
+  [GLOSSARY.md](GLOSSARY.md) both name the two current repos and will need
+  updating with it.
 
 - [x] **Take the pending personal-pack update (RepoPersonalPreferences @
   b5446156).** Decided 2026-08-29 → done. Ran
