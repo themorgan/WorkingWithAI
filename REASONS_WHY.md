@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-30 18:29:43 (Buenos Aires) by Morgan F, to version 15 -->
+<!-- Last updated: 2026-08-30 18:37:11 (Buenos Aires) by Morgan F, to version 16 -->
 
 # Reasons why
 
@@ -37,7 +37,8 @@ to people, not models
 
 <a id="writing-stops-competing-with-doing"></a>
 
-**3. Writing things down stops competing with getting things done.**
+**3. Team Members rarely document protocols, patterns, why they did what
+they did, because they always have more important work to do.**
 Documenting usually loses to the real work competing for the same hour.
 Pulling the record out as a byproduct of working in the open — rules,
 open items, reasoning — instead of a follow-up chore
@@ -61,7 +62,7 @@ Ghost) turns someone leaving into a staffing change.
 
 <a id="situation-heads-off-confusion"></a>
 
-**5. Decisions always need the situation that led to it attached.**
+**5. Decisions with the reason attached prevent regressions.**
 This repo's merge runbook says never hand-merge
 `process/upstream/` — as a bare instruction it loses the day
 hand-resolving looks competent and breaks the mirror. Stating the
@@ -72,8 +73,8 @@ attached is that same trade
 
 <a id="intermediary-layer-side-benefits"></a>
 
-**6. An intermediate AI layer in front of every action delivers
-benefits nobody asked for.** Put a model between intent and the action
+**6. An intermediate AI layer in front of every action improves output
+& allows context sharing.** Put a model between intent and the action
 — a commit, a message, a purchase — and side benefits appear that
 weren't the point: speaking an instruction works as well as typing one,
 a half-formed plan gets contradicted before it fires, and the layer

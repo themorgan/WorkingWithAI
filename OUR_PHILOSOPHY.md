@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-30 18:23:55 (Buenos Aires) by Morgan F, to version 28 -->
+<!-- Last updated: 2026-08-30 18:37:11 (Buenos Aires) by Morgan F, to version 29 -->
 
 # Our philosophy
 
@@ -37,17 +37,16 @@ The same five steps repeat every time, in order:
 
 <a id="context-is-capital"></a>
 
-**1. Context is capital.** [`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset)
-makes the economic case for capturing this. The narrower question:
-capital as *what*? Not the deliverable — the residue its final version
-throws away: the option tried and killed, the vendor who failed and
-how, the correction only legible against the draft it corrected. Two
-documents can reach the same conclusion and not be the same asset — one
-carries that residue forward for the next session to check itself
-against, the other reads as if the conclusion had always been obvious.
-The same logic covers language: writing in whatever tongue comes
-naturally, with the AI carrying the translation, keeps the real
-thinking instead of a thinner one
+**1. Context is core.** [`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset)
+makes the economic case for capturing this. The residue matters more
+than the deliverable: the option tried and killed, the vendor who
+failed and how, the correction only legible against the draft it
+corrected. One document carries that residue forward for the next
+session to check itself against; another reaches the same conclusion
+and reads as if it had always been obvious — same answer, different
+asset. The same logic covers language: writing in whatever tongue comes
+naturally, with the AI carrying the translation, keeps the thinking
+real instead of thinned
 ([`second-language-stops-costing-quality`](REASONS_WHY.md#second-language-stops-costing-quality)).
 
 <a id="arguing-with-the-model"></a>
@@ -123,17 +122,14 @@ hold them to that standard, not a machine's. (Full list:
 <a id="explicit-ownership-not-hidden-in-the-model"></a>
 
 **8. Protocols, documents, and knowledge should be explicitly owned by
-the team, not hidden inside Claude.** Claude and ChatGPT are already
-figuring out your implicit rules and patterns as you work with them —
-that inference happens whether or not anyone writes it down. The
-question this repo answers is where that inference lives afterward:
-locked inside a vendor's private session state, invisible to anyone
-else and gone the moment you switch tools or start a new chat, or
-pulled out into files the team can read, edit, argue with, and hand to
-a different model entirely. [`rules-generated-automatically`](#rules-generated-automatically)
-is the mechanism that does the pulling; this is why the destination
-matters — a rule inferred and left inside the chat benefits no one once
-that one conversation ends
+the team, not hidden inside Claude.** Claude and ChatGPT already infer
+your implicit rules and patterns as you work — the question is where
+that inference lives afterward: locked inside a vendor's private
+session state, gone the moment you switch tools, or pulled out into
+files the team can read, edit, and hand to a different model entirely.
+[`rules-generated-automatically`](#rules-generated-automatically) does
+the pulling; a rule inferred and left inside the chat benefits no one
+once that conversation ends
 ([`owned-rules-outlast-the-chat`](REASONS_WHY.md#owned-rules-outlast-the-chat)).
 
 See [REASONS_WHY.md](REASONS_WHY.md) for what these ideas actually buy in
