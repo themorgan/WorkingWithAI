@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-30 18:43:08 (Buenos Aires) by Morgan F, to version 17 -->
+<!-- Last updated: 2026-08-30 19:23:48 (Buenos Aires) by Morgan F, to version 18 -->
 
 # Reasons why
 
@@ -113,7 +113,8 @@ periodic contradiction-checks
 
 <a id="instinct-catches-what-checklists-miss"></a>
 
-**9. The deepest problems get caught by instinct, not by a checklist.**
+**9. The biggest problems, that go to the core of why you're there, get
+caught by instinct, never by smart checklists.**
 A model flags what fails its own checks — a broken link, a number that
 doesn't add up. It can't notice a client's answer felt off, or a plan
 that's technically sound yet wrong for reasons nobody wrote down. That

@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-30 19:19:13 (Buenos Aires) by Morgan F, to version 33 -->
+<!-- Last updated: 2026-08-30 19:23:48 (Buenos Aires) by Morgan F, to version 34 -->
 
 # Our philosophy
 
@@ -123,7 +123,7 @@ the pulling; left inside the chat, a rule benefits no one once that
 conversation ends
 ([`owned-rules-outlast-the-chat`](REASONS_WHY.md#owned-rules-outlast-the-chat)).
 
-## What humans are for
+## Humans should do what humans do best
 
 <a id="humans-do-what-humans-do-best"></a>
 
