@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 16:17:18 (Buenos Aires) by Morgan F, to version 27 -->
+<!-- Last updated: 2026-08-30 18:23:55 (Buenos Aires) by Morgan F, to version 28 -->
 
 # Our philosophy
 
@@ -33,27 +33,21 @@ The same five steps repeat every time, in order:
    [`decisions-carry-their-situation`](#decisions-carry-their-situation)),
    staying visible to whichever session opens this repo next.
 
-## The 7 Core Philosophies
+## The 8 Core Philosophies
 
 <a id="context-is-capital"></a>
 
 **1. Context is capital.** [`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset)
-makes the economic case for why capturing this is worth a company's time.
-This is the narrower question underneath it: capital as *what*, exactly?
-Not the deliverable — the residue the deliverable's own final version
-throws away. The option you tried and killed, and why. The vendor
-who failed, and the specific way. The correction someone made to a
-draft, which only exists at all if the draft it corrected is still
-there to compare against. Two documents can reach the identical
-conclusion and not be the same asset: one carries that residue forward
-for the next session to check its own reasoning against, the other
-reads as if the conclusion had always been obvious. Capturing the
-residue, not just the answer, is the actual habit this repo is built
-to make automatic. The same logic covers language: what someone writes
-in whatever tongue comes naturally, with the AI carrying the
-translation into the shared record, keeps the real thinking — a
-version forced through an unfamiliar language on the way in would have
-been thinner
+makes the economic case for capturing this. The narrower question:
+capital as *what*? Not the deliverable — the residue its final version
+throws away: the option tried and killed, the vendor who failed and
+how, the correction only legible against the draft it corrected. Two
+documents can reach the same conclusion and not be the same asset — one
+carries that residue forward for the next session to check itself
+against, the other reads as if the conclusion had always been obvious.
+The same logic covers language: writing in whatever tongue comes
+naturally, with the AI carrying the translation, keeps the real
+thinking instead of a thinner one
 ([`second-language-stops-costing-quality`](REASONS_WHY.md#second-language-stops-costing-quality)).
 
 <a id="arguing-with-the-model"></a>
@@ -125,6 +119,22 @@ optimizes away what they're for
 ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)) —
 hold them to that standard, not a machine's. (Full list:
 [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md).)
+
+<a id="explicit-ownership-not-hidden-in-the-model"></a>
+
+**8. Protocols, documents, and knowledge should be explicitly owned by
+the team, not hidden inside Claude.** Claude and ChatGPT are already
+figuring out your implicit rules and patterns as you work with them —
+that inference happens whether or not anyone writes it down. The
+question this repo answers is where that inference lives afterward:
+locked inside a vendor's private session state, invisible to anyone
+else and gone the moment you switch tools or start a new chat, or
+pulled out into files the team can read, edit, argue with, and hand to
+a different model entirely. [`rules-generated-automatically`](#rules-generated-automatically)
+is the mechanism that does the pulling; this is why the destination
+matters — a rule inferred and left inside the chat benefits no one once
+that one conversation ends
+([`owned-rules-outlast-the-chat`](REASONS_WHY.md#owned-rules-outlast-the-chat)).
 
 See [REASONS_WHY.md](REASONS_WHY.md) for what these ideas actually buy in
 practice.
