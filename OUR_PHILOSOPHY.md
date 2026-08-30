@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-30 18:49:01 (Buenos Aires) by Morgan F, to version 31 -->
+<!-- Last updated: 2026-08-30 18:50:50 (Buenos Aires) by Morgan F, to version 32 -->
 
 # Our philosophy
 
@@ -38,15 +38,12 @@ The same five steps repeat every time, in order:
 <a id="context-is-capital"></a>
 
 **1. Context is core.** [`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset)
-makes the economic case for capturing this. The residue matters more
-than the deliverable: the option tried and killed, the vendor who
-failed and how, the correction only legible against the draft it
-corrected. One document carries that residue forward for the next
-session to check itself against; another reaches the same conclusion
-and reads as if it had always been obvious — same answer, different
-asset. The same logic covers language: writing in whatever tongue comes
-naturally, with the AI carrying the translation, keeps the thinking
-real instead of thinned
+makes the case for capturing this. What matters is the residue, not
+the deliverable — the option tried and killed, the correction only
+legible against the draft it corrected. One document carries that
+forward for the next session; another reaches the same conclusion and
+reads as if it had always been obvious. Language works the same way:
+the AI carrying the translation keeps thinking real, not thinned
 ([`second-language-stops-costing-quality`](REASONS_WHY.md#second-language-stops-costing-quality)).
 
 <a id="arguing-with-the-model"></a>
@@ -85,13 +82,12 @@ applied to management. (Full list:
 <a id="rules-generated-automatically"></a>
 
 **5. Protocols, rules, and preferences get generated automatically.**
-What's automatic is the finding, not the deciding: the AI Assistant
-surfaces the pattern in the working loop every time, without anyone
-having to remember to look. Turning it into a standing rule is a human
-call — this repo's own rules and agent definitions route it to
-whoever's responsible — and a spotted pattern always gets surfaced and
-pushed to them, never left unremarked. `process/personal/` is that
-mechanism running continuously
+What's automatic is the finding: the AI Assistant surfaces the pattern
+every time, without anyone having to remember to look. Turning it into
+a standing rule is a human call, routed by this repo's own rules to
+whoever's responsible — and a spotted pattern always gets surfaced,
+never left unremarked. `process/personal/` runs that mechanism
+continuously
 ([`automatic-rule-extraction`](AI_GOVERNANCE_TO_COCREATE.md#automatic-rule-extraction);
 [practice 20](process/upstream/PRACTICES.md#20-mistakes-become-rules-root-cause-the-miss-then-encode-the-prevention)
 is the same move done by hand).
@@ -125,13 +121,13 @@ hold them to that standard, not a machine's. (Full list:
 
 **8. Protocols, documents, and knowledge should be explicitly owned by
 the team, not hidden inside Claude.** Claude and ChatGPT already infer
-your implicit rules and patterns as you work — the question is where
-that inference lives afterward: locked inside a vendor's private
-session state, gone the moment you switch tools, or pulled out into
-files the team can read, edit, and hand to a different model entirely.
+your implicit patterns as you work — the question is where that
+inference lives afterward: locked inside a vendor's private session
+state, gone the moment you switch tools, or pulled into files the team
+can read, edit, and hand to a different model entirely.
 [`rules-generated-automatically`](#rules-generated-automatically) does
-the pulling; a rule inferred and left inside the chat benefits no one
-once that conversation ends
+the pulling; left inside the chat, a rule benefits no one once that
+conversation ends
 ([`owned-rules-outlast-the-chat`](REASONS_WHY.md#owned-rules-outlast-the-chat)).
 
 See [REASONS_WHY.md](REASONS_WHY.md) for what these ideas actually buy in
