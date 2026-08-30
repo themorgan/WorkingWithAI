@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 16:30:21 (Buenos Aires) by Morgan F, to version 35 -->
+<!-- Last updated: 2026-08-30 19:37:38 (Buenos Aires) by Morgan F, to version 36 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -41,8 +41,8 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 
 ## Analyses (agent-doable)
 
-- [x] **Populate [IDEAS.md](IDEAS.md) with real content.** Done
-  2026-08-26 → [IDEAS.md](IDEAS.md) now holds the first real brainstorm
+- [x] **Populate [RANDOM_NOTES.md](RANDOM_NOTES.md) with real content.** Done
+  2026-08-26 → [RANDOM_NOTES.md](RANDOM_NOTES.md) now holds the first real brainstorm
   batch, plus [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) promoted out as its own
   document. The three original placeholder sections (prompts, workflows,
   incidents) are still empty and open for the next batch.
@@ -53,7 +53,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   around AI" → "Rules for building a company around AI" — a count in a
   title drifts every time a rule is added or cut, so it's gone from the
   title, the opening paragraph, and every cross-reference that named it
-  (this file, [AGENTS.md](AGENTS.md), [IDEAS.md](IDEAS.md),
+  (this file, [AGENTS.md](AGENTS.md), [RANDOM_NOTES.md](RANDOM_NOTES.md),
   [MAP.md](MAP.md)) — the file's own
   [`no-stale-counts`](process/personal/README.md#no-stale-counts).
   (2) Rule 1's title dropped ", Labor isn't" — read as needlessly
@@ -66,7 +66,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   output," removed — Morgan flagged it sits in tension with rule 9's
   "build five, kill four" (commit to a definition of good before
   building vs. building fast and killing most of it). Not resolved,
-  just cut; logged as a 2026-08-29 entry in [IDEAS.md](IDEAS.md) to
+  just cut; logged as a 2026-08-29 entry in [RANDOM_NOTES.md](RANDOM_NOTES.md) to
   revisit later — is it a real contradiction or two rules for two
   different situations that needed sharper scoping instead.
   (5) The hiring rule retitled "Hire for drive, 'Getting Shit Done,'
@@ -119,7 +119,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   14 wants a real year for "the way you'd have read it in [YEAR]." Both are
   intentionally left as placeholders rather than filled with something
   generic — replace them only when a real specific comes to mind.
-- [ ] **Look for contradictions across [IDEAS.md](IDEAS.md) entries**, per
+- [ ] **Look for contradictions across [RANDOM_NOTES.md](RANDOM_NOTES.md) entries**, per
   the meta-note at the bottom of that file (e.g. rule 9's "build five, kill
   four" against rule 7's "don't systematize a one-off") — worth a
   dedicated pass once there's enough material for real tensions to show up.
@@ -305,7 +305,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md), [REASONS_WHY.md](REASONS_WHY.md),
   [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md),
   [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md),
-  [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md), and [IDEAS.md](IDEAS.md)
+  [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md), and [RANDOM_NOTES.md](RANDOM_NOTES.md)
   (its own numbered brainstorm list left unslugged — see judgment call
   below) was converted to the slug form in the same pass — this repo's
   own version of the "unlinked numbered-list citations" backlog item
@@ -313,13 +313,13 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   pass. [AGENTS.md](AGENTS.md)'s "Doc references are links" convention
   rewritten to state the unified rule, superseding its old
   "anchored-headings vs. bare-file" split. **Judgment calls made:** (1)
-  did not add anchors to [IDEAS.md](IDEAS.md)'s own numbered brainstorm
+  did not add anchors to [RANDOM_NOTES.md](RANDOM_NOTES.md)'s own numbered brainstorm
   list (points 1–5, with 3a/3b) — it's append-only by this repo's own
   convention, so position-drift risk is much lower than the essay lists,
   and [`brainstorm-citations`](process/personal/README.md#brainstorm-citations)
   already discourages a *formal* document from citing it by position
   going forward, reducing the practical need; did update the plain "rule
-  N" mentions inside [IDEAS.md](IDEAS.md) itself that cite
+  N" mentions inside [RANDOM_NOTES.md](RANDOM_NOTES.md) itself that cite
   [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) to the new slug
   form, since those were already citation-convention violations
   independent of this rule. (2) Rejected the "§ + filename + slug"
@@ -370,7 +370,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   itself, so a future new list of the same kind knows to fold in here
   rather than start a fourth copy.
 
-- [x] **Stop citing a specific point inside [IDEAS.md](IDEAS.md) (the
+- [x] **Stop citing a specific point inside [RANDOM_NOTES.md](RANDOM_NOTES.md) (the
   brainstorm) as justification from a formal doc — cite the promoted
   formal-doc treatment instead.** Decided 2026-08-29 → done, doc. Morgan
   flagged [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s
@@ -435,7 +435,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   cite back to specific rules in
   [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md),
   [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md), and
-  [IDEAS.md](IDEAS.md) rather than restating them. Wired into
+  [RANDOM_NOTES.md](RANDOM_NOTES.md) rather than restating them. Wired into
   [MAP.md](MAP.md), [README.md](README.md), [AGENTS.md](AGENTS.md)'s quick
   index, and [GETTING_STARTED.md](GETTING_STARTED.md) as the theory-level
   entry point for a newcomer. Judgment calls made: (1) used Morgan's
@@ -704,7 +704,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   repo's unlinked numbered-list citations
   ([RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)'s own self-references,
   [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)'s and
-  [IDEAS.md](IDEAS.md)'s `rule N` mentions) into this same change — logged
+  [RANDOM_NOTES.md](RANDOM_NOTES.md)'s `rule N` mentions) into this same change — logged
   as its own open item below instead, since it touches several documents
   Morgan didn't name; (2) picked word-count targets of roughly 45-55% of
   each reason's original length rather than a strict half, since a couple
@@ -726,7 +726,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   to state its role in the stage-1/stage-2 pair explicitly, cross-linking
   the other two by their new names. Every reference across
   [AGENTS.md](AGENTS.md), [GLOSSARY.md](GLOSSARY.md), [MAP.md](MAP.md),
-  [README.md](README.md), [IDEAS.md](IDEAS.md), and this file updated to
+  [README.md](README.md), [RANDOM_NOTES.md](RANDOM_NOTES.md), and this file updated to
   match, including the canonical term **the operating rules** →
   **the rules now testing** in [GLOSSARY.md](GLOSSARY.md) (kept in step with
   the file it names). Judgment calls made: (1) picked
@@ -795,7 +795,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   RepoPersonalPreferences straight from this repo's ideas had skipped the
   step this repo exists to provide: trying an idea in real work before it
   becomes company-wide policy. Morgan's correction: (1) discover in
-  [IDEAS.md](IDEAS.md) / the promoted essays, (2) try it for real in a new
+  [RANDOM_NOTES.md](RANDOM_NOTES.md) / the promoted essays, (2) try it for real in a new
   document, (3) only then port proven rules into RepoPersonalPreferences
   for rollout everywhere. Landed as
   [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) (new document, seeded with
@@ -809,7 +809,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   rules** [renamed **the rules now testing** in the 2026-08-27 rename below],
   **promote**/**promotion**), [AGENTS.md](AGENTS.md)'s quick
   index, and a new dated entry plus an updated open-question note in
-  [IDEAS.md](IDEAS.md). Judgment calls made: (1) named it
+  [RANDOM_NOTES.md](RANDOM_NOTES.md). Judgment calls made: (1) named it
   `OPERATING_RULES.md` (since renamed to
   [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md), see below) rather than
   something like `COMPANY_RULES.md` —
@@ -837,7 +837,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   or a clarifying question. This resolves the narrower "should Claude push
   back harder" question from the original brainstorm; the broader
   "normie"-employee-adoption question (visible rule-extraction, proactive
-  resurfacing of rules) is still open — see [IDEAS.md](IDEAS.md)
+  resurfacing of rules) is still open — see [RANDOM_NOTES.md](RANDOM_NOTES.md)
   §"Why BestPractice specifically works" → "Open question" for the rest of
   it. Once the personal-pack sync pulls
   [`push-back`](process/personal/README.md#push-back) into this repo's own
