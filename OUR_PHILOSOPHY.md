@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-30 18:47:43 (Buenos Aires) by Morgan F, to version 30 -->
+<!-- Last updated: 2026-08-30 18:49:01 (Buenos Aires) by Morgan F, to version 31 -->
 
 # Our philosophy
 
@@ -85,17 +85,13 @@ applied to management. (Full list:
 <a id="rules-generated-automatically"></a>
 
 **5. Protocols, rules, and preferences get generated automatically.**
-What's automatic is the finding, not the deciding. The AI Assistant
-surfaces the pattern — the guidance, the correction, the back-and-forth
-of the working loop — every time, without anyone having to remember to
-look; it doesn't mean every candidate silently becomes policy. Whether
-it actually turns into a standing rule is a human call, and who makes
-that call depends on context: this repo's own rules and agent
-definitions route it to whoever's responsible for that kind of
-decision. What's guaranteed isn't automatic approval — it's that a
-spotted pattern always gets noticed and pushed to the right person,
-never left to go unremarked. `process/personal/` is that mechanism
-running continuously, not a document someone drafted once
+What's automatic is the finding, not the deciding: the AI Assistant
+surfaces the pattern in the working loop every time, without anyone
+having to remember to look. Turning it into a standing rule is a human
+call — this repo's own rules and agent definitions route it to
+whoever's responsible — and a spotted pattern always gets surfaced and
+pushed to them, never left unremarked. `process/personal/` is that
+mechanism running continuously
 ([`automatic-rule-extraction`](AI_GOVERNANCE_TO_COCREATE.md#automatic-rule-extraction);
 [practice 20](process/upstream/PRACTICES.md#20-mistakes-become-rules-root-cause-the-miss-then-encode-the-prevention)
 is the same move done by hand).
