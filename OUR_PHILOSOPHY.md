@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-30 19:23:48 (Buenos Aires) by Morgan F, to version 34 -->
+<!-- Last updated: 2026-08-30 19:26:49 (Buenos Aires) by Morgan F, to version 35 -->
 
 # Our philosophy
 
@@ -35,20 +35,9 @@ The same five steps repeat every time, in order:
 
 ## Working with the model
 
-<a id="arguing-with-the-model"></a>
-
-**1. Coworking with a model means arguing with it.** State a half-formed
-position, let the model push back, push back on its answer — keep going
-until the exchange settles it, not either side alone. Instructing makes
-a typist; polling for an opinion makes an oracle. Quality is one payoff:
-agreement just hands back your blind spots
-([`ai-chat-as-intermediary`](COMPANY_BUILDING_RULES.md#ai-chat-as-intermediary),
-[`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate);
-[`argue-in-the-open`](AI_GOVERNANCE_TO_COCREATE.md#argue-in-the-open)).
-
 <a id="people-manage-agents-execute"></a>
 
-**2. People manage; agents execute.** The human contribution is
+**1. People manage; agents execute.** The human contribution is
 planning, taste, judgment — deciding what gets built and whether it
 works, the way defining a system beats hand-running it. Brief the model
 like an individual contributor, stay engaged, adjust the plan as soon as
@@ -57,6 +46,17 @@ the first attempt reveals what the brief missed
 — same posture as [`arguing-with-the-model`](#arguing-with-the-model),
 applied to management. (Full list:
 [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md).)
+
+<a id="arguing-with-the-model"></a>
+
+**2. Coworking with a model means arguing with it.** State a half-formed
+position, let the model push back, push back on its answer — keep going
+until the exchange settles it, not either side alone. Instructing makes
+a typist; polling for an opinion makes an oracle. Quality is one payoff:
+agreement just hands back your blind spots
+([`ai-chat-as-intermediary`](COMPANY_BUILDING_RULES.md#ai-chat-as-intermediary),
+[`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate);
+[`argue-in-the-open`](AI_GOVERNANCE_TO_COCREATE.md#argue-in-the-open)).
 
 ## Knowledge that gets captured
 
