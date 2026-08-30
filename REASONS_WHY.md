@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 13 -->
+<!-- Last updated: 2026-08-30 18:23:55 (Buenos Aires) by Morgan F, to version 14 -->
 
 # Reasons why
 
@@ -33,8 +33,8 @@ while the task did.
 
 <a id="situation-heads-off-confusion"></a>
 
-**3. Attaching the situation to a decision heads off the confusions
-nobody sees coming.** This repo's merge runbook says never hand-merge
+**3. Decisions always need the situation that led to it attached.**
+This repo's merge runbook says never hand-merge
 `process/upstream/` — as a bare instruction it loses the day
 hand-resolving looks competent and breaks the mirror. Stating the
 reason — this directory stays byte-identical — settles it before the
@@ -42,14 +42,17 @@ pull request, not three merges later. Every rule with its origin case
 attached is that same trade
 ([`decisions-carry-their-situation`](OUR_PHILOSOPHY.md#decisions-carry-their-situation)).
 
-<a id="documentation-as-a-byproduct"></a>
+<a id="protocols-generated-not-just-documented"></a>
 
-**4. The power of documentation is almost magical — since no one finds
-the time, AI will.** Everyone agrees a good record is worth having, but
-writing it up always loses to whatever's due today. Making the record a
-background part of the work agents already do — captured as it
-happens, not scheduled — delivers on that. Knowledge that outlives any
-employment relationship
+**4. The power isn't documentation — it's protocols generated
+automatically, since no one finds the time to write them by hand.**
+Everyone agrees a good record is worth having, but writing it up always
+loses to whatever's due today, and a static record wouldn't be the real
+prize anyway. What pays off is the same background work turning into
+rules and protocols the next session inherits — captured as it happens,
+not scheduled
+([`rules-generated-automatically`](OUR_PHILOSOPHY.md#rules-generated-automatically)).
+Knowledge that outlives any employment relationship
 ([`transcribe-everything`](COMPANY_BUILDING_RULES.md#transcribe-everything)'s
 Ghost) turns someone leaving into a staffing change.
 
@@ -90,7 +93,7 @@ stays in a private chat window, the reasoning and the discarded options
 leave with the chat history, and the company never had them. Doing the
 same thinking in the open, in this repo, turns that habit into
 information the company actually keeps
-([`documentation-as-a-byproduct`](#documentation-as-a-byproduct) above).
+([`protocols-generated-not-just-documented`](#protocols-generated-not-just-documented) above).
 
 <a id="intermediary-layer-side-benefits"></a>
 
@@ -100,9 +103,22 @@ benefits nobody asked for.** Put a model between intent and the action
 weren't the point: speaking an instruction works as well as typing one,
 a half-formed plan gets contradicted before it fires, and the layer
 holds the trace of why, so the rule that catches it next time falls out
-for free ([`documentation-as-a-byproduct`](#documentation-as-a-byproduct)
+for free
+([`protocols-generated-not-just-documented`](#protocols-generated-not-just-documented)
 above;
 [`ai-chat-as-intermediary`](COMPANY_BUILDING_RULES.md#ai-chat-as-intermediary)).
+
+<a id="owned-rules-outlast-the-chat"></a>
+
+**10. Rules a model infers are only worth as much as their reach outside
+that one chat.** Claude and ChatGPT already reconstruct your implicit
+preferences and patterns as you go — that's a real part of what makes
+them feel like they "get" you. Left inside the vendor's own session
+state, that inference resets next conversation, doesn't transfer to a
+teammate, and disappears the day you switch tools. Pulled out into this
+repo's own files instead, the same inference becomes a rule anyone can
+read, edit, and hand to a different model entirely
+([`explicit-ownership-not-hidden-in-the-model`](OUR_PHILOSOPHY.md#explicit-ownership-not-hidden-in-the-model)).
 
 See [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) for the theory behind why these
 particular things happen.
