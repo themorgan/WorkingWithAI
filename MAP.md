@@ -1,9 +1,9 @@
-<!-- Last updated: 2026-08-29 16:16:48 (Buenos Aires) by Morgan F, to version 12 -->
+<!-- Last updated: 2026-08-30 19:37:38 (Buenos Aires) by Morgan F, to version 13 -->
 
 # Repository map — where to find things
 
 **Purpose:** orientation for any thread picking up work here. This repo's
-one deliverable is **the brainstorm** — [IDEAS.md](IDEAS.md), a running list
+one deliverable is **the brainstorm** — [RANDOM_NOTES.md](RANDOM_NOTES.md), a running list
 of prompts, workflows, and observations about working with AI — plus the
 three-stage pipeline (see [README.md](README.md)) that turns the ideas
 which prove out into company-wide policy. Everything else here is the
@@ -20,7 +20,7 @@ Companions: [AGENTS.md](AGENTS.md) (workflow + conventions), [TODO.md](TODO.md)
 | [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) | Orientation for a newcomer: the handful of underlying theoretical ideas everything else here assumes, named and explained on their own terms. |
 | [REASONS_WHY.md](REASONS_WHY.md) | Orientation's companion: the less obvious benefits those ideas actually produce in practice. |
 | [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md) | The one list of what humans are good at, gathered from the shorter versions scattered across [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) and [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md). |
-| [IDEAS.md](IDEAS.md) | **The deliverable.** The brainstorm itself — pipeline stage 1. |
+| [RANDOM_NOTES.md](RANDOM_NOTES.md) | **The deliverable.** The brainstorm itself — pipeline stage 1. |
 | [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) | Standalone essay promoted out of the brainstorm: rules for building a company around AI. |
 | [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) | Standalone doc promoted out of the brainstorm: how AI systems themselves should be configured, built, and run to make the healthy pattern the default. |
 | [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) | Pipeline stage 2 — the practical rules actually being tried in real work right now, tagged Trial / Ready to promote / Promoted. |
@@ -38,10 +38,10 @@ Companions: [AGENTS.md](AGENTS.md) (workflow + conventions), [TODO.md](TODO.md)
 
 | Part | Backed by |
 |---|---|
-| Frameworks (full essays) — stage 1 | [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md), linked from [IDEAS.md](IDEAS.md) |
-| Why BestPractice works, observations, meta-notes on this repo's own use | [IDEAS.md](IDEAS.md) |
-| Prompts and phrasing | [IDEAS.md](IDEAS.md) |
-| Workflows | [IDEAS.md](IDEAS.md) |
-| Things that went wrong, and why | [IDEAS.md](IDEAS.md) |
+| Frameworks (full essays) — stage 1 | [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md), linked from [RANDOM_NOTES.md](RANDOM_NOTES.md) |
+| Why BestPractice works, observations, meta-notes on this repo's own use | [RANDOM_NOTES.md](RANDOM_NOTES.md) |
+| Prompts and phrasing | [RANDOM_NOTES.md](RANDOM_NOTES.md) |
+| Workflows | [RANDOM_NOTES.md](RANDOM_NOTES.md) |
+| Things that went wrong, and why | [RANDOM_NOTES.md](RANDOM_NOTES.md) |
 | Rules actually in force, and promotion candidates — stage 2 | [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) |
 | Rules rolled out to every project — stage 3 | [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences) (a separate repo) |

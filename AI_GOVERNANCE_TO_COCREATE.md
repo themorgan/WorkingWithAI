@@ -1,23 +1,19 @@
-<!-- Last updated: 2026-08-29 15:56:29 (Buenos Aires) by Morgan F, to version 10 -->
+<!-- Last updated: 2026-08-30 19:37:38 (Buenos Aires) by Morgan F, to version 11 -->
 
 # AI governance to co-create
 
 *Governance for the AI systems themselves: how to configure, build, and
 run them so co-creation —
-[`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate),
-arguing with the model in real time rather than delegating to it — is the
-default outcome, not something a disciplined person has to manufacture by
-hand every session. COMPANY_BUILDING_RULES.md is this repo's stage-1
-"why" half — the case for running a company this way at all; this
-document is one level down, about the systems rather than the company.
-"Co-creation" here is used as the umbrella term for that whole healthy
-pattern, not narrowly `co-create-dont-delegate` alone — a judgment call;
-flag it if the scope should split.
-Promoted out of [IDEAS.md](IDEAS.md), same pattern as
-COMPANY_BUILDING_RULES.md before it. Neither essay is itself a checklist
-anyone follows day to day — [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)
-is where an idea from either one gets tried in real work before it's
-ready to be called a rule.*
+[`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate) —
+is the default, not something a disciplined person manufactures by hand.
+[COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) makes the case for
+running a company this way; this document is one level down, about the
+systems. See also [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) (the theory),
+[REASONS_WHY.md](REASONS_WHY.md) (the payoffs), and
+[HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md) (what stays human).
+Promoted out of [RANDOM_NOTES.md](RANDOM_NOTES.md);
+[RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) is where an idea from either
+essay gets tried before it's called a rule.*
 
 ## Memory & context
 
@@ -83,12 +79,9 @@ finished-looking suggestion, keeps the disagreement itself in the record.
 <a id="chat-is-primary-interface"></a>
 
 **8. Chat is the primary interface to every document, not a shortcut
-around them.** The AI constantly creates, tracks, and organizes documents
-and thoughts, and a human can always go read or edit them directly — but
-most human work will be asking the AI questions answered in the docs and
-brainstorming with the AI on what to do, then guiding the AI to do it,
-not reading, writing, or editing docs directly. The docs are the AI's
-working memory; chat is where the human actually works.
+around them.** The AI creates and organizes the documents; humans can
+edit them directly, but most work happens by asking and guiding it in
+chat — docs are its memory, chat is where people work.
 
 ## Verification
 
@@ -114,12 +107,11 @@ judgment call into a standing job.
 <a id="cost-awareness-situational"></a>
 
 **11. Cost-awareness should be situational, inferred by the system, not a
-fixed global policy.** Whether cost discipline is even the right posture
-varies by person, project, and moment — sometimes you want
+fixed global policy.** The right posture varies by person and moment —
+sometimes
 [`build-five-kill-four`](COMPANY_BUILDING_RULES.md#build-five-kill-four)'s
-lavishness instead. The harder problem is the system inferring which
-situation it's in — from a budget mention, project stage, or stated
-intent — rather than applying one policy everywhere.
+lavishness fits better. The harder problem is inferring which situation
+applies, not applying one policy everywhere.
 
 ## Voice & output
 
@@ -166,13 +158,3 @@ someone thinks of it.
 preference.** Context built against one vendor's tooling shouldn't be
 strandable by a provider switch — the capital asset is the context, not
 the platform it's sitting in today.
-
----
-
-**Set aside this thread, not carried forward:** a mandatory eval-file gate
-before any output ships (unclear how it generalizes past code, where
-"eval" has an obvious technical meaning); having the AI itself pick which
-raw, unfiltered sample a human reviews for
-[`human-only-zones`](COMPANY_BUILDING_RULES.md#human-only-zones)
-(the idea didn't land clearly enough in discussion to write down yet —
-worth re-raising once it's sharper, rather than forcing it in now).

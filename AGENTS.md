@@ -1,9 +1,9 @@
-<!-- Last updated: 2026-08-29 16:11:44 (Buenos Aires) by Morgan F, to version 14 -->
+<!-- Last updated: 2026-08-30 19:37:38 (Buenos Aires) by Morgan F, to version 15 -->
 
 # Repository instructions — read me first
 
 **Orientation: read [MAP.md](MAP.md) first** — the repository map. It covers
-the brainstorm ([IDEAS.md](IDEAS.md)) and indexes the practice layer that
+the brainstorm ([RANDOM_NOTES.md](RANDOM_NOTES.md)) and indexes the practice layer that
 keeps this repo well-run.
 
 ## Where things are (quick index — check here BEFORE searching the repo)
@@ -14,7 +14,7 @@ keeps this repo well-run.
 | The less obvious benefits those ideas produce | [REASONS_WHY.md](REASONS_WHY.md) |
 | What humans are good at — the one full list | [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md) |
 | Canonical names — use these, don't invent new ones | [GLOSSARY.md](GLOSSARY.md) |
-| The brainstorm itself | [IDEAS.md](IDEAS.md) |
+| The brainstorm itself | [RANDOM_NOTES.md](RANDOM_NOTES.md) |
 | The three-stage pipeline (idea → rules now testing → company policy) | [README.md](README.md) |
 | Rules actually in force now, and promotion candidates | [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) |
 | The voice guidelines (write like a human, not an LLM) | [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) |
@@ -86,7 +86,7 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
    - `process/manifest.json` / `process/manifest_personal.json` /
      `process/manifest_voice.json`: **union** of both sides — never drop an
      entry or a status.
-   - [TODO.md](TODO.md) and [IDEAS.md](IDEAS.md): **append-only — keep both
+   - [TODO.md](TODO.md) and [RANDOM_NOTES.md](RANDOM_NOTES.md): **append-only — keep both
      sides' additions.**
    - Same content file edited on both sides: keep both sides' text.
    - **`process/upstream/`: never hand-merge.** It must stay byte-identical
@@ -461,7 +461,7 @@ never get exported to the public BestPractice repo.
   ([`durable-list-anchors`](process/personal/README.md#durable-list-anchors)).
 
 - **A formal document cites another formal document, never a specific
-  point inside an explicit brainstorm document.** [IDEAS.md](IDEAS.md) is
+  point inside an explicit brainstorm document.** [RANDOM_NOTES.md](RANDOM_NOTES.md) is
   raw material, not vetted prose; a formal document citing a specific
   brainstorm entry as a claim's own support borrows credibility that
   entry never earned. If the idea hasn't been promoted into a formal

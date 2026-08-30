@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 16:28:24 (Buenos Aires) by Morgan F, to version 11 -->
+<!-- Last updated: 2026-08-30 19:37:38 (Buenos Aires) by Morgan F, to version 12 -->
 
 # Rules for building a company around AI
 
@@ -10,9 +10,9 @@ disciplined person has to manufacture by hand every session. Neither essay
 is itself a checklist anyone follows day to day —
 [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) is where an idea from either
 one gets tried in real work before it's ready to be called a rule. Source
-essay for the brainstorm — see [IDEAS.md](IDEAS.md) for how this connects
+essay for the brainstorm — see [RANDOM_NOTES.md](RANDOM_NOTES.md) for how this connects
 to the rest and for follow-on discussion. Promoted to its own document per
-the "reorganize once a group gets big enough" rule in [IDEAS.md](IDEAS.md),
+the "reorganize once a group gets big enough" rule in [RANDOM_NOTES.md](RANDOM_NOTES.md),
 since it's a single sustained argument rather than a loose list of
 entries.*
 

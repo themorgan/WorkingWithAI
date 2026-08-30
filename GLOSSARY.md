@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 13:47:27 (Buenos Aires) by Morgan F, to version 6 -->
+<!-- Last updated: 2026-08-30 19:37:38 (Buenos Aires) by Morgan F, to version 7 -->
 
 # Canonical names
 
@@ -8,7 +8,7 @@ wins — fix the documents.
 
 | Name | What it is | Defined in |
 |---|---|---|
-| **the brainstorm** | This repo's one deliverable: the running list of ideas, prompts, and workflows for working with AI. | [IDEAS.md](IDEAS.md) |
+| **the brainstorm** | This repo's one deliverable: the running list of ideas, prompts, and workflows for working with AI. | [RANDOM_NOTES.md](RANDOM_NOTES.md) |
 | **the pipeline** (three-stage) | How a brainstorm idea becomes company-wide policy: discover (the brainstorm) → try it for real (**the rules now testing**) → roll out everywhere (RepoPersonalPreferences's personal pack). | [README.md](README.md) |
 | **the rules now testing** | Pipeline stage 2: the practical checklist actually in force in real work now, each rule tagged Trial, Ready to promote, or Promoted. | [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) |
 | **promote** / **promotion** | Moving a rule from *Trial* to *Ready to promote* to landed as its own section in RepoPersonalPreferences's personal pack — pipeline stage 2 to stage 3. | [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) "Promotion" |

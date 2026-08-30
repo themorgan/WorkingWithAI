@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 20:01:32 (Buenos Aires) by Morgan F, to version 13 -->
+<!-- Last updated: 2026-08-30 19:37:38 (Buenos Aires) by Morgan F, to version 14 -->
 
 # WorkingWithAI
 
@@ -67,7 +67,7 @@ spark, argue, GitHub, rule — see
 - [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md) — the one list of what
   humans are good at, referenced in shorter form from several of these
   documents.
-- [IDEAS.md](IDEAS.md) — the brainstorm itself: one entry per idea, prompt,
+- [RANDOM_NOTES.md](RANDOM_NOTES.md) — the brainstorm itself: one entry per idea, prompt,
   workflow, or observation, loosely grouped.
 - [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) — a full essay
   promoted out of the brainstorm (pipeline stage 1).

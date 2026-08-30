@@ -1,6 +1,6 @@
-<!-- Last updated: 2026-08-29 15:12:22 (Buenos Aires) by Morgan F, to version 10 -->
+<!-- Last updated: 2026-08-30 19:36:24 (Buenos Aires) by Morgan F, to version 11 -->
 
-# Ideas — how to work with AI
+# Random notes — how to work with AI
 
 One entry per idea, prompt, workflow, or observation. Loosely grouped;
 reorganize once a group gets big enough to need its own document (link it
@@ -255,6 +255,18 @@ naming the stage that was missing: [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md),
 sitting between the essays here and RepoPersonalPreferences, holding
 whatever's currently on trial. See [README.md](README.md)'s new pipeline
 section and [TODO.md](TODO.md) for the decision record.
+
+## Ideas set aside, not carried forward
+
+*Surfaced while drafting [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md),
+moved here instead of staying in that essay.*
+
+- A mandatory eval-file gate before any output ships — unclear how it
+  generalizes past code, where "eval" has an obvious technical meaning.
+- Having the AI itself pick which raw, unfiltered sample a human reviews
+  for [`human-only-zones`](COMPANY_BUILDING_RULES.md#human-only-zones) —
+  the idea didn't land clearly enough in discussion to write down yet;
+  worth re-raising once it's sharper, rather than forcing it in now.
 
 ## Prompts and phrasing
 

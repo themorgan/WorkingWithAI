@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 13:47:27 (Buenos Aires) by Morgan F, to version 6 -->
+<!-- Last updated: 2026-08-30 19:37:38 (Buenos Aires) by Morgan F, to version 7 -->
 
 # Getting started with `WorkingWithAI`
 
@@ -11,7 +11,7 @@ it becomes shared. Decisions don't get lost in chat history, nobody
 overwrites anyone's work, and a person who joins today can be useful
 within the hour. You do not need to be a programmer.
 
-This particular project is a running brainstorm: [IDEAS.md](IDEAS.md) is
+This particular project is a running brainstorm: [RANDOM_NOTES.md](RANDOM_NOTES.md) is
 where prompts, workflows, and observations about working with AI get
 captured as they come up. Want the thinking behind it before the
 how-to? [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) explains the underlying

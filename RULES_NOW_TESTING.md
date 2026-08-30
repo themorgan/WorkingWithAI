@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 15:56:29 (Buenos Aires) by Morgan F, to version 11 -->
+<!-- Last updated: 2026-08-30 19:37:38 (Buenos Aires) by Morgan F, to version 12 -->
 
 # Rules now testing — the current state of what we're trying
 
@@ -19,7 +19,7 @@ currently pending that move.
 
 **This document does not get vendored anywhere.** Unlike `process/upstream/`
 or `process/personal/`, it has no manifest entry and no sync workflow — it's
-native to this repo, the same as [IDEAS.md](IDEAS.md), because working out
+native to this repo, the same as [RANDOM_NOTES.md](RANDOM_NOTES.md), because working out
 which rules are ready is exactly this repo's job. Nothing here is real
 company policy for another project until a session has separately gone into
 RepoPersonalPreferences and landed it there (see "Promotion" below) —
@@ -103,7 +103,7 @@ propose an addressable alternative
 
 ### 7. Contradiction-scanning across the corpus, as a recurring job — *Trial*
 
-Periodically re-read [IDEAS.md](IDEAS.md) and this document for entries
+Periodically re-read [RANDOM_NOTES.md](RANDOM_NOTES.md) and this document for entries
 that now disagree — same cadence as
 [`dark-process-self-audit`](#dark-process-self-audit), not a one-off.
 
@@ -135,7 +135,7 @@ against. Tracked instead as open items in [TODO.md](TODO.md):
 - **Deeper "normie"-employee engagement**, beyond
   [`push-back-writing-thinking`](#push-back-writing-thinking) — visible
   reminders of the deeper mode, making rule-extraction "in your face,"
-  proactive resurfacing of a relevant rule. IDEAS.md's own "Why
+  proactive resurfacing of a relevant rule. RANDOM_NOTES.md's own "Why
   BestPractice specifically works" open question.
 
 ## Promotion — moving a rule from here into RepoPersonalPreferences
