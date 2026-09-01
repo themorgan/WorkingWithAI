@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-30 19:23:48 (Buenos Aires) by Morgan F, to version 18 -->
+<!-- Last updated: 2026-09-01 15:56:02 (Buenos Aires) by Morgan F, to version 19 -->
 
 # Reasons why
 
@@ -62,7 +62,10 @@ while the task did.
 <a id="protocols-generated-not-just-documented"></a>
 
 **5. The power isn't documentation — it's protocols generated
-automatically, since no one finds the time to write them by hand.**
+automatically, since no one finds the time to write them by hand.** This
+reason is one third of
+[THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md)'s case for
+what makes this repo's approach unique.
 Everyone agrees a good record is worth having, but writing it up always
 loses to whatever's due today, and a static record wouldn't be the real
 prize anyway. What pays off is the same background work turning into

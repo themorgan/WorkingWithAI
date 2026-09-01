@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 12:55:47 (Buenos Aires) by Morgan F, to version 13 -->
+<!-- Last updated: 2026-09-01 15:56:02 (Buenos Aires) by Morgan F, to version 14 -->
 
 # Rules for building a company around AI
 
@@ -61,6 +61,12 @@ error surfaces at the customer — the most expensive room, and the last one
 you hear about.
 
 ## Working with the model
+
+Two of the rules below — [`ai-chat-as-intermediary`](#ai-chat-as-intermediary)
+and [`co-create-dont-delegate`](#co-create-dont-delegate) — plus one from
+[REASONS_WHY.md](REASONS_WHY.md#protocols-generated-not-just-documented) are
+what [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md) argues are
+unique specifically in combination.
 
 <a id="ai-chat-as-intermediary"></a>
 

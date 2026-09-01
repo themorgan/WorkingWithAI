@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-30 19:37:38 (Buenos Aires) by Morgan F, to version 13 -->
+<!-- Last updated: 2026-09-01 15:56:02 (Buenos Aires) by Morgan F, to version 14 -->
 
 # Repository map — where to find things
 
@@ -19,6 +19,7 @@ Companions: [AGENTS.md](AGENTS.md) (workflow + conventions), [TODO.md](TODO.md)
 |---|---|
 | [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) | Orientation for a newcomer: the handful of underlying theoretical ideas everything else here assumes, named and explained on their own terms. |
 | [REASONS_WHY.md](REASONS_WHY.md) | Orientation's companion: the less obvious benefits those ideas actually produce in practice. |
+| [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md) | One-page pitch: the three ideas — from [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) and [REASONS_WHY.md](REASONS_WHY.md) — that this repo argues are unique specifically taken together. |
 | [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md) | The one list of what humans are good at, gathered from the shorter versions scattered across [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) and [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md). |
 | [RANDOM_NOTES.md](RANDOM_NOTES.md) | **The deliverable.** The brainstorm itself — pipeline stage 1. |
 | [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) | Standalone essay promoted out of the brainstorm: rules for building a company around AI. |
