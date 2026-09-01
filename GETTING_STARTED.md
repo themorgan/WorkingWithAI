@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-30 19:37:38 (Buenos Aires) by Morgan F, to version 7 -->
+<!-- Last updated: 2026-09-01 16:35:00 (Buenos Aires) by Morgan F, to version 8 -->
 
 # Getting started with `WorkingWithAI`
 
@@ -11,11 +11,11 @@ it becomes shared. Decisions don't get lost in chat history, nobody
 overwrites anyone's work, and a person who joins today can be useful
 within the hour. You do not need to be a programmer.
 
-This particular project is a running brainstorm: [RANDOM_NOTES.md](RANDOM_NOTES.md) is
+This particular project is a running brainstorm: [RANDOM_NOTES.md](docs/RANDOM_NOTES.md) is
 where prompts, workflows, and observations about working with AI get
 captured as they come up. Want the thinking behind it before the
-how-to? [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) explains the underlying
-ideas, and [REASONS_WHY.md](REASONS_WHY.md) covers what they actually buy
+how-to? [OUR_PHILOSOPHY.md](docs/OUR_PHILOSOPHY.md) explains the underlying
+ideas, and [REASONS_WHY.md](docs/REASONS_WHY.md) covers what they actually buy
 you.
 
 ## How contributing works — five steps

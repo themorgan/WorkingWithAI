@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-29 15:47:11 (Buenos Aires) by Morgan F, to version 5 -->
+<!-- Last updated: 2026-09-01 16:35:00 (Buenos Aires) by Morgan F, to version 7 -->
 
 # Humans at our best
 
@@ -61,9 +61,23 @@ this page doesn't replace them.*
 - **The unspoken.** The things a human can do, and sometimes has to, that
   are hard to say out loud at all.
 
-## Keeping this current
+## See also
 
-A new short list of "what humans are good at" showing up in some other
-document is the signal to add it here too — fold the new items into the
-list above (dedupe against what's already there) and add this document's
-own parenthetical link at that new list's spot, matching the other two.
+- [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) — the underlying theoretical
+  ideas everything else here assumes, named and explained on their own
+  terms.
+- [REASONS_WHY.md](REASONS_WHY.md) — the less obvious benefits those
+  ideas actually produce in practice.
+- [RANDOM_NOTES.md](RANDOM_NOTES.md) — the brainstorm itself, pipeline
+  stage 1.
+- [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) — standalone
+  essay promoted out of the brainstorm: rules for building a company
+  around AI.
+- [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) —
+  standalone essay promoted out of the brainstorm: how AI systems
+  themselves should be configured, built, and run.
+- [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — pipeline stage 2: the
+  practical rules actually being tried in real work right now.
+- [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md) — one-page
+  pitch: the three ideas this repo argues are unique specifically taken
+  together.
