@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 15:56:02 (Buenos Aires) by Morgan F, to version 36 -->
+<!-- Last updated: 2026-09-01 16:20:00 (Buenos Aires) by Morgan F, to version 37 -->
 
 # Our philosophy
 
@@ -33,19 +33,27 @@ The same five steps repeat every time, in order:
    [`decisions-carry-their-situation`](#decisions-carry-their-situation)),
    staying visible to whichever session opens this repo next.
 
-## Working with the model
+## Groups, not individuals
 
-Two of the rules cited below —
-[`ai-chat-as-intermediary`](COMPANY_BUILDING_RULES.md#ai-chat-as-intermediary)
-and
-[`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate) —
-plus one from [REASONS_WHY.md](REASONS_WHY.md#protocols-generated-not-just-documented)
-are what [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md) argues
-are unique specifically in combination.
+<a id="groups-not-individuals"></a>
+
+**1. Built for groups, not individuals working alone with a model.** Most
+"work better with AI" advice — coding assistants, integrations, personal
+productivity tools — makes one person faster at their own work. This repo
+assumes something different: several people solving the same problem
+together, with the AI/chat layer as what connects them, not a private
+assistant each person separately happens to also have. A shared repo
+instead of a private chat window means anyone's reasoning is available to
+the whole team, not just its author, and version control lets more than
+one person work the same issue at once instead of one at a time. (One
+third of [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md)'s
+case for what makes this approach unique.)
+
+## Working with the model
 
 <a id="people-manage-agents-execute"></a>
 
-**1. People manage; agents execute.** The human contribution is
+**2. People manage; agents execute.** The human contribution is
 planning, taste, judgment — deciding what gets built and whether it
 works, the way defining a system beats hand-running it. Brief the model
 like an individual contributor, stay engaged, adjust the plan as soon as
@@ -57,7 +65,7 @@ applied to management. (Full list:
 
 <a id="arguing-with-the-model"></a>
 
-**2. Coworking with a model means arguing with it.** State a half-formed
+**3. Coworking with a model means arguing with it.** State a half-formed
 position, let the model push back, push back on its answer — keep going
 until the exchange settles it, not either side alone. Instructing makes
 a typist; polling for an opinion makes an oracle. Quality is one payoff:
@@ -70,7 +78,7 @@ agreement just hands back your blind spots
 
 <a id="context-is-capital"></a>
 
-**3. Context is core.** [`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset)
+**4. Context is core.** [`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset)
 makes the case for capturing this. What matters is the residue, not
 the deliverable — the option tried and killed, the correction only
 legible against the draft it corrected. One document carries that
@@ -81,7 +89,7 @@ the AI carrying the translation keeps thinking real, not thinned
 
 <a id="rules-generated-automatically"></a>
 
-**4. Protocols, rules, and preferences get generated automatically.**
+**5. Protocols, rules, and preferences get generated automatically.**
 What's automatic is the finding: the AI Assistant surfaces the pattern
 every time, without anyone having to remember to look. Turning it into
 a standing rule is a human call, routed by this repo's own rules to
@@ -94,7 +102,7 @@ is the same move done by hand).
 
 <a id="decisions-carry-their-situation"></a>
 
-**5. Every decision carries the situation that produced it.** However
+**6. Every decision carries the situation that produced it.** However
 small the call, the record states what case prompted it — a bare
 "always do X" invites relitigation from anyone who wasn't there. The
 case also tests the rule: one that wouldn't have caught it is theater.
@@ -110,7 +118,7 @@ rule extraction).
 
 <a id="processes-should-be-visible"></a>
 
-**6. Processes should be visible, not locked in one person's brain.** A
+**7. Processes should be visible, not locked in one person's brain.** A
 workflow whose only interface is "email me and I'll handle it" is
 invisible to everyone else. Bigger than tidiness
 ([`no-dark-processes`](COMPANY_BUILDING_RULES.md#no-dark-processes)):
@@ -120,7 +128,7 @@ compounding blind spot.
 
 <a id="explicit-ownership-not-hidden-in-the-model"></a>
 
-**7. Protocols, documents, and knowledge should be explicitly owned by
+**8. Protocols, documents, and knowledge should be explicitly owned by
 the team, not hidden inside Claude.** Claude and ChatGPT already infer
 your implicit patterns as you work — the question is where that
 inference lives afterward: locked inside a vendor's private session
@@ -135,7 +143,7 @@ conversation ends
 
 <a id="humans-do-what-humans-do-best"></a>
 
-**8. Humans should do what humans do best.** Machines produce; people
+**9. Humans should do what humans do best.** Machines produce; people
 bring judgment, relationships, instinct: reading a room, sensing what a
 client meant but didn't say, pushing someone harder when the moment
 calls for it. Optimizing a person to act like a fast, tireless model

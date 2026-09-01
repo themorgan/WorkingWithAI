@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 15:56:02 (Buenos Aires) by Morgan F, to version 14 -->
+<!-- Last updated: 2026-09-01 16:20:00 (Buenos Aires) by Morgan F, to version 15 -->
 
 # Rules for building a company around AI
 
@@ -62,12 +62,6 @@ you hear about.
 
 ## Working with the model
 
-Two of the rules below — [`ai-chat-as-intermediary`](#ai-chat-as-intermediary)
-and [`co-create-dont-delegate`](#co-create-dont-delegate) — plus one from
-[REASONS_WHY.md](REASONS_WHY.md#protocols-generated-not-just-documented) are
-what [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md) argues are
-unique specifically in combination.
-
 <a id="ai-chat-as-intermediary"></a>
 
 **4. Treat the AI Chat as the intermediary for the work itself, not a tool you consult on the side.**
@@ -77,7 +71,9 @@ the output, but because it's the partner that pushes back: the hole in the
 logic, the option you missed, the better version. That layer also pushes
 things into happening — the commit, the message, the next step — instead
 of a good idea that never left somebody's head. Put a model between intent
-and action, and arguing before you commit becomes free.
+and action, and arguing before you commit becomes free. (One third of
+[THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md)'s case for
+what makes this approach unique.)
 
 <a id="co-create-dont-delegate"></a>
 

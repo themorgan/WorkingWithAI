@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 15:56:02 (Buenos Aires) by Morgan F, to version 13 -->
+<!-- Last updated: 2026-09-01 16:20:00 (Buenos Aires) by Morgan F, to version 14 -->
 
 # Random notes — how to work with AI
 
@@ -149,7 +149,15 @@ that led there: "chat as the sole intermediary" means chat is how a
 *person* touches any document or artifact — talk to Claude and have Claude
 edit it, instead of opening a doc and editing it yourself — not a claim
 that chat is literally the only medium anything happens in (PR review
-comments still carry part of the argument, per the merge runbook above).
+comments still carry part of the argument, per the merge runbook above). A
+second correction, same day: the first bullet wasn't
+[`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate)
+restated — that's one person co-creating with the model. The actual claim
+is that this whole approach targets *groups* of people collaborating with
+each other, not individual AI assistance, which most other "work better
+with AI" advice already covers; that got its own new point,
+[`groups-not-individuals`](OUR_PHILOSOPHY.md#groups-not-individuals), and
+the formula's first bullet now points there instead.
 
 The decentralization-vs-structure tension — forking and organic practices
 staying good, but wanting one enforcer and a lower-friction way to

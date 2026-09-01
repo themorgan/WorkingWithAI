@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-30 19:37:38 (Buenos Aires) by Morgan F, to version 36 -->
+<!-- Last updated: 2026-09-01 16:20:00 (Buenos Aires) by Morgan F, to version 37 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -883,3 +883,23 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   checklist, not the log; (4) cut rule 6's "email Morgan to change this
   config" example and a few secondary citations for length, keeping the
   rule-number cite on every item.
+- [x] **Write [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md)
+  and add a new [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) point for
+  group collaboration.** Decided 2026-09-01 → done, doc. Promoted
+  [RANDOM_NOTES.md](RANDOM_NOTES.md)'s three-part uniqueness thesis into a
+  one-page pitch, linked from
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md),
+  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), and
+  [REASONS_WHY.md](REASONS_WHY.md). Morgan's first-round correction: the
+  formula's first bullet isn't
+  [`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate)
+  restated (one person co-creating with the model) — the actual claim is
+  that this repo targets *groups* of people collaborating with each other,
+  which the crowded field of individual-AI-productivity advice doesn't
+  cover. That didn't have a home anywhere yet, so it became a new
+  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) point,
+  [`groups-not-individuals`](OUR_PHILOSOPHY.md#groups-not-individuals),
+  in a new "Groups, not individuals" section ahead of "Working with the
+  model" — which meant renumbering that document's other eight items by
+  one, same as the precedent above. The formula's first bullet now cites
+  the new point instead of `co-create-dont-delegate`.
