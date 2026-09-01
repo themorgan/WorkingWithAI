@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-30 19:37:38 (Buenos Aires) by Morgan F, to version 12 -->
+<!-- Last updated: 2026-09-01 12:55:47 (Buenos Aires) by Morgan F, to version 13 -->
 
 # Rules for building a company around AI
 
@@ -168,10 +168,8 @@ The bottleneck isn't making things, it's judging them fast and shipping
 them — production is the trait models absorbed first. Hire someone who
 gets things done unmanaged, who builds relationships a counterparty
 trusts, and who has taste — one part of the picture, not the headline.
-Test taste directly: hand the candidate twenty drafts. Someone like
-[NAME OF THE SHARPEST EDITOR MORGAN HAS WORKED WITH — CHECK] rejects
-nineteen for a reason they can name. (Drive, relationships, and taste
-are three entries on the one full list of what stays human — see
+(Drive, relationships, and taste are three entries on the one full list
+of what stays human — see
 [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md).)
 
 <a id="manager-of-agents"></a>
@@ -212,8 +210,7 @@ Build the permanent roster around it.
 
 ---
 
-**Open placeholders (see [TODO.md](TODO.md)):** [`hire-for-drive`](#hire-for-drive)
-has an unfilled `[NAME OF THE SHARPEST EDITOR...]` bracket;
+**Open placeholders (see [TODO.md](TODO.md)):**
 [`human-only-zones`](#human-only-zones) has an unfilled `[YEAR]` bracket.
-Both are intentional — fill them in with real specifics when they come to
-mind rather than inventing something generic to close the bracket.
+It's intentional — fill it in with a real specific when it comes to mind
+rather than inventing something generic to close the bracket.
