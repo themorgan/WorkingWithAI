@@ -28,8 +28,8 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 - [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (1e06a5349a43; your base d436be779be1) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via WorkingWithAI RPP sync, this session
 - [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (570f86c520fc; your base b10c163a96dd) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via RPP sync: durable-list-anchors + brainstorm-citations, this session
 - [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (b54461560435; your base 9793691dcecb) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via RPP sync: derived-file-marker + doc-recipe + rule-scope-ask + list-restraint, this session
-- [ ] **personal-pack** (2026-08-30): COULD NOT VERIFY: couldn't reach the personal pack's source (https://github.com/themorgan/RepoPersonalPreferences) to check freshness — `git ls-remote` failed (fatal: could not read Username for 'https://github.com': terminal prompts disabled). This is NOT the same as 'confirmed fresh': if you need to know, verify directly instead of trusting this silence (process/personal/README.md#fresh-check-escalation).
-- [ ] **bestpractice** (2026-08-30): NOTICE: BestPractice upstream has moved (88ecf7fbce5e; your base c76f06f87e52) — review at the next check-in (process/upstream/INSTALL.md sec.2/sec.4).
+- [ ] **personal-pack** (2026-09-01): COULD NOT VERIFY: couldn't reach the personal pack's source (https://github.com/themorgan/RepoPersonalPreferences) to check freshness — `git ls-remote` failed (fatal: could not read Username for 'https://github.com': terminal prompts disabled). This is NOT the same as 'confirmed fresh': if you need to know, verify directly instead of trusting this silence (process/personal/README.md#fresh-check-escalation).
+- [ ] **bestpractice** (2026-09-01): NOTICE: BestPractice upstream has moved (558b16a62030; your base c76f06f87e52) — review at the next check-in (process/upstream/INSTALL.md sec.2/sec.4).
 
 ## Recurring
 
@@ -114,11 +114,16 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 
   Session: https://claude.ai/code/session_019JL6ufKp3vdHv6n1drNYoz
 
-- [ ] **Fill in the two open brackets in [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md).**
-  Rule 12 wants the name of the sharpest editor Morgan has worked with; rule
-  14 wants a real year for "the way you'd have read it in [YEAR]." Both are
-  intentionally left as placeholders rather than filled with something
-  generic — replace them only when a real specific comes to mind.
+- [x] **Fill in the two open brackets in [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md).**
+  Done 2026-09-01 → doc's. Rule 12's "sharpest editor" bracket (and the
+  "test taste directly: hand the candidate twenty drafts..." sentences it
+  sat in) is gone — cut on Morgan's instruction rather than filled in.
+  Rule 14 still wants a real year for "the way you'd have read it in
+  [YEAR]," intentionally left as a placeholder — replace it only when a
+  real specific comes to mind.
+
+  Session: https://claude.ai/code/session_013PVX4o1GAgFzfbvgUZuM1S
+
 - [ ] **Look for contradictions across [RANDOM_NOTES.md](RANDOM_NOTES.md) entries**, per
   the meta-note at the bottom of that file (e.g. rule 9's "build five, kill
   four" against rule 7's "don't systematize a one-off") — worth a
