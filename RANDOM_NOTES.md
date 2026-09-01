@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-30 19:36:24 (Buenos Aires) by Morgan F, to version 11 -->
+<!-- Last updated: 2026-09-01 15:26:34 (Buenos Aires) by Morgan F, to version 12 -->
 
 # Random notes — how to work with AI
 
@@ -81,6 +81,74 @@ about* why *it works, not just that it does.*
    think in whatever language comes naturally, and the AI carries the
    translation into the repo's shared working language — nobody has to
    compose in a second language to participate.
+
+### 2026-09-01 entry — "a way of working," not "a pattern" or "a repo," and whether decentralization alone is enough
+
+A run of Morgan's own comments from one session, kept verbatim and in
+sequence rather than smoothed into a single paragraph — per this file's own
+append-only, disagree-with-your-past-self convention above. Not yet argued
+out or slotted into a formal document; flagged at the end for where it
+might connect.
+
+> I agree, and I thought that a few hours ago. I think what makes this
+> harness unique is: [1] the focus on collaboration not merely production
+> PLUS [2] the focus on protocol-generation PLUS [3] the approach of making
+> AI/Chat the intermediary layer to ALL work [don't touch anything directly]
+> including the situation that led to every little decision even tiny
+> ones <---- THOSE THREE taken together are EXPLOSIVE in an AMAZING way
+
+> I don't think it's "BP is a pattern" nor is it "BP is a repo"; I would
+> frame it more as.... we need to tweak this, but more like: "BP is a way
+> of working" -> the three patterns in my penultimate message, taken
+> together make work LOOK and FEEL very different - especially (I will
+> predict) collaborative type work.
+
+> I do love the idea of people forking it, doing their own BPs, suggesting
+> them -- I love it. ANd that's part of it. The Practices arise organically.
+> I just think that in the contexts and ways I want to use this now (beyond
+> "just helping myself") it needs to be a bit more organized than "a few
+> repos with similar but different things and people adding practices to
+> their own repos" - see my earlier comment about how *I* don't feel
+> comfortable suggesting practices to you, and most people don't even think
+> in practices - for teams, you have *ONE PERSON* who kinda enforces it, and
+> this is the tool taht that person needs and wants for this.
+
+> Absolute decentralization was fun 20 years ago and also for the open
+> source wild west; also, if (*if*) we really want to use this across
+> different teams and projects and potentially even get other people using
+> it etc, I think we need a bit more structure to this process of
+> integrating and approving and sharing processes.
+
+> Maybe a bit like WP: yeah, it is open source so anyone can do their own
+> version -- but WP only really took off (20 years ago) after they added
+> the "Plugins" making it trivial for anyone to build their own plugins --
+> so people didn't just modify WP for themselves, rather, they did in a way
+> so that it was very easy to contribute back to everyone else, for
+> everyone else to use their plugins.
+
+> Every harness I've read about or experimented with or saw youtubes about
+> [granted, not that many, I'm only ramping up obsessing over this now]
+> seems to focus on things like "making dev easier or better such as
+> forcing planning stages" or "connecting to external services and tools"
+> or "making sure tokens are used efficiently" etc etc. These three points
+> I mentioned above are truly unique and are *WHAT IS MOST VALUABLE TO ME*
+> (and I think MANY others in the "management" or "business" world as
+> opposed to merely "devs" or "vibe coders"): doing shit with other people
+> in a smart way AND creating/enforcing rules/protocols/practices in a smart
+> way AND forcing chat as an intermediary layer for EVERYTHING everything
+> [don't edit any file directly yourself] ---> those three are new and
+> explosive.
+
+Where this might connect once it's argued out: the "three-part uniqueness
+thesis" (collaboration over production, protocol-generation, chat-as-only-
+interface) reads like a sharper restatement of why this list's own points
+2–3 above work, and could tighten that section's premise. The
+decentralization-vs-structure tension — forking and organic practices
+staying good, but wanting one enforcer and a lower-friction way to
+contribute a practice back (the WordPress Plugins comparison) — doesn't yet
+have a home: it's a genuine complication for
+[`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate)'s
+"practices arise organically" framing, not obviously a resolution of it.
 
 ### Open question: forcing deeper engagement, not just permitting it
 
