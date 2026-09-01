@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 15:26:34 (Buenos Aires) by Morgan F, to version 12 -->
+<!-- Last updated: 2026-09-01 15:56:02 (Buenos Aires) by Morgan F, to version 13 -->
 
 # Random notes — how to work with AI
 
@@ -139,16 +139,27 @@ might connect.
 > [don't edit any file directly yourself] ---> those three are new and
 > explosive.
 
-Where this might connect once it's argued out: the "three-part uniqueness
-thesis" (collaboration over production, protocol-generation, chat-as-only-
-interface) reads like a sharper restatement of why this list's own points
-2–3 above work, and could tighten that section's premise. The
-decentralization-vs-structure tension — forking and organic practices
+**Update, same day:** the three-part uniqueness thesis is now promoted —
+see [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md), a
+one-page pitch naming the same three ideas (linked from
+[OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md),
+[COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), and
+[REASONS_WHY.md](REASONS_WHY.md)). One correction from the chat discussion
+that led there: "chat as the sole intermediary" means chat is how a
+*person* touches any document or artifact — talk to Claude and have Claude
+edit it, instead of opening a doc and editing it yourself — not a claim
+that chat is literally the only medium anything happens in (PR review
+comments still carry part of the argument, per the merge runbook above).
+
+The decentralization-vs-structure tension — forking and organic practices
 staying good, but wanting one enforcer and a lower-friction way to
-contribute a practice back (the WordPress Plugins comparison) — doesn't yet
-have a home: it's a genuine complication for
+contribute a practice back (the WordPress Plugins comparison) — still
+doesn't have a home: it's a genuine complication for
 [`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate)'s
-"practices arise organically" framing, not obviously a resolution of it.
+"practices arise organically" framing, only partly answered by this repo's
+own three-stage pipeline ([RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)),
+which gives "one person enforcing" but not yet a trivially-easy way for
+someone else to contribute a practice back.
 
 ### Open question: forcing deeper engagement, not just permitting it
 

@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-30 19:26:49 (Buenos Aires) by Morgan F, to version 35 -->
+<!-- Last updated: 2026-09-01 15:56:02 (Buenos Aires) by Morgan F, to version 36 -->
 
 # Our philosophy
 
@@ -34,6 +34,14 @@ The same five steps repeat every time, in order:
    staying visible to whichever session opens this repo next.
 
 ## Working with the model
+
+Two of the rules cited below —
+[`ai-chat-as-intermediary`](COMPANY_BUILDING_RULES.md#ai-chat-as-intermediary)
+and
+[`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate) —
+plus one from [REASONS_WHY.md](REASONS_WHY.md#protocols-generated-not-just-documented)
+are what [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md) argues
+are unique specifically in combination.
 
 <a id="people-manage-agents-execute"></a>
 
