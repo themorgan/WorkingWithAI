@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 15:56:02 (Buenos Aires) by Morgan F, to version 19 -->
+<!-- Last updated: 2026-09-01 16:27:47 (Buenos Aires) by Morgan F, to version 20 -->
 
 # Reasons why
 
@@ -125,5 +125,24 @@ catch is instinct, not checklist — judgment-heavy work this repo routes
 to people, not models
 ([`hire-for-drive`](COMPANY_BUILDING_RULES.md#hire-for-drive)).
 
-See [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) for the theory behind why these
-particular things happen.
+## See also
+
+- [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) — this document's companion: the
+  underlying theoretical ideas everything else here assumes, named and
+  explained on their own terms.
+- [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md) — the one list of what
+  humans are good at, gathered from the shorter versions scattered here
+  and elsewhere.
+- [RANDOM_NOTES.md](RANDOM_NOTES.md) — the brainstorm itself, pipeline
+  stage 1.
+- [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) — standalone
+  essay promoted out of the brainstorm: rules for building a company
+  around AI.
+- [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) —
+  standalone essay promoted out of the brainstorm: how AI systems
+  themselves should be configured, built, and run.
+- [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — pipeline stage 2: the
+  practical rules actually being tried in real work right now.
+- [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md) — one-page
+  pitch: the three ideas this repo argues are unique specifically taken
+  together.

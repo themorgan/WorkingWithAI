@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 16:20:00 (Buenos Aires) by Morgan F, to version 15 -->
+<!-- Last updated: 2026-09-01 16:35:00 (Buenos Aires) by Morgan F, to version 17 -->
 
 # Rules for building a company around AI
 
@@ -156,7 +156,7 @@ erodes trust fast. It's evidence too: unrewritten output is output
 nobody thought about — style enforces thinking. And it's positioning:
 what you sound like is the one claim a reader can check for free. Ship
 everything rewritten in your own voice. (Enforced, not just argued for:
-[process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md),
+[process/voice/HUMAN_VOICE_RULES.md](../process/voice/HUMAN_VOICE_RULES.md),
 tried here as
 [`write-like-a-human`](RULES_NOW_TESTING.md#write-like-a-human).)
 
@@ -188,11 +188,10 @@ again. Call the role Manager of Agents or don't, but staff it.
 
 **14. Protect human-only zones on purpose, and put them on the calendar.**
 
-If everyone consumes only summaries, nobody can detect the moment
-they drift — everything still reads coherent. So mandate raw contact
-as ritual: founders reading unfiltered complaints, managers watching
-real work in silence, someone reading the source the way you'd have
-in [YEAR]. Keep it anyway — it's what tells you the rest is lying.
+If everyone consumes only summaries, nobody can detect the moment they
+drift — everything still reads coherent. Mandate raw contact as ritual —
+founders reading unfiltered complaints, managers watching real work in
+silence — and put it on the calendar so it survives being inconvenient.
 
 <a id="structurally-human"></a>
 
@@ -210,9 +209,23 @@ discipline of running agent-driven processes. (Full list:
 That list is shorter than it was five years ago. It isn't going to zero.
 Build the permanent roster around it.
 
----
+## See also
 
-**Open placeholders (see [TODO.md](TODO.md)):**
-[`human-only-zones`](#human-only-zones) has an unfilled `[YEAR]` bracket.
-It's intentional — fill it in with a real specific when it comes to mind
-rather than inventing something generic to close the bracket.
+- [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) — the underlying theoretical
+  ideas everything else here assumes, named and explained on their own
+  terms.
+- [REASONS_WHY.md](REASONS_WHY.md) — the less obvious benefits those
+  ideas actually produce in practice.
+- [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md) — the one list of what
+  humans are good at, gathered from the shorter versions scattered here
+  and elsewhere.
+- [RANDOM_NOTES.md](RANDOM_NOTES.md) — the brainstorm itself, pipeline
+  stage 1.
+- [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) —
+  standalone essay promoted out of the brainstorm: how AI systems
+  themselves should be configured, built, and run.
+- [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — pipeline stage 2: the
+  practical rules actually being tried in real work right now.
+- [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md) — one-page
+  pitch: the three ideas this repo argues are unique specifically taken
+  together.

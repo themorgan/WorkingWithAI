@@ -1,9 +1,9 @@
-<!-- Last updated: 2026-08-30 19:37:38 (Buenos Aires) by Morgan F, to version 12 -->
+<!-- Last updated: 2026-09-01 16:35:00 (Buenos Aires) by Morgan F, to version 13 -->
 
 # Rules now testing — the current state of what we're trying
 
 This is the second stage of this repo's pipeline (see
-[README.md](README.md)'s "How this repo's ideas become company policy"):
+[README.md](../README.md)'s "How this repo's ideas become company policy"):
 [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) argues *why*;
 [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) designs *how*
 the AI systems themselves should be built so the healthy pattern is the
@@ -14,7 +14,7 @@ practice teaches something. A rule earns
 its way onto this list from the brainstorm or one of the two essays; it
 earns its way *off* — into [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences)'s
 personal pack, for automatic rollout to every project Morgan runs — only
-once it's actually proven itself here. See [TODO.md](TODO.md) for what's
+once it's actually proven itself here. See [TODO.md](../TODO.md) for what's
 currently pending that move.
 
 **This document does not get vendored anywhere.** Unlike `process/upstream/`
@@ -34,7 +34,7 @@ mentioning a rule here is not the same as adopting it elsewhere.
   as a pointer, not restated in full — full restatement would just be a
   second copy of the same rule that can drift out of sync with the first,
   the same reasoning the personal pack's own
-  [`no-duplication`](process/personal/README.md#no-duplication) gives for
+  [`no-duplication`](../process/personal/README.md#no-duplication) gives for
   not duplicating BestPractice.
 
 ## Rules
@@ -43,7 +43,7 @@ mentioning a rule here is not the same as adopting it elsewhere.
 
 ### 1. Push-back mode on writing-and-thinking work — *Promoted*
 
-[`push-back`](process/personal/README.md#push-back).
+[`push-back`](../process/personal/README.md#push-back).
 Argue a genuine counter-case before building on a stated stance; flag a
 serious unresolved disagreement before calling a piece done. Never on
 code or other technical work.
@@ -52,7 +52,7 @@ code or other technical work.
 
 ### 2. Provider-neutral LLM integrations — *Promoted*
 
-[`llm-neutral`](process/personal/README.md#llm-neutral).
+[`llm-neutral`](../process/personal/README.md#llm-neutral).
 Build any LLM integration against a swappable model/token/base-URL
 interface; assume an OpenRouter credential absent other instruction.
 Hedges [`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset)
@@ -84,9 +84,9 @@ Before calling work done, answer all three out loud in the reply:
 
 ### 5. Write like a human, not an LLM — *Trial*
 
-Follow [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md),
+Follow [process/voice/HUMAN_VOICE_RULES.md](../process/voice/HUMAN_VOICE_RULES.md),
 vendored from [SoundHuman](https://github.com/themorgan/SoundHuman)
-and synced automatically ([AGENTS.md](AGENTS.md)'s "Voice" section) —
+and synced automatically ([AGENTS.md](../AGENTS.md)'s "Voice" section) —
 governs everything written here, chat replies included. Still *Trial*:
 first repo applying it beyond WriteLike.
 
@@ -114,7 +114,7 @@ need either more real testing or actual infrastructure this repo doesn't
 have yet — writing them as rules now would be systematizing before the
 third instance, exactly what
 [`think-in-workflows`](COMPANY_BUILDING_RULES.md#think-in-workflows) warns
-against. Tracked instead as open items in [TODO.md](TODO.md):
+against. Tracked instead as open items in [TODO.md](../TODO.md):
 
 - **Active/proactive resurfacing** ("you decided X six weeks ago,
   unprompted") — needs something that actively mines and ranks history,
@@ -147,15 +147,37 @@ against. Tracked instead as open items in [TODO.md](TODO.md):
    the end), with its own permanent slug and anchor — that pack's own
    convention for adding a rule without a renumbering pass across every
    dependent repo's citations, since citations use the slug, not the
-   position ([`new-rule-placement`](process/personal/README.md#new-rule-placement)).
+   position ([`new-rule-placement`](../process/personal/README.md#new-rule-placement)).
 3. Come back here, mark the rule **Promoted**, and cut its entry down to a
    pointer only, per the status key above.
-4. Note the move in [TODO.md](TODO.md)'s decision record, same as any
+4. Note the move in [TODO.md](../TODO.md)'s decision record, same as any
    other cross-repo change.
 
 *(Origin: a session on 2026-08-27 that had initially recommended landing
 these ideas directly into RepoPersonalPreferences's
 [process/personal/README.md](https://github.com/themorgan/RepoPersonalPreferences/blob/main/process/personal/README.md) —
 corrected by Morgan, who wants this repo to actually try a rule out before
-it becomes company-wide policy. See [TODO.md](TODO.md) for the decision
+it becomes company-wide policy. See [TODO.md](../TODO.md) for the decision
 record.)*
+
+## See also
+
+- [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) — the underlying theoretical
+  ideas everything else here assumes, named and explained on their own
+  terms.
+- [REASONS_WHY.md](REASONS_WHY.md) — the less obvious benefits those
+  ideas actually produce in practice.
+- [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md) — the one list of what
+  humans are good at, gathered from the shorter versions scattered here
+  and elsewhere.
+- [RANDOM_NOTES.md](RANDOM_NOTES.md) — the brainstorm itself, pipeline
+  stage 1.
+- [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) — standalone
+  essay promoted out of the brainstorm: rules for building a company
+  around AI.
+- [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) —
+  standalone essay promoted out of the brainstorm: how AI systems
+  themselves should be configured, built, and run.
+- [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md) — one-page
+  pitch: the three ideas this repo argues are unique specifically taken
+  together.

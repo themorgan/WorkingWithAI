@@ -1,23 +1,23 @@
-<!-- Last updated: 2026-09-01 15:56:02 (Buenos Aires) by Morgan F, to version 16 -->
+<!-- Last updated: 2026-09-01 16:35:00 (Buenos Aires) by Morgan F, to version 17 -->
 
 # Repository instructions — read me first
 
 **Orientation: read [MAP.md](MAP.md) first** — the repository map. It covers
-the brainstorm ([RANDOM_NOTES.md](RANDOM_NOTES.md)) and indexes the practice layer that
+the brainstorm ([RANDOM_NOTES.md](docs/RANDOM_NOTES.md)) and indexes the practice layer that
 keeps this repo well-run.
 
 ## Where things are (quick index — check here BEFORE searching the repo)
 
 | Looking for… | Go to |
 |---|---|
-| The theory behind this repo — named, explained, not argued for | [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) |
-| The less obvious benefits those ideas produce | [REASONS_WHY.md](REASONS_WHY.md) |
-| The one-page pitch for why this repo's approach is unique | [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md) |
-| What humans are good at — the one full list | [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md) |
+| The theory behind this repo — named, explained, not argued for | [OUR_PHILOSOPHY.md](docs/OUR_PHILOSOPHY.md) |
+| The less obvious benefits those ideas produce | [REASONS_WHY.md](docs/REASONS_WHY.md) |
+| The one-page pitch for why this repo's approach is unique | [THE_REVOLUTIONARY_FORMULA.md](docs/THE_REVOLUTIONARY_FORMULA.md) |
+| What humans are good at — the one full list | [HUMANS_AT_OUR_BEST.md](docs/HUMANS_AT_OUR_BEST.md) |
 | Canonical names — use these, don't invent new ones | [GLOSSARY.md](GLOSSARY.md) |
-| The brainstorm itself | [RANDOM_NOTES.md](RANDOM_NOTES.md) |
+| The brainstorm itself | [RANDOM_NOTES.md](docs/RANDOM_NOTES.md) |
 | The three-stage pipeline (idea → rules now testing → company policy) | [README.md](README.md) |
-| Rules actually in force now, and promotion candidates | [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) |
+| Rules actually in force now, and promotion candidates | [RULES_NOW_TESTING.md](docs/RULES_NOW_TESTING.md) |
 | The voice guidelines (write like a human, not an LLM) | [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) |
 | Open items: analyses, verifications, decisions | [TODO.md](TODO.md) |
 | Practice layer: vendored BestPractice copy, manifest, scrub blocklist | `process/` |
@@ -34,7 +34,7 @@ check keeps the voice guidelines current" below). It governs **everything a
 session writes here, not just committed documents** — the chat reply itself
 is in scope too. Check outward-facing prose against it before calling a
 piece done; this is
-[`write-like-a-human`](RULES_NOW_TESTING.md#write-like-a-human), now
+[`write-like-a-human`](docs/RULES_NOW_TESTING.md#write-like-a-human), now
 backed by a real, vendored ruleset instead of a manual checklist.
 HUMAN_VOICE_RULES.md's own §17 sets the precedence rule if that ever
 conflicts with a more specific, person-authored voice pack: the
@@ -87,7 +87,7 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
    - `process/manifest.json` / `process/manifest_personal.json` /
      `process/manifest_voice.json`: **union** of both sides — never drop an
      entry or a status.
-   - [TODO.md](TODO.md) and [RANDOM_NOTES.md](RANDOM_NOTES.md): **append-only — keep both
+   - [TODO.md](TODO.md) and [RANDOM_NOTES.md](docs/RANDOM_NOTES.md): **append-only — keep both
      sides' additions.**
    - Same content file edited on both sides: keep both sides' text.
    - **`process/upstream/`: never hand-merge.** It must stay byte-identical
@@ -134,10 +134,10 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
 - **A durable numbered list is cited by permanent slug, never by
   position** ([`durable-list-anchors`](process/personal/README.md#durable-list-anchors)):
   every rule or item in this repo's own essay lists —
-  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md),
-  [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md),
-  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md), [REASONS_WHY.md](REASONS_WHY.md),
-  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — carries its own
+  [COMPANY_BUILDING_RULES.md](docs/COMPANY_BUILDING_RULES.md),
+  [AI_GOVERNANCE_TO_COCREATE.md](docs/AI_GOVERNANCE_TO_COCREATE.md),
+  [OUR_PHILOSOPHY.md](docs/OUR_PHILOSOPHY.md), [REASONS_WHY.md](docs/REASONS_WHY.md),
+  [RULES_NOW_TESTING.md](docs/RULES_NOW_TESTING.md) — carries its own
   `<a id="slug"></a>` anchor, cited everywhere as
   `` `slug` (file.md#slug) ``, never as a bare "rule 4" or "item 3". This
   supersedes the older split between "anchored when the source list uses
@@ -451,10 +451,10 @@ never get exported to the public BestPractice repo.
 - **A durable numbered list gets a permanent slug and anchor per entry,
   not just a position number.** A list whose entries hold real content
   likely to be cited elsewhere as "item N"/"rule N" (this repo's own
-  [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md),
-  [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md),
-  [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md), [REASONS_WHY.md](REASONS_WHY.md),
-  [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md)) gets an `<a id="slug"></a>`
+  [COMPANY_BUILDING_RULES.md](docs/COMPANY_BUILDING_RULES.md),
+  [AI_GOVERNANCE_TO_COCREATE.md](docs/AI_GOVERNANCE_TO_COCREATE.md),
+  [OUR_PHILOSOPHY.md](docs/OUR_PHILOSOPHY.md), [REASONS_WHY.md](docs/REASONS_WHY.md),
+  [RULES_NOW_TESTING.md](docs/RULES_NOW_TESTING.md)) gets an `<a id="slug"></a>`
   anchor per entry, cited everywhere as `` `slug` (file.md#slug) ``, never
   a bare number — even a list that already has real headings, since
   GitHub's own auto-generated anchor still bakes the position number in.
@@ -462,7 +462,7 @@ never get exported to the public BestPractice repo.
   ([`durable-list-anchors`](process/personal/README.md#durable-list-anchors)).
 
 - **A formal document cites another formal document, never a specific
-  point inside an explicit brainstorm document.** [RANDOM_NOTES.md](RANDOM_NOTES.md) is
+  point inside an explicit brainstorm document.** [RANDOM_NOTES.md](docs/RANDOM_NOTES.md) is
   raw material, not vetted prose; a formal document citing a specific
   brainstorm entry as a claim's own support borrows credibility that
   entry never earned. If the idea hasn't been promoted into a formal

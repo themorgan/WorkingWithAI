@@ -1,10 +1,10 @@
-<!-- Last updated: 2026-09-01 16:20:00 (Buenos Aires) by Morgan F, to version 14 -->
+<!-- Last updated: 2026-09-01 16:35:00 (Buenos Aires) by Morgan F, to version 15 -->
 
 # Random notes — how to work with AI
 
 One entry per idea, prompt, workflow, or observation. Loosely grouped;
 reorganize once a group gets big enough to need its own document (link it
-from [MAP.md](MAP.md) when that happens).
+from [MAP.md](../MAP.md) when that happens).
 
 **How to use this file (proposed — see the meta-note at the bottom):** each
 entry below is raw material dropped in from a session, lightly organized.
@@ -42,7 +42,7 @@ and push the sharpened version back in.
   document that turns an argument into a checklist actually in force, and
   tracks which of those checklist items have proven themselves enough to
   become real company-wide policy in [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences).
-  See [README.md](README.md)'s pipeline explanation and this file's own
+  See [README.md](../README.md)'s pipeline explanation and this file's own
   meta section below for why that middle step exists at all.
 
 ## Why BestPractice specifically works (semi-organized brainstorm)
@@ -68,12 +68,12 @@ about* why *it works, not just that it does.*
    effectively, while still keeping the conversations themselves private.
    - **3a.** Corollary of #2 + #3 together: it doesn't just put learnings
      into the shared GitHub repo — it purposefully extracts *the rules*
-     (this repo's own [AGENTS.md](AGENTS.md)/`process/` layer is itself an
+     (this repo's own [AGENTS.md](../AGENTS.md)/`process/` layer is itself an
      instance of that), which amounts to automatic documentation generated as a
      side effect of doing the work.
    - **3b.** Consequence of 3a: it also extracts the TODOs, which
      otherwise get lost constantly unless someone is unusually organized.
-     (Compare [TODO.md](TODO.md)'s push-time gate in this repo — that's
+     (Compare [TODO.md](../TODO.md)'s push-time gate in this repo — that's
      this exact mechanism, installed.)
 4. Multiple people can work the same issue simultaneously — version
    control plus AI-assisted merging beats one-person-at-a-time editing.
@@ -174,7 +174,7 @@ someone else to contribute a practice back.
 For points 2 and 3: "normie" employees might default to the shallow use —
 simple prompting — and never discover the deeper mode, unless something
 pushes them there. Candidate mechanisms, none decided yet (this is a
-**decision**-class item, see [TODO.md](TODO.md)):
+**decision**-class item, see [TODO.md](../TODO.md)):
 
 - Have Claude push back harder than its default on direct instructions —
   question them instead of just complying.
@@ -285,7 +285,7 @@ Proposal, not yet decided (flag any of this you don't want — this is your
 call as much as mine):
 
 - **One entry per session, appended, not rewritten.** Keep the append-only
-  discipline this repo already uses for [TODO.md](TODO.md); resist the urge
+  discipline this repo already uses for [TODO.md](../TODO.md); resist the urge
   to silently smooth over an earlier, rougher version of an idea — better to
   add a dated follow-up entry that supersedes it, so the disagreement with
   your past self stays visible instead of vanishing.
@@ -340,8 +340,8 @@ out to every project skips the step that's supposed to catch a good-sounding
 idea that doesn't actually hold up. The fix wasn't a new rule, it was
 naming the stage that was missing: [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md),
 sitting between the essays here and RepoPersonalPreferences, holding
-whatever's currently on trial. See [README.md](README.md)'s new pipeline
-section and [TODO.md](TODO.md) for the decision record.
+whatever's currently on trial. See [README.md](../README.md)'s new pipeline
+section and [TODO.md](../TODO.md) for the decision record.
 
 ## Ideas set aside, not carried forward
 
@@ -366,3 +366,25 @@ moved here instead of staying in that essay.*
 ## Things that went wrong, and why
 
 - [ ] *(seed this with real incidents as they come up)*
+
+## See also
+
+- [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md) — the underlying theoretical
+  ideas everything else here assumes, named and explained on their own
+  terms.
+- [REASONS_WHY.md](REASONS_WHY.md) — the less obvious benefits those
+  ideas actually produce in practice.
+- [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md) — the one list of what
+  humans are good at, gathered from the shorter versions scattered here
+  and elsewhere.
+- [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) — standalone
+  essay promoted out of the brainstorm: rules for building a company
+  around AI.
+- [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) —
+  standalone essay promoted out of the brainstorm: how AI systems
+  themselves should be configured, built, and run.
+- [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — pipeline stage 2: the
+  practical rules actually being tried in real work right now.
+- [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md) — one-page
+  pitch: the three ideas this repo argues are unique specifically taken
+  together.

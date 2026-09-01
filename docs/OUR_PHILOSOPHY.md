@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 16:20:00 (Buenos Aires) by Morgan F, to version 37 -->
+<!-- Last updated: 2026-09-01 16:27:47 (Buenos Aires) by Morgan F, to version 38 -->
 
 # Our philosophy
 
@@ -38,16 +38,12 @@ The same five steps repeat every time, in order:
 <a id="groups-not-individuals"></a>
 
 **1. Built for groups, not individuals working alone with a model.** Most
-"work better with AI" advice — coding assistants, integrations, personal
-productivity tools — makes one person faster at their own work. This repo
-assumes something different: several people solving the same problem
-together, with the AI/chat layer as what connects them, not a private
-assistant each person separately happens to also have. A shared repo
-instead of a private chat window means anyone's reasoning is available to
-the whole team, not just its author, and version control lets more than
-one person work the same issue at once instead of one at a time. (One
-third of [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md)'s
-case for what makes this approach unique.)
+"work better with AI" advice makes one person faster at their own
+work. This repo assumes something different: several people solving the
+same problem together, with chat as what connects them, not a private
+assistant each person also has. (One third of
+[THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md)'s case for
+what makes this approach unique.)
 
 ## Working with the model
 
@@ -97,7 +93,7 @@ whoever's responsible — and a spotted pattern always gets surfaced,
 never left unremarked. `process/personal/` runs that mechanism
 continuously
 ([`automatic-rule-extraction`](AI_GOVERNANCE_TO_COCREATE.md#automatic-rule-extraction);
-[practice 20](process/upstream/PRACTICES.md#20-mistakes-become-rules-root-cause-the-miss-then-encode-the-prevention)
+[practice 20](../process/upstream/PRACTICES.md#20-mistakes-become-rules-root-cause-the-miss-then-encode-the-prevention)
 is the same move done by hand).
 
 <a id="decisions-carry-their-situation"></a>
@@ -107,8 +103,8 @@ small the call, the record states what case prompted it — a bare
 "always do X" invites relitigation from anyone who wasn't there. The
 case also tests the rule: one that wouldn't have caught it is theater.
 BestPractice already requires this
-([practice 5](process/upstream/PRACTICES.md#5-conventions-cite-the-incident-that-created-them),
-[practice 20](process/upstream/PRACTICES.md#20-mistakes-become-rules-root-cause-the-miss-then-encode-the-prevention));
+([practice 5](../process/upstream/PRACTICES.md#5-conventions-cite-the-incident-that-created-them),
+[practice 20](../process/upstream/PRACTICES.md#20-mistakes-become-rules-root-cause-the-miss-then-encode-the-prevention));
 capture is the
 agents' job, pulled from the work as it happens
 ([`rules-generated-automatically`](#rules-generated-automatically)'s
@@ -129,15 +125,11 @@ compounding blind spot.
 <a id="explicit-ownership-not-hidden-in-the-model"></a>
 
 **8. Protocols, documents, and knowledge should be explicitly owned by
-the team, not hidden inside Claude.** Claude and ChatGPT already infer
-your implicit patterns as you work — the question is where that
-inference lives afterward: locked inside a vendor's private session
-state, gone the moment you switch tools, or pulled into files the team
-can read, edit, and hand to a different model entirely.
-[`rules-generated-automatically`](#rules-generated-automatically) does
-the pulling; left inside the chat, a rule benefits no one once that
-conversation ends
-([`owned-rules-outlast-the-chat`](REASONS_WHY.md#owned-rules-outlast-the-chat)).
+the team, not hidden inside an AI Assistant.** Any model infers your
+implicit patterns as you work; the question is where that lives — a
+private session, or files the team can edit and hand to another model
+([`rules-generated-automatically`](#rules-generated-automatically);
+[`owned-rules-outlast-the-chat`](REASONS_WHY.md#owned-rules-outlast-the-chat)).
 
 ## Humans should do what humans do best
 
@@ -152,5 +144,23 @@ optimizes away what they're for
 hold them to that standard, not a machine's. (Full list:
 [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md).)
 
-See [REASONS_WHY.md](REASONS_WHY.md) for what these ideas actually buy in
-practice.
+## See also
+
+- [REASONS_WHY.md](REASONS_WHY.md) — this document's companion: the less
+  obvious benefits these ideas actually produce in practice.
+- [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md) — the one list of what
+  humans are good at, gathered from the shorter versions scattered here
+  and elsewhere.
+- [RANDOM_NOTES.md](RANDOM_NOTES.md) — the brainstorm itself, pipeline
+  stage 1.
+- [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) — standalone
+  essay promoted out of the brainstorm: rules for building a company
+  around AI.
+- [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) —
+  standalone essay promoted out of the brainstorm: how AI systems
+  themselves should be configured, built, and run.
+- [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — pipeline stage 2: the
+  practical rules actually being tried in real work right now.
+- [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md) — one-page
+  pitch: the three ideas this repo argues are unique specifically taken
+  together.
