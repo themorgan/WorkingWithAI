@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-02 12:40:00 (Buenos Aires) by Morgan F, to version 17 -->
+<!-- Last updated: 2026-09-02 16:01:37 (Buenos Aires) by Morgan F, to version 18 -->
 
 # WorkingWithAI
 
@@ -22,45 +22,25 @@ method) once a pattern actually holds up.
 ## How this repo's ideas become company policy
 
 An idea doesn't go straight from a brainstorm entry to something Morgan
-runs the company on — it passes through three stages, each with its own
-document, and each stage has to actually earn the idea's way to the next
-one:
+runs the company on — it passes through three stages, each earning the
+idea's way to the next:
 
-1. **Learn how to work with AI as a partner-in-thought.** Get oriented in
-   the method before the rules: read [OUR_PHILOSOPHY.md](docs-team/OUR_PHILOSOPHY.md)
-   for the underlying ideas, [COMPANY_BUILDING_RULES.md](docs-team/COMPANY_BUILDING_RULES.md)
-   for the principles to build a company around, [AGENTS.md](AGENTS.md) for
-   the rules AI agents actually follow here, and
-   [REASONS_WHY.md](docs-team/REASONS_WHY.md) for the less obvious benefits those
-   ideas produce.
-2. **Try it for real — [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md).** The
-   practical checklist actually in force in real work right now, each rule
-   tagged *Trial* until it's proven, *Ready to promote* once it is, or
-   *Promoted* once it's landed at stage 3 — these are the rules we've
-   baked into our own repos so far, and you might want to bake them into
-   yours too.
-3. **Roll it out everywhere — [BestPractice](https://github.com/alex137/BestPractice),
-   [precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers),
-   and [precedent-individual](https://github.com/themorgan/precedent-individual).**
-   Once a rule in [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) has proven
-   itself, a genuinely generic rule gets exported into BestPractice first,
-   where any repo can pick it up; a rule specific to Morgan and Alex's own
-   working conventions goes to precedent-team-maintainers, for automatic
-   resolution into every project that declares it as a source; and the
-   rare rule that's genuinely about Morgan the person (not the team) goes
-   to precedent-individual instead. (Through 2026-09-02 this stage's
-   single destination was [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences),
-   since split into the two repos above under
-   [Precedent](https://github.com/alex137/BestPractice/tree/precedent-beta-v01)'s
-   three-source model — see [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md).) See
-   [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md)'s own "Promotion" section
-   for the mechanics.
+1. **Learn how to work with AI as a partner-in-thought**, via
+   [OUR_PHILOSOPHY.md](docs-team/OUR_PHILOSOPHY.md),
+   [COMPANY_BUILDING_RULES.md](docs-team/COMPANY_BUILDING_RULES.md),
+   [AGENTS.md](AGENTS.md), and [REASONS_WHY.md](docs-team/REASONS_WHY.md).
+2. **Try it for real — [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md).**
+   The practical checklist actually in force in real work right now, each
+   rule tagged *Trial*, *Ready to promote*, or *Promoted* once it's landed
+   at stage 3.
+3. **Roll it out everywhere, via [BestPractice](https://github.com/alex137/BestPractice).**
+   Once a rule in [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) has
+   proven itself, it's exported so any repo can pick it up — see that
+   document's own "Promotion" section for the mechanics.
 
-The point of keeping these separate: nothing becomes company-wide policy
-just because it sounded good in a brainstorm session, or even because an
-essay argued for it well. It has to survive stage 2, in this repo, first.
-For what running this pipeline looks like from inside one session —
-spark, argue, GitHub, rule — see
+Nothing becomes company-wide policy just because it sounded good in a
+brainstorm session — it has to survive stage 2 first. For what this
+pipeline looks like from inside one session, see
 [OUR_PHILOSOPHY.md](docs-team/OUR_PHILOSOPHY.md)'s "The working loop" section.
 
 ## What's here
@@ -81,8 +61,8 @@ spark, argue, GitHub, rule — see
 - [AI_GOVERNANCE_TO_COCREATE.md](docs-team/AI_GOVERNANCE_TO_COCREATE.md) — another
   full essay promoted out of the brainstorm (pipeline stage 1).
 - [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) — the practical rules
-  actually being tried right now, and candidates for promotion to
-  precedent-team-maintainers or precedent-individual (pipeline stage 2).
+  actually being tried right now, and candidates for promotion further
+  along the pipeline (pipeline stage 2).
 - [THE_REVOLUTIONARY_FORMULA.md](docs-team/THE_REVOLUTIONARY_FORMULA.md) —
   one-page pitch: the three ideas this repo argues are unique specifically
   taken together.
@@ -92,11 +72,10 @@ spark, argue, GitHub, rule — see
 
 - `process/upstream/` — the vendored [BestPractice](https://github.com/alex137/BestPractice)
   copy, unmodified.
-- [precedent.json](precedent.json) — declares this repo's team practice
-  source, [precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers)
-  (one of pipeline stage 3's two destinations, resolved live rather than
-  vendored; the other, [precedent-individual](https://github.com/themorgan/precedent-individual),
-  is Morgan's own and is never declared here — see [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)).
+- [precedent.json](precedent.json) — declares this repo's team-level
+  practice source, resolved live rather than vendored — see
+  [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md) for how
+  this repo's practice sources are organized.
 - [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) —
   the voice guidelines, vendored from
   [SoundHuman](https://github.com/themorgan/SoundHuman):
@@ -113,3 +92,14 @@ spark, argue, GitHub, rule — see
 - [GETTING_STARTED.md](GETTING_STARTED.md) — onboarding for a person, plus
   every administrator click-path (repository secrets, Actions toggles, the
   default branch).
+
+## How to use this Repo
+
+This repo uses [BestPractice](https://github.com/alex137/BestPractice) — an
+open platform for capturing rules and workflows as you actually work, then
+sharing them across repos and teams, rather than writing them up separately
+after the fact.
+
+**BestPractice is our attempt to turn this philosophy into a platform that
+we can use; you can also think of it as a collaboration-and-AI-first
+rethinking of Google Docs collaboration.**
