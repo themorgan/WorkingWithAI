@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-02 20:00:00 (Buenos Aires) by Morgan F, to version 44 -->
+<!-- Last updated: 2026-09-02 18:17:55 (Buenos Aires) by Morgan F, to version 45 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -188,6 +188,30 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Re-vendor `process/upstream/` to pick up two new BestPractice
+  `precedent-beta-v01` commits: a `doc_lint.py` acronym false-positive fix,
+  and team candidates that can become a GitHub Issue.** Decided 2026-09-02
+  → done. Morgan made a separate fix directly on `BestPractice`
+  (`06b1fcf`, unrelated to this repo); separately, the same session had
+  just built and merged `48047e3` upstream (`alex137/BestPractice#72`):
+  `precedent_candidate.py create --level team --as-issue true` drafts a
+  team candidate as a GitHub Issue on that team repo instead of a
+  `candidates/*.md` file, for the case a non-approver raises one — a quiet
+  file nobody's watching for doesn't get anyone's actual yes, the same
+  reasoning universal candidates already use. `process/manifest.json`'s
+  `upstream.commit`/`_note` updated to the new tip
+  (`29f14c0`). `practice_audit.py`'s known scrub-collision count moved
+  from 53 to 60 (the newly-vendored `spec/MIGRATING_EXISTING_INSTALLS.md`
+  itself names `themorgan/WorkingWithAI` and Buenos Aires, same
+  already-disclosed-upstream reasoning as the rest of that known
+  exception) — both `AGENTS.md` and `process/PRECEDENT_MIGRATION.md`
+  updated to the new count. No action needed on this repo's own
+  `AGENTS.md` "Practice sources (Precedent)" section beyond the count: the
+  new `--as-issue` capability is universal-source tooling, already
+  documented where a session would look for it
+  (`process/upstream/spec/CANDIDATE_FORMAT.md`), not a team-specific rule
+  this repo's own hand-curated stopgap list needs to restate.
 
 - [x] **Fix two CI red X's on every push since the Precedent migration, and
   re-add team-source auto-cloning to `tools/bootstrap.sh` at Morgan's
