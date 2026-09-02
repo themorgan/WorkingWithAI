@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 22:52:50 (Buenos Aires) by Morgan F, to version 40 -->
+<!-- Last updated: 2026-09-02 12:40:00 (Buenos Aires) by Morgan F, to version 41 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -28,8 +28,8 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 - [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (1e06a5349a43; your base d436be779be1) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via WorkingWithAI RPP sync, this session
 - [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (570f86c520fc; your base b10c163a96dd) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via RPP sync: durable-list-anchors + brainstorm-citations, this session
 - [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (b54461560435; your base 9793691dcecb) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via RPP sync: derived-file-marker + doc-recipe + rule-scope-ask + list-restraint, this session
-- [ ] **personal-pack** (2026-09-02): COULD NOT VERIFY: couldn't reach the personal pack's source (https://github.com/themorgan/RepoPersonalPreferences) to check freshness — `git ls-remote` failed (fatal: could not read Username for 'https://github.com': terminal prompts disabled). This is NOT the same as 'confirmed fresh': if you need to know, verify directly instead of trusting this silence (process/personal/README.md#fresh-check-escalation).
-- [ ] **bestpractice** (2026-09-02): NOTICE: BestPractice upstream has moved (558b16a62030; your base c76f06f87e52) — review at the next check-in (process/upstream/INSTALL.md sec.2/sec.4).
+- [x] **personal-pack** (2026-09-02): COULD NOT VERIFY: couldn't reach the personal pack's source (https://github.com/themorgan/RepoPersonalPreferences) to check freshness — `git ls-remote` failed (fatal: could not read Username for 'https://github.com': terminal prompts disabled). This is NOT the same as 'confirmed fresh': if you need to know, verify directly instead of trusting this silence (process/personal/README.md#fresh-check-escalation). -- resolved 2026-09-02: moot. `process/personal/` and RepoPersonalPreferences tracking were retired the same day in the Precedent migration below — there is no personal-pack source left to check freshness against.
+- [x] **bestpractice** (2026-09-02): NOTICE: BestPractice upstream has moved (558b16a62030; your base c76f06f87e52) — review at the next check-in (process/upstream/INSTALL.md sec.2/sec.4). -- resolved 2026-09-02: superseded, not taken as a normal update. The same-day Precedent migration below re-vendored `process/upstream/` from `alex137/BestPractice`'s `precedent-beta-v01` branch instead (a deliberate beta-test pin, not this notice's own default-branch head at 558b16a62030) — see [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md). The BestPractice sync is paused until the beta branch merges to main, at which point this repo should take a normal update against whatever main's head is by then, not against this now-stale commit.
 
 ## Recurring
 
@@ -159,6 +159,72 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Migrate this repo from BestPractice-only to Precedent's three-source
+  model (the first real test of `alex137/BestPractice`'s
+  `precedent-beta-v01` branch against a repo that already had BestPractice
+  installed).** Decided 2026-09-02 → done, full record in
+  [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md). Re-vendored `process/upstream/` from
+  `precedent-beta-v01` (not `main` — a deliberate beta pin;
+  `process/manifest.json` records both the commit and why). Retired
+  `process/personal/` and `process/manifest_personal.json` (the vendored
+  RepoPersonalPreferences copy) entirely: its 46 rules were already split,
+  in an earlier session, into
+  [precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers)
+  (team) and
+  [precedent-individual](https://github.com/themorgan/precedent-individual)
+  (Morgan-specific facts) — this session wired this repo up as their first
+  real consumer: added `precedent.json` (universal → `process/upstream/`,
+  team → a sibling clone of precedent-team-maintainers), and
+  `.claude/hooks/precedent-individual-bootstrap.sh` (+ `.claude/settings.json`
+  wiring) so the individual source resolves automatically at session start
+  without ever being named in this repo's own tracked config — the privacy
+  boundary the three-source split exists to enforce. Relocated the two
+  generic tools that were living under `process/personal/tools/`
+  (`light_check.py`, `report_automation_issue.py`) to this repo's own
+  `tools/`, since they were never personal-pack *content*; rewrote
+  `light_check.py`'s pack-specific checks (which assumed a vendored
+  `process/personal/` tree) into a `precedent.json` / `process/manifest.json`
+  validity check instead. Rewrote `AGENTS.md`'s "Personal setup rules"
+  section into "Practice sources (Precedent)": explains the three sources,
+  points at `precedent_resolve.py --repo .` for the full merged set, and
+  hand-curates the resident + most-used on-demand practices as a stopgap
+  for a real gap this session found and did not build a fix for (see
+  below). Retired the personal-pack sync workflow; paused the BestPractice
+  sync workflow (its `checkin.py`-based commands assume default-branch
+  tracking, which would either spam a false drift notice or, worse, try to
+  merge `main`'s tree over this repo's deliberately beta-pinned vendored
+  copy). Repointed the "pipeline stage 3" references in `README.md`,
+  `GLOSSARY.md`, `MAP.md`, and `docs-team/RULES_NOW_TESTING.md` from
+  RepoPersonalPreferences to the two new repos; left `docs-team/RANDOM_NOTES.md`'s
+  own brainstorm-history mentions of RepoPersonalPreferences untouched
+  (append-only raw material, accurate as of when written).
+
+  **Judgment calls made:** (1) kept `process/upstream/` a real vendored
+  copy rather than switching universal to a live sibling-clone reference
+  too — a dependent repo needs the vendored copy for collaborators and
+  environments without that sibling checked out, unlike Precedent's own
+  self-referential `precedent.json` which can afford `path: "."`. (2) Did
+  not attempt to build the missing cross-source `precedent_show`/`paths`/
+  `gate` extractor this migration surfaced (team/individual slugs have no
+  automatic Rule-text loading channel yet, only `precedent_resolve.py`
+  resolves all three sources) — flagged upstream instead
+  ([process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md), and `spec/MIGRATING_EXISTING_INSTALLS.md`
+  in BestPractice itself) as a real gap this repo's own daily operation now
+  depends on closing, rather than scope-creeping a new loader feature into
+  a migration task. (3) Hand-curated a short resident + on-demand list in
+  `AGENTS.md` rather than either reproducing all ~47 team/individual
+  practices verbatim (exactly the duplication the split exists to avoid)
+  or leaving nothing at all (a real regression from having the full pack's
+  text inline) — a deliberate middle ground, not the resolver actually
+  running automatically at session start. (4) Ran
+  `python3 process/upstream/tools/precedent_resolve.py --repo .` for real
+  against this repo's own `precedent.json` plus a user-level config
+  pointing at the local precedent-individual checkout — see
+  [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md) for the output — satisfying
+  `spec/PRIVATE_SETS_BRIEF.md`'s own "done when" checklist item that this
+  had never actually been run against the real two private sets from a
+  real consumer repo.
 
 - [x] **Take the pending personal-pack update (RepoPersonalPreferences @
   b5446156).** Decided 2026-08-29 → done. Ran

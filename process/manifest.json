@@ -1,10 +1,11 @@
 {
   "upstream": {
     "repo": "https://github.com/alex137/BestPractice",
+    "branch": "precedent-beta-v01",
     "vendored_at": "process/upstream",
-    "commit": "c76f06f87e52171dfcfee91bc52e9439cd020409",
-    "_note": "commit = upstream hash last synced (routine update, 2026-08-29, recorded 2026-08-29; verified tree-identical).",
-    "synced_from": "c76f06f87e52171dfcfee91bc52e9439cd020409"
+    "commit": "bb7885822f74f827bd1690c3274ba9e1b59a2d83",
+    "_note": "commit = upstream hash last synced (2026-09-02, recorded 2026-09-02; verified tree-identical). BETA TEST, deliberate departure from the normal model: this vendors the alex137/BestPractice precedent-beta-v01 branch, not its default branch (main) -- the first real test of Precedent against a repo that already had BestPractice installed (see process/PRECEDENT_MIGRATION.md and, upstream, spec/MIGRATING_EXISTING_INSTALLS.md). checkin.py's fresh/update/record commands resolve the remote's default-branch HEAD unconditionally (tools/checkin.py, _default_branch()), so they do not track this branch -- this sync was done as a one-off manual mirror instead, and .github/workflows/bestpractice-upstream-sync.yml is paused (workflow_dispatch only) for the duration of the beta. Once precedent-beta-v01 merges to main, switch \"branch\" back to the default, re-run a normal checkin.py update/record against main, and re-enable the scheduled sync.",
+    "synced_from": "bb7885822f74f827bd1690c3274ba9e1b59a2d83"
   },
   "entries": [
     {
@@ -30,8 +31,8 @@
       "upstream_path": "templates/harness/claude-code/settings.json",
       "local_path": ".claude/settings.json",
       "granularity": "file",
-      "status": "synced",
-      "notes": "Added allowlist entries for process/upstream/tools/checkin.py, process/personal/tools/light_check.py, process/personal/tools/pack_sync.py, and (2026-08-28) process/voice/tools/voice_sync.py, so the personal pack's and voice guidelines' own gates don't stall on permission prompts. 2026-08-29 update: wired the new Stop hook block.",
+      "status": "diverged",
+      "notes": "Added allowlist entries for process/upstream/tools/checkin.py, process/upstream/tools/precedent_resolve.py, process/upstream/tools/precedent_check.py, tools/light_check.py, tools/report_automation_issue.py, and process/voice/tools/voice_sync.py, so the team/individual practice sources' own gates don't stall on permission prompts. 2026-08-29: wired the Stop hook block. 2026-09-02 (Precedent migration, process/PRECEDENT_MIGRATION.md): dropped the process/personal/tools/* allowlist entries (that tree is retired) and added a second SessionStart hook entry (.claude/hooks/precedent-individual-bootstrap.sh) so the individual practice source clones and configures itself automatically. Flipped to diverged rather than synced: the second SessionStart hook and the individual-bootstrap-specific allowlist entries are this repo's own adaptation for consuming Precedent's three-source model, not something to export back into BestPractice's generic settings.json template as-is.",
       "local_sha256": "7c51c4d0421f7cba96c6dbda58a0631b68fbcf67ee0b6e7f419362f6ddfc5eef"
     },
     {
@@ -57,8 +58,8 @@
       "upstream_path": "templates/bootstrap.sh",
       "local_path": "tools/bootstrap.sh",
       "granularity": "file",
-      "status": "synced",
-      "notes": "Extended with the personal pack's git-identity setup and session-start freshness notice (process/personal/README.md#commit-author, #drift-notice, #install step 4), and (2026-08-28) a third freshness line for the voice guidelines — see AGENTS.md's 'Voice' section. 2026-08-28: comment updated for the voice guidelines' source repo's internal rename (VoiceGuidelinesToSoundHuman -> SoundHuman) — repo-specific, not exported upstream. 2026-08-29 update: wrapped the BestPractice and personal-pack freshness lines to persist a fired notice into TODO.md's Pending drift reviews section, matching the current upstream pattern this repo's older install predated; also added a Pending drift reviews section to TODO.md itself.",
+      "status": "diverged",
+      "notes": "Extended with git-identity setup and session-start freshness notices, plus (2026-08-28) a freshness line for the voice guidelines — see AGENTS.md's 'Voice' section. 2026-08-28: comment updated for the voice guidelines' source repo's internal rename (VoiceGuidelinesToSoundHuman -> SoundHuman) — repo-specific, not exported upstream. 2026-08-29: wrapped the BestPractice and personal-pack freshness lines to persist a fired notice into TODO.md's Pending drift reviews section. 2026-09-02 (Precedent migration, process/PRECEDENT_MIGRATION.md): the personal-pack freshness call is gone (process/personal/ retired); the BestPractice freshness call (checkin.py fresh) is replaced with a static notice because this repo deliberately vendors a non-default branch (precedent-beta-v01) and checkin.py's fresh/update/record commands assume default-branch tracking; added a best-effort git pull of the team source's sibling clone. Flipped to diverged rather than synced: none of this is a generic BestPractice improvement to export — it is this repo's own beta-test-specific adaptation.",
       "local_sha256": "42e6e701cc5cf0368e12ba86016c85611b4dc5e900697ab069094bb37ea2bfee"
     },
     {

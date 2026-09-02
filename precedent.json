@@ -1,0 +1,39 @@
+{
+  "format_version": 1,
+  "_comment": [
+    "The practice sources in force in this repository, per Precedent's",
+    "three-source model (alex137/BestPractice, branch precedent-beta-v01,",
+    "PRACTICE_ENGINE_PLAN.md, 'Source -- Who a Practice Belongs To').",
+    "A shared repository declares universal and team sources ONLY -- a",
+    "person's individual set goes in their own user-level config",
+    "(~/.config/precedent/config.json, or PRECEDENT_USER_CONFIG), never",
+    "here, so naming it here cannot leak its existence to everyone with",
+    "read access to this repo. See tools/precedent_resolve.py (vendored at",
+    "process/upstream/tools/) for the resolution and precedence rules, and",
+    "process/PRECEDENT_MIGRATION.md for how this repo got here (2026-09-02,",
+    "beta test) and what does and doesn't work yet.",
+    "",
+    "'universal' points at process/upstream/, this repo's existing vendored",
+    "copy of BestPractice (INSTALL.md Sec.1) -- unlike a fresh Precedent",
+    "install, universal is NOT resolved from a live sibling clone here,",
+    "because a vendored copy is what makes this repo's practice set work",
+    "offline and for collaborators without that sibling checked out.",
+    "'team' points at a sibling clone of precedent-team-maintainers,",
+    "Morgan and Alex's real team practice set (the same live-sibling-clone",
+    "pattern Precedent uses for its own precedent.json) -- it replaces the",
+    "old process/personal/ vendored copy of RepoPersonalPreferences,",
+    "retired in the same change that added this file."
+  ],
+  "sources": [
+    {
+      "level": "universal",
+      "name": "precedent",
+      "path": "process/upstream"
+    },
+    {
+      "level": "team",
+      "name": "precedent-team-maintainers",
+      "path": "../precedent-team-maintainers"
+    }
+  ]
+}

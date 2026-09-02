@@ -1,6 +1,0 @@
-# Last updated: 2026-08-28 22:40:00 (Buenos Aires) by Morgan F, to version 2
-# Personal-pack snippet (process/personal/README.md [`commit-author`](process/personal/README.md#commit-author) and [`install`](process/personal/README.md#install) step 4): paste
-# into the installed tools/bootstrap.sh, after the BestPractice-freshness
-# notice line. Idempotent — safe to run every session start.
-git config user.name "Morgan F"
-git config user.email "morgan@westegg.com"

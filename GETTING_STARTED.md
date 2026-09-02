@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 22:52:50 (Buenos Aires) by Morgan F, to version 9 -->
+<!-- Last updated: 2026-09-02 12:40:00 (Buenos Aires) by Morgan F, to version 10 -->
 
 # Getting started with `WorkingWithAI`
 
@@ -125,13 +125,13 @@ opener:
 - **Your work is credited to Morgan F.** Every commit in this project is
   authored as "Morgan F" (a GitHub noreply address, never a real inbox),
   with the assistant recorded as a co-author. See
-  [`commit-author`](process/personal/README.md#commit-author) if you ever
-  need to change that.
+  [`commit-author`](https://github.com/themorgan/precedent-individual/blob/main/practices/commit-author.md)
+  if you ever need to change that.
 - **Small calls happen without asking.** The assistant makes small and
   moderate judgment calls itself and tells you what it decided when the
   work is done, instead of interrupting you for each one. It still stops
   and asks first for anything genuinely big. See
-  [`small-calls`](process/personal/README.md#small-calls).
+  [`small-calls`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/small-calls.md).
 
 ## For the administrator: approving changes
 
@@ -153,14 +153,19 @@ conversation:
 - **A light check runs on every push and pull request** — merge-conflict
   markers, broken syntax, obvious secret-shaped strings, and broken
   in-repo doc links, beyond what the Markdown check looks for. Details:
-  [`light-check`](process/personal/README.md#light-check).
-- **A scheduled check for BestPractice updates runs unattended — weekly
-  by default** (Mondays; a commented-out daily cron line sits right next to
-  the active weekly one in the workflow file) and, when upstream has moved,
-  takes the update, integrates it using its own judgment, and opens and
-  merges a pull request — noting every judgment call in the commit message
-  for you to review after the fact. **This needs one Claude credential —
-  either works, only one is required:**
+  [`light-check`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/light-check.md).
+- **A scheduled check for BestPractice updates, normally unattended —
+  weekly by default** (Mondays; a commented-out daily cron line sits right
+  next to the active weekly one in the workflow file), when upstream has
+  moved, takes the update, integrates it using its own judgment, and opens
+  and merges a pull request — noting every judgment call in the commit
+  message for you to review after the fact. **Currently paused** (its
+  schedule is commented out) for the duration of a beta test that
+  deliberately tracks a not-yet-merged BestPractice branch instead of the
+  usual released one — see [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md) for why and
+  when it resumes. While paused it can still be run by hand
+  (`workflow_dispatch`), and needs one Claude credential either way —
+  either works, only one is required:
   - `CLAUDE_CODE_OAUTH_TOKEN` — the preferred option if you're a Claude
     Pro or Max subscriber: run `claude setup-token` locally (Claude Code
     CLI) to generate it, then add it at this repository's **Settings →
@@ -178,39 +183,27 @@ conversation:
   summaries if a scheduled run seems to have done nothing. A chat session
   can take the update manually in the meantime without either secret; if it
   does, it should remind you to set one. Details:
-  [`bestpractice-sync`](process/personal/README.md#bestpractice-sync).
-- **A second scheduled check keeps the personal pack itself current** —
-  same weekly-by-default, daily-optional cadence, pointed at
+  [`bestpractice-sync`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/bestpractice-sync.md).
+- **The second scheduled check (personal-pack sync) was retired 2026-09-02**,
+  along with `process/personal/` itself — see [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md).
+  Where that check used to keep a vendored copy of
   [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences)
-  (private) instead of the public BestPractice repo. **This needs its own
-  repository secret named `PERSONAL_PACK_TOKEN`** — a GitHub personal
-  access token (fine-grained, read-only, scoped to just
-  `themorgan/RepoPersonalPreferences`), in addition to the Claude
-  credential above:
-  1. Generate the token at
-     [github.com/settings/tokens?type=beta](https://github.com/settings/tokens?type=beta):
-     resource owner your account, repository access "Only select
-     repositories" → `themorgan/RepoPersonalPreferences` only,
-     permissions **Contents → Read-only**, nothing else. Copy the value
-     immediately — GitHub only shows it once.
-  2. Add it at this repository's **Settings → Secrets and variables →
-     Actions → New repository secret**, named `PERSONAL_PACK_TOKEN`.
-
-  It also needs the same **"Allow auto-merge"** and Actions-can-open-PRs
-  toggles as the BestPractice check above. **No session's tools can mint
-  or set this token on your behalf — you have to generate and add it
-  yourself.** A missing token doesn't fail the workflow — `check` treats
-  "can't reach the private repo" as "nothing to sync" — but every such run
-  emits a `::warning::` GitHub Actions annotation, a recurring per-run
-  smoke test visible in the Actions UI. Details:
-  [`pack-sync`](process/personal/README.md#pack-sync).
+  current with its own `PERSONAL_PACK_TOKEN` secret, this project now
+  resolves its team practices live from a sibling checkout of
+  [precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers)
+  instead — nothing is vendored or synced, so there is no token to
+  provision for it. The one thing this does require: whatever environment
+  runs a session on this project needs read access to
+  `precedent-team-maintainers` as well (the same access this project's own
+  repo needs), since `precedent.json` expects to find it checked out as a
+  sibling directory.
 - **A third scheduled check keeps the voice guidelines current** — same
   weekly-by-default, daily-optional cadence, pointed at
   [SoundHuman](https://github.com/themorgan/SoundHuman)
   (private) — the "write like a human, not an LLM" ruleset this project's
   own writing follows. **This needs its own repository secret named
-  `VOICEGUIDELINESTOSOUNDHUMAN_TOKEN`** — same kind of token as
-  `PERSONAL_PACK_TOKEN` above, just scoped to a different repo:
+  `VOICEGUIDELINESTOSOUNDHUMAN_TOKEN`** — a GitHub personal access token
+  (fine-grained, read-only, scoped to just that one repo):
   1. Generate the token at
      [github.com/settings/tokens?type=beta](https://github.com/settings/tokens?type=beta):
      resource owner your account, repository access "Only select

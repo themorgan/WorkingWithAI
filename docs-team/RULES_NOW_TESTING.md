@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 16:35:00 (Buenos Aires) by Morgan F, to version 13 -->
+<!-- Last updated: 2026-09-02 12:40:00 (Buenos Aires) by Morgan F, to version 14 -->
 
 # Rules now testing — the current state of what we're trying
 
@@ -12,30 +12,37 @@ settled policy, not a finished essay, but the checklist a session in any
 of Morgan's real work is expected to follow today, revised the moment
 practice teaches something. A rule earns
 its way onto this list from the brainstorm or one of the two essays; it
-earns its way *off* — into [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences)'s
-personal pack, for automatic rollout to every project Morgan runs — only
-once it's actually proven itself here. See [TODO.md](../TODO.md) for what's
-currently pending that move.
+earns its way *off* — into [precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers)
+(or [precedent-individual](https://github.com/themorgan/precedent-individual)
+for the rare rule that's genuinely about Morgan the person, not the team),
+for automatic rollout to every project that resolves that source — only
+once it's actually proven itself here. Through 2026-09-02 both destinations
+were one repo, RepoPersonalPreferences, since split under
+[Precedent](https://github.com/alex137/BestPractice/tree/precedent-beta-v01)'s
+three-source model — see `../process/PRECEDENT_MIGRATION.md`. See
+[TODO.md](../TODO.md) for what's currently pending that move.
 
 **This document does not get vendored anywhere.** Unlike `process/upstream/`
-or `process/personal/`, it has no manifest entry and no sync workflow — it's
-native to this repo, the same as [RANDOM_NOTES.md](RANDOM_NOTES.md), because working out
-which rules are ready is exactly this repo's job. Nothing here is real
-company policy for another project until a session has separately gone into
-RepoPersonalPreferences and landed it there (see "Promotion" below) —
-mentioning a rule here is not the same as adopting it elsewhere.
+or the team/individual practice sources, it has no manifest entry and no
+sync workflow — it's native to this repo, the same as
+[RANDOM_NOTES.md](RANDOM_NOTES.md), because working out which rules are
+ready is exactly this repo's job. Nothing here is real company policy for
+another project until a session has separately gone into
+precedent-team-maintainers (or precedent-individual) and landed it there
+(see "Promotion" below) — mentioning a rule here is not the same as
+adopting it elsewhere.
 
 ## Status key
 
 - **Trial** — being tried in real work now; not yet proven enough to port.
 - **Ready to promote** — proven; the next session touching
-  RepoPersonalPreferences should land it there.
-- **Promoted** — already landed in RepoPersonalPreferences. Kept here only
+  precedent-team-maintainers (or precedent-individual) should land it there.
+- **Promoted** — already landed there. Kept here only
   as a pointer, not restated in full — full restatement would just be a
   second copy of the same rule that can drift out of sync with the first,
-  the same reasoning the personal pack's own
-  [`no-duplication`](../process/personal/README.md#no-duplication) gives for
-  not duplicating BestPractice.
+  the same reasoning the team practice set's own
+  [`no-duplication`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/no-duplication.md)
+  gives for not duplicating BestPractice.
 
 ## Rules
 
@@ -43,7 +50,7 @@ mentioning a rule here is not the same as adopting it elsewhere.
 
 ### 1. Push-back mode on writing-and-thinking work — *Promoted*
 
-[`push-back`](../process/personal/README.md#push-back).
+[`push-back`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/push-back.md).
 Argue a genuine counter-case before building on a stated stance; flag a
 serious unresolved disagreement before calling a piece done. Never on
 code or other technical work.
@@ -52,7 +59,7 @@ code or other technical work.
 
 ### 2. Provider-neutral LLM integrations — *Promoted*
 
-[`llm-neutral`](../process/personal/README.md#llm-neutral).
+[`llm-neutral`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/llm-neutral.md).
 Build any LLM integration against a swappable model/token/base-URL
 interface; assume an OpenRouter credential absent other instruction.
 Hedges [`capital-asset`](COMPANY_BUILDING_RULES.md#capital-asset)
@@ -138,16 +145,18 @@ against. Tracked instead as open items in [TODO.md](../TODO.md):
   proactive resurfacing of a relevant rule. RANDOM_NOTES.md's own "Why
   BestPractice specifically works" open question.
 
-## Promotion — moving a rule from here into RepoPersonalPreferences
+## Promotion — moving a rule from here into precedent-team-maintainers (or precedent-individual)
 
 1. Mark the rule **Ready to promote** here, with a line on what proved it
    out (which sessions, what it caught or avoided).
-2. In a separate session against RepoPersonalPreferences, land it in
-   reading-order position among the existing rule groups (not appended to
-   the end), with its own permanent slug and anchor — that pack's own
-   convention for adding a rule without a renumbering pass across every
-   dependent repo's citations, since citations use the slug, not the
-   position ([`new-rule-placement`](../process/personal/README.md#new-rule-placement)).
+2. In a separate session against precedent-team-maintainers (or
+   precedent-individual, for the rare rule that's genuinely about Morgan
+   the person rather than the team), land it as its own practice file in
+   reading-order position among the existing rules, with its own permanent
+   slug — that set's own convention for adding a rule without a
+   renumbering pass across every dependent repo's citations, since
+   citations use the slug, not the position
+   ([`new-rule-placement`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/new-rule-placement.md)).
 3. Come back here, mark the rule **Promoted**, and cut its entry down to a
    pointer only, per the status key above.
 4. Note the move in [TODO.md](../TODO.md)'s decision record, same as any

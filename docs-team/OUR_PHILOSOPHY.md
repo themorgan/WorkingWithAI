@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 16:27:47 (Buenos Aires) by Morgan F, to version 38 -->
+<!-- Last updated: 2026-09-02 12:40:00 (Buenos Aires) by Morgan F, to version 39 -->
 
 # Our philosophy
 
@@ -90,8 +90,9 @@ What's automatic is the finding: the AI Assistant surfaces the pattern
 every time, without anyone having to remember to look. Turning it into
 a standing rule is a human call, routed by this repo's own rules to
 whoever's responsible — and a spotted pattern always gets surfaced,
-never left unremarked. `process/personal/` runs that mechanism
-continuously
+never left unremarked. This repo's team and individual practice sources
+(precedent-team-maintainers, precedent-individual — see
+`../process/PRECEDENT_MIGRATION.md`) run that mechanism continuously
 ([`automatic-rule-extraction`](AI_GOVERNANCE_TO_COCREATE.md#automatic-rule-extraction);
 [practice 20](../process/upstream/PRACTICES.md#20-mistakes-become-rules-root-cause-the-miss-then-encode-the-prevention)
 is the same move done by hand).
