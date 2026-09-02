@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-02 12:40:00 (Buenos Aires) by Morgan F, to version 10 -->
+<!-- Last updated: 2026-09-02 13:20:00 (Buenos Aires) by Morgan F, to version 11 -->
 
 # Getting started with `WorkingWithAI`
 
@@ -59,7 +59,16 @@ The most complete experience, on web, desktop, or phone. *(As of
    mobile app's Code area).
 2. Start a new session on `themorgan/WorkingWithAI` — the
    first time, approve the GitHub authorization it requests.
-3. Ask your first question, e.g.: *"Review the project context, then tell
+3. **If this is Morgan, or the first session in a while:** ask it to also
+   add the `themorgan/precedent-team-maintainers` repo (and, if you're
+   Morgan, `themorgan/precedent-individual` too) before doing anything
+   else — *"also add repo themorgan/precedent-team-maintainers"* is
+   enough. This is what lets the project's team (and Morgan's own
+   personal) practices actually apply; skipping it isn't a mistake, it
+   just means those don't kick in for that session. See
+   `AGENTS.md`'s "Build-environment gotchas" for why this is a one-time,
+   per-session ask rather than something wired in permanently.
+4. Ask your first question, e.g.: *"Review the project context, then tell
    me what needs my attention."*
 
 Claude Code reads the project's instruction files automatically. Nothing

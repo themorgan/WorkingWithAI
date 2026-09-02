@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-02 12:40:00 (Buenos Aires) by Morgan F, to version 19 -->
+<!-- Last updated: 2026-09-02 13:20:00 (Buenos Aires) by Morgan F, to version 20 -->
 
 # Repository instructions — read me first
 
@@ -46,6 +46,36 @@ person-specific rules win.
 - At session start, run `bash tools/bootstrap.sh` before other work (Claude
   Code runs it automatically via the SessionStart hook — see
   `.claude/settings.json`).
+- **A brand-new Claude Code Remote/Cloud session started on this repo alone
+  does not automatically have git read access to `precedent-team-maintainers`
+  or `precedent-individual`** — the team and individual sources
+  `precedent.json` and the individual bootstrap hook depend on. Session
+  repo access is scoped explicitly (attached at session creation, or added
+  mid-session with the `add_repo` tool); it isn't inherited just because a
+  file references a repo by name.
+  - **Individual** (`precedent-individual`): `.claude/hooks/precedent-individual-bootstrap.sh`
+    clones (or pulls) it and writes the user config **automatically**, every
+    session — but only once the session already has read access to that
+    repo. If it can't reach it, it prints a warning and moves on (fails
+    gracefully); individual practices are just silently not in force that
+    session.
+  - **Team** (`precedent-team-maintainers`): **not automatic.**
+    `tools/bootstrap.sh` only pulls an *existing* sibling clone — it
+    deliberately does not try to clone one that isn't there yet, because
+    `precedent.json` records the source's `path` and `name` but never a
+    git URL, so a generic script has no reliable way to know which repo to
+    clone (guessing would silently clone the wrong thing if the source
+    ever pointed elsewhere). If `tools/bootstrap.sh` prints a "not checked
+    out here yet" note for it, or `precedent_resolve.py` reports the team
+    source as missing: **first** ask to add the repo
+    (`themorgan/precedent-team-maintainers`, and `themorgan/precedent-individual`
+    if this is Morgan and the individual bootstrap hook hasn't managed it
+    either), **then** clone it yourself —
+    `git clone https://github.com/themorgan/precedent-team-maintainers.git ../precedent-team-maintainers`
+    (that URL is what this file's own "Practice sources (Precedent)"
+    section documents it as; there's no other place a session should be
+    getting it from). Once cloned, `tools/bootstrap.sh` keeps it fresh with
+    a plain pull on every later session.
 
 ## Git / workflow
 
@@ -183,6 +213,10 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
 [Precedent](https://github.com/alex137/BestPractice/tree/precedent-beta-v01)'s
 three-source model against a repo that already had BestPractice installed —
 full record in [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)).
+**New session and team/individual practices don't seem to apply? Read
+"Build-environment gotchas" above first** — this almost always means the
+session doesn't have repo access to precedent-team-maintainers or
+precedent-individual yet, not a bug in the resolver.
 The single vendored personal pack this section used to hold verbatim
 (RepoPersonalPreferences, at `process/personal/`) is retired; its 46 rules
 now live in two real repos this repo resolves practices from, live, instead

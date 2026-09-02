@@ -32,14 +32,26 @@ pip install --quiet cmarkgfm pyyaml 2>/dev/null || \
 #   fi
 echo "NOTE: BestPractice freshness check is paused -- this repo tracks alex137/BestPractice@precedent-beta-v01 (a beta branch), not its default branch. See process/manifest.json and process/PRECEDENT_MIGRATION.md."
 
-# Team practice source freshness (precedent.json's "team" source): best
-# effort, fail gracefully (precedent-team-maintainers/practices/fail-
-# gracefully.md) -- a fast-forward pull of the sibling clone
-# precedent_resolve.py reads live. Silent when already current or when the
-# sibling clone isn't present in this environment (a fresh container
-# without that repo attached); never blocks the session.
-if [ -d "../precedent-team-maintainers/.git" ]; then
-  git -C ../precedent-team-maintainers pull --ff-only --quiet 2>/dev/null || true
+# Team practice source (precedent.json's "team" source: a sibling clone at
+# ../precedent-team-maintainers). If it's already there, fast-forward pull
+# it -- safe, since that uses whatever remote is already configured on an
+# existing clone, nothing this script has to guess. If it ISN'T there yet,
+# this script deliberately does NOT try to clone it itself:
+# precedent.json's schema only ever records {level, name, path} for a
+# source, never a git remote URL, so there is no authoritative way for a
+# generic bootstrap script to know which repo "../precedent-team-maintainers"
+# should come from -- hardcoding a guessed URL here would silently clone
+# the wrong thing the moment the declared source ever pointed elsewhere,
+# with nothing to catch the mismatch. Fail gracefully instead
+# (precedent-team-maintainers/practices/fail-gracefully.md): print what's
+# missing and what to do about it, and let a session (which reads
+# precedent.json and knows the real name) do the actual cloning once it
+# has repo access -- see AGENTS.md's "Build-environment gotchas".
+TEAM_CLONE="../precedent-team-maintainers"
+if [ -d "$TEAM_CLONE/.git" ]; then
+  git -C "$TEAM_CLONE" pull --ff-only --quiet 2>/dev/null || true
+else
+  echo "NOTE: $TEAM_CLONE (precedent.json's team source) isn't checked out here yet -- team practices are not in force via precedent.json until it is. See AGENTS.md's 'Build-environment gotchas' for how to get it cloned this session." >&2
 fi
 
 # Personal pack (RepoPersonalPreferences) commit-identity setup was retired
