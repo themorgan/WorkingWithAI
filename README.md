@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 16:35:00 (Buenos Aires) by Morgan F, to version 15 -->
+<!-- Last updated: 2026-09-01 22:52:50 (Buenos Aires) by Morgan F, to version 16 -->
 
 # WorkingWithAI
 
@@ -27,13 +27,13 @@ document, and each stage has to actually earn the idea's way to the next
 one:
 
 1. **Learn how to work with AI as a partner-in-thought.** Get oriented in
-   the method before the rules: read [OUR_PHILOSOPHY.md](docs/OUR_PHILOSOPHY.md)
-   for the underlying ideas, [COMPANY_BUILDING_RULES.md](docs/COMPANY_BUILDING_RULES.md)
+   the method before the rules: read [OUR_PHILOSOPHY.md](docs-team/OUR_PHILOSOPHY.md)
+   for the underlying ideas, [COMPANY_BUILDING_RULES.md](docs-team/COMPANY_BUILDING_RULES.md)
    for the principles to build a company around, [AGENTS.md](AGENTS.md) for
    the rules AI agents actually follow here, and
-   [REASONS_WHY.md](docs/REASONS_WHY.md) for the less obvious benefits those
+   [REASONS_WHY.md](docs-team/REASONS_WHY.md) for the less obvious benefits those
    ideas produce.
-2. **Try it for real — [RULES_NOW_TESTING.md](docs/RULES_NOW_TESTING.md).** The
+2. **Try it for real — [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md).** The
    practical checklist actually in force in real work right now, each rule
    tagged *Trial* until it's proven, *Ready to promote* once it is, or
    *Promoted* once it's landed at stage 3 — these are the rules we've
@@ -41,12 +41,12 @@ one:
    yours too.
 3. **Roll it out everywhere — [BestPractice](https://github.com/alex137/BestPractice)
    and [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences).**
-   Once a rule in [RULES_NOW_TESTING.md](docs/RULES_NOW_TESTING.md) has proven
+   Once a rule in [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) has proven
    itself, a genuinely generic rule gets exported into BestPractice first,
    where any repo can pick it up, and a rule that's specifically Morgan's
    own gets ported into his personal pack in RepoPersonalPreferences, for
    automatic installation into every project he starts — see
-   [RULES_NOW_TESTING.md](docs/RULES_NOW_TESTING.md)'s own "Promotion" section
+   [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md)'s own "Promotion" section
    for the mechanics.
 
 The point of keeping these separate: nothing becomes company-wide policy
@@ -54,33 +54,33 @@ just because it sounded good in a brainstorm session, or even because an
 essay argued for it well. It has to survive stage 2, in this repo, first.
 For what running this pipeline looks like from inside one session —
 spark, argue, GitHub, rule — see
-[OUR_PHILOSOPHY.md](docs/OUR_PHILOSOPHY.md)'s "The working loop" section.
+[OUR_PHILOSOPHY.md](docs-team/OUR_PHILOSOPHY.md)'s "The working loop" section.
 
 ## What's here
 
-- [OUR_PHILOSOPHY.md](docs/OUR_PHILOSOPHY.md) — the underlying theoretical ideas
+- [OUR_PHILOSOPHY.md](docs-team/OUR_PHILOSOPHY.md) — the underlying theoretical ideas
   everything else here assumes, named and explained on their own terms, for
   anyone who wants to understand this at the theory level before diving
   into the brainstorm itself.
-- [REASONS_WHY.md](docs/REASONS_WHY.md) — OUR_PHILOSOPHY.md's companion: the
+- [REASONS_WHY.md](docs-team/REASONS_WHY.md) — OUR_PHILOSOPHY.md's companion: the
   less obvious benefits those ideas produce in practice.
-- [HUMANS_AT_OUR_BEST.md](docs/HUMANS_AT_OUR_BEST.md) — the one list of what
+- [HUMANS_AT_OUR_BEST.md](docs-team/HUMANS_AT_OUR_BEST.md) — the one list of what
   humans are good at, referenced in shorter form from several of these
   documents.
-- [RANDOM_NOTES.md](docs/RANDOM_NOTES.md) — the brainstorm itself: one entry per idea, prompt,
+- [RANDOM_NOTES.md](docs-team/RANDOM_NOTES.md) — the brainstorm itself: one entry per idea, prompt,
   workflow, or observation, loosely grouped.
-- [COMPANY_BUILDING_RULES.md](docs/COMPANY_BUILDING_RULES.md) — a full essay
+- [COMPANY_BUILDING_RULES.md](docs-team/COMPANY_BUILDING_RULES.md) — a full essay
   promoted out of the brainstorm (pipeline stage 1).
-- [AI_GOVERNANCE_TO_COCREATE.md](docs/AI_GOVERNANCE_TO_COCREATE.md) — another
+- [AI_GOVERNANCE_TO_COCREATE.md](docs-team/AI_GOVERNANCE_TO_COCREATE.md) — another
   full essay promoted out of the brainstorm (pipeline stage 1).
-- [RULES_NOW_TESTING.md](docs/RULES_NOW_TESTING.md) — the practical rules
+- [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) — the practical rules
   actually being tried right now, and candidates for promotion to
   RepoPersonalPreferences (pipeline stage 2).
-- [THE_REVOLUTIONARY_FORMULA.md](docs/THE_REVOLUTIONARY_FORMULA.md) —
+- [THE_REVOLUTIONARY_FORMULA.md](docs-team/THE_REVOLUTIONARY_FORMULA.md) —
   one-page pitch: the three ideas this repo argues are unique specifically
   taken together.
 
-  These main content documents live in `docs/`, kept apart from the
+  These main content documents live in `docs-team/`, kept apart from the
   technical documents below about running the repo itself.
 
 - `process/upstream/` — the vendored [BestPractice](https://github.com/alex137/BestPractice)

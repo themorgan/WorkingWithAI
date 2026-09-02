@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 16:35:00 (Buenos Aires) by Morgan F, to version 10 -->
+<!-- Last updated: 2026-09-01 22:52:50 (Buenos Aires) by Morgan F, to version 11 -->
 
 # Canonical names
 
@@ -8,11 +8,11 @@ wins — fix the documents.
 
 | Name | What it is | Defined in |
 |---|---|---|
-| **the brainstorm** | This repo's one deliverable: the running list of ideas, prompts, and workflows for working with AI. | [RANDOM_NOTES.md](docs/RANDOM_NOTES.md) |
-| **the revolutionary formula** | The three ideas — groups of people collaborating (not individuals working alone with a model), protocols generated automatically, chat as the only intermediary for touching any document or artifact — that this repo argues are unique specifically when combined. | [THE_REVOLUTIONARY_FORMULA.md](docs/THE_REVOLUTIONARY_FORMULA.md) |
+| **the brainstorm** | This repo's one deliverable: the running list of ideas, prompts, and workflows for working with AI. | [RANDOM_NOTES.md](docs-team/RANDOM_NOTES.md) |
+| **the revolutionary formula** | The three ideas — groups of people collaborating (not individuals working alone with a model), protocols generated automatically, chat as the only intermediary for touching any document or artifact — that this repo argues are unique specifically when combined. | [THE_REVOLUTIONARY_FORMULA.md](docs-team/THE_REVOLUTIONARY_FORMULA.md) |
 | **the pipeline** (three-stage) | How a brainstorm idea becomes company-wide policy: discover (the brainstorm) → try it for real (**the rules now testing**) → roll out everywhere (RepoPersonalPreferences's personal pack). | [README.md](README.md) |
-| **the rules now testing** | Pipeline stage 2: the practical checklist actually in force in real work now, each rule tagged Trial, Ready to promote, or Promoted. | [RULES_NOW_TESTING.md](docs/RULES_NOW_TESTING.md) |
-| **promote** / **promotion** | Moving a rule from *Trial* to *Ready to promote* to landed as its own section in RepoPersonalPreferences's personal pack — pipeline stage 2 to stage 3. | [RULES_NOW_TESTING.md](docs/RULES_NOW_TESTING.md) "Promotion" |
+| **the rules now testing** | Pipeline stage 2: the practical checklist actually in force in real work now, each rule tagged Trial, Ready to promote, or Promoted. | [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) |
+| **promote** / **promotion** | Moving a rule from *Trial* to *Ready to promote* to landed as its own section in RepoPersonalPreferences's personal pack — pipeline stage 2 to stage 3. | [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) "Promotion" |
 | **the voice guidelines** | [HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md), vendored from [SoundHuman](https://github.com/themorgan/SoundHuman): the "don't sound like an LLM" ruleset this repo's own writing follows, chat replies included. | [AGENTS.md](AGENTS.md) "Voice" |
 | **the voice guidelines sync** | The scheduled GitHub Actions workflow (weekly by default) that keeps [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) current with SoundHuman. | [AGENTS.md](AGENTS.md) "A third scheduled check keeps the voice guidelines current" |
 | **BestPractice** | The public upstream practice layer this repo vendors and follows. | [process/upstream/README.md](process/upstream/README.md) |
