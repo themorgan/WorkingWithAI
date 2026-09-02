@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-02 16:01:37 (Buenos Aires) by Morgan F, to version 18 -->
+<!-- Last updated: 2026-09-02 16:30:00 (Buenos Aires) by Morgan F, to version 19 -->
 
 # WorkingWithAI
 
@@ -33,10 +33,14 @@ idea's way to the next:
    The practical checklist actually in force in real work right now, each
    rule tagged *Trial*, *Ready to promote*, or *Promoted* once it's landed
    at stage 3.
-3. **Roll it out everywhere, via [BestPractice](https://github.com/alex137/BestPractice).**
+3. **Roll it out everywhere**, via [BestPractice](https://github.com/alex137/BestPractice)
+   for a genuinely generic rule, or precedent-team-maintainers /
+   precedent-individual for one specific to Morgan and Alex's own working
+   conventions ([process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)).
    Once a rule in [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) has
-   proven itself, it's exported so any repo can pick it up — see that
-   document's own "Promotion" section for the mechanics.
+   proven itself, it's exported to the right one so any repo resolving that
+   source can pick it up — see that document's own "Promotion" section for
+   the mechanics.
 
 Nothing becomes company-wide policy just because it sounded good in a
 brainstorm session — it has to survive stage 2 first. For what this

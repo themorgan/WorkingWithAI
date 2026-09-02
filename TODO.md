@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-02 16:01:37 (Buenos Aires) by Morgan F, to version 42 -->
+<!-- Last updated: 2026-09-02 16:01:37 (Buenos Aires) by Morgan F, to version 43 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -188,6 +188,28 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Fix the session-scoping gap the Precedent migration below left open:
+  a fresh Claude Code Remote/Cloud session on this repo alone has no git
+  access to precedent-team-maintainers or precedent-individual until
+  explicitly granted.** Decided 2026-09-02 → done. Morgan asked how a new
+  session picks these up; the honest answer exposed an asymmetry —
+  precedent-individual's own bootstrap hook clones/pulls it automatically
+  once access exists, but `tools/bootstrap.sh` only pulled an *existing*
+  team sibling clone, never created one. First attempt hardcoded a clone
+  URL for precedent-team-maintainers in `tools/bootstrap.sh` — Morgan
+  caught that this was wrong: `precedent.json`'s source schema is
+  `{level, name, path}`, never a git URL, so a generic script has no
+  authoritative way to know which repo a path corresponds to; guessing
+  would silently clone the wrong thing if the source ever moved. Fixed by
+  having `tools/bootstrap.sh` only pull-if-present and clearly report
+  "not checked out yet" otherwise, and documenting the real two-step fix
+  in `AGENTS.md`'s "Build-environment gotchas": add the repo via
+  `add_repo`, then clone it using the URL `AGENTS.md`'s own "Practice
+  sources" section documents — a session-level action informed by this
+  repo's own docs, not something a shell script should infer. Added the
+  same one-time ask to `GETTING_STARTED.md`'s Claude Code onboarding steps
+  for a human starting a session.
 
 - [x] **Migrate this repo from BestPractice-only to Precedent's three-source
   model (the first real test of `alex137/BestPractice`'s
