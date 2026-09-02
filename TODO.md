@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-02 12:40:00 (Buenos Aires) by Morgan F, to version 41 -->
+<!-- Last updated: 2026-09-02 16:01:37 (Buenos Aires) by Morgan F, to version 42 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -127,9 +127,38 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 
   Session: https://claude.ai/code/session_013PVX4o1GAgFzfbvgUZuM1S
 
+- [x] **Trim [COMPANY_BUILDING_RULES.md](docs-team/COMPANY_BUILDING_RULES.md)'s
+  intro, reword rule 1, reorder rules 6/7, and drop the closing
+  "shorter than five years ago" line; add "and" to
+  [REASONS_WHY.md](docs-team/REASONS_WHY.md) rule 9; shrink the README's
+  "How this repo's ideas become company policy" section by half and add a
+  closing "How to use this Repo" section.** Done 2026-09-02 → docs.
+  Morgan's. In [COMPANY_BUILDING_RULES.md](docs-team/COMPANY_BUILDING_RULES.md):
+  cut the italic intro's meta-commentary about the essay/checklist
+  relationship and the "Every founder..." paragraph that followed it;
+  retitled rule 1 from "Context is the capital asset" to "Context is
+  king" (anchor `capital-asset` kept); swapped
+  [`think-in-workflows`](docs-team/COMPANY_BUILDING_RULES.md#think-in-workflows)
+  and [`three-questions`](docs-team/COMPANY_BUILDING_RULES.md#three-questions)
+  into rules 6 and 7 respectively (anchors unaffected, per
+  `durable-list-anchors`; fixed the one stale "rule 7" reference this
+  broke, further down this file); dropped the closing "That list is
+  shorter than it was five years ago" sentence after rule 15. In
+  [REASONS_WHY.md](docs-team/REASONS_WHY.md), added "and" before "get
+  caught" in rule 9. In the README, condensed the three-stage pipeline
+  section and dropped its
+  [precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers)/[precedent-individual](https://github.com/themorgan/precedent-individual)
+  name-drops — public-facing docs point to
+  [BestPractice](https://github.com/alex137/BestPractice) only, never to
+  the team- or individual-level source repos by name; added a closing
+  "How to use this Repo" section pointing readers at BestPractice.
+
+  Session: https://claude.ai/code/session_01W8YVaDduub3yidsxj6f5es
+
 - [ ] **Look for contradictions across [RANDOM_NOTES.md](docs-team/RANDOM_NOTES.md) entries**, per
   the meta-note at the bottom of that file (e.g. rule 9's "build five, kill
-  four" against rule 7's "don't systematize a one-off") — worth a
+  four" against [`think-in-workflows`](docs-team/COMPANY_BUILDING_RULES.md#think-in-workflows)'s
+  "don't systematize a one-off") — worth a
   dedicated pass once there's enough material for real tensions to show up.
   Now also item 7 of [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) — this line
   and that item are the same recurring job, described from two sides.

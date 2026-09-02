@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 16:35:00 (Buenos Aires) by Morgan F, to version 17 -->
+<!-- Last updated: 2026-09-02 16:01:37 (Buenos Aires) by Morgan F, to version 18 -->
 
 # Rules for building a company around AI
 
@@ -6,29 +6,13 @@
 company this way at all. [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md)
 is the "how" half, one level down: what it takes to build the AI systems
 themselves so this becomes the default, rather than something a
-disciplined person has to manufacture by hand every session. Neither essay
-is itself a checklist anyone follows day to day —
-[RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) is where an idea from either
-one gets tried in real work before it's ready to be called a rule. Source
-essay for the brainstorm — see [RANDOM_NOTES.md](RANDOM_NOTES.md) for how this connects
-to the rest and for follow-on discussion. Promoted to its own document per
-the "reorganize once a group gets big enough" rule in [RANDOM_NOTES.md](RANDOM_NOTES.md),
-since it's a single sustained argument rather than a loose list of
-entries.*
-
-Every founder, every operator, every person who's gotten something done
-through other people knows one thing nobody bothers writing down: what made
-the work come out right was rarely in the work — it was in somebody's head,
-and the head went to lunch. Survivable for the entire history of commerce,
-until a machine could read everything you own. The rules below fall out of
-that, grouped by where they bite: the case itself, then working with the
-model day to day, then shipping and process, then people.
+disciplined person has to manufacture by hand every session.*
 
 ## Foundations
 
 <a id="capital-asset"></a>
 
-**1. Context is the capital asset.**
+**1. Context is king.**
 
 The scarce input isn't hours anymore — it's the tacit stuff that makes work
 come out right: why the vendor failed, what the customer meant, which
@@ -86,9 +70,21 @@ The tell: sessions that read like fights, not requests. Research and
 drafting are the beginner uses; the real gain is catching your own error
 an hour later, not three weeks later in front of the client.
 
+<a id="think-in-workflows"></a>
+
+**6. Think in patterns, workflows, and protocols.**
+
+Stopping to systematize a one-off is procrastination in a nice suit. First
+time, do it by hand, with the model. Third time you've seen the shape,
+stop — that's a pattern, and it just handed you the workflow spec for
+free. A protocol is different: it needs no repeating task, just one
+judgment call worth remembering, captured the moment it happens. Never
+systematize and you stay fast forever; systematize everything and you
+ship nothing, beautifully diagrammed.
+
 <a id="three-questions"></a>
 
-**6. Three questions, asked until they're reflexes.**
+**7. Three questions, asked until they're reflexes.**
 
 A long checklist buys you people who spend the day interrogating their
 work instead of doing it. So: three questions, drilled until they're
@@ -101,18 +97,6 @@ reflexes — the same three the AI is running too:
 
 *Faster* gets people thinking about the work they already do. *Better*
 gets them noticing the work they'd quietly stopped proposing.
-
-<a id="think-in-workflows"></a>
-
-**7. Think in patterns, workflows, and protocols.**
-
-Stopping to systematize a one-off is procrastination in a nice suit. First
-time, do it by hand, with the model. Third time you've seen the shape,
-stop — that's a pattern, and it just handed you the workflow spec for
-free. A protocol is different: it needs no repeating task, just one
-judgment call worth remembering, captured the moment it happens. Never
-systematize and you stay fast forever; systematize everything and you
-ship nothing, beautifully diagrammed.
 
 ## Shipping and process
 
@@ -205,9 +189,6 @@ on one name, not a faceless process. The human spark that makes someone
 worth working for, not merely alongside. And, increasingly, the
 discipline of running agent-driven processes. (Full list:
 [HUMANS_AT_OUR_BEST.md](HUMANS_AT_OUR_BEST.md).)
-
-That list is shorter than it was five years ago. It isn't going to zero.
-Build the permanent roster around it.
 
 ## See also
 
