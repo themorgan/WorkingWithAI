@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-02 16:01:37 (Buenos Aires) by Morgan F, to version 43 -->
+<!-- Last updated: 2026-09-02 20:00:00 (Buenos Aires) by Morgan F, to version 44 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -188,6 +188,39 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Fix two CI red X's on every push since the Precedent migration, and
+  re-add team-source auto-cloning to `tools/bootstrap.sh` at Morgan's
+  explicit request.** Decided 2026-09-02 → done. Morgan noticed the red X
+  on GitHub and asked; investigating found two real, distinct bugs, both
+  introduced by the migration:
+  1. **"Light check" failed every run.** `tools/light_check.py`'s new
+     `check_precedent_sources` treated a missing `../precedent-team-maintainers`
+     sibling clone as a gate failure — but GitHub Actions checks out only
+     this one repo, so that sibling structurally never exists in CI.
+     Softened to a warning, matching `precedent_resolve.py`'s own
+     "degrade gracefully, don't fail" design for a missing source.
+  2. **"bestpractice-upstream-sync.yml" failed every run, with zero jobs.**
+     Pausing its schedule had left `schedule:` present with every
+     `- cron:` line commented out underneath it — an empty `schedule:` key
+     is invalid, which invalidates the whole workflow file (GitHub reports
+     that as an immediate failure, unrelated to what the workflow does).
+     Fixed by removing the `schedule:` key entirely rather than emptying
+     it; the reactivation snippet moved into a comment.
+  Separately, Morgan asked to re-add automatic cloning of
+  `precedent-team-maintainers` in `tools/bootstrap.sh` — the exact thing
+  reverted earlier this same day after he pointed out that
+  `precedent.json`'s schema has no git URL field, so a generic script
+  can't safely guess one. This time it's back, explicitly: the URL is
+  still hardcoded, but as WorkingWithAI's own disclosed, current fact
+  (matching how `precedent-individual`'s own bootstrap script hardcodes
+  its own URL), with the coupling risk spelled out in the script's own
+  comment rather than silently accepted. `AGENTS.md`'s "Build-environment
+  gotchas" updated to match, and to state plainly that declaring or
+  cloning a source is read-only and one-directional — it doesn't grant
+  Alex, or anyone else with access to `precedent-team-maintainers`, any
+  access back to this repo, regardless of whether Alex has access to
+  WorkingWithAI himself.
 
 - [x] **Fix the session-scoping gap the Precedent migration below left open:
   a fresh Claude Code Remote/Cloud session on this repo alone has no git

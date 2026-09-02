@@ -36,15 +36,22 @@ that isn't a style violation so much as "something obviously went wrong":
   6. BROKEN RELATIVE DOC LINKS (warning only): a markdown link whose target
      isn't a URL, an anchor, or a file that actually exists.
   7. PRACTICE SOURCES NOT TRACKED: process/manifest.json (the process/upstream/
-     vendor tracking) or precedent.json (the universal/team source
-     declarations) is missing an expected field, unparseable, or points at a
-     path that doesn't exist on disk — the signature of a vendored tree or a
-     source declaration having drifted from what it claims to track. Repo-wide,
-     runs every time regardless of which files changed, the same way the old
+     vendor tracking) is missing an expected field, unparseable, or records a
+     local_path that doesn't exist on disk; or precedent.json is unparseable,
+     a source is missing its 'path' field, or a source declares an
+     individual-level set (the one thing a shared repo's tracked config must
+     never do — see AGENTS.md's "Practice sources" section). Repo-wide, runs
+     every time regardless of which files changed, the same way the old
      personal-pack-vendored check did: a `cp -r` or a hand-edited path
      wouldn't necessarily touch any file this run happens to be scoped to.
+     A precedent.json source whose declared path just isn't checked out
+     here (a sibling clone CI never has, or a session that hasn't fetched it
+     yet) is a WARNING, not part of this gate — that's an environment fact,
+     not a repo-content defect, and every CI run would otherwise fail on
+     something CI can never satisfy.
 
-Checks 1-5 and 7 are gates (FAIL, exit 1); check 6 is a warning. Checks 1-6
+Checks 1-5 and 7 are gates (FAIL, exit 1); check 6 is a warning, and so is
+the "not checked out here" case within check 7 (see above). Checks 1-6
 use the same scoping convention as doc_lint.py: by default, files changed vs
 the default branch (committed + working tree); explicit paths scan exactly
 those; --all scans every tracked text file and never fails (backlog report
@@ -184,7 +191,7 @@ def check_upstream_manifest(fails):
                 f"records local_path '{local_path}', which doesn't exist — "
                 "partial or stale install.")
 
-def check_precedent_sources(fails):
+def check_precedent_sources(fails, warns):
     cfg_path = ROOT / 'precedent.json'
     rel = 'precedent.json'
     if not cfg_path.exists():
@@ -210,10 +217,21 @@ def check_precedent_sources(fails):
             continue
         resolved = (ROOT / path).resolve()
         if not resolved.is_dir():
-            fails.append(
-                f"PRECEDENT SOURCE NOT TRACKED: {rel} source {entry.get('name')!r} "
+            # Warning, not a gate: a sibling clone is an ENVIRONMENT fact, not
+            # a repo-content fact -- CI checks out only this one repo, so a
+            # team source's sibling path is structurally never present there,
+            # same as any other CI runner or fresh clone that hasn't fetched
+            # it yet. precedent_resolve.py's own design treats a missing
+            # source as "report it, don't fail" for exactly this reason
+            # (PRACTICE_ENGINE_PLAN.md: "degrading gracefully is part of the
+            # contract, not an error path"); this check follows suit instead
+            # of gating every CI run on something CI can never satisfy.
+            warns.append(
+                f"PRECEDENT SOURCE NOT CHECKED OUT: {rel} source {entry.get('name')!r} "
                 f"(level {level!r}) points at '{path}', which doesn't exist here "
-                f"({resolved}) — a sibling clone that hasn't been checked out, or a stale path.")
+                f"({resolved}) — a sibling clone that hasn't been checked out yet "
+                "(expected in CI; see AGENTS.md's 'Build-environment gotchas' if "
+                "this is a session that should have it), or a stale path.")
 
 def check_file(rel, fails, warns):
     p = ROOT / rel
@@ -253,7 +271,7 @@ def main():
     for f in files:
         check_file(f, fails, warns)
     check_upstream_manifest(fails)
-    check_precedent_sources(fails)
+    check_precedent_sources(fails, warns)
 
     for w in warns:
         print(f"WARN: {w}")
