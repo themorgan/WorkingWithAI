@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 22:52:50 (Buenos Aires) by Morgan F, to version 16 -->
+<!-- Last updated: 2026-09-02 12:40:00 (Buenos Aires) by Morgan F, to version 17 -->
 
 # WorkingWithAI
 
@@ -39,13 +39,20 @@ one:
    *Promoted* once it's landed at stage 3 — these are the rules we've
    baked into our own repos so far, and you might want to bake them into
    yours too.
-3. **Roll it out everywhere — [BestPractice](https://github.com/alex137/BestPractice)
-   and [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences).**
+3. **Roll it out everywhere — [BestPractice](https://github.com/alex137/BestPractice),
+   [precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers),
+   and [precedent-individual](https://github.com/themorgan/precedent-individual).**
    Once a rule in [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) has proven
    itself, a genuinely generic rule gets exported into BestPractice first,
-   where any repo can pick it up, and a rule that's specifically Morgan's
-   own gets ported into his personal pack in RepoPersonalPreferences, for
-   automatic installation into every project he starts — see
+   where any repo can pick it up; a rule specific to Morgan and Alex's own
+   working conventions goes to precedent-team-maintainers, for automatic
+   resolution into every project that declares it as a source; and the
+   rare rule that's genuinely about Morgan the person (not the team) goes
+   to precedent-individual instead. (Through 2026-09-02 this stage's
+   single destination was [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences),
+   since split into the two repos above under
+   [Precedent](https://github.com/alex137/BestPractice/tree/precedent-beta-v01)'s
+   three-source model — see [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md).) See
    [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md)'s own "Promotion" section
    for the mechanics.
 
@@ -75,7 +82,7 @@ spark, argue, GitHub, rule — see
   full essay promoted out of the brainstorm (pipeline stage 1).
 - [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) — the practical rules
   actually being tried right now, and candidates for promotion to
-  RepoPersonalPreferences (pipeline stage 2).
+  precedent-team-maintainers or precedent-individual (pipeline stage 2).
 - [THE_REVOLUTIONARY_FORMULA.md](docs-team/THE_REVOLUTIONARY_FORMULA.md) —
   one-page pitch: the three ideas this repo argues are unique specifically
   taken together.
@@ -85,9 +92,11 @@ spark, argue, GitHub, rule — see
 
 - `process/upstream/` — the vendored [BestPractice](https://github.com/alex137/BestPractice)
   copy, unmodified.
-- `process/personal/` — Morgan's personal pack, vendored from
-  [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences)
-  (pipeline stage 3's destination).
+- [precedent.json](precedent.json) — declares this repo's team practice
+  source, [precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers)
+  (one of pipeline stage 3's two destinations, resolved live rather than
+  vendored; the other, [precedent-individual](https://github.com/themorgan/precedent-individual),
+  is Morgan's own and is never declared here — see [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)).
 - [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) —
   the voice guidelines, vendored from
   [SoundHuman](https://github.com/themorgan/SoundHuman):

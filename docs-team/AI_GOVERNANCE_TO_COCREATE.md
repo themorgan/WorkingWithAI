@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 16:35:00 (Buenos Aires) by Morgan F, to version 12 -->
+<!-- Last updated: 2026-09-02 12:40:00 (Buenos Aires) by Morgan F, to version 13 -->
 
 # AI governance to co-create
 
@@ -30,8 +30,9 @@ ephemeral chat by default.
 **2. Automatic rule extraction should be a standing capability, not a
 manual habit.** Distill protocols, rules, and preferences straight out of
 the interaction — the guidance, the correction — instead of waiting for
-someone to write policy by hand; `process/personal/` runs this
-continuously
+someone to write policy by hand; this repo's team and individual practice
+sources (precedent-team-maintainers, precedent-individual — see
+`../process/PRECEDENT_MIGRATION.md`) run this continuously
 ([`rules-generated-automatically`](OUR_PHILOSOPHY.md#rules-generated-automatically);
 [`writing-stops-competing-with-doing`](REASONS_WHY.md#writing-stops-competing-with-doing)).
 

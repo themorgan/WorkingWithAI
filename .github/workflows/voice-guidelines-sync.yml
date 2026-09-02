@@ -1,12 +1,14 @@
-# Scheduled, unattended sibling of bestpractice-upstream-sync.yml and
-# personal-pack-sync.yml: checks whether the voice guidelines' source repo,
-# SoundHuman (private —
+# Scheduled, unattended sibling of bestpractice-upstream-sync.yml: checks
+# whether the voice guidelines' source repo, SoundHuman (private —
 # https://github.com/themorgan/SoundHuman), has moved past
 # process/manifest_voice.json's recorded upstream.commit, and if so, takes
 # the update, integrates it, and merges it — without waiting for a session
 # to notice. See AGENTS.md's "Voice" section.
 #
-# Same shape as personal-pack-sync.yml, including why: SoundHuman
+# Same shape as the now-retired personal-pack-sync.yml (vendored
+# RepoPersonalPreferences via process/personal/, replaced 2026-09-02 by
+# precedent.json's live team/individual sources — see
+# process/PRECEDENT_MIGRATION.md), including why: SoundHuman
 # is PRIVATE, so both jobs need a repository secret with read access to it —
 # VOICEGUIDELINESTOSOUNDHUMAN_TOKEN (a GitHub personal access token —
 # fine-grained, read-only, scoped to just that one repo — is enough; the
@@ -40,12 +42,14 @@
 # pattern as the other two syncs. Cron is UTC-only, so the line below
 # converts from Buenos Aires local time (America/Argentina/Buenos_Aires,
 # UTC-3 year-round, no DST since 2009 — verified 2026-08-21) by adding 3
-# hours. This slot sits fifteen minutes after the personal-pack sync's own
-# weekly slot (itself fifteen minutes after the BestPractice sync's), so
-# all three never race over the same working tree. To change frequency,
-# comment out the active `- cron:` line and uncomment the other one; to
-# change time of day, adjust either line's hour/minute the same way (keep
-# all three workflows' slots apart).
+# hours. This slot was originally set fifteen minutes after the
+# (now-retired) personal-pack sync's own weekly slot, itself fifteen
+# minutes after the BestPractice sync's, so the (then) three never raced
+# over the same working tree; kept as-is since nothing forces it to move
+# now that only two syncs remain. To change frequency, comment out the
+# active `- cron:` line and uncomment the other one; to change time of day,
+# adjust either line's hour/minute the same way (keep both workflows'
+# slots apart).
 name: Voice guidelines sync
 
 on:
@@ -191,7 +195,7 @@ jobs:
             4. Run the repo's gates and make sure they all pass before
                committing anything:
                python3 process/upstream/tools/doc_lint.py --all
-               python3 process/personal/tools/light_check.py --all
+               python3 tools/light_check.py --all
                python3 process/upstream/tools/practice_audit.py
 
             Judgment calls you make while merging (a conflict, something
