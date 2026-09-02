@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-02 13:20:00 (Buenos Aires) by Morgan F, to version 20 -->
+<!-- Last updated: 2026-09-02 20:00:00 (Buenos Aires) by Morgan F, to version 21 -->
 
 # Repository instructions — read me first
 
@@ -59,23 +59,27 @@ person-specific rules win.
     repo. If it can't reach it, it prints a warning and moves on (fails
     gracefully); individual practices are just silently not in force that
     session.
-  - **Team** (`precedent-team-maintainers`): **not automatic.**
-    `tools/bootstrap.sh` only pulls an *existing* sibling clone — it
-    deliberately does not try to clone one that isn't there yet, because
-    `precedent.json` records the source's `path` and `name` but never a
-    git URL, so a generic script has no reliable way to know which repo to
-    clone (guessing would silently clone the wrong thing if the source
-    ever pointed elsewhere). If `tools/bootstrap.sh` prints a "not checked
-    out here yet" note for it, or `precedent_resolve.py` reports the team
-    source as missing: **first** ask to add the repo
+  - **Team** (`precedent-team-maintainers`): also automatic —
+    `tools/bootstrap.sh` clones it (to `../precedent-team-maintainers`) if
+    it isn't already there, or fast-forward pulls it if it is. Its clone
+    URL is hardcoded in that script as WorkingWithAI's own currently-real
+    fact (not derived from `precedent.json`, which never records a git
+    URL — see the script's own comment for the tradeoff that creates: if
+    the team source ever changes repos, the script's URL has to be
+    updated by hand to match). Same failure mode as individual: no repo
+    access yet means the clone fails, prints a note, and team practices
+    are just not in force that session.
+  - **Either one:** if `tools/bootstrap.sh` prints a "could not clone" note,
+    or `precedent_resolve.py` reports a source as missing, the fix is
+    session repo access, not a bug — ask to add the repo
     (`themorgan/precedent-team-maintainers`, and `themorgan/precedent-individual`
-    if this is Morgan and the individual bootstrap hook hasn't managed it
-    either), **then** clone it yourself —
-    `git clone https://github.com/themorgan/precedent-team-maintainers.git ../precedent-team-maintainers`
-    (that URL is what this file's own "Practice sources (Precedent)"
-    section documents it as; there's no other place a session should be
-    getting it from). Once cloned, `tools/bootstrap.sh` keeps it fresh with
-    a plain pull on every later session.
+    if this is Morgan), then re-run `bash tools/bootstrap.sh` (or start a
+    new session). Declaring or cloning either source is **read-only and
+    one-directional**: it lets this repo's session read their practices,
+    and does not grant anyone with access to those repos — Alex included —
+    any access back to this repo. That's governed entirely by
+    `themorgan/WorkingWithAI`'s own GitHub collaborator settings, unrelated
+    to `precedent.json`.
 
 ## Git / workflow
 

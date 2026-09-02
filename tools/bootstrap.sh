@@ -34,24 +34,32 @@ echo "NOTE: BestPractice freshness check is paused -- this repo tracks alex137/B
 
 # Team practice source (precedent.json's "team" source: a sibling clone at
 # ../precedent-team-maintainers). If it's already there, fast-forward pull
-# it -- safe, since that uses whatever remote is already configured on an
-# existing clone, nothing this script has to guess. If it ISN'T there yet,
-# this script deliberately does NOT try to clone it itself:
-# precedent.json's schema only ever records {level, name, path} for a
-# source, never a git remote URL, so there is no authoritative way for a
-# generic bootstrap script to know which repo "../precedent-team-maintainers"
-# should come from -- hardcoding a guessed URL here would silently clone
-# the wrong thing the moment the declared source ever pointed elsewhere,
-# with nothing to catch the mismatch. Fail gracefully instead
-# (precedent-team-maintainers/practices/fail-gracefully.md): print what's
-# missing and what to do about it, and let a session (which reads
-# precedent.json and knows the real name) do the actual cloning once it
-# has repo access -- see AGENTS.md's "Build-environment gotchas".
+# it. If it isn't, clone it.
+#
+# The URL below is hardcoded, deliberately, after an earlier version of
+# this script hardcoded it, got reverted, and was then put back --
+# Morgan's own call, made with the tradeoff explicit: precedent.json's
+# schema only ever records {level, name, path} for a source, never a git
+# remote URL, so nothing here is DERIVED from precedent.json -- this is
+# WorkingWithAI's own script stating WorkingWithAI's own currently-real
+# fact, the same way precedent-individual's own bootstrap script hardcodes
+# ITS OWN url (bootstrap/session-start.sh in that repo) rather than
+# inferring it from anything. The coupling this creates: if precedent.json's
+# team source is EVER repointed at a different repo, this URL has to be
+# updated by hand to match -- it will not follow automatically, and
+# nothing here checks that they still agree. That's a real cost, accepted
+# knowingly rather than by accident.
 TEAM_CLONE="../precedent-team-maintainers"
+TEAM_REPO_URL="https://github.com/themorgan/precedent-team-maintainers.git"
 if [ -d "$TEAM_CLONE/.git" ]; then
   git -C "$TEAM_CLONE" pull --ff-only --quiet 2>/dev/null || true
-else
-  echo "NOTE: $TEAM_CLONE (precedent.json's team source) isn't checked out here yet -- team practices are not in force via precedent.json until it is. See AGENTS.md's 'Build-environment gotchas' for how to get it cloned this session." >&2
+elif ! git clone --quiet "$TEAM_REPO_URL" "$TEAM_CLONE" 2>/dev/null; then
+  # Fail gracefully (precedent-team-maintainers/practices/fail-gracefully.md):
+  # most likely this environment doesn't have read access to that repo yet
+  # (a fresh Claude Code Remote/Cloud session -- see AGENTS.md's
+  # "Build-environment gotchas" for the add_repo step that fixes it) rather
+  # than the URL itself being wrong. Never block the session over this.
+  echo "NOTE: could not clone $TEAM_REPO_URL to $TEAM_CLONE -- this environment may not have read access to it yet. Team practices are not in force via precedent.json until it's present. See AGENTS.md's 'Build-environment gotchas'." >&2
 fi
 
 # Personal pack (RepoPersonalPreferences) commit-identity setup was retired

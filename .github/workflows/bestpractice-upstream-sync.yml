@@ -53,14 +53,26 @@ name: BestPractice sync
 # manual mirror procedure instead while on the beta branch (see
 # process/PRECEDENT_MIGRATION.md), not this workflow's `update` job.
 # Re-enable the schedule once precedent-beta-v01 merges to main and
-# process/manifest.json is repointed at the default branch.
+# process/manifest.json is repointed at the default branch, by restoring:
+#
+#   on:
+#     schedule:
+#       # Weekly (default): every Monday at 09:00 Buenos Aires.
+#       - cron: '0 12 * * 1'
+#       # Daily: uncomment this line and comment out the weekly one above.
+#       # - cron: '0 12 * * *'
+#     workflow_dispatch:
+#
+# NOT done as a `schedule:` key with every `- cron:` entry commented out
+# underneath it, the way this was first paused: GitHub Actions requires
+# `schedule` to be a non-empty list when the key is present at all, so an
+# empty one makes the WHOLE workflow file invalid -- caught the hard way
+# 2026-09-02 (see process/PRECEDENT_MIGRATION.md), when every single push
+# to this repo showed a red X on this workflow (0 jobs run, reported
+# against the pushed commit) with no schedule ever having fired. Pausing a
+# schedule means removing the `schedule:` key outright, not commenting out
+# its contents.
 on:
-  schedule:
-    # Weekly (default): every Monday at 09:00 Buenos Aires. PAUSED -- see
-    # note above; uncomment only once tracking main again.
-    # - cron: '0 12 * * 1'
-    # Daily: uncomment this line and comment out the weekly one above.
-    # - cron: '0 12 * * *'
   workflow_dispatch:
 
 permissions:
