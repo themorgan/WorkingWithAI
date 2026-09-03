@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 09:32:37 (Buenos Aires) by Morgan F, to version 3 -->
+<!-- Last updated: 2026-09-03 10:23:01 (Buenos Aires) by Morgan F, to version 4 -->
 
 # Migrating this repo from BestPractice-only to Precedent (2026-09-02)
 
@@ -174,14 +174,16 @@ so it isn't only visible from this repo's own side.
 ## A real finding: `practice_audit.py`'s scrub check does not cleanly pass
 
 Running `python3 process/upstream/tools/practice_audit.py` after the
-re-vendor gives **61 SCRUB failures, all inside `process/upstream/`
+re-vendor gives **62 SCRUB failures, all inside `process/upstream/`
 itself** — not in anything this repo added (53 as of the original
 migration; the 2026-09-02 re-vendor to commit `29f14c0` added 7 more,
 all in the newly-vendored `spec/MIGRATING_EXISTING_INSTALLS.md`, which
 names `themorgan/WorkingWithAI` and Buenos Aires by the same
 already-disclosed-upstream reasoning below; the 2026-09-03 re-vendor to
 commit `b81b6b9` added 1 more, `ADOPTING.md`'s own file-header date
-line, same reasoning again). This is worth recording
+line; a further 2026-09-03 re-vendor to commit `d05ee3c` added 1 more
+still, `spec/MOVING_PRACTICES.md`'s own file-header date line, same
+reasoning again). This is worth recording
 plainly rather than working around, and worth NOT "fixing" by editing
 `process/upstream/` (forbidden — it must stay byte-identical to the vendored
 branch) or by quietly deleting blocklist entries to make the audit pass.
