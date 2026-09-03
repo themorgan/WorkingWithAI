@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-02 18:17:55 (Buenos Aires) by Morgan F, to version 22 -->
+<!-- Last updated: 2026-09-03 08:52:34 (Buenos Aires) by Morgan F, to version 23 -->
 
 # Repository instructions — read me first
 
@@ -50,36 +50,49 @@ person-specific rules win.
   does not automatically have git read access to `precedent-team-maintainers`
   or `precedent-individual`** — the team and individual sources
   `precedent.json` and the individual bootstrap hook depend on. Session
-  repo access is scoped explicitly (attached at session creation, or added
+  repo access is scoped per session (attached at session creation, or added
   mid-session with the `add_repo` tool); it isn't inherited just because a
-  file references a repo by name.
-  - **Individual** (`precedent-individual`): `.claude/hooks/precedent-individual-bootstrap.sh`
-    clones (or pulls) it and writes the user config **automatically**, every
-    session — but only once the session already has read access to that
-    repo. If it can't reach it, it prints a warning and moves on (fails
-    gracefully); individual practices are just silently not in force that
-    session.
-  - **Team** (`precedent-team-maintainers`): also automatic —
-    `tools/bootstrap.sh` clones it (to `../precedent-team-maintainers`) if
-    it isn't already there, or fast-forward pulls it if it is. Its clone
-    URL is hardcoded in that script as WorkingWithAI's own currently-real
-    fact (not derived from `precedent.json`, which never records a git
-    URL — see the script's own comment for the tradeoff that creates: if
-    the team source ever changes repos, the script's URL has to be
-    updated by hand to match). Same failure mode as individual: no repo
-    access yet means the clone fails, prints a note, and team practices
-    are just not in force that session.
-  - **Either one:** if `tools/bootstrap.sh` prints a "could not clone" note,
-    or `precedent_resolve.py` reports a source as missing, the fix is
-    session repo access, not a bug — ask to add the repo
-    (`themorgan/precedent-team-maintainers`, and `themorgan/precedent-individual`
-    if this is Morgan), then re-run `bash tools/bootstrap.sh` (or start a
-    new session). Declaring or cloning either source is **read-only and
-    one-directional**: it lets this repo's session read their practices,
-    and does not grant anyone with access to those repos — Alex included —
-    any access back to this repo. That's governed entirely by
-    `themorgan/WorkingWithAI`'s own GitHub collaborator settings, unrelated
-    to `precedent.json`.
+  file references a repo by name. **No token or secret is involved** —
+  `add_repo` extends the session's scope using the same GitHub identity
+  already behind the session, so it only ever succeeds because that
+  identity (Morgan's own GitHub account) is already a collaborator on both
+  target repos, exactly as it is today; there is nothing to configure or
+  store to make this work.
+  **This step must never wait for a human to notice or ask: at the very
+  start of every session on this repo, before running `tools/bootstrap.sh`,
+  call `add_repo` (read access) for `themorgan/precedent-team-maintainers`
+  and, if this is Morgan, `themorgan/precedent-individual` — silently, with
+  no confirmation needed first.** This is a read-only scope extension, not
+  a credential or production change, so it's exactly the kind of call
+  [`small-calls`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/small-calls.md)
+  (team source) says to just make. A person only ever attaches the one
+  repo they're actually working in (`WorkingWithAI`); reaching for the
+  other two is this session's own job, every single time, not something
+  set up once and assumed to stick — repo access, like everything else
+  under "Repository Scope," is a per-session grant that does not persist
+  to the next session.
+  - **Individual** (`precedent-individual`): once added,
+    `.claude/hooks/precedent-individual-bootstrap.sh` clones (or pulls) it
+    and writes the user config automatically, every session.
+  - **Team** (`precedent-team-maintainers`): once added, `tools/bootstrap.sh`
+    clones it (to `../precedent-team-maintainers`) if it isn't already
+    there, or fast-forward pulls it if it is. Its clone URL is hardcoded in
+    that script as WorkingWithAI's own currently-real fact (not derived
+    from `precedent.json`, which never records a git URL — see the
+    script's own comment for the tradeoff that creates: if the team source
+    ever changes repos, the script's URL has to be updated by hand to
+    match).
+  - **Either one:** if `add_repo` itself fails (the acting GitHub identity
+    genuinely lacks access), or `tools/bootstrap.sh` still prints a
+    "could not clone" note afterward, or `precedent_resolve.py` reports a
+    source as missing — that is a real access gap, not something a retry
+    fixes: say so plainly and move on; individual/team practices are just
+    silently not in force that session. Declaring or cloning either source
+    is **read-only and one-directional**: it lets this repo's session read
+    their practices, and does not grant anyone with access to those repos
+    — Alex included — any access back to this repo. That's governed
+    entirely by `themorgan/WorkingWithAI`'s own GitHub collaborator
+    settings, unrelated to `precedent.json`.
 
 ## Git / workflow
 
@@ -97,8 +110,9 @@ person-specific rules win.
   since the last session, including anything any of the three syncs merged
   unattended. Do the same any time she asks "what's new?".
 
-(Session start, in order: `bash tools/bootstrap.sh` — see "Build-environment
-gotchas" above — then these two.)
+(Session start, in order: call `add_repo` for the two sibling practice
+repos — see "Build-environment gotchas" above, no asking first — then
+`bash tools/bootstrap.sh`, then these two.)
 
 ### Merging a thread branch (runbook — follow, don't improvise)
 
