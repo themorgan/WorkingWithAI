@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 09:53:48 (Buenos Aires) by Morgan F, to version 47 -->
+<!-- Last updated: 2026-09-03 10:23:01 (Buenos Aires) by Morgan F, to version 48 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -188,6 +188,31 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Move `bestpractice-sync` from `precedent-team-maintainers` to
+  `precedent-individual`; add `code-cites-practice` and
+  `spec/MOVING_PRACTICES.md` upstream; re-vendor.** Decided 2026-09-03 →
+  done. Morgan asked two design questions and one concrete correction:
+  1. Does code implementing a practice cite it back by slug? No — fixed
+     upstream with a new practice, `code-cites-practice`, and a real
+     mechanical check in `precedent_check.py` that flags a citation naming
+     a slug that doesn't exist or has been retired.
+  2. Is moving an already-active practice between levels a documented
+     process? No — fixed upstream with `spec/MOVING_PRACTICES.md`.
+  3. `bestpractice-sync` was migrated to `precedent-team-maintainers` by
+     the original RepoPersonalPreferences split's blanket "default to
+     team" rule, without checking whether it actually belonged there. It
+     didn't: unattended, auto-merging automation is Morgan's own
+     preference about his own projects, not something Alex separately
+     agreed his repos should run. Moved to `precedent-individual`
+     following the new documented pattern (land at destination, retire at
+     source, in that order) — retired, not deleted, in
+     `precedent-team-maintainers`, with a `## Story` note pointing to the
+     new location. `AGENTS.md`'s own `bestpractice-sync` link updated to
+     match. `process/manifest.json`'s `upstream.commit`/`_note` updated;
+     scrub-collision count moved 61 → 62 (`spec/MOVING_PRACTICES.md`'s own
+     file-header date, same already-disclosed-upstream reasoning as the
+     rest of that known exception).
 
 - [x] **Re-vendor `process/upstream/` again to pick up the new
   `disclose-landing` practice.** Decided 2026-09-03 → done. Morgan asked

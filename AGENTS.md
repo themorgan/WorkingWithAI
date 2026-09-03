@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 09:32:37 (Buenos Aires) by Morgan F, to version 24 -->
+<!-- Last updated: 2026-09-03 10:23:01 (Buenos Aires) by Morgan F, to version 25 -->
 
 # Repository instructions — read me first
 
@@ -99,7 +99,12 @@ person-specific rules win.
 - Develop on a feature branch; open a PR; merge only when the user says so
   (except the BestPractice sync and the voice guidelines sync, which merge
   their own PRs unattended — see
-  [`bestpractice-sync`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/bestpractice-sync.md)
+  [`bestpractice-sync`](https://github.com/themorgan/precedent-individual/blob/main/practices/bestpractice-sync.md)
+  (moved from `precedent-team-maintainers` to `precedent-individual` on
+  2026-09-03 — it's Morgan's own preference about his own projects'
+  automation, not a convention Alex separately agreed to for his; see
+  that practice's own `## Story` and, upstream,
+  [spec/MOVING_PRACTICES.md](https://github.com/alex137/BestPractice/blob/precedent-beta-v01/spec/MOVING_PRACTICES.md))
   and this file's "A third scheduled check keeps the voice guidelines
   current" below; the personal-pack sync was retired 2026-09-02 along with
   `process/personal/` — see [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)
@@ -453,7 +458,7 @@ assistant works this repo, rather than being retrofitted later.
   [process/scrub_blocklist.txt](process/scrub_blocklist.txt) and must pass
   before committing anything that touches `process/`. **Known exception,
   as of the precedent-beta-v01 vendor (2026-09-03):** this currently
-  reports 61 SCRUB failures inside `process/upstream/` itself — a real,
+  reports 62 SCRUB failures inside `process/upstream/` itself — a real,
   understood collision, not a leak; see
   [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)'s "A
   real finding" section before treating a fresh run of this audit as
