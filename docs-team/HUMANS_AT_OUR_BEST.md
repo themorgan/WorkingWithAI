@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 16:35:00 (Buenos Aires) by Morgan F, to version 7 -->
+<!-- Last updated: 2026-09-03 14:48:44 (Buenos Aires) by Morgan F, to version 8 -->
 
 # Humans at our best
 
@@ -17,47 +17,54 @@ this page doesn't replace them.*
 
 ## The list
 
-- **Getting shit done.** Drive: the will to keep pushing something through
-  every stall, handoff, and objection until it's actually finished, not
-  just planned.
+### Drive
+
+- **Getting shit done.** The will to keep pushing something through every
+  stall, handoff, and objection until it's actually finished, not just
+  planned.
+- **Obsessive, creative quality assurance (QA).** Only someone who truly,
+  deeply cares hunts every issue — software or otherwise — with the
+  intensity and creativity that real ownership brings.
+- **Boundary pushing.** AI tends to under-push the boundaries a situation
+  actually calls for, held back by rules built strict on purpose; a human
+  still has to decide when to lean past them.
+
+### Responsibility
+
 - **Judgment.** Deciding what gets built and whether it works
   ([`people-manage-agents-execute`](OUR_PHILOSOPHY.md#people-manage-agents-execute));
   judgment when the rules run out and somebody still has to decide
   ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
-- **Taste.** Catching the one paragraph in twenty that's quietly wrong
-  ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human);
-  [`people-manage-agents-execute`](OUR_PHILOSOPHY.md#people-manage-agents-execute)).
-- **Planning.** Deciding what gets built, the way defining a system beats
-  hand-running it
-  ([`people-manage-agents-execute`](OUR_PHILOSOPHY.md#people-manage-agents-execute)).
+- **Accountability.** Landing on one name in one room, rather than a
+  process nobody can point to
+  ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
 - **Running a fleet of agent-driven processes.** Increasingly a
   human-only skill of its own: noticing the drift before a customer does,
   pushing a process further than it would push itself, and pulling it
   back before it overreaches
-  ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
-- **Obsessive, creative quality assurance (QA).** AI can run a checklist;
-  only someone who truly, deeply cares hunts every issue — software or
-  otherwise — with the intensity and creativity that real ownership
-  brings.
+  ([`people-manage-agents-execute`](OUR_PHILOSOPHY.md#people-manage-agents-execute)).
+
+### People
+
 - **Relationships.** A counterparty trusts because of who's on the other
   end of them
   ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human));
   sensing what a client meant but didn't say
   ([`humans-do-what-humans-do-best`](OUR_PHILOSOPHY.md#humans-do-what-humans-do-best)).
+- **Politics.** Any non-trivial team runs on politics as much as on org
+  charts; reading it and managing it is a human job.
+
+### The intangible
+
+- **Taste.** Catching the one paragraph in twenty that's quietly wrong
+  ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human);
+  [`people-manage-agents-execute`](OUR_PHILOSOPHY.md#people-manage-agents-execute)).
 - **Instinct.** Reading a room, sensing what a client meant but didn't
   say, pushing someone harder when the moment calls for it
   ([`humans-do-what-humans-do-best`](OUR_PHILOSOPHY.md#humans-do-what-humans-do-best)).
-- **Accountability.** Landing on one name in one room, rather than a
-  process nobody can point to
-  ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
 - **The human spark.** What makes someone worth working for, not merely
   alongside
   ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
-- **Politics.** Any non-trivial team runs on politics as much as on org
-  charts; reading it and managing it is a human job.
-- **Boundary pushing.** AI tends to under-push the boundaries a situation
-  actually calls for, held back by rules built strict on purpose; a human
-  still has to decide when to lean past them.
 - **The unspoken.** The things a human can do, and sometimes has to, that
   are hard to say out loud at all.
 
