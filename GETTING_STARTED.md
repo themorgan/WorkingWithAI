@@ -192,21 +192,15 @@ conversation:
   summaries if a scheduled run seems to have done nothing. A chat session
   can take the update manually in the meantime without either secret; if it
   does, it should remind you to set one. Details:
-  [`bestpractice-sync`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/bestpractice-sync.md).
-- **The second scheduled check (personal-pack sync) was retired 2026-09-02**,
-  along with `process/personal/` itself — see [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md).
-  Where that check used to keep a vendored copy of
-  [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences)
-  current with its own `PERSONAL_PACK_TOKEN` secret, this project now
-  resolves its team practices live from a sibling checkout of
-  [precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers)
-  instead — nothing is vendored or synced, so there is no token to
-  provision for it. The one thing this does require: whatever environment
-  runs a session on this project needs read access to
-  `precedent-team-maintainers` as well (the same access this project's own
-  repo needs), since `precedent.json` expects to find it checked out as a
-  sibling directory.
-- **A third scheduled check keeps the voice guidelines current** — same
+  [`bestpractice-sync`](https://github.com/themorgan/precedent-individual/blob/main/practices/bestpractice-sync.md).
+- **Team practices resolve live from a sibling checkout, with no vendoring
+  and no sync to run** — [precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers)
+  is read directly, so there's nothing to keep in sync and no token to
+  provision. The one thing this does require: whatever environment runs a
+  session on this project needs read access to `precedent-team-maintainers`
+  as well (the same access this project's own repo needs), since
+  `precedent.json` expects to find it checked out as a sibling directory.
+- **A second scheduled check keeps the voice guidelines current** — same
   weekly-by-default, daily-optional cadence, pointed at
   [SoundHuman](https://github.com/themorgan/SoundHuman)
   (private) — the "write like a human, not an LLM" ruleset this project's

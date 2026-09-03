@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 11:05:52 (Buenos Aires) by Morgan F, to version 49 -->
+<!-- Last updated: 2026-09-03 11:26:18 (Buenos Aires) by Morgan F, to version 50 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -188,6 +188,45 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Strip old-system vocabulary and instructions (RepoPersonalPreferences,
+  "the personal pack", `process/personal/`) out of every day-to-day
+  document, leaving them only where they're genuinely migration content.**
+  Decided 2026-09-03 → done. Morgan asked directly: our vocabulary
+  shouldn't keep defining words for concepts we've already retired, except
+  where migration itself needs them. Trimmed `AGENTS.md` (the "Practice
+  sources" intro, the merge-runbook's export gate and `process/personal/`
+  step, the "rest of RepoPersonalPreferences' 46 rules" paragraph, the
+  scheduled-syncs list's tombstone bullet for the already-deleted
+  personal-pack sync), `GETTING_STARTED.md` (a whole paragraph teaching a
+  new member about a workflow that was retired before they ever saw this
+  repo — replaced with just the current fact), `GLOSSARY.md` (three
+  entries that defined "the personal pack" inline instead of just pointing
+  at the migration record), `MAP.md` (three rows with the same pattern),
+  `docs-team/RULES_NOW_TESTING.md` (one paragraph), `precedent.json` (one
+  comment), and all three `.github/workflows/*.yml` header comments.
+  Along the way, fixed a real numbering bug this same cleanup exposed:
+  removing the dead "personal-pack sync" bullet left "the second scheduled
+  check" (BestPractice sync) and "the third" (voice guidelines sync)
+  correctly as first and second — both `AGENTS.md` and `GETTING_STARTED.md`
+  updated, plus a stale cross-reference in `AGENTS.md` that named "this
+  file" for a heading that has only ever lived in `GETTING_STARTED.md`.
+  Also fixed two accuracy bugs surfaced along the way: `GLOSSARY.md` and
+  `GETTING_STARTED.md` still linked `bestpractice-sync` to
+  `precedent-team-maintainers`, not its actual new home in
+  `precedent-individual` (from the 2026-09-03 move). Checked
+  `alex137/BestPractice` for the same pattern and found none needed — its
+  own RepoPersonalPreferences mentions are already confined to genuine
+  migration/design-history documents (`spec/MIGRATING_EXISTING_INSTALLS.md`,
+  `spec/PRIVATE_SETS_BRIEF.md`, `decisions/*`, `PRACTICE_ENGINE_PLAN.md`),
+  and `layered-practice-packs` (the "practice pack" GLOSSARY.md term) is a
+  different, still-`active` concept, not a retired one — so no upstream PR
+  this round, only this repo's own cleanup. Left untouched, deliberately:
+  `TODO.md` and `docs-team/RANDOM_NOTES.md` (both explicitly historical
+  logs, not living instructions), `process/manifest.json`'s own
+  per-entry provenance notes (a legitimate audit trail), and
+  `process/PRECEDENT_MIGRATION.md` itself (the migration record this
+  content now lives in instead).
 
 - [x] **Re-vendor `process/upstream/` to pick up `code-cites-practice`'s
   finished retrofit; add the same slug markers to this account's own two

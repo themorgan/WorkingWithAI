@@ -20,9 +20,8 @@
     "offline and for collaborators without that sibling checked out.",
     "'team' points at a sibling clone of precedent-team-maintainers,",
     "Morgan and Alex's real team practice set (the same live-sibling-clone",
-    "pattern Precedent uses for its own precedent.json) -- it replaces the",
-    "old process/personal/ vendored copy of RepoPersonalPreferences,",
-    "retired in the same change that added this file."
+    "pattern Precedent uses for its own precedent.json). See",
+    "process/PRECEDENT_MIGRATION.md for what this file replaced."
   ],
   "sources": [
     {
