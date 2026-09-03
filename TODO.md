@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 09:32:37 (Buenos Aires) by Morgan F, to version 46 -->
+<!-- Last updated: 2026-09-03 09:53:48 (Buenos Aires) by Morgan F, to version 47 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -188,6 +188,20 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Re-vendor `process/upstream/` again to pick up the new
+  `disclose-landing` practice.** Decided 2026-09-03 → done. Morgan asked
+  directly whether a session clearly tells the human when a practice lands
+  or is proposed, and clearly names where (individual, which named team, or
+  universal) -- the honest answer was no, so it got fixed upstream:
+  `precedent_land.py` and `precedent_candidate.py` now print an
+  unconditional "DISCLOSE TO THE HUMAN:" line naming the level, location,
+  approver, and in-force status every time, and the new
+  `practices/disclose-landing.md` makes this a real, checkable practice
+  rather than only narrative intent in the design plan.
+  `process/manifest.json`'s `upstream.commit`/`_note` updated to the new
+  tip (`d226f6e`). Scrub-collision count unchanged at 61 -- the new
+  practice file introduces no private-vocabulary collision.
 
 - [x] **Re-vendor `process/upstream/` again to pick up the session-repo-access
   fix and the rewritten `ADOPTING.md` approval-lifecycle section.** Decided
