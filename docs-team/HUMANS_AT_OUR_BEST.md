@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 14:48:44 (Buenos Aires) by Morgan F, to version 8 -->
+<!-- Last updated: 2026-09-03 14:56:06 (Buenos Aires) by Morgan F, to version 9 -->
 
 # Humans at our best
 
@@ -31,12 +31,12 @@ this page doesn't replace them.*
 
 ### Responsibility
 
+- **Accountability.** Landing on one name in one room, rather than a
+  process nobody can point to
+  ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
 - **Judgment.** Deciding what gets built and whether it works
   ([`people-manage-agents-execute`](OUR_PHILOSOPHY.md#people-manage-agents-execute));
   judgment when the rules run out and somebody still has to decide
-  ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
-- **Accountability.** Landing on one name in one room, rather than a
-  process nobody can point to
   ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human)).
 - **Running a fleet of agent-driven processes.** Increasingly a
   human-only skill of its own: noticing the drift before a customer does,
@@ -54,7 +54,7 @@ this page doesn't replace them.*
 - **Politics.** Any non-trivial team runs on politics as much as on org
   charts; reading it and managing it is a human job.
 
-### The intangible
+### The Intangible
 
 - **Taste.** Catching the one paragraph in twenty that's quietly wrong
   ([`structurally-human`](COMPANY_BUILDING_RULES.md#structurally-human);
