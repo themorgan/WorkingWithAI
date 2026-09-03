@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 10:23:01 (Buenos Aires) by Morgan F, to version 25 -->
+<!-- Last updated: 2026-09-03 11:05:52 (Buenos Aires) by Morgan F, to version 26 -->
 
 # Repository instructions — read me first
 
@@ -30,8 +30,9 @@ This repo's own writing follows
 vendored from
 [SoundHuman](https://github.com/themorgan/SoundHuman)
 (tracked in [process/manifest_voice.json](process/manifest_voice.json), kept
-current by a weekly sync plus a session-start check — see "A third scheduled
-check keeps the voice guidelines current" below). It governs **everything a
+current by a weekly sync plus a session-start check — see
+[GETTING_STARTED.md](GETTING_STARTED.md)'s "A second scheduled check keeps
+the voice guidelines current"). It governs **everything a
 session writes here, not just committed documents** — the chat reply itself
 is in scope too. Check outward-facing prose against it before calling a
 piece done; this is
@@ -100,16 +101,12 @@ person-specific rules win.
   (except the BestPractice sync and the voice guidelines sync, which merge
   their own PRs unattended — see
   [`bestpractice-sync`](https://github.com/themorgan/precedent-individual/blob/main/practices/bestpractice-sync.md)
-  (moved from `precedent-team-maintainers` to `precedent-individual` on
-  2026-09-03 — it's Morgan's own preference about his own projects'
-  automation, not a convention Alex separately agreed to for his; see
-  that practice's own `## Story` and, upstream,
-  [spec/MOVING_PRACTICES.md](https://github.com/alex137/BestPractice/blob/precedent-beta-v01/spec/MOVING_PRACTICES.md))
-  and this file's "A third scheduled check keeps the voice guidelines
-  current" below; the personal-pack sync was retired 2026-09-02 along with
-  `process/personal/` — see [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)
-  — and the BestPractice sync itself is paused for the duration of the
-  precedent-beta-v01 beta test, same document).
+  (it's Morgan's own preference about his own projects' automation, not a
+  convention Alex separately agreed to for his; see that practice's own
+  `## Story`) and [GETTING_STARTED.md](GETTING_STARTED.md)'s "A second
+  scheduled check keeps the voice guidelines current"; the BestPractice
+  sync itself is paused for the duration of the precedent-beta-v01 beta
+  test, see [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)).
 - **Start every thread by merging latest `origin/main` into your branch.**
 - **Then catch the member up.** Summarize what changed on `origin/main`
   since the last session, including anything any of the three syncs merged
@@ -129,9 +126,8 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
    captured — a document update, a registry entry, a decision record? Fold
    it now.
    **0b. Export gate** ([practice 14](process/upstream/PRACTICES.md#14-the-practice-export-loop-how-this-repo-propagates)):
-   did this thread improve a *generic*
-   BestPractice practice (not the personal pack, which never exports)?
-   Fold the abstracted form into `process/upstream/` now, per
+   did this thread improve a *generic* BestPractice practice? Fold the
+   abstracted form into `process/upstream/` now, per
    [process/upstream/INSTALL.md](process/upstream/INSTALL.md) §3, and run
    the scrub audit.
    **0c. TODO gate** ([`todo-gate`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/todo-gate.md))**:** re-read this thread's discussion
@@ -156,12 +152,10 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
      [voice_sync.py](process/voice/tools/voice_sync.py) `update` last
      mirrored from SoundHuman; resolve by re-running that
      sync, not by editing the file directly.
-   - **`process/personal/` is retired (2026-09-02)** — there is nothing left
-     under that path to conflict on. A merge that still has changes queued
-     against it predates the migration; see
-     [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md) for
-     where that content lives now (precedent-team-maintainers /
-     precedent-individual, resolved live, not vendored).
+   - **Nothing under `process/personal/` should ever appear again** — that
+     path is retired; a merge that still has changes queued against it
+     predates [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)
+     and needs that record read before resolving it.
 3. Run the audits — **all must pass before the merge commits**:
    `python3 process/upstream/tools/doc_lint.py`,
    `python3 tools/light_check.py`, and
@@ -231,19 +225,14 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
 
 ## Practice sources (Precedent)
 
-**Replaces the old "Personal setup rules (Morgan's pack)" section, 2026-09-02**
-(this is the first real test of
+This repo resolves practices from three sources, per
 [Precedent](https://github.com/alex137/BestPractice/tree/precedent-beta-v01)'s
-three-source model against a repo that already had BestPractice installed —
-full record in [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)).
+three-source model (migration history, for anyone curious how this repo
+got here from a single vendored pack: [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)).
 **New session and team/individual practices don't seem to apply? Read
 "Build-environment gotchas" above first** — this almost always means the
 session doesn't have repo access to precedent-team-maintainers or
 precedent-individual yet, not a bug in the resolver.
-The single vendored personal pack this section used to hold verbatim
-(RepoPersonalPreferences, at `process/personal/`) is retired; its 46 rules
-now live in two real repos this repo resolves practices from, live, instead
-of copying:
 
 - **Universal** — [process/upstream/PRACTICES.md](process/upstream/PRACTICES.md).
   Still a physical vendored copy, tracked by
@@ -368,24 +357,16 @@ repos directly, for anything not listed here.
   passed" is fine; a run that actually fails, or a warning your own edit
   newly introduces, is always worth flagging.
 - **light-check** (team). This repo's own copy lives at
-  [tools/light_check.py](tools/light_check.py) (relocated from
-  `process/personal/tools/` when that tree was retired — see this
-  practice's own Detail section on why each vendoring repo keeps its own
-  rather than inheriting a shared one), run on every commit path via
+  [tools/light_check.py](tools/light_check.py) — see that practice's own
+  Detail section on why each vendoring repo keeps its own rather than
+  inheriting a shared one — run on every commit path via
   [.github/workflows/light-check.yml](.github/workflows/light-check.yml).
 
-The rest of RepoPersonalPreferences' 46 rules (`push-back`, `trim-prose`,
-`list-item-parity`, `list-restraint`, `rule-scope-ask`, `no-duplication`,
-`header-caps`, `llm-neutral`, `fail-gracefully`, `default-branch`,
-`content-subdirs`, `new-rule-placement`, `durable-list-anchors`,
-`brainstorm-citations`, `no-stale-counts`, and more) are still real,
-still in force via the team source, and not restated here — that would be
-exactly the duplication
-[`no-duplication`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/no-duplication.md)
-warns against, generalized past "don't restate BestPractice" to "don't
-restate a resolved source." `morgan-scope` and `bestpractice-wins` were
-retired outright in the split (not moved) — the three-source structure
-itself now says what each of those two rules used to have to state by hand.
+The team source carries many more rules than the hand-curated stopgap list
+above — deliberately not restated here, per
+[`no-duplication`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/no-duplication.md):
+don't restate a resolved source. Run `python3 process/upstream/tools/precedent_resolve.py --repo .`
+for the full, current set.
 
 ### Scheduled syncs
 
@@ -396,23 +377,21 @@ itself now says what each of those two rules used to have to state by hand.
   for the duration of the precedent-beta-v01 beta test — see the workflow's
   own header comment and
   [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md).
-- **Personal-pack sync** — retired 2026-09-02 along with `process/personal/`.
-  Team and individual sources are resolved live from sibling clones now,
-  not vendored-and-synced by a scheduled workflow; keeping those sibling
+- **Team and individual sources are resolved live from sibling clones, not
+  vendored-and-synced by a scheduled workflow** — keeping those sibling
   clones themselves current is `tools/bootstrap.sh`'s job (a best-effort
   `git pull --ff-only` at session start for the team clone; the individual
   clone's own bootstrap hook does the same for itself), not a GitHub
   Actions workflow.
 - **Voice guidelines sync**
   ([.github/workflows/voice-guidelines-sync.yml](.github/workflows/voice-guidelines-sync.yml)):
-  unaffected by this migration — unrelated source (SoundHuman), same
-  shape, still active weekly. Needs its own repository secret,
+  unrelated source (SoundHuman), same shape as the BestPractice sync above,
+  still active weekly. Needs its own repository secret,
   `VOICEGUIDELINESTOSOUNDHUMAN_TOKEN`.
 - **Unattended automation reports its own blockers as a GitHub issue, not
-  only a log line** — [tools/report_automation_issue.py](tools/report_automation_issue.py)
-  (relocated from `process/personal/tools/`: a generic utility, not
-  personal-pack content, per
-  [`automation-issues`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/automation-issues.md)).
+  only a log line** — [tools/report_automation_issue.py](tools/report_automation_issue.py),
+  a generic utility, per
+  [`automation-issues`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/automation-issues.md).
 - **Both remaining scheduled syncs skip cleanly, not loudly, when neither
   Claude credential is set.** If asked to run one manually, no secret is
   needed — take the update in-session, then remind Morgan to set one so

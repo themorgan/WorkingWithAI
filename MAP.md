@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-02 12:40:00 (Buenos Aires) by Morgan F, to version 18 -->
+<!-- Last updated: 2026-09-03 11:05:52 (Buenos Aires) by Morgan F, to version 19 -->
 
 # Repository map — where to find things
 
@@ -32,9 +32,9 @@ Companions: [AGENTS.md](AGENTS.md) (workflow + conventions), [TODO.md](TODO.md)
 | [GETTING_STARTED.md](GETTING_STARTED.md) | Human-facing onboarding, including administrator click-paths (secrets, toggles, default branch). |
 | [README.md](README.md) | What this repo is, in a paragraph, plus the pipeline explanation and the agent-entry block. |
 | `process/upstream/` | Vendored copy of the public BestPractice repo, currently the `precedent-beta-v01` branch — see [process/manifest.json](process/manifest.json) and [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md). |
-| [precedent.json](precedent.json) | Declares this repo's team practice source, [precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers) — resolved live from a sibling clone, not vendored. Pipeline stage 3's two destinations (this one, plus [precedent-individual](https://github.com/themorgan/precedent-individual) for Morgan-specific facts, never declared here) replace the retired `process/personal/` / RepoPersonalPreferences — see [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md). |
+| [precedent.json](precedent.json) | Declares this repo's team practice source, [precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers) — resolved live from a sibling clone, not vendored. Pipeline stage 3's other destination, [precedent-individual](https://github.com/themorgan/precedent-individual) for Morgan-specific facts, is never declared here. |
 | [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) | The voice guidelines — write like a human, not an LLM — vendored from [SoundHuman](https://github.com/themorgan/SoundHuman); see [AGENTS.md](AGENTS.md)'s "Voice" section and [process/manifest_voice.json](process/manifest_voice.json). Governs chat replies, not just committed documents. |
-| [.github/workflows/](.github/workflows/) | The installed checks: Markdown lint, the light check, the BestPractice sync (paused during the beta), and the voice guidelines sync. The pack sync was retired 2026-09-02. |
+| [.github/workflows/](.github/workflows/) | The installed checks: Markdown lint, the light check, the BestPractice sync (paused during the beta), and the voice guidelines sync. |
 | [TODO.md](TODO.md) | Cross-session open items. |
 | `doc-recipes/`, `docs-team/doc-recipes/` | Standing rules for individual documents, one `.recipe.md` file per document, living beside the document it governs — see [`doc-recipe`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/doc-recipe.md). |
 | [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md) | The 2026-09-02 record of this repo's move from BestPractice-only to Precedent's three-source model: what changed, why, the `precedent_resolve.py` validation run, and what still doesn't work. |
@@ -49,4 +49,4 @@ Companions: [AGENTS.md](AGENTS.md) (workflow + conventions), [TODO.md](TODO.md)
 | Workflows | [RANDOM_NOTES.md](docs-team/RANDOM_NOTES.md) |
 | Things that went wrong, and why | [RANDOM_NOTES.md](docs-team/RANDOM_NOTES.md) |
 | Rules actually in force, and promotion candidates — stage 2 | [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) |
-| Rules rolled out to every project — stage 3 | [precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers) and [precedent-individual](https://github.com/themorgan/precedent-individual) (separate repos; through 2026-09-02 this was a single repo, RepoPersonalPreferences) |
+| Rules rolled out to every project — stage 3 | [precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers) and [precedent-individual](https://github.com/themorgan/precedent-individual) (separate repos) |

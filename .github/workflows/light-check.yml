@@ -1,7 +1,5 @@
 # Runs tools/light_check.py — this repo's own sanity net beyond
-# BestPractice's doc_lint.py (relocated from process/personal/tools/
-# 2026-09-02 when process/personal/ was retired; see
-# process/PRECEDENT_MIGRATION.md) — on every push and pull request, so it
+# BestPractice's doc_lint.py — on every push and pull request, so it
 # binds every path to the default branch, not just sessions that remember to
 # run it before committing (same reasoning as BestPractice's own
 # doc-lint.yml.template).

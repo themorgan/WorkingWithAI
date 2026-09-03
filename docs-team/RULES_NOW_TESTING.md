@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-02 12:40:00 (Buenos Aires) by Morgan F, to version 14 -->
+<!-- Last updated: 2026-09-03 11:05:52 (Buenos Aires) by Morgan F, to version 15 -->
 
 # Rules now testing — the current state of what we're trying
 
@@ -16,10 +16,7 @@ earns its way *off* — into [precedent-team-maintainers](https://github.com/the
 (or [precedent-individual](https://github.com/themorgan/precedent-individual)
 for the rare rule that's genuinely about Morgan the person, not the team),
 for automatic rollout to every project that resolves that source — only
-once it's actually proven itself here. Through 2026-09-02 both destinations
-were one repo, RepoPersonalPreferences, since split under
-[Precedent](https://github.com/alex137/BestPractice/tree/precedent-beta-v01)'s
-three-source model — see `../process/PRECEDENT_MIGRATION.md`. See
+once it's actually proven itself here. See
 [TODO.md](../TODO.md) for what's currently pending that move.
 
 **This document does not get vendored anywhere.** Unlike `process/upstream/`

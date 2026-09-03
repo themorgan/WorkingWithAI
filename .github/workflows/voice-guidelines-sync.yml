@@ -5,11 +5,9 @@
 # the update, integrates it, and merges it — without waiting for a session
 # to notice. See AGENTS.md's "Voice" section.
 #
-# Same shape as the now-retired personal-pack-sync.yml (vendored
-# RepoPersonalPreferences via process/personal/, replaced 2026-09-02 by
-# precedent.json's live team/individual sources — see
-# process/PRECEDENT_MIGRATION.md), including why: SoundHuman
-# is PRIVATE, so both jobs need a repository secret with read access to it —
+# Needs its own secret for the same reason bestpractice-upstream-sync.yml
+# doesn't: SoundHuman is PRIVATE, so this job needs a repository secret with
+# read access to it, where the public BestPractice repo needs none —
 # VOICEGUIDELINESTOSOUNDHUMAN_TOKEN (a GitHub personal access token —
 # fine-grained, read-only, scoped to just that one repo — is enough; the
 # same secret name that repo's own docs already use for its other known

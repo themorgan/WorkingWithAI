@@ -1,6 +1,5 @@
-# Last updated: 2026-08-29 09:52:17 (Buenos Aires) by Morgan F, to version 2
-# Install as .github/workflows/bestpractice-upstream-sync.yml in a repo
-# carrying the personal pack. Scheduled, unattended equivalent of
+# Last updated: 2026-09-03 11:05:52 (Buenos Aires) by Morgan F, to version 3
+# Scheduled, unattended equivalent of
 # BestPractice's own INSTALL.md §2 ("Take an upstream update"): checks
 # whether the public BestPractice repo has moved past
 # process/manifest.json's recorded commit, and if so, takes the update,
