@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-02 18:17:55 (Buenos Aires) by Morgan F, to version 45 -->
+<!-- Last updated: 2026-09-03 09:32:37 (Buenos Aires) by Morgan F, to version 46 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -188,6 +188,23 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Re-vendor `process/upstream/` again to pick up the session-repo-access
+  fix and the rewritten `ADOPTING.md` approval-lifecycle section.** Decided
+  2026-09-03 → done. Two more upstream commits: `f990a98` closes the exact
+  session-repo-access gap this repo's own `AGENTS.md` hit and fixed locally
+  first (proactive `add_repo`, never "ask if the clone fails") — now baked
+  into `INSTALL.md`, `spec/MIGRATING_EXISTING_INSTALLS.md`, and
+  `templates/AGENTS.md.template` so every future install gets it right from
+  day one, not just this repo. `3a9d497` rewrites `ADOPTING.md`'s approval
+  lifecycle as "How an idea becomes a practice" — the plain-language
+  explanation of individual/team/universal approval Morgan asked to have
+  written down. `process/manifest.json`'s `upstream.commit`/`_note` updated
+  to the new tip (`b81b6b9`). Scrub-collision count moved 60 → 61 (the
+  re-vendored `ADOPTING.md` carries its own "Buenos Aires" file-header
+  date, same already-disclosed-upstream reasoning as the rest of that known
+  exception) — `AGENTS.md` and `process/PRECEDENT_MIGRATION.md` updated to
+  match.
 
 - [x] **Re-vendor `process/upstream/` to pick up two new BestPractice
   `precedent-beta-v01` commits: a `doc_lint.py` acronym false-positive fix,

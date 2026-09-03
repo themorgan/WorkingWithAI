@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 08:52:34 (Buenos Aires) by Morgan F, to version 23 -->
+<!-- Last updated: 2026-09-03 09:32:37 (Buenos Aires) by Morgan F, to version 24 -->
 
 # Repository instructions — read me first
 
@@ -452,8 +452,8 @@ assistant works this repo, rather than being retrofitted later.
   this against
   [process/scrub_blocklist.txt](process/scrub_blocklist.txt) and must pass
   before committing anything that touches `process/`. **Known exception,
-  as of the precedent-beta-v01 vendor (2026-09-02):** this currently
-  reports 60 SCRUB failures inside `process/upstream/` itself — a real,
+  as of the precedent-beta-v01 vendor (2026-09-03):** this currently
+  reports 61 SCRUB failures inside `process/upstream/` itself — a real,
   understood collision, not a leak; see
   [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)'s "A
   real finding" section before treating a fresh run of this audit as
