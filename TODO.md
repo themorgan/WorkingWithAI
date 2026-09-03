@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 10:23:01 (Buenos Aires) by Morgan F, to version 48 -->
+<!-- Last updated: 2026-09-03 11:05:52 (Buenos Aires) by Morgan F, to version 49 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -188,6 +188,24 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Re-vendor `process/upstream/` to pick up `code-cites-practice`'s
+  finished retrofit; add the same slug markers to this account's own two
+  private practice sources.** Decided 2026-09-03 → done. Morgan asked
+  directly whether the retrofit had actually reached universal, team, and
+  individual — it hadn't finished for universal (only the one motivating
+  example, `disclose-landing`, had been fixed) and hadn't started for the
+  two private sets. Closed all three: BestPractice converted over thirty
+  stale position-number citations across ten `tools/*.py` files to slugs,
+  and widened the check to flag a bare `practice N` mention on sight, not
+  only an existing-but-wrong slug; `precedent-team-maintainers` and
+  `precedent-individual` (no session access needed beyond what this repo
+  already has via `add_repo`) each got the same `# practice: SLUG` marker
+  added to every one of their own check scripts' docstrings, for
+  consistency, even though neither had an actual drift risk (their check
+  scripts were built under the slug-based model from the start).
+  `process/manifest.json`'s `upstream.commit`/`_note` updated; scrub-count
+  unchanged at 62.
 
 - [x] **Move `bestpractice-sync` from `precedent-team-maintainers` to
   `precedent-individual`; add `code-cites-practice` and
