@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 11:26:18 (Buenos Aires) by Morgan F, to version 50 -->
+<!-- Last updated: 2026-09-03 11:51:03 (Buenos Aires) by Morgan F, to version 51 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -188,6 +188,18 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Re-vendor `process/upstream/` to pick up `migration-scrubs-vocabulary`.**
+  Decided 2026-09-03 → done. Upstream added a new practice, mechanical
+  check, and harness case: a repo migrating off an old practice system now
+  scrubs that system's vocabulary in the same migration, not on request —
+  the exact gap this repo's own RepoPersonalPreferences migration hit a
+  day before it was caught. Adds an opt-in, tree-scoped check keyed off a
+  declared `process/retired_vocabulary.json` (this repo hasn't declared
+  one, so it reports `NotApplicable`) and strengthens
+  `spec/MIGRATING_EXISTING_INSTALLS.md`'s step 5 to require it before a
+  migration counts as done. `process/manifest.json`'s `upstream.commit`/
+  `_note` updated; scrub-collision count unchanged.
 
 - [x] **Strip old-system vocabulary and instructions (RepoPersonalPreferences,
   "the personal pack", `process/personal/`) out of every day-to-day
