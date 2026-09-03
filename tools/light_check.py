@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Last updated: 2026-09-02 (Buenos Aires) by a Precedent beta-test session, to version 1
+# Last updated: 2026-09-03 (Buenos Aires) by a Precedent beta-test session, to version 2
 """light_check.py — this repo's own sanity net, beyond BestPractice's doc_lint.py.
 
 Repo-owned tool, per precedent-team-maintainers's `light-check` practice
@@ -49,20 +49,38 @@ that isn't a style violation so much as "something obviously went wrong":
      yet) is a WARNING, not part of this gate — that's an environment fact,
      not a repo-content defect, and every CI run would otherwise fail on
      something CI can never satisfy.
+  8. ON-DEMAND PRACTICES MATCHED (informational only, never a gate): for each
+     changed file, which on-demand practices' `applies_to` glob matches it —
+     the same lookup `tools/precedent_paths.py FILE` does by hand, run here
+     automatically so it doesn't depend on a session remembering to ask.
+     Added after a session reorganizing docs-team/HUMANS_AT_OUR_BEST.md
+     mis-capitalized a new header: `header-caps` matched the edited file and
+     would have caught it, but nothing surfaced the rule because the session
+     never ran precedent_paths.py against that file, only recalling a few
+     slugs from memory instead. This closes that gap by making the surfacing
+     automatic rather than something a session has to remember to trigger —
+     see [`checkable-gets-checked`](../practices/checkable-gets-checked.md):
+     a genuine mechanical check (the header-caps script) already exists for
+     part of the rule, but the earlier miss was never reaching the rule's
+     text at all, which no downstream mechanical check can catch after the
+     fact.
 
 Checks 1-5 and 7 are gates (FAIL, exit 1); check 6 is a warning, and so is
-the "not checked out here" case within check 7 (see above). Checks 1-6
-use the same scoping convention as doc_lint.py: by default, files changed vs
-the default branch (committed + working tree); explicit paths scan exactly
-those; --all scans every tracked text file and never fails (backlog report
-only). Check 7 ignores file scoping — it always inspects the whole repo, in
-every mode including --all, though --all still keeps it non-fatal per that
-mode's own contract.
+the "not checked out here" case within check 7 (see above). Check 8 never
+fails or warns — it's a reminder to go read a Rule, not a defect. Checks 1-6
+and 8 use the same scoping convention as doc_lint.py: by default, files
+changed vs the default branch (committed + working tree); explicit paths
+scan exactly those; --all scans every tracked text file and never fails
+(backlog report only). Check 7 ignores file scoping — it always inspects the
+whole repo, in every mode including --all, though --all still keeps it
+non-fatal per that mode's own contract.
 
 Run:  python3 tools/light_check.py            # changed-vs-default-branch, gate
       python3 tools/light_check.py --all       # whole repo, report-only
 """
 import ast, json, pathlib, re, subprocess, sys
+
+import precedent_paths
 
 def _git(args, cwd=None):
     return subprocess.run(['git'] + args, cwd=cwd, capture_output=True, text=True).stdout.strip()
@@ -233,6 +251,13 @@ def check_precedent_sources(fails, warns):
                 "(expected in CI; see AGENTS.md's 'Build-environment gotchas' if "
                 "this is a session that should have it), or a stale path.")
 
+def check_applicable_practices(files, notes):
+    # practice: checkable-gets-checked
+    # matches_for_paths already returns at most one (slug, path) pair per
+    # slug -- no dedup needed here.
+    for slug, path in precedent_paths.matches_for_paths(files):
+        notes.append(f"{slug} — {path}")
+
 def check_file(rel, fails, warns):
     p = ROOT / rel
     if not p.exists() or not p.is_file():
@@ -267,12 +292,17 @@ def main():
     if not HAVE_YAML:
         print("light_check: PyYAML not installed — YAML syntax check SKIPPED (pip install pyyaml).")
 
-    fails, warns = [], []
+    fails, warns, notes = [], [], []
     for f in files:
         check_file(f, fails, warns)
     check_upstream_manifest(fails)
     check_precedent_sources(fails, warns)
+    check_applicable_practices(files, notes)
 
+    if notes:
+        print("On-demand practices matched by these changes (read before committing):")
+        for n in notes:
+            print(f"  {n}")
     for w in warns:
         print(f"WARN: {w}")
     for f in fails:
