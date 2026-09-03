@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-08-31 (Buenos Aires) by a phase-2 build session -->
+<!-- Last updated: 2026-09-03 (Buenos Aires) by a follow-up session, adding the cross-source consumer-repo generator -->
 
 # The Loader (Phase 2)
 
@@ -21,6 +21,36 @@ implementation note, not a restatement.
 | Generated views | [tools/build_views.py](../tools/build_views.py) → AGENTS.md's loader block, [MAP.md](../MAP.md), [GLOSSARY.md](../GLOSSARY.md) | Built. All three fail tools/verify_harness.py if hand-edited or stale. |
 | Resident budget, hard-capped | `RESIDENT_BUDGET_TOKENS = 2000` in tools/build_views.py; the build exits nonzero over budget | Built. Current size is in [The catalogue as it stands](#the-catalogue-as-it-stands) below, generated. |
 | Premise measured, not assumed | [tools/behavioral_replay.py](../tools/behavioral_replay.py) | Built. See "What the replay measures" below — it is honest about what it can and cannot prove. |
+
+**Generated views are no longer this-repo-only (2026-09-03).** A team or
+individual source repo (e.g. `precedent-team-maintainers`,
+`precedent-individual`) vendors the same [tools/build_views.py](../tools/build_views.py)
+and runs `python3 tools/build_views.py --agents-only` on its own
+`practices/`, getting the identical resident-block/occasion-index/standing-
+instruction treatment this repo's own `AGENTS.md` gets — `--agents-only`
+skips `render_map_md()`/`render_glossary_md()`, which assume this repo's own
+structure (`TOOLS_DESCRIPTIONS`, "this repo is BestPractice itself" prose)
+and aren't meaningful for a practice-set repo with a different `tools/`
+layout.
+
+**The cross-source case is also built now (2026-09-03, same day).** A
+consuming repo — universal + team + individual + repo-local, all resolved
+together into one generated `AGENTS.md` — runs
+[tools/precedent_sync_views.py](../tools/precedent_sync_views.py), which
+does two things already independently built and tested
+([tools/precedent_materialize.py](../tools/precedent_materialize.py) to
+merge every declared source into a real `practices/` directory, then
+`build_loader_block()` — the *same* renderer, fed the resolved practices
+directly rather than re-read from disk) as one command. See
+[spec/MIGRATING_EXISTING_INSTALLS.md](MIGRATING_EXISTING_INSTALLS.md)'s
+"Known gap" section for what this replaces and one real bug it took to get
+here (a repo-local source declared at the bare repo root silently losing
+hand-authored content to `precedent_materialize.py`'s own output — fixed,
+and now why repo-local's recommended `path` is a subdirectory, not `"."`).
+Built and tested against a real four-source fixture
+(`check_sync_views_cross_source` in
+[tools/verify_harness.py](../tools/verify_harness.py)); not yet exercised
+against a real consumer repo with real content — that's the next test.
 
 ## The catalogue as it stands
 

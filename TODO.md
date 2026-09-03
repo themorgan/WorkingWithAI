@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 11:51:03 (Buenos Aires) by Morgan F, to version 51 -->
+<!-- Last updated: 2026-09-03 13:37:18 (Buenos Aires) by Morgan F, to version 52 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -188,6 +188,30 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 ## Verify before external use
 
 ## Decisions (user's call)
+
+- [x] **Re-vendor `process/upstream/` to pick up the cross-source
+  consumer-repo generator (`tools/precedent_sync_views.py`); vendor the
+  loader-engine tools to this repo's own top-level `tools/`; regenerate
+  `AGENTS.md`'s loader block for real.** Decided 2026-09-03 → done, full
+  record in [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)'s
+  "2026-09-03 follow-up" section. Closes the "Known gap" the original
+  migration below flagged and explicitly did not build a fix for: the
+  hand-curated resident/on-demand stopgap list in `AGENTS.md` is gone,
+  replaced by a real `<!-- BEGIN/END GENERATED: precedent-loader -->` block
+  regenerated from all four sources (universal/team/individual/repo-local)
+  by `python3 tools/precedent_sync_views.py --repo .` — confirmed
+  byte-identical on a second `--check` run. Re-vendored `process/upstream/`
+  to `precedent-beta-v01` commit `16a9becf` (previously `8c3b02dd`);
+  `process/manifest.json` updated. Evaluated repo-local per practice 23's
+  decision rule — not adopted, nothing in this repo's own `AGENTS.md` rose
+  to a portable rule distinct from its subject-matter docs. Found and
+  documented, not silently patched: a real path-doubling bug in the
+  vendored `precedent_materialize.py`'s `MANIFEST.json` output (cosmetic —
+  actual file writes are correct); `.claude/settings.json`'s permission
+  allowlist left un-updated for the two new script paths (blocked by the
+  session's own auto-mode classifier, a self-granting-permissions change
+  correctly left for a human). `practice_audit.py`'s scrub-collision count
+  unchanged at 63 (matches the previously recorded count exactly).
 
 - [x] **Re-vendor `process/upstream/` to pick up `migration-scrubs-vocabulary`.**
   Decided 2026-09-03 → done. Upstream added a new practice, mechanical

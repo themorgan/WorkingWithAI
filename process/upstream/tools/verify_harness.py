@@ -969,9 +969,12 @@ def check_leak_gate_fires():
 
 
 def check_source_precedence():
-    """Three sources resolved by a consumer repo, and the precedence rules
+    """Four sources resolved by a consumer repo, and the precedence rules
     asserted as stated cases (PRACTICE_ENGINE_PLAN.md, phase-3 done-when: "a
-    consumer repo resolves all three and precedence is tested").
+    consumer repo resolves all three and precedence is tested" -- extended
+    2026-09-03 to a fourth source, repo-local, and to the reordered
+    precedence team > repo-local > individual > universal; see
+    spec/SOURCES.md for why the order changed).
 
     WHY THE FIXTURE IS BUILT IN A TEMPORARY DIRECTORY AND NOT COMMITTED.
     Levels are repositories, not directories. A committed fixture holding a
@@ -1008,22 +1011,41 @@ def check_source_precedence():
         universal, team, individual = tmp / 'u', tmp / 't', tmp / 'i'
         (consumer).mkdir()
 
+        # repo-local practices live IN the consumer repo itself (path ".")
+        # -- `practice(consumer, ...)` writes to consumer/practices/, which
+        # is exactly what a repo-local source resolves against.
         practice(universal, 'shared-slug', level_note='universal wins nothing')
+        practice(universal, 'shared-slug-2', level_note='universal wins nothing here either')
         practice(universal, 'universal-only', level_note='only here')
         practice(universal, 'house-style', level_note='what we ship',
                  severity='blocking')
         practice(universal, 'retired-one', level_note='gone', status='retired')
-        practice(team, 'shared-slug', level_note='team beats universal')
+        practice(team, 'shared-slug', level_note='team beats everything, '
+                 'even repo-local')
         practice(team, 'team-only', level_note='only here')
-        practice(team, 'client-tone', level_note='always formal',
-                 severity='blocking')
-        practice(individual, 'shared-slug', level_note='individual beats team')
+        practice(consumer, 'shared-slug', level_note='repo-local beats '
+                 'individual and universal, but not team')
+        practice(consumer, 'shared-slug-2', level_note='repo-local beats '
+                 'individual and universal here too, and team is not in '
+                 'play for this slug at all')
+        practice(consumer, 'repo-local-only', level_note='only here')
+        practice(consumer, 'house-style', level_note='a repo-local attempt '
+                 'at the same slug the blocking universal practice holds')
+        practice(individual, 'shared-slug', level_note='individual beats '
+                 'universal, loses to repo-local and team')
+        practice(individual, 'shared-slug-2', level_note='individual beats '
+                 'universal, loses to repo-local')
         practice(individual, 'individual-only', level_note='only here')
-        practice(individual, 'casual-tone', level_note='keep it casual',
+        practice(individual, 'client-tone', level_note='an individual '
+                 'practice that must survive a team override attempt',
+                 severity='blocking')
+        practice(team, 'team-formal-tone', level_note='team tries to '
+                 'override the individual\'s blocking client-tone',
                  overrides='client-tone')
-        practice(individual, 'my-own-name', level_note='replaces team-only',
-                 overrides='team-only')
-        practice(individual, 'house-style', level_note='my own house style')
+        practice(universal, 'old-universal-name', level_note='the universal '
+                 'practice an individual practice renames')
+        practice(individual, 'my-own-name', level_note='replaces '
+                 'old-universal-name', overrides='old-universal-name')
         # A practice whose OWN slug is blocked, that ALSO names an unrelated
         # slug in `overrides:`. Regression fixture for a real bug: the
         # resolver used to process a practice's own-slug collision and its
@@ -1046,7 +1068,9 @@ def check_source_precedence():
             'sources': [{'level': 'universal', 'name': 'precedent',
                          'path': str(universal)},
                         {'level': 'team', 'name': 'precedent-team-fixture',
-                         'path': str(team)}]}), encoding='utf-8')
+                         'path': str(team)},
+                        {'level': 'repo-local', 'name': 'a-project-local',
+                         'path': '.'}]}), encoding='utf-8')
         user_cfg = tmp / 'user.json'
         user_cfg.write_text(json.dumps({
             'format_version': 1,
@@ -1063,32 +1087,45 @@ def check_source_precedence():
 
         rc, out, _err = run()
         if rc != 0:
-            check('source precedence (three sources resolved by a consumer repo)',
+            check('source precedence (four sources resolved by a consumer repo)',
                   False, f'precedent_resolve.py exited {rc}')
             return
         data = json.loads(out)
         by_slug = {p['slug']: p for p in data['practices']}
         cases = []
 
-        # all three sources are actually in play
-        cases.append(('all three sources resolve',
+        # all four sources are actually in play
+        cases.append(('all four sources resolve',
                       {s['level'] for s in data['sources']}
-                      == {'universal', 'team', 'individual'}))
-        # precedence: individual > team > universal, on one shared slug
-        cases.append(('individual beats team beats universal on a shared slug',
-                      by_slug.get('shared-slug', {}).get('level') == 'individual'))
+                      == {'universal', 'team', 'individual', 'repo-local'}))
+        # precedence: team > repo-local > individual > universal, on a slug
+        # defined at all four
+        cases.append(('team beats repo-local beats individual beats '
+                      'universal on a slug defined at all four',
+                      by_slug.get('shared-slug', {}).get('level') == 'team'))
+        # isolate repo-local's own rank: a slug defined at repo-local,
+        # individual and universal, but NOT team, must resolve to repo-local
+        cases.append(('repo-local beats individual and universal when team '
+                      'is not in play for that slug',
+                      by_slug.get('shared-slug-2', {}).get('level') == 'repo-local'))
         # everything unique to a level survives
         for slug, level in (('universal-only', 'universal'),
-                            ('individual-only', 'individual')):
+                            ('individual-only', 'individual'),
+                            ('team-only', 'team'),
+                            ('repo-local-only', 'repo-local')):
             cases.append((f'{slug} survives from {level}',
                           by_slug.get(slug, {}).get('level') == level))
-        # the one case the individual does NOT win
-        cases.append(('a blocking universal practice is not overridden by the '
-                      'individual', by_slug.get('house-style', {}).get('level')
+        # blocking protects a LOWER-ranked practice from a HIGHER one, not
+        # just "team or universal" -- a blocking universal practice survives
+        # against team, individual and repo-local all reusing its slug
+        cases.append(('a blocking universal practice is not overridden by '
+                      'anything above it', by_slug.get('house-style', {}).get('level')
                       == 'universal'))
-        cases.append(('a blocking team practice is not overridden by an '
-                      '`overrides:` from the individual',
-                      by_slug.get('client-tone', {}).get('level') == 'team'))
+        # and a blocking INDIVIDUAL practice survives against team, which
+        # ranks above individual and would otherwise win by plain precedence
+        cases.append(('a blocking individual practice is not overridden by '
+                      'a higher-ranked team `overrides:` attempt',
+                      by_slug.get('client-tone', {}).get('level') == 'individual'))
         cases.append(('the refusal is reported, not silent',
                       {b['slug'] for b in data['blocked']}
                       == {'house-style', 'client-tone', 'client-tone-2'}))
@@ -1098,13 +1135,14 @@ def check_source_precedence():
         # passed -- the two blocking cases pass either way, because a refused
         # override and an ignored one look identical from outside.
         cases.append(('an `overrides:` removes the lower practice it names',
-                      'team-only' not in by_slug))
+                      'old-universal-name' not in by_slug))
         cases.append(('and the practice doing the overriding enters the set',
                       by_slug.get('my-own-name', {}).get('level') == 'individual'))
         cases.append(('the override is reported',
-                      any(s['slug'] == 'team-only' for s in data['overridden'])))
-        cases.append(('an overriding practice still enters the set itself',
-                      'casual-tone' in by_slug))
+                      any(s['slug'] == 'old-universal-name' for s in data['overridden'])))
+        cases.append(('an overriding practice still enters the set itself '
+                      'even when its override attempt is refused by blocking',
+                      'team-formal-tone' in by_slug))
         # lifecycle: a retired practice is resolvable but not in force
         cases.append(('a retired practice is not in force',
                       'retired-one' not in by_slug))
@@ -1174,6 +1212,24 @@ def check_source_precedence():
                       r.returncode == 1 and 'individual source' in
                       (r.stdout + r.stderr)))
 
+        # a repo-local source whose path is NOT the declaring repo's own
+        # root is refused -- the level only means anything if a repo cannot
+        # point it at someone else's tree and call that "local"
+        elsewhere = tmp / 'elsewhere-project'
+        elsewhere.mkdir()
+        (elsewhere / 'precedent.json').write_text(json.dumps({
+            'format_version': 1,
+            'sources': [{'level': 'repo-local', 'name': 'not-actually-local',
+                         'path': str(team)}]}), encoding='utf-8')
+        r_el = subprocess.run(
+            [sys.executable, str(ROOT / 'tools' / 'precedent_resolve.py'),
+             '--repo', str(elsewhere)],
+            capture_output=True, text=True)
+        cases.append(('a repo-local source whose path is not the declaring '
+                      "repo's own root is refused",
+                      r_el.returncode == 1 and 'repo-local source' in
+                      (r_el.stdout + r_el.stderr)))
+
         # degrade gracefully: the individual set is gone (a fresh cloud session)
         shutil.rmtree(individual)
         rc2, out2, err2 = run()
@@ -1182,9 +1238,10 @@ def check_source_precedence():
                       rc2 == 0))
         cases.append(('and says so rather than pretending it was applied',
                       'individual' in err2 and 'not in force' in err2))
-        cases.append(('and the team and universal practices still resolve',
+        cases.append(('and the team, universal and repo-local practices '
+                      'still resolve',
                       {p['slug'] for p in data2.get('practices', [])}
-                      >= {'team-only', 'universal-only', 'client-tone'}))
+                      >= {'team-only', 'universal-only', 'repo-local-only'}))
         cases.append(('--strict makes a missing source fatal',
                       run('--strict')[0] == 1))
 
@@ -1193,8 +1250,8 @@ def check_source_precedence():
             if not passed:
                 print(f"  precedence did NOT behave as stated: {name}")
         check(f'source precedence ({len(cases)} stated cases: a consumer repo '
-              f'resolves universal + team + individual, blocking wins over '
-              f'precedence, a missing set degrades)', ok)
+              f'resolves universal + team + individual + repo-local, blocking '
+              f'wins over precedence, a missing set degrades)', ok)
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
@@ -2782,6 +2839,127 @@ def check_materialize_bridges_loader():
           not bad, '; '.join(f"{n}{' (' + d + ')' if d else ''}" for n, d in bad))
 
 
+def check_sync_views_cross_source():
+    """tools/precedent_sync_views.py -- the one-command glue over
+    precedent_materialize.py + build_views.py --agents-only that a
+    CONSUMING repo (all four sources at once) actually runs, as opposed to
+    the two tools it wraps, each already covered by their own harness
+    case. Built and this case added 2026-09-03 alongside the precedence
+    reorder and the repo-local level -- the fixture below is what caught
+    two real bugs before either shipped: precedent_materialize.py deleting
+    a repo-local source's own file before reading it (a self-referential
+    `path: "."` source), and this tool's resident-count-by-level header
+    counting every resolved practice instead of only the resident ones."""
+    import shutil, tempfile
+
+    def write_practice(path, slug, rule, tier='on-demand', occasion='x'):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(
+            f'---\nslug: {slug}\ntitle: Fixture\ntier: {tier}\nseverity: default\n'
+            f'applies_to: ["**"]\noccasion: "{occasion}"\ngates: []\n'
+            f'index_clause: "x"\nchecked_by: null\ndefines: []\nstatus: active\n'
+            f'supersedes: []\noverrides: null\nadded: null\napproved_by: "x"\n'
+            f'source_practice_number: null\n---\n## Rule\n{rule}\n\n## Why\nx\n\n'
+            f'## Story\nx\n\n## Install\nx\n', encoding='utf-8')
+
+    tmp = pathlib.Path(tempfile.mkdtemp(prefix='precedent-sync-views-'))
+    cases = []
+    try:
+        consumer = tmp / 'consumer'
+        universal, team, individual = tmp / 'u', tmp / 't', tmp / 'i'
+
+        write_practice(universal / 'practices' / 'uni-fixture.md', 'uni-fixture',
+                        'A universal fixture rule.', tier='resident')
+        write_practice(team / 'practices' / 'team-fixture.md', 'team-fixture',
+                        'A team fixture rule.', tier='resident')
+        write_practice(individual / 'practices' / 'ind-fixture.md', 'ind-fixture',
+                        'An individual fixture rule.', occasion='doing individual things')
+        # repo-local at a SUBDIRECTORY, per the recommended convention --
+        # this is what keeps its hand-authored source apart from the
+        # materialized output, both of which land under `consumer/`.
+        write_practice(consumer / 'local' / 'practices' / 'local-fixture.md',
+                        'local-fixture', 'A repo-local fixture rule.',
+                        occasion='doing local things')
+
+        (consumer / 'precedent.json').write_text(json.dumps({
+            'sources': [{'level': 'universal', 'name': 'uni', 'path': str(universal)},
+                        {'level': 'team', 'name': 'team', 'path': str(team)},
+                        {'level': 'repo-local', 'name': 'self', 'path': 'local'}]
+        }), encoding='utf-8')
+        user_cfg = tmp / 'user.json'
+        user_cfg.write_text(json.dumps({
+            'individual': {'name': 'ind', 'path': str(individual)}}), encoding='utf-8')
+        (consumer / 'AGENTS.md').write_text(
+            '# fixture\n\n<!-- BEGIN GENERATED: precedent-loader -->\n'
+            '<!-- END GENERATED -->\n', encoding='utf-8')
+
+        sync_tool = str(ROOT / 'tools' / 'precedent_sync_views.py')
+
+        def run(*extra):
+            r = subprocess.run([sys.executable, sync_tool, '--repo', str(consumer),
+                                 '--user-config', str(user_cfg), *extra],
+                                capture_output=True, text=True)
+            return r.returncode, r.stdout + r.stderr
+
+        rc, out = run()
+        cases.append(('a clean sync across all four sources exits 0', rc == 0, out))
+
+        agents_text = (consumer / 'AGENTS.md').read_text(encoding='utf-8')
+        cases.append(('the resident block names BOTH resident sources, not just one',
+                      'uni-fixture' in agents_text and 'team-fixture' in agents_text))
+        cases.append(('the resident-count-by-level header counts only the '
+                      'RESIDENT practices, not all four resolved ones',
+                      '2 of 4 practices (1 team, 1 universal)' in agents_text))
+        cases.append(('the occasion index reaches the on-demand individual '
+                      'and repo-local practices too',
+                      'ind-fixture' in agents_text and 'local-fixture' in agents_text))
+        cases.append(('the repo-local source file at its OWN subdirectory '
+                      'survives the sync untouched',
+                      (consumer / 'local' / 'practices' / 'local-fixture.md').exists()))
+
+        rc2, out2 = run('--check')
+        cases.append(('--check on a just-synced, unmodified AGENTS.md exits 0',
+                      rc2 == 0, out2))
+
+        (consumer / 'AGENTS.md').write_text(
+            agents_text.replace('uni-fixture', 'HAND-EDITED'), encoding='utf-8')
+        rc3, out3 = run('--check')
+        cases.append(('--check on a hand-edited AGENTS.md exits 1, not silently 0',
+                      rc3 == 1, out3))
+
+        # the exact bug this fixture was built to catch: a repo-local
+        # source declared at the bare repo root (`path: "."`) must not
+        # crash precedent_materialize.py when it and the output directory
+        # are the same place
+        selfref = tmp / 'selfref'
+        write_practice(selfref / 'practices' / 'local-only.md', 'local-only',
+                        'A self-referential repo-local rule.')
+        (selfref / 'precedent.json').write_text(json.dumps({
+            'sources': [{'level': 'repo-local', 'name': 'self', 'path': '.'}]
+        }), encoding='utf-8')
+        (selfref / 'AGENTS.md').write_text(
+            '# fixture\n\n<!-- BEGIN GENERATED: precedent-loader -->\n'
+            '<!-- END GENERATED -->\n', encoding='utf-8')
+        r_self = subprocess.run([sys.executable, sync_tool, '--repo', str(selfref)],
+                                 capture_output=True, text=True)
+        cases.append(("a repo-local source declared at the bare repo root "
+                      "(`path: \".\"`) does not crash materialize when the "
+                      "source and the output directory coincide",
+                      r_self.returncode == 0
+                      and (selfref / 'practices' / 'local-only.md').exists(),
+                      r_self.stdout + r_self.stderr))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    bad = [(c[0], c[2] if len(c) > 2 else '') for c in cases if not c[1]]
+    check(f'precedent_sync_views.py syncs a consuming repo across all four '
+          f'sources ({len(cases)} stated cases: clean sync, both resident '
+          f'sources shown, correct level-of-resident counting, occasion '
+          f'index reaches on-demand practices, --check both directions, a '
+          f'self-referential repo-local source does not crash materialize)',
+          not bad, '; '.join(f"{n}{' (' + d + ')' if d else ''}" for n, d in bad))
+
+
 def check_detect_restated_fires():
     """`precedent_detect.py restated` (Stage 1's cross-source duplicate-Rule
     scan) had zero harness coverage before this deep-check pass -- a real
@@ -3258,6 +3436,7 @@ def main():
     check_routing_scope(files)
     check_gate_channel()
     check_materialize_bridges_loader()
+    check_sync_views_cross_source()
     check_detect_restated_fires()
     check_creation_pipeline_fires()
 

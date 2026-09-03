@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 11:52:29 (Buenos Aires) by Morgan F, to version 5 -->
+<!-- Last updated: 2026-09-03 13:37:18 (Buenos Aires) by Morgan F, to version 6 -->
 
 # Migrating this repo from BestPractice-only to Precedent (2026-09-02)
 
@@ -238,10 +238,123 @@ as a real gap `practice_audit.py`'s scrub check has no answer for today
 `tools/leak_gate.py`'s push-time check already uses instead of scanning a
 whole snapshot, would resolve it — not built here).
 
+## 2026-09-03 follow-up: the cross-source generator lands, gap closed for real
+
+The "Known gap" section above was written when `precedent_resolve.py` merged
+all three sources but nothing turned that resolved set into the loading
+channels a session actually reads automatically. That gap is closed as of
+upstream commit `16a9becf` (PR #81, "Build the cross-source consumer-repo
+generator; fix a repo-local data-loss bug"), which this re-vendor picks up.
+
+**Re-vendor.** `process/upstream/` replaced wholesale from a checkout of
+`precedent-beta-v01` at `16a9becf00596c3050427abeb5894c8ee6caa1c9` (previously
+`8c3b02dd`), per the same one-off-manual-mirror pattern as before — `process/manifest.json`'s
+`upstream.commit`/`synced_from` updated, `upstream.branch` and its
+sync-paused `_note` were already correct and untouched. The delta was small
+and exactly matched the upstream commit message: `spec/MIGRATING_EXISTING_INSTALLS.md`'s
+"Known gap" section rewritten to describe the fix instead of the gap, and
+four tool files changed (`build_views.py`, `precedent_materialize.py`,
+`precedent_resolve.py`, `verify_harness.py`), plus the new
+`tools/precedent_sync_views.py`.
+
+**Loader-engine tools vendored to this repo's own top-level `tools/`** —
+`precedent_resolve.py`, `precedent_materialize.py`, `build_views.py`,
+`precedent_show.py`, `precedent_paths.py`, `precedent_gate.py`,
+`split_practices.py`, `precedent_sync_views.py`, copied verbatim from
+BestPractice's `tools/`, deliberately *not* nested under
+`process/upstream/tools/` (reserved for the audit/sync tools that operate on
+the vendored universal tree itself — see
+[spec/MIGRATING_EXISTING_INSTALLS.md](https://github.com/alex137/BestPractice/blob/precedent-beta-v01/spec/MIGRATING_EXISTING_INSTALLS.md)
+step 3/7).
+
+**Repo-local: evaluated, not adopted.** Checked
+[practice 23](https://github.com/alex137/BestPractice/blob/precedent-beta-v01/PRACTICES.md#23-a-layered-set-of-practice-packs-generic-domain-repo-local)'s
+decision rule ("would this hold in an unrelated repo? / only in a repo
+running the same kind of program? / only here?") against this repo's own
+`AGENTS.md`. Nothing surfaced that's cleanly a *rule* true only of this
+repo and not already covered by the universal/team/individual split: this
+repo's genuinely repo-local content (`MAP.md`, `TODO.md`, `GLOSSARY.md`,
+the `docs-team/` brainstorm and philosophy documents) is subject matter,
+not procedural rules a loader would resident-load — practice 23's own
+distinction ("repo-local rules... live in that repo's instructions files",
+not "this repo's subject matter lives wherever"). No `precedent.json`
+repo-local source declared. Revisit if a genuinely portable-within-this-repo-only
+*rule* shows up later; nothing forecloses adding one.
+
+**`AGENTS.md` rewritten with the generator's markers.** The old
+hand-curated "Always in force" / "On demand, frequently needed" stopgap
+lists (explicitly labeled a stopgap in the previous version of this
+section) are gone, replaced by `<!-- BEGIN GENERATED: precedent-loader -->`
+/ `<!-- END GENERATED -->` markers around the block
+`tools/precedent_sync_views.py --repo .` writes: the real resident set plus
+an occasion index, rendered by the same `build_loader_block()` BestPractice
+uses on itself. First real run against real content (not the verification
+harness's fixture):
+
+```
+$ python3 tools/precedent_sync_views.py --repo .
+precedent_materialize: not a per-check file, not vendored: tools/checks/tests/run_all.sh (precedent-individual), tools/checks/tests/run_all.sh (precedent-team-maintainers)
+precedent_sync_views OK: materialized 102 practice(s) and 26 check script(s)/test(s), wrote AGENTS.md (resident ~659 of 2000 token budget)
+$ python3 tools/precedent_sync_views.py --repo . --check
+precedent_sync_views --check OK: AGENTS.md byte-identical to a fresh sync (102 practice(s), 10 resident, ~659 of 2000 token budget)
+```
+
+Sanity-checked the generated block by hand: the 10 resident practices (1
+individual, 3 team, 6 universal) match the previous hand-curated "Always in
+force" list exactly (`buenos-aires-dates`, `small-calls`,
+`nonblocking-questions`, `bold-key-phrases`, plus six universal ones the
+old stopgap only linked to generically). Byte-identical on the second
+`--check` run — stable, nothing left to regenerate. The tool also wrote a
+materialized `practices/` (102 files) and `tools/checks/` (26 scripts/tests)
+tree at the repo root plus a `MANIFEST.json` recording provenance per file —
+new, generated, never hand-edited; not the same thing as `process/upstream/practices/`,
+which stays the single-source universal catalogue.
+
+**Two rough edges found, not worked around:**
+- `MANIFEST.json`'s `checks` entries record a doubled path segment —
+  `tools/checks/checks/check_*.py` and `tools/checks/checks/tests/test_*.sh`
+  — while the files are actually written to `tools/checks/check_*.py` and
+  `tools/checks/tests/test_*.sh` (single level). Traced to
+  `precedent_materialize.py`'s `materialize()`: `checks_written.append({'path':
+  f'tools/checks/{rel_label}/{filename}', ...})` double-prefixes `rel_label`,
+  which `_plan_checks()` already sets to `'checks'` / `'checks/tests'`. Cosmetic
+  — the actual writes are correct, only the provenance record's path string is
+  wrong — but a real, reproduced bug in the vendored tool. Left as-is
+  (`process/upstream`'s own tree and this repo's verbatim copy of the engine
+  tools are not hand-patched locally); not yet reported upstream since this
+  session has read-only access to `alex137/BestPractice`.
+- The generated block's own regenerate-hint comment
+  (`<!-- Regenerate with: python3 tools/build_views.py -->`) is inherited
+  verbatim from the renderer and is BestPractice's own self-hosted
+  instruction, not quite this repo's (which runs `precedent_sync_views.py`,
+  not `build_views.py`, directly) — harmless since the surrounding prose
+  this migration added points at the right command, but worth fixing
+  upstream if `build_loader_block()` ever grows a caller-supplied hint.
+- Editing `.claude/settings.json` to allowlist the two new script paths
+  (`tools/precedent_resolve.py`, `tools/precedent_sync_views.py`) was
+  blocked by the session's own auto-mode classifier (self-granting Bash
+  permissions is exactly the kind of change that should go through a human,
+  not get silently patched by the session doing the work) — left
+  unallowlisted; a future session or Morgan directly can add the two lines
+  next to the existing `process/upstream/tools/precedent_resolve.py` entry.
+
+**Audits, same pattern as before.** `doc_lint.py`: pre-existing backlog only
+(no new failures from this change beyond a couple of self-introduced unlinked
+references in `AGENTS.md`'s rewritten prose, fixed inline). `light_check.py`:
+OK with the same pre-existing warning set. `practice_audit.py`: **63 SCRUB
+failures**, matching this document's own documented, expected count for the
+current vendored tree exactly — confirms the re-vendor landed the same
+accepted collision described above, not a new one.
+
 ## Files touched
 
 See [TODO.md](../TODO.md)'s "Decisions" entry for this change (dated
 2026-09-02) for the full list; the shape, not repeated here to avoid a
 second copy that can drift out of sync with the first
 ([`no-duplication`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/no-duplication.md),
-generalized past BestPractice specifically).
+generalized past BestPractice specifically). The 2026-09-03 follow-up above
+touched: `process/manifest.json` (commit bump), `process/upstream/` (wholesale
+re-vendor), `tools/{precedent_resolve,precedent_materialize,build_views,precedent_show,precedent_paths,precedent_gate,split_practices,precedent_sync_views}.py`
+(new, vendored), `AGENTS.md` (generated-block markers + rewritten prose),
+`practices/`, `tools/checks/`, `MANIFEST.json` (new, generated by
+`precedent_sync_views.py`), and this document.
