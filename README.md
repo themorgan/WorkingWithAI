@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-02 16:30:00 (Buenos Aires) by Morgan F, to version 19 -->
+<!-- Last updated: 2026-09-04 12:13:55 (Buenos Aires) by Morgan F, to version 20 -->
 
 # WorkingWithAI
 
@@ -26,10 +26,10 @@ runs the company on — it passes through three stages, each earning the
 idea's way to the next:
 
 1. **Learn how to work with AI as a partner-in-thought**, via
-   [OUR_PHILOSOPHY.md](docs-team/OUR_PHILOSOPHY.md),
-   [COMPANY_BUILDING_RULES.md](docs-team/COMPANY_BUILDING_RULES.md),
-   [AGENTS.md](AGENTS.md), and [REASONS_WHY.md](docs-team/REASONS_WHY.md).
-2. **Try it for real — [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md).**
+   [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md),
+   [COMPANY_BUILDING_RULES.md](content/COMPANY_BUILDING_RULES.md),
+   [AGENTS.md](AGENTS.md), and [REASONS_WHY.md](content/REASONS_WHY.md).
+2. **Try it for real — [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md).**
    The practical checklist actually in force in real work right now, each
    rule tagged *Trial*, *Ready to promote*, or *Promoted* once it's landed
    at stage 3.
@@ -37,7 +37,7 @@ idea's way to the next:
    for a genuinely generic rule, or precedent-team-maintainers /
    precedent-individual for one specific to Morgan and Alex's own working
    conventions ([process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)).
-   Once a rule in [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) has
+   Once a rule in [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md) has
    proven itself, it's exported to the right one so any repo resolving that
    source can pick it up — see that document's own "Promotion" section for
    the mechanics.
@@ -45,33 +45,33 @@ idea's way to the next:
 Nothing becomes company-wide policy just because it sounded good in a
 brainstorm session — it has to survive stage 2 first. For what this
 pipeline looks like from inside one session, see
-[OUR_PHILOSOPHY.md](docs-team/OUR_PHILOSOPHY.md)'s "The working loop" section.
+[OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md)'s "The working loop" section.
 
 ## What's here
 
-- [OUR_PHILOSOPHY.md](docs-team/OUR_PHILOSOPHY.md) — the underlying theoretical ideas
+- [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md) — the underlying theoretical ideas
   everything else here assumes, named and explained on their own terms, for
   anyone who wants to understand this at the theory level before diving
   into the brainstorm itself.
-- [REASONS_WHY.md](docs-team/REASONS_WHY.md) — OUR_PHILOSOPHY.md's companion: the
+- [REASONS_WHY.md](content/REASONS_WHY.md) — OUR_PHILOSOPHY.md's companion: the
   less obvious benefits those ideas produce in practice.
-- [HUMANS_AT_OUR_BEST.md](docs-team/HUMANS_AT_OUR_BEST.md) — the one list of what
+- [HUMANS_AT_OUR_BEST.md](content/HUMANS_AT_OUR_BEST.md) — the one list of what
   humans are good at, referenced in shorter form from several of these
   documents.
-- [RANDOM_NOTES.md](docs-team/RANDOM_NOTES.md) — the brainstorm itself: one entry per idea, prompt,
+- [RANDOM_NOTES.md](content/RANDOM_NOTES.md) — the brainstorm itself: one entry per idea, prompt,
   workflow, or observation, loosely grouped.
-- [COMPANY_BUILDING_RULES.md](docs-team/COMPANY_BUILDING_RULES.md) — a full essay
+- [COMPANY_BUILDING_RULES.md](content/COMPANY_BUILDING_RULES.md) — a full essay
   promoted out of the brainstorm (pipeline stage 1).
-- [AI_GOVERNANCE_TO_COCREATE.md](docs-team/AI_GOVERNANCE_TO_COCREATE.md) — another
+- [AI_GOVERNANCE_TO_COCREATE.md](content/AI_GOVERNANCE_TO_COCREATE.md) — another
   full essay promoted out of the brainstorm (pipeline stage 1).
-- [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) — the practical rules
+- [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md) — the practical rules
   actually being tried right now, and candidates for promotion further
   along the pipeline (pipeline stage 2).
-- [THE_REVOLUTIONARY_FORMULA.md](docs-team/THE_REVOLUTIONARY_FORMULA.md) —
+- [THE_REVOLUTIONARY_FORMULA.md](content/THE_REVOLUTIONARY_FORMULA.md) —
   one-page pitch: the three ideas this repo argues are unique specifically
   taken together.
 
-  These main content documents live in `docs-team/`, kept apart from the
+  These main content documents live in `content/`, kept apart from the
   technical documents below about running the repo itself.
 
 - `process/upstream/` — the vendored [BestPractice](https://github.com/alex137/BestPractice)

@@ -6,6 +6,13 @@ BestPractice into that repository while guiding them in plain language.
 Assume they are not a programmer — explain simply, ask little, and do all
 technical work yourself.
 
+This conversation installs [INSTALL.md](INSTALL.md) §1, the proven,
+classic model — the right default for essentially every install today. A
+newer path exists ([INSTALL.md](INSTALL.md) §0, installing directly onto
+Precedent's three-source loader) but has not yet been rehearsed against a
+real project; only follow it instead if the administrator specifically
+asks for it by name.
+
 ## The conversation
 
 1. **Confirm the target.** The repository this session is opened on is
@@ -80,11 +87,16 @@ technical work yourself.
    Actions**, or the **Actions** tab's enable button) and confirm the
    check appears afterward. Never leave this step silently unfinished —
    the checks are what make the practices enforceable.
-7. **Hand them the keys.** Close by telling them two things: members are
+7. **Hand them the keys.** Close by telling them three things: members are
    onboarded by saying **"Add project members"** to the project's agent
    (the installed instructions file teaches every future session how to
-   guide that), and day-to-day work is just asking questions and
-   requesting changes in plain language.
+   guide that); day-to-day work is just asking questions and requesting
+   changes in plain language; and **if anyone tells an assistant working
+   here "always do X" or "never do Y," it will notice and offer to write
+   that down as one of this project's own rules** — captured into the
+   instructions file every future session reads, not just remembered for
+   this one conversation. Nobody has to ask for that by name, and nothing
+   gets written down without saying so and getting a yes first.
 
 ## Rules while guiding
 

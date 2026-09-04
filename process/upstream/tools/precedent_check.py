@@ -61,7 +61,29 @@ Run:
 """
 import io, json, os, pathlib, re, subprocess, sys
 
-ROOT = pathlib.Path(__file__).resolve().parents[1]
+# `git rev-parse --show-toplevel`, not `Path(__file__).resolve().parents[1]`:
+# this module runs two ways -- self-hosted at THIS repo's own tools/
+# (parents[1] is correct there) and vendored into a dependent repo at
+# process/upstream/tools/ (parents[1] resolves to process/upstream/ itself
+# in that layout, not the dependent repo's real root). A tree-scope check
+# meant to scan the CONSUMING repo -- migration-scrubs-vocabulary is the one
+# that surfaced this, in a real dependent-repo migration, 2026-09-03 --
+# silently scanned process/upstream/'s own tree instead and reported a
+# false-clean SKIPPED, never seeing the dependent repo's real files, no
+# matter how the check itself was invoked. `git rev-parse --show-toplevel`
+# walks up from wherever this file actually sits to the enclosing git
+# repository's root, which is correct in both layouts without needing to
+# know which one it's in -- doc_lint.py and practice_audit.py already use
+# this same resolution for the same reason (this module's own `_git` helper,
+# defined below, isn't used here -- it returns the full CompletedProcess,
+# not the string ROOT needs, and isn't defined yet at this point in the
+# file). The literal `parents[N]` stays as a last-resort fallback for the
+# no-git case only (matching those two tools' own pattern), never as the
+# primary path.
+_toplevel = subprocess.run(['git', 'rev-parse', '--show-toplevel'],
+                           cwd=pathlib.Path(__file__).resolve().parent,
+                           capture_output=True, text=True).stdout.strip()
+ROOT = pathlib.Path(_toplevel) if _toplevel else pathlib.Path(__file__).resolve().parents[1]
 TOOLS = ROOT / 'tools'
 sys.path.insert(0, str(TOOLS))
 import split_practices as sp
@@ -72,6 +94,8 @@ import split_practices as sp
 
 def rule_of(slug):
     path = ROOT / 'practices' / f'{slug}.md'
+    if not path.exists():
+        path = ROOT / 'local' / 'practices' / f'{slug}.md'
     if not path.exists():
         return f'(no practice file for {slug})'
     try:
@@ -912,6 +936,79 @@ def _two_check_levels(ctx):
     return []
 
 
+@check('routing-audit', 'tree',
+       'tools/routing_audit.py exists, and tools/routing_audit_state.json '
+       '(if present) has no rotation entry for a practice that is not '
+       'currently active',
+       'whether the audit is actually being RUN or a slice actually READ -- '
+       'only that the tool exists and its own bookkeeping stays honest.')
+def _routing_audit(ctx):
+    tool = ROOT / 'tools' / 'routing_audit.py'
+    if not tool.exists():
+        return [Finding(str(tool.relative_to(ROOT)),
+                        "does not exist -- routing-audit.md names it as "
+                        "this practice's implementation")]
+    state_path = ROOT / 'tools' / 'routing_audit_state.json'
+    if not state_path.exists():
+        return []
+    try:
+        state = json.loads(state_path.read_text(encoding='utf-8'))
+    except (json.JSONDecodeError, OSError) as e:
+        return [Finding(str(state_path.relative_to(ROOT)),
+                        f'is not valid JSON ({e})')]
+    active = set()
+    for f in sorted((ROOT / 'practices').glob('*.md')):
+        try:
+            fm, _sections = sp._read_practice_file(f)
+        except sp.PracticeFileError:
+            continue
+        if (fm.get('status', 'active') or 'active').strip().strip('"') == 'active':
+            active.add(fm.get('slug', f.stem))
+    return [Finding(str(state_path.relative_to(ROOT)),
+                    f'records a rotation entry for {slug!r}, which is not '
+                    f'an active practice -- stale bookkeeping left behind '
+                    f'by a retired or renamed practice')
+            for slug in state if slug not in active]
+
+
+# practice: merge-target-is-beta-branch
+@check('merge-target-is-beta-branch', 'tree',
+       'while this repository is mid-restructure, origin/precedent-beta-v01 '
+       'is not an ancestor of origin/main -- i.e. main has not absorbed '
+       'the restructuring work via a merge',
+       'a PR opened with the wrong base BEFORE it merges -- this only '
+       'catches the state after a bad merge already landed on main, not '
+       'before. It also cannot run at all without both origin/main and '
+       'origin/precedent-beta-v01 fetched locally (SKIPPED, not PASS, in '
+       'that case).')
+def _merge_target_is_beta_branch(ctx):
+    def rev_parse(ref):
+        r = subprocess.run(['git', 'rev-parse', '--verify', '--quiet', ref],
+                           cwd=ROOT, capture_output=True, text=True)
+        return r.stdout.strip() if r.returncode == 0 else None
+
+    main = rev_parse('origin/main')
+    beta = rev_parse('origin/precedent-beta-v01')
+    if not main or not beta:
+        raise NotApplicable(
+            'origin/main and origin/precedent-beta-v01 must both be '
+            'fetched locally to compare them -- run `git fetch origin '
+            'main precedent-beta-v01` first')
+    is_ancestor = subprocess.run(
+        ['git', 'merge-base', '--is-ancestor', beta, main], cwd=ROOT
+    ).returncode == 0
+    if is_ancestor:
+        return [Finding('main',
+                        f'contains origin/precedent-beta-v01 ({beta[:8]}) as '
+                        f'an ancestor -- the restructuring work has been '
+                        f'merged into main. Expected ONLY once Alex has '
+                        f'reviewed and merged precedent-beta-v01 into main '
+                        f'for real (in which case retire this practice in '
+                        f'the same PR); otherwise this is the PR #89 '
+                        f'mistake happening again.')]
+    return []
+
+
 @check('search-by-purpose', 'change',
        'a document carrying generated numbers is reachable from an index a '
        'reader actually consults',
@@ -1048,17 +1145,58 @@ def _scripts_assert_properties(ctx):
             or (l.startswith('WARN:') and 'no self_check() or ANCHORS' in l)]
 
 
-CODE_PRACTICE_CITE_RE = re.compile(
-    r'#\s*practice:\s*([a-z][a-z0-9-]*)'      # a `#`-prefixed line comment
-    r'|\(practice:\s*([a-z][a-z0-9-]*)\)')    # a parenthetical, in a docstring
+_CODE_CITE_SLUG_RE = re.compile(r'\bpractice:\s*([a-z][a-z0-9-]*)')
+_CODE_CITE_PAREN_SPAN_RE = re.compile(r'\(([^()]*)\)')
+_CODE_CITE_HASH_COMMENT_RE = re.compile(r'#([^\n]*)')
 # The parenthetical form matters: several existing citations are narrative,
 # inside a module's own triple-quoted docstring ("the mechanism (practice:
 # one-formatter-per-quantity) requires"), which is just as
 # machine-checkable and just as much "right at the point of implementation"
-# as a bare `#` comment. The closing paren is required, not cosmetic -- an
-# earlier, looser version of this pattern (bare `practice:` with no comment
-# marker or parens) matched ordinary prose reading "Each practice: the
-# **rule**, **why**..." as a citation to a practice literally named "the".
+# as a bare `#` comment. Requiring SOME anchor -- a `#` comment or a
+# parenthetical -- is not cosmetic: an earlier, looser version of this
+# pattern (bare "practice" + colon, no comment marker or parens) matched
+# ordinary prose reading "Each PRACTICE_LABEL: the **rule**, **why**..."
+# as a citation to a practice literally named "the"
+# (tools/split_practices.py's own docstring, PRACTICE_LABEL standing in
+# here for the actual word so THIS comment doesn't retrigger the very
+# false positive it describes -- still unparenthesized prose today, which
+# is why the anchor stays required rather than being dropped as "too
+# strict").
+#
+# A 2026-09-03 deep-check audit found the FIRST version of this anchor
+# requirement too strict in the other direction: requiring the slug to be
+# immediately followed by `)` missed six real, live citations already in
+# this codebase -- a trailing clause before the close-paren
+# (`(practice: layered-practice-packs: "repo-local ... never leave")`,
+# itself split across two physical lines by its own paragraph wrap), and
+# more than one slug inside one parenthetical
+# (`(practice: practice-export-loop; practice: scrub-gate; practice:
+# layered-practice-packs)`), which a single `re.search()` per line could
+# not have found either way -- only the first match on a line was ever
+# checked. _iter_code_citations below scans the WHOLE FILE'S text (not
+# line by line, so a citation split across a wrapped paragraph is not
+# invisible) and every occurrence within a `#` comment or a parenthetical
+# span (not just the first), while keeping the same anchor requirement
+# that keeps ordinary prose from being read as a citation.
+
+
+def _iter_code_citations(text):
+    """Yield (line_no, slug) for every `practice: SLUG` citation in `text`,
+    per the two forms this practice recognizes. A `#` comment never spans
+    lines in Python, so that half is still naturally line-scoped; a
+    parenthetical can (see above), so it is matched across the whole text
+    with `re.finditer`, then the line number is recovered from the match's
+    character offset. The same citation can never match twice (each
+    character range belongs to exactly one comment, or to the innermost
+    unnested parenthetical containing it), so no dedup is needed."""
+    for m in _CODE_CITE_HASH_COMMENT_RE.finditer(text):
+        line_no = text.count('\n', 0, m.start()) + 1
+        for cm in _CODE_CITE_SLUG_RE.finditer(m.group(1)):
+            yield line_no, cm.group(1)
+    for m in _CODE_CITE_PAREN_SPAN_RE.finditer(text):
+        for cm in _CODE_CITE_SLUG_RE.finditer(m.group(1)):
+            line_no = text.count('\n', 0, m.start(1) + cm.start()) + 1
+            yield line_no, cm.group(1)
 CODE_PRACTICE_NUMBER_RE = re.compile(r'\bpractice\s+(\d+)\b')
 # The exact anti-pattern this practice exists to end: citing by POSITION
 # rather than by the slug that survives a renumbering. Flagged even with no
@@ -1087,34 +1225,42 @@ CODE_CITE_SKIP_FILES = {'verify_harness.py'}
        "makes sure that fix never has to happen by hand again).")
 def _code_cites_practice(ctx):
     known = {}
-    for f in sorted((ROOT / 'practices').glob('*.md')):
-        try:
-            fm, _sections = sp._read_practice_file(f)
-        except sp.PracticeFileError:
-            continue
-        known[fm['slug']] = fm.get('status')
+    for d in ((ROOT / 'practices'), (ROOT / 'local' / 'practices')):
+        for f in sorted(d.glob('*.md')):
+            try:
+                fm, _sections = sp._read_practice_file(f)
+            except sp.PracticeFileError:
+                continue
+            known[fm['slug']] = fm.get('status')
     out = []
     for f in sorted((ROOT / 'tools').glob('*.py')):
         if f.name in CODE_CITE_SKIP_FILES:
             continue
         text = f.read_text(encoding='utf-8', errors='ignore')
+        seen = set()
+        for i, slug in _iter_code_citations(text):
+            # A citation inside a `#` comment that itself sits inside a
+            # multi-line parenthetical is found by both halves of
+            # _iter_code_citations -- once per comment line, once as part
+            # of the larger parenthetical span. Same (line, slug), reported
+            # once.
+            if (i, slug) in seen:
+                continue
+            seen.add((i, slug))
+            status = known.get(slug)
+            if status is None:
+                out.append(Finding(f'tools/{f.name}:{i}',
+                                    f'cites {slug!r}, which is not a real '
+                                    f'practice slug (typo, or the file was '
+                                    f'deleted instead of retired)'))
+            elif status != 'active':
+                out.append(Finding(f'tools/{f.name}:{i}',
+                                    f'cites {slug!r}, which is status: '
+                                    f'{status!r} -- this code implements a '
+                                    f'practice that no longer is one; update '
+                                    f'or remove it, or reconsider the '
+                                    f'retirement'))
         for i, line in enumerate(text.splitlines(), 1):
-            m = CODE_PRACTICE_CITE_RE.search(line)
-            if m:
-                slug = m.group(1) or m.group(2)
-                status = known.get(slug)
-                if status is None:
-                    out.append(Finding(f'tools/{f.name}:{i}',
-                                        f'cites {slug!r}, which is not a real '
-                                        f'practice slug (typo, or the file was '
-                                        f'deleted instead of retired)'))
-                elif status != 'active':
-                    out.append(Finding(f'tools/{f.name}:{i}',
-                                        f'cites {slug!r}, which is status: '
-                                        f'{status!r} -- this code implements a '
-                                        f'practice that no longer is one; update '
-                                        f'or remove it, or reconsider the '
-                                        f'retirement'))
             mn = CODE_PRACTICE_NUMBER_RE.search(line)
             if mn:
                 out.append(Finding(f'tools/{f.name}:{i}',
@@ -1134,9 +1280,19 @@ RETIRED_VOCAB_CONFIG = 'process/retired_vocabulary.json'
 RETIRED_VOCAB_SKIP_FILES = {'tools/verify_harness.py'}
 
 
+def _exempt_matches(rel, exempt_entry):
+    """True if `rel` (a POSIX-relative path) is covered by one
+    `exempt_files` entry. An entry ending in `/` is a DIRECTORY exemption --
+    `rel` matches if it equals that directory or sits under it; anything
+    else is an exact file match, unchanged from before this existed."""
+    if exempt_entry.endswith('/'):
+        return rel == exempt_entry.rstrip('/') or rel.startswith(exempt_entry)
+    return rel == exempt_entry
+
+
 @check('migration-scrubs-vocabulary', 'tree',
        "a repo that has declared process/retired_vocabulary.json carries "
-       "none of its listed terms outside the declared exempt files",
+       "none of its listed terms outside the declared exempt files/directories",
        "NotApplicable for any repo that hasn't declared the config -- this "
        "is opt-in per migrated repo, since the terms themselves (a specific "
        "old repo's name, a retired secret) are never something BestPractice "
@@ -1151,11 +1307,46 @@ def _migration_scrubs_vocabulary(ctx):
         cfg = json.loads(cfg_path.read_text(encoding='utf-8'))
     except json.JSONDecodeError as e:
         return [Finding(RETIRED_VOCAB_CONFIG, f'not valid JSON: {e}')]
+    if not isinstance(cfg, dict):
+        # Valid JSON, wrong shape (e.g. a bare `["OldName"]` array where a
+        # `{"terms": [...]}` object belongs) used to reach `cfg.get(...)`
+        # below and raise an uncaught AttributeError, taking down every
+        # OTHER check in the same run with it (found in a 2026-09-03
+        # deep-check audit) -- a malformed config is exactly the kind of
+        # thing this check exists to catch, not crash on.
+        return [Finding(RETIRED_VOCAB_CONFIG,
+                        f'must be a JSON object with a "terms" list (e.g. '
+                        f'{{"terms": [...], "exempt_files": [...]}}), not a '
+                        f'{type(cfg).__name__}')]
     terms = cfg.get('terms') or []
+    exempt_files = cfg.get('exempt_files') or []
+    if not isinstance(terms, list) or not isinstance(exempt_files, list):
+        bad = 'terms' if not isinstance(terms, list) else 'exempt_files'
+        return [Finding(RETIRED_VOCAB_CONFIG,
+                        f'{bad!r} must be a JSON array of strings, not a '
+                        f'{type(cfg[bad]).__name__}')]
     if not terms:
         raise NotApplicable(f'{RETIRED_VOCAB_CONFIG} declares no terms -- '
                             f'nothing to scrub for')
-    exempt = {RETIRED_VOCAB_CONFIG} | set(cfg.get('exempt_files') or [])
+    # A directory exemption (an exempt_files entry ending in `/`) exists for
+    # exactly one reason: a MATERIALIZED, regenerated directory (this repo's
+    # own practices/, filled in by precedent_materialize.py on every
+    # precedent_sync_views.py run) can legitimately hold OTHER repos' own
+    # content -- another source's own practice file citing ITS OWN
+    # provenance, say -- that happens to share a literal substring with a
+    # term this repo's migration is scrubbing for its own reasons. That
+    # content isn't this repo's own migration to finish, the same reasoning
+    # that already exempts process/upstream/ below, and a materialized
+    # directory's file list changes on every sync, so hand-listing it
+    # file-by-file in exempt_files would go stale the next time a slug is
+    # added or dropped. Found for real, migrating a dependent repo
+    # (2026-09-03): 'RepoPersonalPreferences' collided with a team-source
+    # practice's own approved_by provenance, and 'PERSONAL_PACK_TOKEN'
+    # collided with this file's own migration-scrubs-vocabulary.md Story
+    # section, which uses that string as ITS illustrative example -- both
+    # forced dropping otherwise-real retired terms rather than exempting the
+    # one directory they were colliding in.
+    exempt_files = [RETIRED_VOCAB_CONFIG] + exempt_files
     out = []
     for dirpath, dirnames, filenames in os.walk(ROOT):
         rel_dir = pathlib.Path(dirpath).relative_to(ROOT).as_posix()
@@ -1169,7 +1360,9 @@ def _migration_scrubs_vocabulary(ctx):
                        not in ('.git', 'process/upstream')]
         for name in filenames:
             rel = f'{rel_dir}/{name}' if rel_dir else name
-            if rel in exempt or rel in RETIRED_VOCAB_SKIP_FILES:
+            if rel in RETIRED_VOCAB_SKIP_FILES:
+                continue
+            if any(_exempt_matches(rel, e) for e in exempt_files):
                 continue
             try:
                 text = (ROOT / rel).read_text(encoding='utf-8')
@@ -1181,9 +1374,11 @@ def _migration_scrubs_vocabulary(ctx):
                         out.append(Finding(f'{rel}:{i}',
                                             f'still carries retired term '
                                             f'{term!r} -- scrub it, or add '
-                                            f'this file to exempt_files if '
-                                            f'it is genuinely a historical '
-                                            f'record'))
+                                            f'this file (or its directory, '
+                                            f'trailing "/") to exempt_files '
+                                            f'if it is genuinely a historical '
+                                            f'record or materialized '
+                                            f'third-party content'))
     return sorted(out, key=lambda f: f.where)
 
 
@@ -1203,6 +1398,22 @@ def run(slugs, ctx, scopes):
                             findings, None))
         except NotApplicable as e:
             results.append((slug, 'SKIPPED', [], str(e)))
+        except Exception as e:
+            # A check's own bug (a malformed config it didn't validate, an
+            # unhandled edge case) must not take the other checks down with
+            # it -- a 2026-09-03 deep-check audit found a malformed
+            # process/retired_vocabulary.json (a JSON array instead of an
+            # object) raised AttributeError straight out of
+            # migration-scrubs-vocabulary's check, uncaught here, aborting
+            # the whole run before any of the other ~40 checks got a
+            # chance to report anything at all -- loud, but a crash, not
+            # the isolated refusal this repo's own "refuse loudly, never
+            # silently" philosophy calls for. ERROR is its own status,
+            # never folded into VIOLATION (a check that could not run
+            # found no evidence either way) or SKIPPED (that means the
+            # check legitimately does not apply here, not that it broke).
+            results.append((slug, 'ERROR', [],
+                            f'{type(e).__name__}: {e}'))
     return results
 
 
@@ -1249,6 +1460,7 @@ def main():
 
     violated = [r for r in results if r[1] == 'VIOLATION']
     skipped = [r for r in results if r[1] == 'SKIPPED']
+    errored = [r for r in results if r[1] == 'ERROR']
     passed = [r for r in results if r[1] == 'PASS']
 
     for slug, _st, findings, _why in violated:
@@ -1259,14 +1471,17 @@ def main():
         for line in rule_of(slug).splitlines():
             print(f'    {line}')
 
+    for slug, _st, _f, why in errored:
+        print(f'\nERROR      {slug} — the check itself failed to run: {why}')
+
     for slug, _st, _f, why in skipped:
         print(f'SKIPPED    {slug} — {why}')
     if ctx.scope_reason and any(CHECKS[s]['scope'] == 'change' for s in slugs):
         print(f'note: {ctx.scope_reason}')
 
     print(f'\nprecedent_check: {len(passed)} passed, {len(violated)} violated, '
-          f'{len(skipped)} skipped (a skip is not a pass).')
-    if violated:
+          f'{len(errored)} errored, {len(skipped)} skipped (a skip is not a pass).')
+    if violated or errored:
         return 1
     if skipped and '--strict' in flags:
         print('--strict: a check that could not run is a failure here.')

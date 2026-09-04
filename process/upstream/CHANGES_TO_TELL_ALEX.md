@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 (Buenos Aires) by a follow-up session -->
+<!-- Last updated: 2026-09-04 (Buenos Aires) by a cleanup session -->
 
 # Changes to tell Alex
 
@@ -54,7 +54,92 @@ existing "a practice belonging to more than one team" entry.
 
 See [practices/layered-practice-packs.md](practices/layered-practice-packs.md).
 
+### `layered-practice-packs` (BestPractice practice 23) — 2026-09-03, repo-local formalized
+
+**What changed.** The practice's third tier — repo-local, "rules that live
+in that repo's instructions files and never leave" — is now a real fourth
+`precedent.json` source the loader itself understands, not just prose a
+repo-local rule happened to sit in: a `practices/` directory (declared
+with `path: "."` or, per the recommended convention, a subdirectory),
+ranked in `PRECEDENCE` between individual and team by default, and subject
+to the same `overrides:` and `severity: blocking` mechanics every other
+level gets. Found while designing this, and worth naming here even though
+it does not touch the three-way decision rule itself: a 2026-09-03
+deep-check audit found materializing a self-referential repo-local
+source (`path` equal to the sync target) could silently destroy or
+corrupt its own hand-authored content across runs — `precedent_materialize.py`
+now refuses that combination outright rather than attempting to make it
+safe.
+
+**What did not change.** The three-way decision rule itself (generic /
+domain / repo-local) is untouched by this — this is the *same* mechanism
+upgrade the entry above already logs for the middle (domain) tier,
+now landing for the third. A repo-local rule described only in prose
+(pre-migration, phase 6 not yet run) still works exactly as before.
+
+**What's still open.** Same gap the entry above names for the domain
+tier, now also true of repo-local formalized: nothing yet gives a rule a
+home independent of the one repo it was declared for, which was never
+repo-local's job to begin with (its whole point is staying scoped to one
+repo) — no new gap here, noted only so this entry doesn't read as if it
+closed something the one above left open.
+
+See [practices/layered-practice-packs.md](practices/layered-practice-packs.md)
+and [spec/SOURCES.md](spec/SOURCES.md).
+
+### The phase-4 enforcement rollout — 24 inherited practices gained a real `checked_by` — 2026-09-03, found doing the pre-fork audit
+
+**What changed.** This branch's own scope statement, above, says plainly:
+"changes what its `checked_by` actually enforces goes here." Phase 4
+(`spec/ENFORCEMENT.md`) converted 24 of your 53 inherited practices from
+`checked_by: null` — advisory prose only, compliance depended on a session
+noticing and following it — to a real script in `tools/precedent_check.py`.
+That never got logged here as its own event: 16 of the 24 are mentioned in
+this file only for the unrelated citation-link sweep above, whose own text
+("no `checked_by` enforcement changed") is true of *that specific commit*
+but left the separate, earlier enforcement commits undisclosed; 8 are
+absent from this file entirely. Found auditing the full pre-fork catalogue
+against this plan's architecture
+([spec/PREFORK_AUDIT.md](spec/PREFORK_AUDIT.md)), not from any one commit's
+own review.
+
+**Affected practices (24), full list and verdict:**
+[spec/PREFORK_AUDIT.md](spec/PREFORK_AUDIT.md)'s table — every row marked
+"gained a real `checked_by`" or an enforcement re-point (that table is the
+source of truth for this; not re-listed here). One re-point worth naming
+inline since it is the sharpest example of this file's own scope
+statement: `doc-references-are-links` (11) already had a `checked_by`
+naming `tools/doc_lint.py`; phase 4 moved it to `tools/precedent_check.py`,
+which is exactly "changes what its `checked_by` actually enforces."
+
+**What did not change.** Every affected practice's `## Rule` — what it
+actually asks a session to do — is unchanged; [spec/PREFORK_AUDIT.md](spec/PREFORK_AUDIT.md)
+confirms this practice-by-practice, not just asserted. This is purely
+*how* compliance is checked, never *what* is being asked.
+
+### The phase-2 resident-tier promotion — 6 inherited practices are now always loaded — 2026-09-03, found doing the pre-fork audit
+
+**What changed.** BestPractice pre-fork had no `tier` concept at all — every
+practice was equally prose, consulted the same way. Phase 2 introduced
+`tier: resident` (always loaded into every session, via `AGENTS.md`'s
+generated block) versus `tier: on-demand` (reached only through the
+occasion index, a path glob, or a check). Six of your inherited practices
+are now resident — the same six [spec/PREFORK_AUDIT.md](spec/PREFORK_AUDIT.md)'s
+table marks "Promoted resident." This is the architecture's own headline move
+([PRACTICE_ENGINE_PLAN.md](PRACTICE_ENGINE_PLAN.md), "The Resident
+Budget") and none of these six practices' own files log it — the same gap
+the entry above names for enforcement, for a different mechanism.
+
+**What did not change.** Same as above — the Rule text of all six is
+untouched; only where and how often a session sees it changed.
+
 ## Cross-referenced only, not a behavior change
+
+**A scope note on the entry below, added 2026-09-03**: "no `checked_by`
+enforcement changed" in the Slug-link citation sweep entry is accurate for
+that specific commit, not a claim that none of the affected practices ever
+gained enforcement — several did, in separate, earlier commits, logged
+above once this branch's own pre-fork audit actually found the gap.
 
 ### Slug-link citation sweep — 2026-09-01
 
@@ -71,18 +156,17 @@ forward-looking guards, alongside the existing `check_citation_integrity`.
 
 **Why this needs a CHANGES_TO_TELL_ALEX.md entry at all**, given it isn't a
 mechanism or decision-rule change: converting a citation to a link adds words
-(the slug name) that were not counted at that frequency in BestPractice's
-original numbered prose, so the affected files fail
-`check_no_invented_content` / `check_content_preserved_by_sentence` on the
-citation text alone unless exempted. Registered in `verify_harness.py`'s
-`AMENDED_POST_CONVERSION` (a real, disclosed edit, not a conversion bug) and
-logged here, per that mechanism's own rule that the exemption must be both
-declared *and* found in this file.
+not counted at that frequency in BestPractice's original numbered prose, so
+the affected files needed a disclosed exemption — `verify_harness.py`'s
+`AMENDED_POST_CONVERSION` — whose own rule is that the exemption must be
+both declared *and* found in this file.
 
-**Affected practices** (slug — original BestPractice number):
-`acronyms-glossary` (17), `affordance-is-shared` (43), `build-buy-decompose`
-(35), `capture-gate` (10), `check-source-architecture` (40),
-`computed-numbers-in-scripts` (19), `convention-to-audit` (6),
+**Affected practices** (slug — original BestPractice number), each also
+carrying the same exemption in `verify_harness.py`'s `AMENDED_POST_CONVERSION`
+registry — this list and that registry must agree, and this is the copy a
+human reads: `acronyms-glossary` (17), `affordance-is-shared` (43),
+`build-buy-decompose` (35), `capture-gate` (10), `check-source-architecture`
+(40), `computed-numbers-in-scripts` (19), `convention-to-audit` (6),
 `deliverables-look-like-output` (49), `docs-track-models` (33),
 `engine-plus-host-shims` (50), `environment-gotchas` (4),
 `frame-from-audience-question` (28), `generated-artifact-provenance` (8),
@@ -96,19 +180,10 @@ declared *and* found in this file.
 `second-pass-capture` (21), `session-bootstrap` (13),
 `tabular-shared-renderer` (46), `two-check-levels` (44),
 `variant-re-derives` (29), `verify-decomposition` (42),
-`verify-postcondition` (32), `volatile-rules-carry-dates` (16),
-`todo-is-a-handoff` (53, exempted 2026-09-02 once it gained an ancestor —
-see below).
-`todo-is-a-handoff` (BestPractice-`main` 53) also had its three citations
-converted. **Updated 2026-09-02:** it needed no exemption when converted,
-since it post-dated this branch's `PRACTICES.md` snapshot at the time
-(`POST_SNAPSHOT_PRACTICE_NUMBERS`, then `{'53'}`) and had no frozen ancestor
-for the fidelity checks to compare against. A phase-5 pre-flight
-`git merge origin/main` brought main's own "## 53." entry into this branch's
-`PRACTICES.md`, so an ancestor now exists, the checks run for real, and
-`todo-is-a-handoff` needs the same exemption as the 52 above — moved into
-`AMENDED_POST_CONVERSION` and `POST_SNAPSHOT_PRACTICE_NUMBERS` emptied
-accordingly (both in `tools/verify_harness.py`).
+`verify-postcondition` (32), `volatile-rules-carry-dates` (16), and
+`todo-is-a-handoff` (53, exempted 2026-09-02 once a phase-5 pre-flight
+`git merge origin/main` gave it a frozen ancestor in `PRACTICES.md` for the
+fidelity checks to compare against for the first time).
 
 **Four citations were simply wrong**, found by resolving each one against its
 target's actual content rather than trusting the printed number — a defect
@@ -141,20 +216,6 @@ None of these were introduced by the phase-1 conversion: the converter's
 them, and a numeric-only citation check can only confirm a cited number
 *exists*, not that it is the *right* one. Worth a note upstream at the next
 real check-in, alongside the existing practice-39 finding.
-
-**A considered no: `tools/precedent_check.py`'s `cite-the-incident` flags 5 of
-these files** (`mistakes-become-rules`, `permutation-frontier-column`,
-`second-pass-capture`, `tabular-shared-renderer`, `volatile-rules-carry-dates`)
-because the citation being converted happened to sit inside their `## Rule`
-text, and the check's mechanical proxy for "a new or rewritten Rule" is "the
-Rule's text differs from the base commit" — true here, but not what the
-practice it enforces is actually about (`cite-the-incident`'s own `occasion`
-is "writing a new convention or rule"; its `Why` is about *decisions* decaying
-without a recorded origin). No new judgment was written into any of these five
-Rules — only how each one links to another practice — so no Story was added
-to satisfy the check mechanically; per `checkable-gets-checked`'s own
-discipline, that is a considered no with its reason recorded, not an
-unexamined one.
 
 ## Considered, not changed
 

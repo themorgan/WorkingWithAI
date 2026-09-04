@@ -53,7 +53,7 @@ that isn't a style violation so much as "something obviously went wrong":
      changed file, which on-demand practices' `applies_to` glob matches it —
      the same lookup `tools/precedent_paths.py FILE` does by hand, run here
      automatically so it doesn't depend on a session remembering to ask.
-     Added after a session reorganizing docs-team/HUMANS_AT_OUR_BEST.md
+     Added after a session reorganizing content/HUMANS_AT_OUR_BEST.md
      mis-capitalized a new header: `header-caps` matched the edited file and
      would have caught it, but nothing surfaced the rule because the session
      never ran precedent_paths.py against that file, only recalling a few

@@ -1,8 +1,13 @@
 {
   "checks": [
     {
+      "path": "tools/checks/checks/check_assorted_notes.py",
+      "sha256_16": "3e84c691ed1013c5",
+      "source": "precedent-individual"
+    },
+    {
       "path": "tools/checks/checks/check_buenos_aires_dates.py",
-      "sha256_16": "58f79a76ab5c8e8f",
+      "sha256_16": "aa99f68f3d98a051",
       "source": "precedent-individual"
     },
     {
@@ -12,12 +17,17 @@
     },
     {
       "path": "tools/checks/checks/check_commit_author.py",
-      "sha256_16": "a831c29f97cf87b7",
+      "sha256_16": "ac4e9e88ba32d150",
       "source": "precedent-individual"
     },
     {
       "path": "tools/checks/checks/check_file_header.py",
       "sha256_16": "1310b2bbd291d736",
+      "source": "precedent-individual"
+    },
+    {
+      "path": "tools/checks/checks/tests/test_assorted_notes.sh",
+      "sha256_16": "9e04ad237acec924",
       "source": "precedent-individual"
     },
     {
@@ -131,7 +141,7 @@
       "source": "precedent-team-maintainers"
     }
   ],
-  "generated_at_utc": "2026-09-03T16:35:32+00:00",
+  "generated_at_utc": "2026-09-04T15:21:10+00:00",
   "generated_by": "tools/precedent_materialize.py",
   "note": "DERIVED ARTIFACT -- never hand-edit. Regenerate by re-running precedent_materialize.py with the same --repo/--user-config; this file records exactly what produced the snapshot so drift is visible, per generated-artifact-provenance.",
   "practices": [
@@ -146,6 +156,12 @@
       "sha256_16": "7d7b87e2580bc4b2",
       "slug": "affordance-is-shared",
       "source": "precedent"
+    },
+    {
+      "level": "individual",
+      "sha256_16": "32a4e7b02ba12084",
+      "slug": "assorted-notes",
+      "source": "precedent-individual"
     },
     {
       "level": "team",
@@ -185,7 +201,7 @@
     },
     {
       "level": "individual",
-      "sha256_16": "c2a623d488d4e529",
+      "sha256_16": "11028f0c6c9d60c3",
       "slug": "buenos-aires-dates",
       "source": "precedent-individual"
     },
@@ -233,7 +249,7 @@
     },
     {
       "level": "individual",
-      "sha256_16": "a3ed8ccfe61987b6",
+      "sha256_16": "9ebeced5a84ac368",
       "slug": "commit-author",
       "source": "precedent-individual"
     },
@@ -242,6 +258,12 @@
       "sha256_16": "497fdd6a44724993",
       "slug": "computed-numbers-in-scripts",
       "source": "precedent"
+    },
+    {
+      "level": "individual",
+      "sha256_16": "27d0215bbe889c66",
+      "slug": "content-directory",
+      "source": "precedent-individual"
     },
     {
       "level": "team",
@@ -365,6 +387,12 @@
     },
     {
       "level": "universal",
+      "sha256_16": "6e03b1a4c275b429",
+      "slug": "full-practice-audit",
+      "source": "precedent"
+    },
+    {
+      "level": "universal",
       "sha256_16": "5cfba54b6c2cbb2f",
       "slug": "generated-artifact-provenance",
       "source": "precedent"
@@ -377,7 +405,7 @@
     },
     {
       "level": "individual",
-      "sha256_16": "60af23c4d38247e8",
+      "sha256_16": "7aa019a2a3116f26",
       "slug": "go-merge",
       "source": "precedent-individual"
     },
@@ -455,7 +483,7 @@
     },
     {
       "level": "universal",
-      "sha256_16": "fbe8086be17104ed",
+      "sha256_16": "4a25f6a9fa55abda",
       "slug": "migration-scrubs-vocabulary",
       "source": "precedent"
     },
@@ -482,6 +510,12 @@
       "sha256_16": "8ac06225fe82d4c8",
       "slug": "new-rule-placement",
       "source": "precedent-team-maintainers"
+    },
+    {
+      "level": "individual",
+      "sha256_16": "185e18b18139dbc9",
+      "slug": "next-steps-after-commit",
+      "source": "precedent-individual"
     },
     {
       "level": "team",
@@ -628,6 +662,12 @@
       "source": "precedent-team-maintainers"
     },
     {
+      "level": "universal",
+      "sha256_16": "f8c822fa7bfc6ee3",
+      "slug": "routing-audit",
+      "source": "precedent"
+    },
+    {
       "level": "team",
       "sha256_16": "74efe522946c53fb",
       "slug": "rule-links",
@@ -683,7 +723,7 @@
     },
     {
       "level": "team",
-      "sha256_16": "3baca1aecb45f87d",
+      "sha256_16": "ad0af4121f954e05",
       "slug": "session-trailer",
       "source": "precedent-team-maintainers"
     },

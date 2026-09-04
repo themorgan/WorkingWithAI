@@ -1,23 +1,23 @@
-<!-- Last updated: 2026-09-03 11:52:29 (Buenos Aires) by Morgan F, to version 27 -->
+<!-- Last updated: 2026-09-04 12:22:06 (Buenos Aires) by Morgan F, to version 29 -->
 
 # Repository instructions — read me first
 
 **Orientation: read [MAP.md](MAP.md) first** — the repository map. It covers
-the brainstorm ([RANDOM_NOTES.md](docs-team/RANDOM_NOTES.md)) and indexes the practice layer that
+the brainstorm ([RANDOM_NOTES.md](content/RANDOM_NOTES.md)) and indexes the practice layer that
 keeps this repo well-run.
 
 ## Where things are (quick index — check here BEFORE searching the repo)
 
 | Looking for… | Go to |
 |---|---|
-| The theory behind this repo — named, explained, not argued for | [OUR_PHILOSOPHY.md](docs-team/OUR_PHILOSOPHY.md) |
-| The less obvious benefits those ideas produce | [REASONS_WHY.md](docs-team/REASONS_WHY.md) |
-| The one-page pitch for why this repo's approach is unique | [THE_REVOLUTIONARY_FORMULA.md](docs-team/THE_REVOLUTIONARY_FORMULA.md) |
-| What humans are good at — the one full list | [HUMANS_AT_OUR_BEST.md](docs-team/HUMANS_AT_OUR_BEST.md) |
+| The theory behind this repo — named, explained, not argued for | [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md) |
+| The less obvious benefits those ideas produce | [REASONS_WHY.md](content/REASONS_WHY.md) |
+| The one-page pitch for why this repo's approach is unique | [THE_REVOLUTIONARY_FORMULA.md](content/THE_REVOLUTIONARY_FORMULA.md) |
+| What humans are good at — the one full list | [HUMANS_AT_OUR_BEST.md](content/HUMANS_AT_OUR_BEST.md) |
 | Canonical names — use these, don't invent new ones | [GLOSSARY.md](GLOSSARY.md) |
-| The brainstorm itself | [RANDOM_NOTES.md](docs-team/RANDOM_NOTES.md) |
+| The brainstorm itself | [RANDOM_NOTES.md](content/RANDOM_NOTES.md) |
 | The three-stage pipeline (idea → rules now testing → company policy) | [README.md](README.md) |
-| Rules actually in force now, and promotion candidates | [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) |
+| Rules actually in force now, and promotion candidates | [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md) |
 | The voice guidelines (write like a human, not an LLM) | [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) |
 | Open items: analyses, verifications, decisions | [TODO.md](TODO.md) |
 | Practice layer: vendored BestPractice copy, `precedent.json` sources, scrub blocklist | `process/`, [precedent.json](precedent.json) |
@@ -36,7 +36,7 @@ the voice guidelines current"). It governs **everything a
 session writes here, not just committed documents** — the chat reply itself
 is in scope too. Check outward-facing prose against it before calling a
 piece done; this is
-[`write-like-a-human`](docs-team/RULES_NOW_TESTING.md#write-like-a-human), now
+[`write-like-a-human`](content/RULES_NOW_TESTING.md#write-like-a-human), now
 backed by a real, vendored ruleset instead of a manual checklist.
 HUMAN_VOICE_RULES.md's own §17 sets the precedence rule if that ever
 conflicts with a more specific, person-authored voice pack: the
@@ -138,7 +138,7 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
 2. Resolve by fixed per-file-class rules ([practice 9](process/upstream/PRACTICES.md#9-a-merge-runbook-with-fixed-per-file-class-rules)):
    - `process/manifest.json` / `process/manifest_voice.json` / `precedent.json`:
      **union** of both sides — never drop an entry, a status, or a source.
-   - [TODO.md](TODO.md) and [RANDOM_NOTES.md](docs-team/RANDOM_NOTES.md): **append-only — keep both
+   - [TODO.md](TODO.md) and [RANDOM_NOTES.md](content/RANDOM_NOTES.md): **append-only — keep both
      sides' additions.**
    - Same content file edited on both sides: keep both sides' text.
    - **`process/upstream/`: never hand-merge.** It must stay byte-identical
@@ -185,10 +185,10 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
 - **A durable numbered list is cited by permanent slug, never by
   position** ([`durable-list-anchors`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/durable-list-anchors.md)):
   every rule or item in this repo's own essay lists —
-  [COMPANY_BUILDING_RULES.md](docs-team/COMPANY_BUILDING_RULES.md),
-  [AI_GOVERNANCE_TO_COCREATE.md](docs-team/AI_GOVERNANCE_TO_COCREATE.md),
-  [OUR_PHILOSOPHY.md](docs-team/OUR_PHILOSOPHY.md), [REASONS_WHY.md](docs-team/REASONS_WHY.md),
-  [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) — carries its own
+  [COMPANY_BUILDING_RULES.md](content/COMPANY_BUILDING_RULES.md),
+  [AI_GOVERNANCE_TO_COCREATE.md](content/AI_GOVERNANCE_TO_COCREATE.md),
+  [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md), [REASONS_WHY.md](content/REASONS_WHY.md),
+  [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md) — carries its own
   `<a id="slug"></a>` anchor, cited everywhere as
   `` `slug` (file.md#slug) ``, never as a bare "rule 4" or "item 3". This
   supersedes the older split between "anchored when the source list uses
@@ -282,7 +282,7 @@ Do not hand-edit the block below — the next sync overwrites it.
 
 <!-- Regenerate with: python3 tools/build_views.py -- do not hand-edit this block, tools/verify_harness.py's regeneration check fails on drift. -->
 
-### Resident block (~659 of 2000 token budget, 10 of 102 practices (1 individual, 3 team, 6 universal))
+### Resident block (~659 of 2000 token budget, 10 of 107 practices (1 individual, 3 team, 6 universal))
 
 **bold-key-phrases.** People don't read; they skim, and bolding makes skimming easy. Bold the key phrases in a document by default, without being asked, scaling with length -- a long paragraph or document is where a skimmer most needs a spine to follow, a short note usually needs little or none.
 
@@ -343,6 +343,8 @@ When a numbered list's entries are durable content likely to be cited by positio
   durable-list-anchors — anchor and slug each entry of a durable numbered list, not just its number
 When a paragraph just got a substantial edit, or the piece is done:
   trim-prose — trim a paragraph right after editing it, and before calling it done
+When a person explicitly asks for a full practice audit (or "practice check") across the whole catalogue:
+  full-practice-audit — sweep every source's full catalogue, one practice at a time, on request only
 When a practice lands or a candidate is raised, at any level:
   disclose-landing — state plainly what happened and where — individual, named team, or universal
 When a project of mine vendors a universal practice set as tracked files:
@@ -389,6 +391,8 @@ When building or committing a generated artifact:
   generated-artifact-provenance — stamp a build code and a manifest; never hand-edit output
 When building or setting up a system that talks to an LLM:
   llm-neutral — build LLM integrations provider-neutral; assume an OpenRouter token
+When checking whether the practices that should have fired for recent work actually fired:
+  routing-audit — run the mechanical coverage check now; roll the deep-read slice forward
 When citing support for a claim in a formal document:
   brainstorm-citations — cite a formal document for support, never a raw brainstorm entry
 When committing anything:
@@ -401,6 +405,8 @@ When counting or matching entries by name against other entries that may share a
   match-parsed-id-not-prefix — When counting how many files or entries share a name (recurrence, a duplicat...
 When creating a file a later regeneration will overwrite:
   derived-file-marker — a regenerated file's header names its source, recipe, and command
+When creating a repo's content/ directory, or migrating a legacy BRAINSTORM.md/NOTES.md/IDEAS.md into the new system:
+  assorted-notes — a default content/ASSORTED_NOTES.md holds notes never referenced elsewhere
 When deciding where a new rule belongs:
   layered-practice-packs — generic, domain, repo-local — each rule to its own layer
 When deciding whether to build or buy a component:
@@ -411,6 +417,8 @@ When drafting or revising a list, or a document with list-like sections:
   list-item-parity — keep list items comparable in length; default to the shorter side
 When editing a markdown file that carries this header:
   file-header — markdown files get a last-updated/by-me/version header
+When ending a reply in which I committed something:
+  next-steps-after-commit — after a commit, close the reply by naming what I still need to do
 When exporting a tool across a repo boundary:
   engine-plus-host-shims — one vendored engine, thin host shims, never a fork
 When finishing a substantial work-product, before the merge-time capture gate:
@@ -419,6 +427,8 @@ When installing Precedent into a project I'll work on from Claude Code Web:
   claude-web-bootstrap — wire the SessionStart hook so this set clones and configures itself
 When installing a vendored practice layer that could check in upstream:
   blank-blocklist — leave a check-in blocklist blank at install; don't ask, don't remind
+When laying out a repo's root directory, or a root that's grown crowded with agent/tooling files:
+  content-directory — put working files in content/ so they don't mix with agent/tooling files
 When leaving a placeholder or fill-in-later note mid-draft:
   draft-marker — wrap a draft placeholder in ➡️ TEXT ⬅️, bold and all caps
 When making the first commit in a fresh clone or session:
@@ -433,8 +443,8 @@ When merging a branch that touches shared files:
   merge-runbook — write conflict resolution per file class, once, then follow it
 When migrating a repo off an old practice system onto Precedent:
   migration-scrubs-vocabulary — scrub the old system's vocabulary the same session, not on request
-When my message ends on a standing merge-authorization word:
-  go-merge — "go"/"merge"/"PR & merge" alone at the end means merge
+When my message ends on the standing merge-authorization phrase:
+  go-merge — "Go merge" alone at the end means sync, confirm branch, commit, and merge
 When naming a git branch in a document, reply, or status update:
   branch-links — link every git branch mentioned to its tree view
 When naming a new file:

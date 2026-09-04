@@ -57,3 +57,53 @@ the upstream layer. Ordered by priority.
    losing the practices. Deliberately below the Actions/Issues items
    above: deeper GitHub integration now is acceptable, since equivalents
    can be added later.
+9. ~~**The pre-fork catalogue audit table.**~~ **Done (2026-09-03).** One
+   row per inherited practice, verdict against this plan's architecture,
+   plus whether Alex needs to hear about it:
+   [spec/PREFORK_AUDIT.md](spec/PREFORK_AUDIT.md).
+10. **`for_team:`/`in_repos:` individual-practice scoping.** Fully designed
+    in [PRACTICE_ENGINE_PLAN.md's Deferred section](PRACTICE_ENGINE_PLAN.md#deferred-speculative--do-not-build-yet),
+    correctly not built yet. **Blocked on:** a real second team's private
+    set existing to test `for_team:`'s conflict rule against — revisit the
+    moment one does, don't re-derive the judgment from scratch.
+11. **Confirm `additionalContext` actually reaches the model, not just the
+    transcript.** The new `PreToolUse` hook
+    ([templates/harness/claude-code/hooks/precedent-paths.sh](templates/harness/claude-code/hooks/precedent-paths.sh),
+    [`spec/LOADER.md`](spec/LOADER.md#the-pretooluse-hook-and-what-is-confirmed-versus-assumed))
+    uses the documented `hookSpecificOutput.additionalContext` shape to
+    surface matched practice Rules before an edit, but the public Claude
+    Code hooks reference doesn't state *(as of 2026-09-03)* whether that
+    field is delivered into the model's own context for that turn versus
+    only shown to the human in a transcript. `check_pretooluse_hook_fires`
+    in [tools/verify_harness.py](tools/verify_harness.py) proves the
+    wrapper produces the right shape; it cannot prove delivery. **Test
+    plan**, recommended rather than run here (needs a live Claude Code
+    session with this hook installed, which this session doesn't have):
+    install the adapter in a real project, ask the session to edit a file
+    matching a narrow-scoped on-demand practice's `applies_to` glob (e.g.
+    a `tools/**` file for `code-cites-practice`), and check whether the
+    session's own next reply cites that practice's Rule *unprompted* —
+    something it could only do if the hook's context actually reached it,
+    since the practice is on-demand and not otherwise in view. A clean
+    negative result (the session never mentions the practice across
+    several such edits) is itself the answer, and should be recorded here
+    either way rather than left unconfirmed indefinitely.
+12. **Investigate why `routing-audit` fell through, audit the plan for
+    other silent drops, and pre-register a real evaluation of the two new
+    audit mechanisms before trusting their output.** Full instructions in
+    [spec/UNBUILT_PLAN_ITEMS.md](spec/UNBUILT_PLAN_ITEMS.md). **Blocked
+    on:** a fresh session with room for both the investigation (grepping
+    the plan for other approved-but-unbuilt commitments, cross-referencing
+    phase briefs) and a properly pre-registered evaluation
+    (`evals/routing/` discipline) — genuinely too large to fold into the
+    session that built `routing-audit` and `full-practice-audit` in the
+    same sitting.
+13. **Retire [local/practices/merge-target-is-beta-branch.md](local/practices/merge-target-is-beta-branch.md)
+    (and its check in [tools/precedent_check.py](tools/precedent_check.py),
+    and the pointer in [AGENTS.md](AGENTS.md)'s opening paragraph) the
+    moment Alex reviews and merges `precedent-beta-v01` into `main` for
+    real.** Delete the practice file, remove the
+    `merge-target-is-beta-branch` check function, and remove the
+    [AGENTS.md](AGENTS.md) pointer, all in that same PR. **Blocked on:** Alex's review
+    and approval of `precedent-beta-v01` for the real phase-7 merge into
+    `main` — not something to anticipate or do early.

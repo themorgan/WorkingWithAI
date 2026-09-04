@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 13:37:18 (Buenos Aires) by Morgan F, to version 6 -->
+<!-- Last updated: 2026-09-04 12:13:55 (Buenos Aires) by Morgan F, to version 7 -->
 
 # Migrating this repo from BestPractice-only to Precedent (2026-09-02)
 
@@ -174,7 +174,7 @@ so it isn't only visible from this repo's own side.
 ## A real finding: `practice_audit.py`'s scrub check does not cleanly pass
 
 Running `python3 process/upstream/tools/practice_audit.py` after the
-re-vendor gives **63 SCRUB failures, all inside `process/upstream/`
+re-vendor gives **79 SCRUB failures, all inside `process/upstream/`
 itself** — not in anything this repo added (53 as of the original
 migration; the 2026-09-02 re-vendor to commit `29f14c0` added 7 more,
 all in the newly-vendored `spec/MIGRATING_EXISTING_INSTALLS.md`, which
@@ -186,10 +186,17 @@ still, `spec/MOVING_PRACTICES.md`'s own file-header date line, same
 reasoning again; a further 2026-09-03 re-vendor to commit `8c3b02d`
 added 1 more, the new [migration-scrubs-vocabulary.md](upstream/practices/migration-scrubs-vocabulary.md)'s
 own Story section naming `themorgan/WorkingWithAI` as the worked example
-its own Rule is drawn from, same reasoning again). This is worth recording
-plainly rather than working around, and worth NOT "fixing" by editing
-`process/upstream/` (forbidden — it must stay byte-identical to the vendored
-branch) or by quietly deleting blocklist entries to make the audit pass.
+its own Rule is drawn from, same reasoning again; the 2026-09-04 re-vendor
+to commit `3d03afd` — picking up phase-6's pre-fork audit and the 4-phase
+practice-simulation build, ≈30 commits, PRs #83-#98 — added 16 more, all in
+newly-vendored `spec/` briefs (`PHASE6_BRIEF.md`, `PREFORK_AUDIT.md`,
+`PRIVATE_ENFORCEMENT_BRIEF.md`, and others) narrating this same repo's own
+migration and identity as worked examples, same reasoning again — see the
+confirmed-patterns paragraph below, updated to match). This is worth
+recording plainly rather than working around, and worth NOT "fixing" by
+editing `process/upstream/` (forbidden — it must stay byte-identical to the
+vendored branch) or by quietly deleting blocklist entries to make the audit
+pass.
 
 **What's actually happening:** `process/scrub_blocklist.txt` is Morgan's
 own private-vocabulary list for this repo, whose own header explains its
@@ -208,15 +215,31 @@ story Morgan is a genuine, disclosed, named contributor to the public
 Precedent project itself, not someone whose identity BestPractice is
 supposed to keep out of its own docs.
 
-**Confirmed by checking exactly which patterns fired:** all 53 hits match
-only `themorgan` (28), `Buenos Aires` (22), and
-`America/Argentina/Buenos_Aires` (3) — none of the more specific,
-genuinely sensitive entries (`morgan@westegg\.com`, `westegg\.com`,
-`morganfriedman`, `6497032`, `Morgan F`, `WorkingWithAI`) fired at all.
-That is exactly the shape a legitimate disclosure collision should have:
-the identifiers BestPractice's own public docs disclose about their real
-contributor overlap with this repo's *broadest* private-vocabulary
+**Confirmed by checking exactly which patterns fired, as of the original
+migration:** all 53 hits matched only `themorgan` (28), `Buenos Aires`
+(22), and `America/Argentina/Buenos_Aires` (3) — none of the more
+specific, genuinely sensitive entries (`morgan@westegg\.com`,
+`westegg\.com`, `morganfriedman`, `6497032`, `Morgan F`, `WorkingWithAI`)
+fired at all. That was exactly the shape a legitimate disclosure collision
+should have: the identifiers BestPractice's own public docs disclose about
+their real contributor overlap with this repo's *broadest* private-vocabulary
 patterns, and nothing more specific leaked.
+
+**Updated as of the 2026-09-04 re-vendor (commit `3d03afd`):** the full
+breakdown across all 79 hits is `themorgan` (40), `Buenos Aires` (28),
+`WorkingWithAI` (5), `America/Argentina/Buenos_Aires` (3), `morganfriedman`
+(2), and `Morgan F` (1) — three patterns beyond the original three now also
+fire, each checked individually and still not a real leak: the two
+`morganfriedman` hits are inside upstream's own
+[decisions/2026-09-03-leak-gate-vocabulary-recalibration.md](https://github.com/alex137/BestPractice/blob/precedent-beta-v01/decisions/2026-09-03-leak-gate-vocabulary-recalibration.md),
+quoting the *regex pattern name* `` `\bmorganfriedman\b` `` in prose about a
+different repo's blocklist tuning, not the username appearing as a live
+identifier; the `Morgan F` and five `WorkingWithAI` hits are in the new
+phase-6 spec briefs (`PHASE6_BRIEF.md`, `PREFORK_AUDIT.md`, and others)
+narrating this repo's migration as a worked example, the same
+already-disclosed-upstream pattern as `themorgan`/`Buenos Aires` above.
+`morgan@westegg\.com` (as a live address, not quoted-as-pattern-name),
+`westegg\.com`, and `6497032` still did not fire.
 
 **Why this isn't a WorkingWithAI leak, and why it isn't something to
 silently patch:** the scrub check's own design assumption is that anything
@@ -229,8 +252,11 @@ they simply weren't designed for the case where the *same person* is both
 a dependent repo's private owner and a disclosed, named contributor to the
 public upstream project. Weakening the blocklist to silence this would
 also weaken it against the scenario it actually exists for — a future
-accidental leak of the *specific* identifiers, which correctly did not fire
-here. Left as a known, understood FAIL for this beta-tracked vendored
+accidental leak of the *specific* identifiers: the genuinely sensitive ones
+(`morgan@westegg\.com` as a live address, `westegg\.com`, `6497032`) still
+correctly do not fire; `morganfriedman` now fires twice, but only as a
+quoted regex-pattern name in upstream's own prose (see above), not as a
+leaked identifier. Left as a known, understood FAIL for this beta-tracked vendored
 tree; **flagged upstream** in
 [spec/MIGRATING_EXISTING_INSTALLS.md](https://github.com/alex137/BestPractice/blob/precedent-beta-v01/spec/MIGRATING_EXISTING_INSTALLS.md)
 as a real gap `practice_audit.py`'s scrub check has no answer for today
@@ -274,7 +300,7 @@ running the same kind of program? / only here?") against this repo's own
 `AGENTS.md`. Nothing surfaced that's cleanly a *rule* true only of this
 repo and not already covered by the universal/team/individual split: this
 repo's genuinely repo-local content (`MAP.md`, `TODO.md`, `GLOSSARY.md`,
-the `docs-team/` brainstorm and philosophy documents) is subject matter,
+the `content/` brainstorm and philosophy documents) is subject matter,
 not procedural rules a loader would resident-load — practice 23's own
 distinction ("repo-local rules... live in that repo's instructions files",
 not "this repo's subject matter lives wherever"). No `precedent.json`
@@ -346,6 +372,28 @@ failures**, matching this document's own documented, expected count for the
 current vendored tree exactly — confirms the re-vendor landed the same
 accepted collision described above, not a new one.
 
+## 2026-09-04 follow-up: phase-6 pre-fork audit and practice-simulation land
+
+**Re-vendor.** `process/upstream/` replaced wholesale from a checkout of
+`precedent-beta-v01` at `3d03afdf6e4f4a74a0c88e6c205485d1cc1c8791` (previously
+`16a9becf`), same one-off-manual-mirror pattern (`checkin.py`'s `update`
+still can't track a non-default branch — see the manifest's `_note`).
+≈30 commits landed (PRs #83-#98): phase-6 pre-fork work (the catalogue
+audit, a naming fix, disclosing the practice-capture mechanism, and
+INSTALL.md §0 for a clean install straight onto the Precedent loader), a
+routing/full-practice audit, a temporary `merge-target-is-beta-branch`
+practice on the upstream repo itself (irrelevant here — this repo's own PRs
+target its own `main`, unaffected), and a 4-phase practice-simulation build
+(mechanical correctness replay → synthetic scenario generation → multi-repo
+testing → a trend-log command). 59 files added, 30 modified, none deleted.
+`process/manifest.json`'s `upstream.commit`/`synced_from` updated;
+`upstream.branch` and its sync-paused `_note` were already correct.
+
+**Audits.** `practice_audit.py`: **79 SCRUB failures** — up from 63, all
+inside `process/upstream/` and all the same class of legitimate disclosure
+collision, per the updated breakdown above. `doc_lint.py` and
+`light_check.py`: no new findings beyond the pre-existing backlog.
+
 ## Files touched
 
 See [TODO.md](../TODO.md)'s "Decisions" entry for this change (dated
@@ -357,4 +405,6 @@ touched: `process/manifest.json` (commit bump), `process/upstream/` (wholesale
 re-vendor), `tools/{precedent_resolve,precedent_materialize,build_views,precedent_show,precedent_paths,precedent_gate,split_practices,precedent_sync_views}.py`
 (new, vendored), `AGENTS.md` (generated-block markers + rewritten prose),
 `practices/`, `tools/checks/`, `MANIFEST.json` (new, generated by
-`precedent_sync_views.py`), and this document.
+`precedent_sync_views.py`), and this document. The 2026-09-04 follow-up
+above touched: `process/manifest.json` (commit bump), `process/upstream/`
+(wholesale re-vendor), and this document.
