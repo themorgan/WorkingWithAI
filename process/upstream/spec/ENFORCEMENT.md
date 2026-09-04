@@ -72,12 +72,13 @@ being checked by it.
 | `github-setup-disclosed` | change | a newly added GitHub Actions workflow file is named somewhere in GITHUB_ACTIONS.md, where this project's people read about GitHub-specific setup |
 | `index-remembers-past` | change | a changed document does not carry inline lineage language naming what it replaced or what replaced it, since provenance belongs in the repository index, not annotated into the documents themselves |
 | `label-describes-content` | change | a heading or bold lead-in that claims "one line" / "one-liner" / "TL;DR" / "one paragraph" / "one-pager" must match the length of what actually follows it |
-| `migration-scrubs-vocabulary` | tree | a repo that has declared process/retired_vocabulary.json carries none of its listed terms outside the declared exempt files |
+| `migration-scrubs-vocabulary` | tree | a repo that has declared process/retired_vocabulary.json carries none of its listed terms outside the declared exempt files/directories |
 | `no-rewrite-for-warnings` | turn-end | the commit this branch was last published at is still an ancestor of its tip — published history has not been rewritten |
 | `no-version-suffix` | change | a file added by this change must not carry a version, date or state suffix in its name |
 | `orientation-map` | tree | MAP.md exists at the repository root, is not empty, and the session instructions point at it |
 | `practice-export-loop` | tree | every manifest entry marked synced still matches its baseline — a local improvement to a vendored file has been exported, not absorbed |
 | `quick-index` | tree | the session instructions carry a "looking for X → go to Y" table with at least five rows |
+| `routing-audit` | tree | tools/routing_audit.py exists, and tools/routing_audit_state.json (if present) has no rotation entry for a practice that is not currently active |
 | `scripts-assert-properties` | tree | every instrumented script asserts its own properties, and every figure it recites from a source document still matches that document |
 | `scrub-gate` | tree | every text file in a vendored tree destined for another repo is clean against that tree's blocklist, at all times |
 | `search-by-purpose` | change | a document carrying generated numbers is reachable from an index a reader actually consults |
@@ -85,7 +86,7 @@ being checked by it.
 | `two-check-levels` | tree | the session instructions name two fixed, distinct check levels ("light check" / "deep check") and say which gates a commit versus a push |
 | `verify-postcondition` | turn-end | the state you wanted after the operations this turn: nothing committed but unpushed on any local branch, and no tracked file left modified |
 
-26 of 57 practices are enforced. Run `python3 tools/precedent_check.py --explain` for what each check does **not** catch.
+27 of 59 practices are enforced. Run `python3 tools/precedent_check.py --explain` for what each check does **not** catch.
 <!--/gen:enforcement-->
 
 Numbers by: catalogue_stats.py
@@ -96,14 +97,19 @@ Every graceful-failure path here ends in `SKIPPED` with a reason, and the
 summary line says so in those words:
 
 ```
-precedent_check: N passed, 0 violated, M skipped (a skip is not a pass).
+precedent_check: N passed, 0 violated, 0 errored, M skipped (a skip is not a pass).
 ```
 
 (0 violated is what matters here — the passed/skipped counts grow as
 checks are added or as more of a clean tree happens to be in scope for a
 `change`-only check, so a literal N/M pinned into this example goes stale
 by design; this document had one and a 2026-09-01 deep-check audit found
-it already wrong.)
+it already wrong. `errored` is a fourth, later-added status, 2026-09-03:
+a check that raised something other than `NotApplicable` — its own bug
+hitting an edge case it didn't validate for, not a real-or-clean verdict
+either way — fails the run exactly as a violation does, rather than
+taking every other check in the same run down with it as an uncaught
+exception used to.)
 
 This is not fastidiousness. Three of the four inherited scripts were failing
 in one of the two ways a check can fail without failing. Two exited non-zero

@@ -22,19 +22,16 @@ PRACTICE_FILE = ROOT / "practices" / "commit-author.md"
 EXPECTED_NAME = "Morgan F"
 EXPECTED_EMAIL = "morgan@westegg.com"
 
-# practice: no-rewrite-for-warnings -- these two commits predate this check
-# and landed before the identity was enforced. Rewriting already-published
-# history to silence a check is exactly what that practice forbids ("fix
-# the setting forward... do not rebase, amend, or force-push to satisfy the
-# warning"); its own Install section calls for scoping the check instead,
-# which is what this list does. Found and left as a noted, unfixed backlog
-# item 2026-09-03, while adding this check's own regeneration to this repo.
-# Every commit made after this list was added is still fully checked --
-# this exempts exactly these two SHAs, nothing else, ever.
-GRANDFATHERED_SHAS = {
-    "ac525c90017b5cc2bc18ac9e048af8bae7324f87",  # 2026-09-02, pre-check
-    "0016903c1ec8e818826cabe34858cc133899e365",  # 2026-09-02, pre-check
-}
+# practice: no-rewrite-for-warnings -- the two commits formerly exempted
+# here (ac525c9, 0016903) were rewritten in place on 2026-09-03. 9ad366a
+# (the commit that first added this exemption) quoted the practice as
+# reserving a rewrite "for an explicit human instruction, never inferred
+# from a tool's output" -- Morgan gave that instruction today, supplying
+# the one condition that was missing. Both commits now carry the correct
+# author on their own merit, so the exemption list is empty rather than
+# removed outright -- the mechanism stays in place for the next real
+# pre-check commit that needs it.
+GRANDFATHERED_SHAS: set[str] = set()
 
 
 def rule_text() -> str:

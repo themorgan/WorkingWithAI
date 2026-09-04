@@ -2329,6 +2329,32 @@ def check_precedent_check_fires():
                 '**deep check**', 'deep check', 1))
         case('two-check-levels', _plant_tcl)
 
+        # routing-audit -- a stale rotation entry for a practice that no
+        # longer exists (the exact bookkeeping-drift case the check exists
+        # to catch: a retired or renamed practice left behind in the state
+        # file)
+        def _plant_ra(repo):
+            (repo / 'tools' / 'routing_audit_state.json').write_text(
+                '{"not-a-real-practice-zzz": {"last_reviewed": '
+                '"2020-01-01", "commit": "deadbeef"}}\n', encoding='utf-8')
+        case('routing-audit', _plant_ra)
+
+        # merge-target-is-beta-branch -- origin/main advanced to include
+        # origin/precedent-beta-v01 as an ancestor (the PR #89 incident,
+        # replayed against the throwaway repo's own two remote-tracking
+        # refs rather than the real ones). The pristine copy has exactly one
+        # commit, so a second is made here to give the two refs a real
+        # ancestor relationship to plant.
+        def _plant_mtib(repo):
+            c1 = git(repo, 'rev-parse', 'HEAD')
+            (repo / 'PLANT_MARKER.txt').write_text('planted\n', encoding='utf-8')
+            git(repo, 'add', '-A')
+            git(repo, 'commit', '-qm', 'second commit for the plant')
+            c2 = git(repo, 'rev-parse', 'HEAD')
+            git(repo, 'update-ref', 'refs/remotes/origin/precedent-beta-v01', c1)
+            git(repo, 'update-ref', 'refs/remotes/origin/main', c2)
+        case('merge-target-is-beta-branch', _plant_mtib)
+
         # environment-gotchas -- an entry that is a bare fix
         def _plant_eg(repo):
             rewrite(repo, 'AGENTS.md', lambda t: t.replace(
@@ -2464,6 +2490,135 @@ def check_precedent_check_fires():
                  'Still mentions OldPackName here.\n', encoding='utf-8'),
              setup=_setup_retired_vocab)
 
+        # migration-scrubs-vocabulary -- a malformed config (valid JSON,
+        # wrong shape: a bare array where `{"terms": [...]}` belongs) used
+        # to reach `cfg.get('terms')` and raise an uncaught AttributeError
+        # -- a 2026-09-03 deep-check audit found this took down the WHOLE
+        # precedent_check.py run, not just this one check: zero of the
+        # other ~40 checks got to report anything. Now a clean VIOLATION
+        # naming the exact problem, same as any other malformed input this
+        # check already handles (bad JSON syntax, above).
+        malformed_repo = fresh('migration-scrubs-vocabulary-malformed')
+        (malformed_repo / 'process').mkdir(parents=True, exist_ok=True)
+        (malformed_repo / 'process' / 'retired_vocabulary.json').write_text(
+            json.dumps(['OldPackName']), encoding='utf-8')
+        rc_malf, out_malf = run(malformed_repo, 'migration-scrubs-vocabulary')
+        cases.append(('migration-scrubs-vocabulary: a malformed config (a '
+                      'JSON array where an object belongs) is a clean '
+                      'VIOLATION naming the problem, not an uncaught crash',
+                      rc_malf == 1 and 'VIOLATION' in out_malf
+                      and 'Traceback' not in out_malf
+                      and 'must be a JSON object' in out_malf,
+                      out_malf))
+
+        # migration-scrubs-vocabulary -- a `/`-suffixed exempt_files entry
+        # exempts a whole DIRECTORY, not just one file (2026-09-03 fix: a
+        # materialized directory like practices/, filled in by
+        # precedent_materialize.py on every precedent_sync_views.py run,
+        # can hold another source's own legitimate content that happens to
+        # share a literal substring with a retired term -- a real
+        # dependent-repo migration hit this with a team source's own
+        # `approved_by` provenance note). Both directions in one fixture:
+        # the term INSIDE the exempted directory is clean; the SAME term
+        # OUTSIDE it still fails -- proving this isn't a blanket disable.
+        dir_exempt_repo = fresh('migration-scrubs-vocabulary-dir-exempt')
+        (dir_exempt_repo / 'process').mkdir(parents=True, exist_ok=True)
+        (dir_exempt_repo / 'process' / 'retired_vocabulary.json').write_text(
+            json.dumps({'terms': ['OldPackName'],
+                        'exempt_files': ['materialized/']}),
+            encoding='utf-8')
+        (dir_exempt_repo / 'materialized').mkdir(parents=True, exist_ok=True)
+        (dir_exempt_repo / 'materialized' / 'other_source.md').write_text(
+            'OldPackName, mentioned by a different source, on purpose.\n',
+            encoding='utf-8')
+        (dir_exempt_repo / 'STALE.md').write_text(
+            'Still mentions OldPackName here.\n', encoding='utf-8')
+        rc_dir, out_dir = run(dir_exempt_repo, 'migration-scrubs-vocabulary')
+        cases.append(("migration-scrubs-vocabulary: a `/`-suffixed "
+                      "exempt_files entry exempts everything under that "
+                      "directory, but not files outside it",
+                      rc_dir == 1 and 'VIOLATION' in out_dir
+                      and 'materialized/other_source.md' not in out_dir
+                      and 'STALE.md' in out_dir,
+                      out_dir))
+
+        # migration-scrubs-vocabulary / ROOT resolution -- when
+        # precedent_check.py is VENDORED into a dependent repo at
+        # process/upstream/tools/ (the documented convention --
+        # spec/MIGRATING_EXISTING_INSTALLS.md step 7 also vendors
+        # split_practices.py at the dependent repo's own top-level tools/,
+        # which precedent_check.py needs importable), ROOT must resolve to
+        # the DEPENDENT repo's own root, not process/upstream/ itself
+        # (2026-09-03 fix -- Path(__file__).resolve().parents[1] got this
+        # wrong in exactly that layout: a real dependent-repo migration's
+        # migration-scrubs-vocabulary run silently scanned process/upstream/'s
+        # own tree instead and reported a false-clean SKIPPED, no matter
+        # how the check was invoked, exactly as spec/MIGRATING_EXISTING_INSTALLS.md
+        # step 5 documents). Before this fix this fixture reproduced that
+        # exact false-clean SKIPPED; it now correctly reports the violation
+        # sitting at the dependent repo's own root.
+        vendored_repo = tmp / 'migration-scrubs-vocabulary-vendored'
+        (vendored_repo / 'process' / 'upstream').mkdir(parents=True)
+        shutil.copytree(pristine / 'tools',
+                        vendored_repo / 'process' / 'upstream' / 'tools')
+        shutil.copytree(pristine / 'practices',
+                        vendored_repo / 'process' / 'upstream' / 'practices')
+        (vendored_repo / 'tools').mkdir(parents=True, exist_ok=True)
+        shutil.copy(pristine / 'tools' / 'split_practices.py',
+                   vendored_repo / 'tools' / 'split_practices.py')
+        git(vendored_repo, 'init', '-q')
+        git(vendored_repo, 'config', 'user.email', 'harness@example.com')
+        git(vendored_repo, 'config', 'user.name', 'harness')
+        (vendored_repo / 'process' / 'retired_vocabulary.json').write_text(
+            json.dumps({'terms': ['OldPackName'], 'exempt_files': []}),
+            encoding='utf-8')
+        (vendored_repo / 'STALE.md').write_text(
+            "Still mentions OldPackName here, at the dependent repo's own "
+            "root.\n", encoding='utf-8')
+        git(vendored_repo, 'add', '-A')
+        git(vendored_repo, 'commit', '-qm', 'baseline')
+        r_vend = subprocess.run(
+            [sys.executable,
+             str(vendored_repo / 'process' / 'upstream' / 'tools' / 'precedent_check.py'),
+             '--only', 'migration-scrubs-vocabulary'],
+            capture_output=True, text=True, cwd=str(vendored_repo))
+        out_vend = r_vend.stdout + r_vend.stderr
+        cases.append(('migration-scrubs-vocabulary: ROOT resolves to the '
+                      'DEPENDENT repo when precedent_check.py runs vendored '
+                      'at process/upstream/tools/, not to process/upstream/ '
+                      'itself',
+                      r_vend.returncode == 1 and 'VIOLATION' in out_vend
+                      and 'STALE.md' in out_vend
+                      and 'SKIPPED' not in out_vend,
+                      out_vend))
+
+        # precedent_check.py's runner -- ANY check's own uncaught bug
+        # (not just this one) must fail that check alone, not abort every
+        # OTHER check in the same run. Proven directly by making an
+        # arbitrary, otherwise-unrelated check (`code-cites-practice`)
+        # raise a bare RuntimeError, then confirming the FULL suite (no
+        # --only) still completes: that one check reports ERROR, nothing
+        # tracebacks to the console, and other checks still produce real
+        # PASS/VIOLATION verdicts around it.
+        boom_repo = fresh('precedent-check-error-isolation')
+        rewrite(boom_repo, 'tools/precedent_check.py', lambda t: t.replace(
+            'def _code_cites_practice(ctx):\n',
+            'def _code_cites_practice(ctx):\n'
+            '    raise RuntimeError("planted: an unrelated check\'s own bug")\n'))
+        r_boom = subprocess.run(
+            [sys.executable, str(boom_repo / 'tools' / 'precedent_check.py')],
+            capture_output=True, text=True, cwd=str(boom_repo))
+        boom_out = r_boom.stdout + r_boom.stderr
+        m_passed = re.search(r'precedent_check: (\d+) passed,', boom_out)
+        cases.append(("precedent_check.py's runner: one check's uncaught "
+                      "exception is isolated as its own ERROR result, "
+                      "never a crash that aborts every other check",
+                      'ERROR      code-cites-practice' in boom_out
+                      and 'planted: an unrelated check' in boom_out
+                      and 'Traceback' not in boom_out
+                      and bool(m_passed) and int(m_passed.group(1)) > 10,
+                      boom_out))
+
         # practice-export-loop -- a vendored file improved locally and never
         # exported: the entry still says "synced" and its baseline no longer
         # matches
@@ -2515,6 +2670,38 @@ def check_precedent_check_fires():
                       'retired practice fails the check',
                       rc_retired == 1 and 'VIOLATION' in out_retired
                       and "status: 'retired'" in out_retired))
+
+        # code-cites-practice -- a 2026-09-03 deep-check audit found the
+        # citation scan missed real shapes already live in this codebase:
+        # more than one slug inside one parenthetical, a trailing clause
+        # before the close-paren, and a parenthetical wrapped across two
+        # physical lines by its own paragraph wrap (a single `re.search()`
+        # per line, requiring the slug to butt right up against `)`, could
+        # not see any of the three). Each is planted here citing a slug
+        # that does not exist, so a regression back to "only the first,
+        # immediately-closed match on one line" shows up as a missed
+        # violation, not a check that quietly stopped looking.
+        def _plant_citation_shape_gaps(repo):
+            (repo / 'tools' / 'cite_shapes_fixture.py').write_text(
+                '"""Fixture exercising three real citation shapes.\n\n'
+                '(practice: this-slug-does-not-exist; practice: also-fake) '
+                '-- two\nslugs, one parenthetical.\n\n'
+                '(practice: this-slug-does-not-exist: "a trailing clause '
+                'before\nthe close paren").\n\n'
+                '(practice: this-slug-does-not-exist -- wrapped across a\n'
+                'paragraph, closed on the next physical line).\n"""\n'
+                'print("x")\n', encoding='utf-8')
+        shapes_repo = fresh('code-cites-practice-shapes')
+        _plant_citation_shape_gaps(shapes_repo)
+        rc_shapes, out_shapes = run(shapes_repo, 'code-cites-practice')
+        cases.append(('code-cites-practice: a multi-slug parenthetical, a '
+                      'trailing clause before the close-paren, and a '
+                      'parenthetical wrapped across two lines are all '
+                      'still caught, not silently invisible',
+                      rc_shapes == 1
+                      and out_shapes.count('this-slug-does-not-exist') == 3
+                      and 'also-fake' in out_shapes,
+                      out_shapes))
 
         # scripts-assert-properties -- an instrumented script whose own
         # invariant no longer holds
@@ -2778,6 +2965,8 @@ def check_materialize_bridges_loader():
                         'A team fixture Rule.', tier='resident')
         write_check(uni / 'tools' / 'checks' / 'check_shared_name.py')
         write_check(team / 'tools' / 'checks' / 'check_shared_name.py')
+        write_check(uni / 'tools' / 'checks' / 'tests' / 'test_uni_fixture.sh',
+                    body='fixture\n')
 
         consumer = tmp / 'consumer'
         (consumer).mkdir()
@@ -2815,6 +3004,23 @@ def check_materialize_bridges_loader():
         materialized_ok = (rc == 0 and (consumer / 'MANIFEST.json').exists()
                             and (consumer / 'practices' / 'uni-fixture.md').exists()
                             and (consumer / 'practices' / 'team-fixture.md').exists())
+
+        # --- every MANIFEST.json path (practices AND checks) actually
+        # resolves to a file on disk -- regression case for a doubled
+        # tools/checks/checks/ segment in checks[].path entries -------------
+        manifest_paths_ok = False
+        manifest_paths_detail = ''
+        if materialized_ok:
+            manifest = json.loads((consumer / 'MANIFEST.json').read_text(encoding='utf-8'))
+            entries = ([('practices', e['slug'], f"practices/{e['slug']}.md")
+                        for e in manifest.get('practices', [])]
+                       + [('checks', e['path'], e['path'])
+                          for e in manifest.get('checks', [])])
+            missing = [label for _, label, rel in entries if not (consumer / rel).exists()]
+            manifest_paths_ok = not missing
+            manifest_paths_detail = f"missing on disk: {missing}" if missing else ''
+        cases.append(('every MANIFEST.json practices[]/checks[] path resolves to a '
+                      'real file on disk', manifest_paths_ok, manifest_paths_detail))
 
         for f in ('build_views.py', 'split_practices.py'):
             shutil.copyfile(ROOT / 'tools' / f, consumer / 'tools' / f)
@@ -2927,10 +3133,16 @@ def check_sync_views_cross_source():
         cases.append(('--check on a hand-edited AGENTS.md exits 1, not silently 0',
                       rc3 == 1, out3))
 
-        # the exact bug this fixture was built to catch: a repo-local
-        # source declared at the bare repo root (`path: "."`) must not
-        # crash precedent_materialize.py when it and the output directory
-        # are the same place
+        # the exact bug this fixture was built to catch (2026-09-03): a
+        # repo-local source declared at the bare repo root (`path: "."`)
+        # used to crash precedent_materialize.py, or worse, silently
+        # destroy its own hand-authored file the moment another source won
+        # a shared slug. A later deep-check audit the same day found the
+        # crash fix didn't close the silent-overwrite case, or a second,
+        # worse case (materialize()'s own output read back as if this
+        # source had authored it on the NEXT run) -- materialize() now
+        # refuses this combination outright, unconditionally, rather than
+        # attempting to make source == destination safe.
         selfref = tmp / 'selfref'
         write_practice(selfref / 'practices' / 'local-only.md', 'local-only',
                         'A self-referential repo-local rule.')
@@ -2940,14 +3152,45 @@ def check_sync_views_cross_source():
         (selfref / 'AGENTS.md').write_text(
             '# fixture\n\n<!-- BEGIN GENERATED: precedent-loader -->\n'
             '<!-- END GENERATED -->\n', encoding='utf-8')
+        original_selfref = (selfref / 'practices' / 'local-only.md').read_bytes()
         r_self = subprocess.run([sys.executable, sync_tool, '--repo', str(selfref)],
                                  capture_output=True, text=True)
         cases.append(("a repo-local source declared at the bare repo root "
-                      "(`path: \".\"`) does not crash materialize when the "
-                      "source and the output directory coincide",
-                      r_self.returncode == 0
-                      and (selfref / 'practices' / 'local-only.md').exists(),
+                      "(`path: \".\"`) is refused outright, loudly, naming "
+                      "the subdirectory convention, rather than crashing or "
+                      "silently materializing over its own source",
+                      r_self.returncode == 1
+                      and 'declares its `path` as this run' in (r_self.stdout + r_self.stderr)
+                      and 'subdirectory' in (r_self.stdout + r_self.stderr)
+                      and (selfref / 'practices' / 'local-only.md').read_bytes()
+                          == original_selfref,
                       r_self.stdout + r_self.stderr))
+
+        # the shadow-and-second-run case: repo-local at path "." shares a
+        # slug with a HIGHER-precedence source -- this must also refuse
+        # before any file is touched, not just the single-source case above
+        selfref2 = tmp / 'selfref2'
+        other = tmp / 'other-team'
+        write_practice(selfref2 / 'practices' / 'shared.md', 'shared',
+                        'HAND-AUTHORED -- MUST SURVIVE.')
+        write_practice(other / 'practices' / 'shared.md', 'shared',
+                        'TEAM VERSION.')
+        (selfref2 / 'precedent.json').write_text(json.dumps({
+            'sources': [{'level': 'team', 'name': 'other-team', 'path': str(other)},
+                        {'level': 'repo-local', 'name': 'self', 'path': '.'}]
+        }), encoding='utf-8')
+        (selfref2 / 'AGENTS.md').write_text(
+            '# fixture\n\n<!-- BEGIN GENERATED: precedent-loader -->\n'
+            '<!-- END GENERATED -->\n', encoding='utf-8')
+        r_self2 = subprocess.run([sys.executable, sync_tool, '--repo', str(selfref2)],
+                                  capture_output=True, text=True)
+        cases.append(('a self-referential repo-local source shadowed by a '
+                      'higher-precedence source is refused before its own '
+                      'file is touched, not silently overwritten',
+                      r_self2.returncode == 1
+                      and 'MUST SURVIVE' in
+                          (selfref2 / 'practices' / 'shared.md').read_text(encoding='utf-8'),
+                      r_self2.stdout + r_self2.stderr))
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
@@ -2956,7 +3199,8 @@ def check_sync_views_cross_source():
           f'sources ({len(cases)} stated cases: clean sync, both resident '
           f'sources shown, correct level-of-resident counting, occasion '
           f'index reaches on-demand practices, --check both directions, a '
-          f'self-referential repo-local source does not crash materialize)',
+          f'self-referential repo-local source is refused rather than '
+          f'crashed or silently overwritten, alone or shadowed)',
           not bad, '; '.join(f"{n}{' (' + d + ')' if d else ''}" for n, d in bad))
 
 
