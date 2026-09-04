@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 13:37:18 (Buenos Aires) by Morgan F, to version 6 -->
+<!-- Last updated: 2026-09-04 10:49:37 (Buenos Aires) by Morgan F, to version 7 -->
 
 # Migrating this repo from BestPractice-only to Precedent (2026-09-02)
 
@@ -274,7 +274,7 @@ running the same kind of program? / only here?") against this repo's own
 `AGENTS.md`. Nothing surfaced that's cleanly a *rule* true only of this
 repo and not already covered by the universal/team/individual split: this
 repo's genuinely repo-local content (`MAP.md`, `TODO.md`, `GLOSSARY.md`,
-the `docs-team/` brainstorm and philosophy documents) is subject matter,
+the `content/` brainstorm and philosophy documents) is subject matter,
 not procedural rules a loader would resident-load — practice 23's own
 distinction ("repo-local rules... live in that repo's instructions files",
 not "this repo's subject matter lives wherever"). No `precedent.json`

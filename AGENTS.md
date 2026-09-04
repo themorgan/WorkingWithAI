@@ -1,23 +1,23 @@
-<!-- Last updated: 2026-09-03 11:52:29 (Buenos Aires) by Morgan F, to version 27 -->
+<!-- Last updated: 2026-09-04 10:49:37 (Buenos Aires) by Morgan F, to version 28 -->
 
 # Repository instructions — read me first
 
 **Orientation: read [MAP.md](MAP.md) first** — the repository map. It covers
-the brainstorm ([RANDOM_NOTES.md](docs-team/RANDOM_NOTES.md)) and indexes the practice layer that
+the brainstorm ([RANDOM_NOTES.md](content/RANDOM_NOTES.md)) and indexes the practice layer that
 keeps this repo well-run.
 
 ## Where things are (quick index — check here BEFORE searching the repo)
 
 | Looking for… | Go to |
 |---|---|
-| The theory behind this repo — named, explained, not argued for | [OUR_PHILOSOPHY.md](docs-team/OUR_PHILOSOPHY.md) |
-| The less obvious benefits those ideas produce | [REASONS_WHY.md](docs-team/REASONS_WHY.md) |
-| The one-page pitch for why this repo's approach is unique | [THE_REVOLUTIONARY_FORMULA.md](docs-team/THE_REVOLUTIONARY_FORMULA.md) |
-| What humans are good at — the one full list | [HUMANS_AT_OUR_BEST.md](docs-team/HUMANS_AT_OUR_BEST.md) |
+| The theory behind this repo — named, explained, not argued for | [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md) |
+| The less obvious benefits those ideas produce | [REASONS_WHY.md](content/REASONS_WHY.md) |
+| The one-page pitch for why this repo's approach is unique | [THE_REVOLUTIONARY_FORMULA.md](content/THE_REVOLUTIONARY_FORMULA.md) |
+| What humans are good at — the one full list | [HUMANS_AT_OUR_BEST.md](content/HUMANS_AT_OUR_BEST.md) |
 | Canonical names — use these, don't invent new ones | [GLOSSARY.md](GLOSSARY.md) |
-| The brainstorm itself | [RANDOM_NOTES.md](docs-team/RANDOM_NOTES.md) |
+| The brainstorm itself | [RANDOM_NOTES.md](content/RANDOM_NOTES.md) |
 | The three-stage pipeline (idea → rules now testing → company policy) | [README.md](README.md) |
-| Rules actually in force now, and promotion candidates | [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) |
+| Rules actually in force now, and promotion candidates | [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md) |
 | The voice guidelines (write like a human, not an LLM) | [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) |
 | Open items: analyses, verifications, decisions | [TODO.md](TODO.md) |
 | Practice layer: vendored BestPractice copy, `precedent.json` sources, scrub blocklist | `process/`, [precedent.json](precedent.json) |
@@ -36,7 +36,7 @@ the voice guidelines current"). It governs **everything a
 session writes here, not just committed documents** — the chat reply itself
 is in scope too. Check outward-facing prose against it before calling a
 piece done; this is
-[`write-like-a-human`](docs-team/RULES_NOW_TESTING.md#write-like-a-human), now
+[`write-like-a-human`](content/RULES_NOW_TESTING.md#write-like-a-human), now
 backed by a real, vendored ruleset instead of a manual checklist.
 HUMAN_VOICE_RULES.md's own §17 sets the precedence rule if that ever
 conflicts with a more specific, person-authored voice pack: the
@@ -138,7 +138,7 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
 2. Resolve by fixed per-file-class rules ([practice 9](process/upstream/PRACTICES.md#9-a-merge-runbook-with-fixed-per-file-class-rules)):
    - `process/manifest.json` / `process/manifest_voice.json` / `precedent.json`:
      **union** of both sides — never drop an entry, a status, or a source.
-   - [TODO.md](TODO.md) and [RANDOM_NOTES.md](docs-team/RANDOM_NOTES.md): **append-only — keep both
+   - [TODO.md](TODO.md) and [RANDOM_NOTES.md](content/RANDOM_NOTES.md): **append-only — keep both
      sides' additions.**
    - Same content file edited on both sides: keep both sides' text.
    - **`process/upstream/`: never hand-merge.** It must stay byte-identical
@@ -185,10 +185,10 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
 - **A durable numbered list is cited by permanent slug, never by
   position** ([`durable-list-anchors`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/durable-list-anchors.md)):
   every rule or item in this repo's own essay lists —
-  [COMPANY_BUILDING_RULES.md](docs-team/COMPANY_BUILDING_RULES.md),
-  [AI_GOVERNANCE_TO_COCREATE.md](docs-team/AI_GOVERNANCE_TO_COCREATE.md),
-  [OUR_PHILOSOPHY.md](docs-team/OUR_PHILOSOPHY.md), [REASONS_WHY.md](docs-team/REASONS_WHY.md),
-  [RULES_NOW_TESTING.md](docs-team/RULES_NOW_TESTING.md) — carries its own
+  [COMPANY_BUILDING_RULES.md](content/COMPANY_BUILDING_RULES.md),
+  [AI_GOVERNANCE_TO_COCREATE.md](content/AI_GOVERNANCE_TO_COCREATE.md),
+  [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md), [REASONS_WHY.md](content/REASONS_WHY.md),
+  [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md) — carries its own
   `<a id="slug"></a>` anchor, cited everywhere as
   `` `slug` (file.md#slug) ``, never as a bare "rule 4" or "item 3". This
   supersedes the older split between "anchored when the source list uses
