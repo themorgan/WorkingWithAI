@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-04 12:13:55 (Buenos Aires) by Morgan F, to version 20 -->
+<!-- Last updated: 2026-09-04 14:11:43 (Buenos Aires) by Morgan F, to version 21 -->
 
 # WorkingWithAI
 
@@ -18,6 +18,28 @@ method) once a pattern actually holds up.
 > New to this project? Start with [GETTING_STARTED.md](GETTING_STARTED.md).
 
 <!-- bestpractice-agent-entry:end -->
+
+## The philosophy behind this project
+
+This repo is the theoretical background for
+**[BestPractice](https://github.com/alex137/BestPractice)** (public;
+currently developing as Precedent on its `precedent-beta-v01` branch) — the
+platform that tries to embody, in software, the ideas worked out here.
+
+In short: it's an alternative to Google Docs, built on three core ideas,
+each showing up in more than one place — in the software and in the
+philosophies behind it:
+
+- **Human collaboration comes first.** The tool exists to make people
+  working together better, not to route around them.
+- **AI sits between the work and the people doing it**, rather than
+  everyone drafting, deciding, and documenting alone — pushing back on
+  your ideas to strengthen them, and keeping the record of how a decision
+  was reached, not just the decision itself.
+- **AI watches what's actually happening and proposes the rules for it** —
+  generating the practices and protocols a team should follow from its own
+  real history, and putting them up for people to approve, never landing
+  them unapproved.
 
 ## How this repo's ideas become company policy
 
