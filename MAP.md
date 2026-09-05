@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-04 12:13:55 (Buenos Aires) by Morgan F, to version 20 -->
+<!-- Last updated: 2026-09-05 09:13:36 (Buenos Aires) by Morgan F, to version 21 -->
 
 # Repository map — where to find things
 
@@ -28,7 +28,7 @@ Companions: [AGENTS.md](AGENTS.md) (workflow + conventions), [TODO.md](TODO.md)
 | [COMPANY_BUILDING_RULES.md](content/COMPANY_BUILDING_RULES.md) | Standalone essay promoted out of the brainstorm: rules for building a company around AI. |
 | [AI_GOVERNANCE_TO_COCREATE.md](content/AI_GOVERNANCE_TO_COCREATE.md) | Standalone doc promoted out of the brainstorm: how AI systems themselves should be configured, built, and run to make the healthy pattern the default. |
 | [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md) | Pipeline stage 2 — the practical rules actually being tried in real work right now, tagged Trial / Ready to promote / Promoted. |
-| [GLOSSARY.md](GLOSSARY.md) | Canonical names — the one list. Use its names; don't invent new ones. |
+| [GLOSSARY.md](GLOSSARY.md) | Canonical names — the one list. Use its names; don't invent new ones. Stays at root, not `content/` — see [content/doc-recipes/GLOSSARY.recipe.md](content/doc-recipes/GLOSSARY.recipe.md). |
 | [GETTING_STARTED.md](GETTING_STARTED.md) | Human-facing onboarding, including administrator click-paths (secrets, toggles, default branch). |
 | [README.md](README.md) | What this repo is, in a paragraph, plus the pipeline explanation and the agent-entry block. |
 | `process/upstream/` | Vendored copy of the public BestPractice repo, currently the `precedent-beta-v01` branch — see [process/manifest.json](process/manifest.json) and [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md). |

@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-04 12:13:55 (Buenos Aires) by Morgan F, to version 53 -->
+<!-- Last updated: 2026-09-05 09:13:36 (Buenos Aires) by Morgan F, to version 54 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -1301,7 +1301,18 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   [`content-subdirs`](process/personal/README.md#content-subdirs)
   recommendation and [README.md](README.md)'s pre-existing "What's here"
   split; `GLOSSARY.md` stayed at root as a cross-cutting reference used by
-  both halves of the repo, not itself an essay; (2) gave
+  both halves of the repo, not itself an essay. **Confirmed 2026-09-01:**
+  Morgan says this one isn't a judgment call at all — `GLOSSARY.md` is a
+  primary BestPractice-mandated living document, and the reason turns out
+  to be load-bearing, not stylistic:
+  [process/upstream/tools/doc_lint.py](process/upstream/tools/doc_lint.py)
+  hardcodes `GLOSSARY_PATH = ROOT / 'GLOSSARY.md'` for its ungapped-acronym
+  check, and [process/manifest.json](process/manifest.json)'s `local_path`
+  for the glossary template is `GLOSSARY.md` at root. Moving it would have
+  silently disabled that check repo-wide rather than erroring. Recorded as
+  [content/doc-recipes/GLOSSARY.recipe.md](content/doc-recipes/GLOSSARY.recipe.md)
+  so this doesn't get re-litigated as a tidiness call next time root looks
+  cluttered; (2) gave
   [THE_REVOLUTIONARY_FORMULA.md](content/THE_REVOLUTIONARY_FORMULA.md)'s own
   "See also" bare links with no descriptions, unlike the other seven,
   since a full description list would work against that document's own
