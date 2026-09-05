@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 16:35:00 (Buenos Aires) by Morgan F, to version 15 -->
+<!-- Last updated: 2026-09-04 14:11:43 (Buenos Aires) by Morgan F, to version 21 -->
 
 # WorkingWithAI
 
@@ -19,75 +19,89 @@ method) once a pattern actually holds up.
 
 <!-- bestpractice-agent-entry:end -->
 
+## The philosophy behind this project
+
+This repo is the theoretical background for
+**[BestPractice](https://github.com/alex137/BestPractice)** (public;
+currently developing as Precedent on its `precedent-beta-v01` branch) — the
+platform that tries to embody, in software, the ideas worked out here.
+
+In short: it's an alternative to Google Docs, built on three core ideas,
+each showing up in more than one place — in the software and in the
+philosophies behind it:
+
+- **Human collaboration comes first.** The tool exists to make people
+  working together better, not to route around them.
+- **AI sits between the work and the people doing it**, rather than
+  everyone drafting, deciding, and documenting alone — pushing back on
+  your ideas to strengthen them, and keeping the record of how a decision
+  was reached, not just the decision itself.
+- **AI watches what's actually happening and proposes the rules for it** —
+  generating the practices and protocols a team should follow from its own
+  real history, and putting them up for people to approve, never landing
+  them unapproved.
+
 ## How this repo's ideas become company policy
 
 An idea doesn't go straight from a brainstorm entry to something Morgan
-runs the company on — it passes through three stages, each with its own
-document, and each stage has to actually earn the idea's way to the next
-one:
+runs the company on — it passes through three stages, each earning the
+idea's way to the next:
 
-1. **Learn how to work with AI as a partner-in-thought.** Get oriented in
-   the method before the rules: read [OUR_PHILOSOPHY.md](docs/OUR_PHILOSOPHY.md)
-   for the underlying ideas, [COMPANY_BUILDING_RULES.md](docs/COMPANY_BUILDING_RULES.md)
-   for the principles to build a company around, [AGENTS.md](AGENTS.md) for
-   the rules AI agents actually follow here, and
-   [REASONS_WHY.md](docs/REASONS_WHY.md) for the less obvious benefits those
-   ideas produce.
-2. **Try it for real — [RULES_NOW_TESTING.md](docs/RULES_NOW_TESTING.md).** The
-   practical checklist actually in force in real work right now, each rule
-   tagged *Trial* until it's proven, *Ready to promote* once it is, or
-   *Promoted* once it's landed at stage 3 — these are the rules we've
-   baked into our own repos so far, and you might want to bake them into
-   yours too.
-3. **Roll it out everywhere — [BestPractice](https://github.com/alex137/BestPractice)
-   and [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences).**
-   Once a rule in [RULES_NOW_TESTING.md](docs/RULES_NOW_TESTING.md) has proven
-   itself, a genuinely generic rule gets exported into BestPractice first,
-   where any repo can pick it up, and a rule that's specifically Morgan's
-   own gets ported into his personal pack in RepoPersonalPreferences, for
-   automatic installation into every project he starts — see
-   [RULES_NOW_TESTING.md](docs/RULES_NOW_TESTING.md)'s own "Promotion" section
-   for the mechanics.
+1. **Learn how to work with AI as a partner-in-thought**, via
+   [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md),
+   [COMPANY_BUILDING_RULES.md](content/COMPANY_BUILDING_RULES.md),
+   [AGENTS.md](AGENTS.md), and [REASONS_WHY.md](content/REASONS_WHY.md).
+2. **Try it for real — [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md).**
+   The practical checklist actually in force in real work right now, each
+   rule tagged *Trial*, *Ready to promote*, or *Promoted* once it's landed
+   at stage 3.
+3. **Roll it out everywhere**, via [BestPractice](https://github.com/alex137/BestPractice)
+   for a genuinely generic rule, or precedent-team-maintainers /
+   precedent-individual for one specific to Morgan and Alex's own working
+   conventions ([process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)).
+   Once a rule in [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md) has
+   proven itself, it's exported to the right one so any repo resolving that
+   source can pick it up — see that document's own "Promotion" section for
+   the mechanics.
 
-The point of keeping these separate: nothing becomes company-wide policy
-just because it sounded good in a brainstorm session, or even because an
-essay argued for it well. It has to survive stage 2, in this repo, first.
-For what running this pipeline looks like from inside one session —
-spark, argue, GitHub, rule — see
-[OUR_PHILOSOPHY.md](docs/OUR_PHILOSOPHY.md)'s "The working loop" section.
+Nothing becomes company-wide policy just because it sounded good in a
+brainstorm session — it has to survive stage 2 first. For what this
+pipeline looks like from inside one session, see
+[OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md)'s "The working loop" section.
 
 ## What's here
 
-- [OUR_PHILOSOPHY.md](docs/OUR_PHILOSOPHY.md) — the underlying theoretical ideas
+- [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md) — the underlying theoretical ideas
   everything else here assumes, named and explained on their own terms, for
   anyone who wants to understand this at the theory level before diving
   into the brainstorm itself.
-- [REASONS_WHY.md](docs/REASONS_WHY.md) — OUR_PHILOSOPHY.md's companion: the
+- [REASONS_WHY.md](content/REASONS_WHY.md) — OUR_PHILOSOPHY.md's companion: the
   less obvious benefits those ideas produce in practice.
-- [HUMANS_AT_OUR_BEST.md](docs/HUMANS_AT_OUR_BEST.md) — the one list of what
+- [HUMANS_AT_OUR_BEST.md](content/HUMANS_AT_OUR_BEST.md) — the one list of what
   humans are good at, referenced in shorter form from several of these
   documents.
-- [RANDOM_NOTES.md](docs/RANDOM_NOTES.md) — the brainstorm itself: one entry per idea, prompt,
+- [RANDOM_NOTES.md](content/RANDOM_NOTES.md) — the brainstorm itself: one entry per idea, prompt,
   workflow, or observation, loosely grouped.
-- [COMPANY_BUILDING_RULES.md](docs/COMPANY_BUILDING_RULES.md) — a full essay
+- [COMPANY_BUILDING_RULES.md](content/COMPANY_BUILDING_RULES.md) — a full essay
   promoted out of the brainstorm (pipeline stage 1).
-- [AI_GOVERNANCE_TO_COCREATE.md](docs/AI_GOVERNANCE_TO_COCREATE.md) — another
+- [AI_GOVERNANCE_TO_COCREATE.md](content/AI_GOVERNANCE_TO_COCREATE.md) — another
   full essay promoted out of the brainstorm (pipeline stage 1).
-- [RULES_NOW_TESTING.md](docs/RULES_NOW_TESTING.md) — the practical rules
-  actually being tried right now, and candidates for promotion to
-  RepoPersonalPreferences (pipeline stage 2).
-- [THE_REVOLUTIONARY_FORMULA.md](docs/THE_REVOLUTIONARY_FORMULA.md) —
+- [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md) — the practical rules
+  actually being tried right now, and candidates for promotion further
+  along the pipeline (pipeline stage 2).
+- [THE_REVOLUTIONARY_FORMULA.md](content/THE_REVOLUTIONARY_FORMULA.md) —
   one-page pitch: the three ideas this repo argues are unique specifically
   taken together.
 
-  These main content documents live in `docs/`, kept apart from the
+  These main content documents live in `content/`, kept apart from the
   technical documents below about running the repo itself.
 
 - `process/upstream/` — the vendored [BestPractice](https://github.com/alex137/BestPractice)
   copy, unmodified.
-- `process/personal/` — Morgan's personal pack, vendored from
-  [RepoPersonalPreferences](https://github.com/themorgan/RepoPersonalPreferences)
-  (pipeline stage 3's destination).
+- [precedent.json](precedent.json) — declares this repo's team-level
+  practice source, resolved live rather than vendored — see
+  [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md) for how
+  this repo's practice sources are organized.
 - [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) —
   the voice guidelines, vendored from
   [SoundHuman](https://github.com/themorgan/SoundHuman):
@@ -104,3 +118,14 @@ spark, argue, GitHub, rule — see
 - [GETTING_STARTED.md](GETTING_STARTED.md) — onboarding for a person, plus
   every administrator click-path (repository secrets, Actions toggles, the
   default branch).
+
+## How to use this Repo
+
+This repo uses [BestPractice](https://github.com/alex137/BestPractice) — an
+open platform for capturing rules and workflows as you actually work, then
+sharing them across repos and teams, rather than writing them up separately
+after the fact.
+
+**BestPractice is our attempt to turn this philosophy into a platform that
+we can use; you can also think of it as a collaboration-and-AI-first
+rethinking of Google Docs collaboration.**

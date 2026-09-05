@@ -1,10 +1,11 @@
 {
   "upstream": {
     "repo": "https://github.com/alex137/BestPractice",
+    "branch": "precedent-beta-v01",
     "vendored_at": "process/upstream",
-    "commit": "c76f06f87e52171dfcfee91bc52e9439cd020409",
-    "_note": "commit = upstream hash last synced (routine update, 2026-08-29, recorded 2026-08-29; verified tree-identical).",
-    "synced_from": "c76f06f87e52171dfcfee91bc52e9439cd020409"
+    "commit": "3d03afdf6e4f4a74a0c88e6c205485d1cc1c8791",
+    "_note": "commit = upstream hash last synced (2026-09-04, recorded 2026-09-04; verified tree-identical). Picks up ~30 upstream commits since the prior sync (PRs #83-#98): phase-6 pre-fork work -- the catalogue audit, a naming fix, disclosing the practice-capture mechanism at install and to members, and INSTALL.md §0 for a clean install straight onto the Precedent loader; a routing/full-practice audit (tools/precedent_check.py --list/--explain, the coverage sweep); a temporary merge-target-guard practice (every PR in the upstream repo targets precedent-beta-v01, never main, until Alex folds the beta branch into main -- see upstream AGENTS.md and local/practices/merge-target-is-beta-branch.md; irrelevant to this repo's own PRs, which target this repo's own main); and a 4-phase 'practice simulation' build (mechanical correctness replay, synthetic scenario generation, multi-repo testing, and a trend-log command). BETA TEST, deliberate departure from the normal model: this vendors the alex137/BestPractice precedent-beta-v01 branch, not its default branch (main) -- the first real test of Precedent against a repo that already had BestPractice installed (see process/PRECEDENT_MIGRATION.md and, upstream, spec/MIGRATING_EXISTING_INSTALLS.md). checkin.py's fresh/update/record commands resolve the remote's default-branch HEAD unconditionally (tools/checkin.py, _default_branch()), so they do not track this branch -- this sync was done as a one-off manual mirror instead, and .github/workflows/bestpractice-upstream-sync.yml is paused (workflow_dispatch only) for the duration of the beta. Once precedent-beta-v01 merges to main, switch \"branch\" back to the default, re-run a normal checkin.py update/record against main, and re-enable the scheduled sync.",
+    "synced_from": "3d03afdf6e4f4a74a0c88e6c205485d1cc1c8791"
   },
   "entries": [
     {
@@ -30,9 +31,9 @@
       "upstream_path": "templates/harness/claude-code/settings.json",
       "local_path": ".claude/settings.json",
       "granularity": "file",
-      "status": "synced",
-      "notes": "Added allowlist entries for process/upstream/tools/checkin.py, process/personal/tools/light_check.py, process/personal/tools/pack_sync.py, and (2026-08-28) process/voice/tools/voice_sync.py, so the personal pack's and voice guidelines' own gates don't stall on permission prompts. 2026-08-29 update: wired the new Stop hook block.",
-      "local_sha256": "7c51c4d0421f7cba96c6dbda58a0631b68fbcf67ee0b6e7f419362f6ddfc5eef"
+      "status": "diverged",
+      "notes": "Added allowlist entries for process/upstream/tools/checkin.py, process/upstream/tools/precedent_resolve.py, process/upstream/tools/precedent_check.py, tools/light_check.py, tools/report_automation_issue.py, and process/voice/tools/voice_sync.py, so the team/individual practice sources' own gates don't stall on permission prompts. 2026-08-29: wired the Stop hook block. 2026-09-02 (Precedent migration, process/PRECEDENT_MIGRATION.md): dropped the process/personal/tools/* allowlist entries (that tree is retired) and added a second SessionStart hook entry (.claude/hooks/precedent-individual-bootstrap.sh) so the individual practice source clones and configures itself automatically. Flipped to diverged rather than synced: the second SessionStart hook and the individual-bootstrap-specific allowlist entries are this repo's own adaptation for consuming Precedent's three-source model, not something to export back into BestPractice's generic settings.json template as-is. 2026-09-04: practice_audit.py --update-baseline (run for the BestPractice re-vendor, unrelated to this file) silently flips a 'diverged' entry to 'synced' whenever its recorded hash was already stale -- a real bug in the vendored tool itself, not something to 'fix' by editing process/upstream/; restored to 'diverged' by hand, hash left corrected.",
+      "local_sha256": "7b5bd686571ee373d0696106e212e1997ed01b9213f1b4fcd704bc1c5490d256"
     },
     {
       "practice": "claude-code-stop-hook",
@@ -57,9 +58,9 @@
       "upstream_path": "templates/bootstrap.sh",
       "local_path": "tools/bootstrap.sh",
       "granularity": "file",
-      "status": "synced",
-      "notes": "Extended with the personal pack's git-identity setup and session-start freshness notice (process/personal/README.md#commit-author, #drift-notice, #install step 4), and (2026-08-28) a third freshness line for the voice guidelines — see AGENTS.md's 'Voice' section. 2026-08-28: comment updated for the voice guidelines' source repo's internal rename (VoiceGuidelinesToSoundHuman -> SoundHuman) — repo-specific, not exported upstream. 2026-08-29 update: wrapped the BestPractice and personal-pack freshness lines to persist a fired notice into TODO.md's Pending drift reviews section, matching the current upstream pattern this repo's older install predated; also added a Pending drift reviews section to TODO.md itself.",
-      "local_sha256": "42e6e701cc5cf0368e12ba86016c85611b4dc5e900697ab069094bb37ea2bfee"
+      "status": "diverged",
+      "notes": "Extended with git-identity setup and session-start freshness notices, plus (2026-08-28) a freshness line for the voice guidelines — see AGENTS.md's 'Voice' section. 2026-08-28: comment updated for the voice guidelines' source repo's internal rename (VoiceGuidelinesToSoundHuman -> SoundHuman) — repo-specific, not exported upstream. 2026-08-29: wrapped the BestPractice and personal-pack freshness lines to persist a fired notice into TODO.md's Pending drift reviews section. 2026-09-02 (Precedent migration, process/PRECEDENT_MIGRATION.md): the personal-pack freshness call is gone (process/personal/ retired); the BestPractice freshness call (checkin.py fresh) is replaced with a static notice because this repo deliberately vendors a non-default branch (precedent-beta-v01) and checkin.py's fresh/update/record commands assume default-branch tracking; added a best-effort git pull of the team source's sibling clone. Flipped to diverged rather than synced: none of this is a generic BestPractice improvement to export — it is this repo's own beta-test-specific adaptation. 2026-09-04: practice_audit.py --update-baseline (run for the BestPractice re-vendor, unrelated to this file) silently flips a 'diverged' entry to 'synced' whenever its recorded hash was already stale -- a real bug in the vendored tool itself, not something to 'fix' by editing process/upstream/; restored to 'diverged' by hand, hash left corrected.",
+      "local_sha256": "9235876550c90dace9bb097e066a54a4f96fb6190d64c98fe62ac4c83fb645fd"
     },
     {
       "practice": "gitignore",
@@ -95,7 +96,7 @@
       "granularity": "file",
       "status": "local-only",
       "notes": "Fully adapted to this repo's own layout — this repo's map is its own subject matter, not upstream-exportable content.",
-      "local_sha256": "d8d89c59bd9b00e9e8e5da3008587773860aee55731d61aebf42d0f54e2737c3"
+      "local_sha256": "7bbb6e8ca50522d6b78f01ae413b61de59a5b764bf2af292a5219e5a28faa5ed"
     },
     {
       "practice": "todo",
@@ -104,7 +105,7 @@
       "granularity": "file",
       "status": "local-only",
       "notes": "This repo's own open-items list, including the recurring BestPractice check-in item; not upstream-exportable content.",
-      "local_sha256": "3efbbe5a8d572b4292249377c5595c9fe0039e4eb37abe5e4b10b21aaec370de"
+      "local_sha256": "4c2f6f3f6781ea2391aacdf0cf4f926e22a3ead6e33fbd84372f54821f1a07d5"
     },
     {
       "practice": "glossary",
@@ -113,7 +114,7 @@
       "granularity": "file",
       "status": "local-only",
       "notes": "This repo's own canonical names; not upstream-exportable content.",
-      "local_sha256": "bea8a5e1e7b4c4a345ad33164e71ba073a98cfb8008d11937e199eba006b02f4"
+      "local_sha256": "df519c2888ce7444561f856b6084437fe0e4fed01e8c0c1126f6263b4ff22c17"
     },
     {
       "practice": "getting-started",
@@ -122,7 +123,7 @@
       "granularity": "file",
       "status": "local-only",
       "notes": "Instantiated with this repo's real values (single-member repo today). Structural onboarding improvements are still exportable per INSTALL.md §3 if they generalize.",
-      "local_sha256": "06c6d14aa3df1581dad89eab20ddbf7937e567539c2e94210275d4206fbec7b9"
+      "local_sha256": "deab1c1cb78817859eedb284b36245618bb39636f0e8667f79cf48671e0124bc"
     },
     {
       "practice": "readme-agent-entry",

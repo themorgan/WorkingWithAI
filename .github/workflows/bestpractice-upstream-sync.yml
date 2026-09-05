@@ -1,6 +1,5 @@
-# Last updated: 2026-08-29 09:52:17 (Buenos Aires) by Morgan F, to version 2
-# Install as .github/workflows/bestpractice-upstream-sync.yml in a repo
-# carrying the personal pack. Scheduled, unattended equivalent of
+# Last updated: 2026-09-03 11:05:52 (Buenos Aires) by Morgan F, to version 3
+# Scheduled, unattended equivalent of
 # BestPractice's own INSTALL.md §2 ("Take an upstream update"): checks
 # whether the public BestPractice repo has moved past
 # process/manifest.json's recorded commit, and if so, takes the update,
@@ -39,12 +38,40 @@
 # hours behind Morgan, so this slot suits him where it is; don't move it.)
 name: BestPractice sync
 
+# PAUSED (schedule commented out) 2026-09-02 for the precedent-beta-v01 beta
+# test -- see process/manifest.json's `_note` and
+# process/PRECEDENT_MIGRATION.md. This workflow's `check` job compares
+# process/manifest.json's recorded commit against the remote's DEFAULT
+# branch HEAD, and its `update` job (below) takes an update by following
+# INSTALL.md Sec.2 against that same default branch. Neither can track a
+# named non-default branch, so left running unattended it would either spam
+# a false "moved" notice or, worse, try to merge main's tree over the
+# beta-tracking vendored copy this repo deliberately carries right now.
+# Manual runs (workflow_dispatch) are unaffected and still work, but their
+# prompt below assumes default-branch tracking too -- rerun this repo's own
+# manual mirror procedure instead while on the beta branch (see
+# process/PRECEDENT_MIGRATION.md), not this workflow's `update` job.
+# Re-enable the schedule once precedent-beta-v01 merges to main and
+# process/manifest.json is repointed at the default branch, by restoring:
+#
+#   on:
+#     schedule:
+#       # Weekly (default): every Monday at 09:00 Buenos Aires.
+#       - cron: '0 12 * * 1'
+#       # Daily: uncomment this line and comment out the weekly one above.
+#       # - cron: '0 12 * * *'
+#     workflow_dispatch:
+#
+# NOT done as a `schedule:` key with every `- cron:` entry commented out
+# underneath it, the way this was first paused: GitHub Actions requires
+# `schedule` to be a non-empty list when the key is present at all, so an
+# empty one makes the WHOLE workflow file invalid -- caught the hard way
+# 2026-09-02 (see process/PRECEDENT_MIGRATION.md), when every single push
+# to this repo showed a red X on this workflow (0 jobs run, reported
+# against the pushed commit) with no schedule ever having fired. Pausing a
+# schedule means removing the `schedule:` key outright, not commenting out
+# its contents.
 on:
-  schedule:
-    # Weekly (default): every Monday at 09:00 Buenos Aires.
-    - cron: '0 12 * * 1'
-    # Daily: uncomment this line and comment out the weekly one above.
-    # - cron: '0 12 * * *'
   workflow_dispatch:
 
 permissions:
@@ -108,11 +135,11 @@ jobs:
           } | tee -a "$GITHUB_STEP_SUMMARY"
           echo "::warning::BestPractice sync skipped: neither CLAUDE_CODE_OAUTH_TOKEN nor ANTHROPIC_API_KEY is set."
 
-      - name: Open or update a GitHub issue (process/personal/README.md#automation-issues)
+      - name: Open or update a GitHub issue (precedent-team-maintainers/practices/automation-issues.md)
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          python3 process/personal/tools/report_automation_issue.py \
+          python3 tools/report_automation_issue.py \
             automation-blocked:bestpractice-sync \
             "BestPractice sync blocked: no Claude credential set" \
             "BestPractice has moved upstream, but neither \`CLAUDE_CODE_OAUTH_TOKEN\` nor \`ANTHROPIC_API_KEY\` is set, so the scheduled sync could not take the update.
@@ -154,7 +181,20 @@ jobs:
             BestPractice (the public upstream repo recorded in
             process/manifest.json) has moved since this repo's vendored copy
             was last synced. Take the update, unattended, following
-            process/upstream/INSTALL.md §2 exactly:
+            process/upstream/INSTALL.md §2 exactly.
+
+            FIRST -- check process/manifest.json's upstream.branch. If it is
+            NOT the upstream repo's own default branch (as of 2026-09-02
+            this repo deliberately tracks precedent-beta-v01, a beta branch,
+            not main -- see process/PRECEDENT_MIGRATION.md), stop here:
+            do not run any of the steps below, which all assume default-branch
+            tracking. Instead leave the PR unopened, comment on this run's
+            summary explaining that the beta pin is intentional, and reuse
+            this repo's own manual mirror procedure from
+            process/PRECEDENT_MIGRATION.md if an update is actually wanted.
+
+            Otherwise (upstream.branch is the default branch, the normal
+            case once the beta has merged):
 
             1. Clone the upstream repo (process/manifest.json upstream.repo)
                to a scratch directory. Diff its default branch against the
@@ -164,7 +204,9 @@ jobs:
                upstream vs new upstream vs this repo's installed, adapted
                copy at local_path. Apply upstream's changes through the
                adaptation recorded in each entry's "notes" — never clobber a
-               local adaptation, including anything under process/personal/
+               local adaptation, including this repo's own tools/ (e.g.
+               tools/light_check.py, tools/report_automation_issue.py, both
+               repo-owned and not part of BestPractice) and precedent.json
                (that layer is not part of BestPractice and upstream will
                never mention it, so it should never be touched by this
                process).
@@ -177,19 +219,8 @@ jobs:
             5. Run the repo's gates and make sure they all pass before
                committing anything:
                python3 process/upstream/tools/doc_lint.py --all
-               python3 process/personal/tools/light_check.py --all
+               python3 tools/light_check.py --all
                python3 process/upstream/tools/practice_audit.py
-            6. Resolve TODO.md's own record of this drift, in the same
-               commit: `python3 process/personal/tools/pack_sync.py resolve
-               bestpractice "unattended sync -- see this PR"`. This update IS
-               the review a session-start notice
-               (process/personal/README.md#drift-notice) would otherwise have been asking a human to do -- if this
-               unattended run got here first, TODO.md's "## Pending drift
-               reviews" section (if it has an open `bestpractice` entry)
-               would otherwise sit stale, still claiming the drift is
-               unreviewed after this PR already resolved it. This command is
-               a no-op (prints a note, exits 0) when there's no open entry,
-               so it's always safe to run.
 
             Judgment calls you make while merging (a conflict between an
             upstream change and a local adaptation, a template change that

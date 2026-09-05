@@ -1,26 +1,27 @@
-<!-- Last updated: 2026-09-01 16:35:00 (Buenos Aires) by Morgan F, to version 17 -->
+<!-- Last updated: 2026-09-04 12:22:06 (Buenos Aires) by Morgan F, to version 29 -->
 
 # Repository instructions — read me first
 
 **Orientation: read [MAP.md](MAP.md) first** — the repository map. It covers
-the brainstorm ([RANDOM_NOTES.md](docs/RANDOM_NOTES.md)) and indexes the practice layer that
+the brainstorm ([RANDOM_NOTES.md](content/RANDOM_NOTES.md)) and indexes the practice layer that
 keeps this repo well-run.
 
 ## Where things are (quick index — check here BEFORE searching the repo)
 
 | Looking for… | Go to |
 |---|---|
-| The theory behind this repo — named, explained, not argued for | [OUR_PHILOSOPHY.md](docs/OUR_PHILOSOPHY.md) |
-| The less obvious benefits those ideas produce | [REASONS_WHY.md](docs/REASONS_WHY.md) |
-| The one-page pitch for why this repo's approach is unique | [THE_REVOLUTIONARY_FORMULA.md](docs/THE_REVOLUTIONARY_FORMULA.md) |
-| What humans are good at — the one full list | [HUMANS_AT_OUR_BEST.md](docs/HUMANS_AT_OUR_BEST.md) |
+| The theory behind this repo — named, explained, not argued for | [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md) |
+| The less obvious benefits those ideas produce | [REASONS_WHY.md](content/REASONS_WHY.md) |
+| The one-page pitch for why this repo's approach is unique | [THE_REVOLUTIONARY_FORMULA.md](content/THE_REVOLUTIONARY_FORMULA.md) |
+| What humans are good at — the one full list | [HUMANS_AT_OUR_BEST.md](content/HUMANS_AT_OUR_BEST.md) |
 | Canonical names — use these, don't invent new ones | [GLOSSARY.md](GLOSSARY.md) |
-| The brainstorm itself | [RANDOM_NOTES.md](docs/RANDOM_NOTES.md) |
+| The brainstorm itself | [RANDOM_NOTES.md](content/RANDOM_NOTES.md) |
 | The three-stage pipeline (idea → rules now testing → company policy) | [README.md](README.md) |
-| Rules actually in force now, and promotion candidates | [RULES_NOW_TESTING.md](docs/RULES_NOW_TESTING.md) |
+| Rules actually in force now, and promotion candidates | [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md) |
 | The voice guidelines (write like a human, not an LLM) | [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md) |
 | Open items: analyses, verifications, decisions | [TODO.md](TODO.md) |
-| Practice layer: vendored BestPractice copy, manifest, scrub blocklist | `process/` |
+| Practice layer: vendored BestPractice copy, `precedent.json` sources, scrub blocklist | `process/`, [precedent.json](precedent.json) |
+| How this repo migrated from BestPractice-only to Precedent's three-source model (2026-09-02 beta test), and what still doesn't work | [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md) |
 
 ## Voice — every reply and every document
 
@@ -29,12 +30,13 @@ This repo's own writing follows
 vendored from
 [SoundHuman](https://github.com/themorgan/SoundHuman)
 (tracked in [process/manifest_voice.json](process/manifest_voice.json), kept
-current by a weekly sync plus a session-start check — see "A third scheduled
-check keeps the voice guidelines current" below). It governs **everything a
+current by a weekly sync plus a session-start check — see
+[GETTING_STARTED.md](GETTING_STARTED.md)'s "A second scheduled check keeps
+the voice guidelines current"). It governs **everything a
 session writes here, not just committed documents** — the chat reply itself
 is in scope too. Check outward-facing prose against it before calling a
 piece done; this is
-[`write-like-a-human`](docs/RULES_NOW_TESTING.md#write-like-a-human), now
+[`write-like-a-human`](content/RULES_NOW_TESTING.md#write-like-a-human), now
 backed by a real, vendored ruleset instead of a manual checklist.
 HUMAN_VOICE_RULES.md's own §17 sets the precedence rule if that ever
 conflicts with a more specific, person-authored voice pack: the
@@ -45,23 +47,74 @@ person-specific rules win.
 - At session start, run `bash tools/bootstrap.sh` before other work (Claude
   Code runs it automatically via the SessionStart hook — see
   `.claude/settings.json`).
+- **A brand-new Claude Code Remote/Cloud session started on this repo alone
+  does not automatically have git read access to `precedent-team-maintainers`
+  or `precedent-individual`** — the team and individual sources
+  `precedent.json` and the individual bootstrap hook depend on. Session
+  repo access is scoped per session (attached at session creation, or added
+  mid-session with the `add_repo` tool); it isn't inherited just because a
+  file references a repo by name. **No token or secret is involved** —
+  `add_repo` extends the session's scope using the same GitHub identity
+  already behind the session, so it only ever succeeds because that
+  identity (Morgan's own GitHub account) is already a collaborator on both
+  target repos, exactly as it is today; there is nothing to configure or
+  store to make this work.
+  **This step must never wait for a human to notice or ask: at the very
+  start of every session on this repo, before running `tools/bootstrap.sh`,
+  call `add_repo` (read access) for `themorgan/precedent-team-maintainers`
+  and, if this is Morgan, `themorgan/precedent-individual` — silently, with
+  no confirmation needed first.** This is a read-only scope extension, not
+  a credential or production change, so it's exactly the kind of call
+  [`small-calls`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/small-calls.md)
+  (team source) says to just make. A person only ever attaches the one
+  repo they're actually working in (`WorkingWithAI`); reaching for the
+  other two is this session's own job, every single time, not something
+  set up once and assumed to stick — repo access, like everything else
+  under "Repository Scope," is a per-session grant that does not persist
+  to the next session.
+  - **Individual** (`precedent-individual`): once added,
+    `.claude/hooks/precedent-individual-bootstrap.sh` clones (or pulls) it
+    and writes the user config automatically, every session.
+  - **Team** (`precedent-team-maintainers`): once added, `tools/bootstrap.sh`
+    clones it (to `../precedent-team-maintainers`) if it isn't already
+    there, or fast-forward pulls it if it is. Its clone URL is hardcoded in
+    that script as WorkingWithAI's own currently-real fact (not derived
+    from `precedent.json`, which never records a git URL — see the
+    script's own comment for the tradeoff that creates: if the team source
+    ever changes repos, the script's URL has to be updated by hand to
+    match).
+  - **Either one:** if `add_repo` itself fails (the acting GitHub identity
+    genuinely lacks access), or `tools/bootstrap.sh` still prints a
+    "could not clone" note afterward, or `precedent_resolve.py` reports a
+    source as missing — that is a real access gap, not something a retry
+    fixes: say so plainly and move on; individual/team practices are just
+    silently not in force that session. Declaring or cloning either source
+    is **read-only and one-directional**: it lets this repo's session read
+    their practices, and does not grant anyone with access to those repos
+    — Alex included — any access back to this repo. That's governed
+    entirely by `themorgan/WorkingWithAI`'s own GitHub collaborator
+    settings, unrelated to `precedent.json`.
 
 ## Git / workflow
 
 - Develop on a feature branch; open a PR; merge only when the user says so
-  (except the BestPractice sync, the pack sync, and the voice guidelines
-  sync, which merge their own PRs unattended — see
-  [`bestpractice-sync`](process/personal/README.md#bestpractice-sync),
-  [`pack-sync`](process/personal/README.md#pack-sync), and
-  this file's "A third scheduled check keeps the voice guidelines current"
-  below).
+  (except the BestPractice sync and the voice guidelines sync, which merge
+  their own PRs unattended — see
+  [`bestpractice-sync`](https://github.com/themorgan/precedent-individual/blob/main/practices/bestpractice-sync.md)
+  (it's Morgan's own preference about his own projects' automation, not a
+  convention Alex separately agreed to for his; see that practice's own
+  `## Story`) and [GETTING_STARTED.md](GETTING_STARTED.md)'s "A second
+  scheduled check keeps the voice guidelines current"; the BestPractice
+  sync itself is paused for the duration of the precedent-beta-v01 beta
+  test, see [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)).
 - **Start every thread by merging latest `origin/main` into your branch.**
 - **Then catch the member up.** Summarize what changed on `origin/main`
   since the last session, including anything any of the three syncs merged
   unattended. Do the same any time she asks "what's new?".
 
-(Session start, in order: `bash tools/bootstrap.sh` — see "Build-environment
-gotchas" above — then these two.)
+(Session start, in order: call `add_repo` for the two sibling practice
+repos — see "Build-environment gotchas" above, no asking first — then
+`bash tools/bootstrap.sh`, then these two.)
 
 ### Merging a thread branch (runbook — follow, don't improvise)
 
@@ -73,46 +126,44 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
    captured — a document update, a registry entry, a decision record? Fold
    it now.
    **0b. Export gate** ([practice 14](process/upstream/PRACTICES.md#14-the-practice-export-loop-how-this-repo-propagates)):
-   did this thread improve a *generic*
-   BestPractice practice (not the personal pack, which never exports)?
-   Fold the abstracted form into `process/upstream/` now, per
+   did this thread improve a *generic* BestPractice practice? Fold the
+   abstracted form into `process/upstream/` now, per
    [process/upstream/INSTALL.md](process/upstream/INSTALL.md) §3, and run
    the scrub audit.
-   **0c. TODO gate** ([`todo-gate`](process/personal/README.md#todo-gate))**:** re-read this thread's discussion
+   **0c. TODO gate** ([`todo-gate`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/todo-gate.md))**:** re-read this thread's discussion
    against [TODO.md](TODO.md) — add any idea that came up but never got a
    line; remove or check off anything this branch just implemented. Do
    this every push.
 1. Fetch and merge `main` locally.
 2. Resolve by fixed per-file-class rules ([practice 9](process/upstream/PRACTICES.md#9-a-merge-runbook-with-fixed-per-file-class-rules)):
-   - `process/manifest.json` / `process/manifest_personal.json` /
-     `process/manifest_voice.json`: **union** of both sides — never drop an
-     entry or a status.
-   - [TODO.md](TODO.md) and [RANDOM_NOTES.md](docs/RANDOM_NOTES.md): **append-only — keep both
+   - `process/manifest.json` / `process/manifest_voice.json` / `precedent.json`:
+     **union** of both sides — never drop an entry, a status, or a source.
+   - [TODO.md](TODO.md) and [RANDOM_NOTES.md](content/RANDOM_NOTES.md): **append-only — keep both
      sides' additions.**
    - Same content file edited on both sides: keep both sides' text.
    - **`process/upstream/`: never hand-merge.** It must stay byte-identical
      to whatever [checkin.py](process/upstream/tools/checkin.py) `update`
      last mirrored — resolve by re-running the sync
      ([INSTALL.md](process/upstream/INSTALL.md) §2), not by editing
-     vendored files directly.
-   - **`process/personal/`: never hand-merge either.** It must stay
-     byte-identical to whatever
-     [pack_sync.py](process/personal/tools/pack_sync.py) `update` last
-     mirrored — resolve by re-running that sync
-     ([`pack-sync`](process/personal/README.md#pack-sync)).
+     vendored files directly. (Paused for the precedent-beta-v01 beta —
+     see [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md).)
    - **[process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md): never hand-merge either,** same
      reasoning — it must stay byte-identical to whatever
      [voice_sync.py](process/voice/tools/voice_sync.py) `update` last
      mirrored from SoundHuman; resolve by re-running that
      sync, not by editing the file directly.
+   - **Nothing under `process/personal/` should ever appear again** — that
+     path is retired; a merge that still has changes queued against it
+     predates [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)
+     and needs that record read before resolving it.
 3. Run the audits — **all must pass before the merge commits**:
    `python3 process/upstream/tools/doc_lint.py`,
-   `python3 process/personal/tools/light_check.py`, and
+   `python3 tools/light_check.py`, and
    `python3 process/upstream/tools/practice_audit.py`. A plain "checks
    passed" is fine; skip re-explaining the same known pre-existing backlog
    every time — a run that actually fails, or a warning your own edit
    newly introduced, is always worth flagging
-   ([`quiet-checks`](process/personal/README.md#quiet-checks)).
+   ([`quiet-checks`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/quiet-checks.md)).
 4. Commit the merge, push, land per this repo's convention.
 
 ## Conventions
@@ -132,12 +183,12 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
 - **Doc references are links** ([practice 11](process/upstream/PRACTICES.md#11-document-references-are-links-approximation-is)):
   relative markdown links, never bare backticked filenames.
 - **A durable numbered list is cited by permanent slug, never by
-  position** ([`durable-list-anchors`](process/personal/README.md#durable-list-anchors)):
+  position** ([`durable-list-anchors`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/durable-list-anchors.md)):
   every rule or item in this repo's own essay lists —
-  [COMPANY_BUILDING_RULES.md](docs/COMPANY_BUILDING_RULES.md),
-  [AI_GOVERNANCE_TO_COCREATE.md](docs/AI_GOVERNANCE_TO_COCREATE.md),
-  [OUR_PHILOSOPHY.md](docs/OUR_PHILOSOPHY.md), [REASONS_WHY.md](docs/REASONS_WHY.md),
-  [RULES_NOW_TESTING.md](docs/RULES_NOW_TESTING.md) — carries its own
+  [COMPANY_BUILDING_RULES.md](content/COMPANY_BUILDING_RULES.md),
+  [AI_GOVERNANCE_TO_COCREATE.md](content/AI_GOVERNANCE_TO_COCREATE.md),
+  [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md), [REASONS_WHY.md](content/REASONS_WHY.md),
+  [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md) — carries its own
   `<a id="slug"></a>` anchor, cited everywhere as
   `` `slug` (file.md#slug) ``, never as a bare "rule 4" or "item 3". This
   supersedes the older split between "anchored when the source list uses
@@ -154,7 +205,7 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
   anything asserted
   here about an external platform or tool carries *as of / verified
   `<date>`* inline, in Buenos Aires local time
-  ([`buenos-aires-dates`](process/personal/README.md#buenos-aires-dates)), stricter
+  ([`buenos-aires-dates`](https://github.com/themorgan/precedent-individual/blob/main/practices/buenos-aires-dates.md)), stricter
   than BestPractice's own default of "the contributor's local calendar
   date" — here, the contributor's local calendar date always means Buenos
   Aires, regardless of where a session physically runs).
@@ -172,416 +223,333 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
   gets its rendered-view (artifact) link when the harness offers one — a
   repo link shows source, not the render.
 
-## Personal setup rules (Morgan's pack)
+## Practice sources (Precedent)
 
-These extend BestPractice's own conventions above; they are this repo's
-personal layer (`process/personal/`), not upstream BestPractice, and they
-never get exported to the public BestPractice repo.
+This repo resolves practices from three sources, per
+[Precedent](https://github.com/alex137/BestPractice/tree/precedent-beta-v01)'s
+three-source model (migration history, for anyone curious how this repo
+got here from a single vendored pack: [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)).
+**New session and team/individual practices don't seem to apply? Read
+"Build-environment gotchas" above first** — this almost always means the
+session doesn't have repo access to precedent-team-maintainers or
+precedent-individual yet, not a bug in the resolver.
 
-- **On conflict with BestPractice, this pack wins.** BestPractice sets the
-  default; where a rule here and a rule of BestPractice's own genuinely
-  disagree on the same point, this pack's rule governs. Where this pack is
-  silent, BestPractice's own rule stands undisturbed — this pack only
-  narrows or overrides where it actually speaks
-  ([`bestpractice-wins`](process/personal/README.md#bestpractice-wins)).
+- **Universal** — [process/upstream/PRACTICES.md](process/upstream/PRACTICES.md).
+  Still a physical vendored copy, tracked by
+  [process/manifest.json](process/manifest.json), exactly as before (see
+  "Practice export" below) — unchanged by this migration except which
+  branch it tracks.
+- **Team** — [precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers)
+  (Morgan and Alex's own conventions; migrated from RepoPersonalPreferences).
+  Declared in [precedent.json](precedent.json), resolved live from a sibling
+  clone (`../precedent-team-maintainers`) rather than vendored.
+- **Individual** — [precedent-individual](https://github.com/themorgan/precedent-individual)
+  (Morgan's own person-specific facts: commit identity, Buenos Aires as his
+  timezone, file-header naming, the `go`/`merge` shorthand). **Never**
+  declared in this repo's own tracked config — naming it here would leak
+  its existence and location to anyone with read access to this repo, which
+  is exactly the leak the three-source split exists to prevent. It resolves
+  instead from Morgan's own user-level config
+  (`~/.config/precedent/config.json`), which
+  [.claude/hooks/precedent-individual-bootstrap.sh](.claude/hooks/precedent-individual-bootstrap.sh)
+  clones and writes automatically at the start of every Claude Code Web
+  session on this repo, before the first tool call — nobody runs a command
+  by hand for this.
 
-- **Don't duplicate BestPractice.** This pack exists to add to BestPractice
-  or override it, not restate it. A bullet here that only repeats what
-  BestPractice already establishes on its own gets dropped the next time
-  this file is touched, rather than left as a second copy that can drift
-  out of sync with the first
-  ([`no-duplication`](process/personal/README.md#no-duplication)).
+**To see the full merged, in-force rule set:**
+`python3 tools/precedent_resolve.py --repo .` — this genuinely resolves all
+three sources today and reports precedence, shadowing, and the combined
+resident-block token budget.
 
-- **The identity facts below are about Morgan specifically — they apply
-  only when Morgan is the one actually driving the change.** The
-  `git config user.name`/`user.email` identity (below), Buenos Aires as
-  the timezone for dates and commit timestamps (below), "Morgan F" as the
-  `NAME` in a file's last-updated header (below), the `themorgan` GitHub
-  attribution, Morgan's own he/him pronouns, and the `go`/`merge`
-  shorthand (further below) are facts about one person, not defaults for
-  whoever happens to be committing. When a different GitHub user or person
-  drives a change in this repo — co-authoring, running their own session,
-  opening their own PR — none of this carries over automatically: don't
-  attribute their commits to "Morgan F", don't assume their timezone is
-  Buenos Aires, don't refer to them as "he" absent them saying so, and
-  don't require the exact "go"/"merge" wording from them. Fall back to
-  BestPractice's own generic default instead (ask, don't assume) for
-  anyone who isn't Morgan
-  ([`morgan-scope`](process/personal/README.md#morgan-scope)). Each bullet
-  below that states one of these facts carries a short pointer back to
-  this one.
+**Gap closed 2026-09-03:** the loading channels that pull a slug's `## Rule`
+text into context automatically —
+[precedent_show.py](process/upstream/tools/precedent_show.py),
+[precedent_paths.py](process/upstream/tools/precedent_paths.py),
+[precedent_gate.py](process/upstream/tools/precedent_gate.py) — stay
+single-source by design (each hardcodes its own repo as `ROOT`). What closes
+the gap is
+[tools/precedent_sync_views.py](tools/precedent_sync_views.py): it
+materializes every declared source (universal, team, individual, and any
+repo-local set) into a real, ordinary `practices/` tree and regenerates the
+block below from that same resolved set — the same renderer BestPractice's
+own `AGENTS.md` uses on itself. Run
+`python3 tools/precedent_sync_views.py --repo .` after any source changes
+(a new team/individual practice, a re-vendored universal set); run it with
+`--check` to confirm the generated block hasn't drifted from a fresh sync.
+Do not hand-edit the block below — the next sync overwrites it.
 
-- **Commits are always authored "Morgan F".** Use Morgan's own email
-  address:
-  `git config user.name "Morgan F"` and
-  `git config user.email "morgan@westegg.com"`
-  once per clone ([tools/bootstrap.sh](tools/bootstrap.sh) does this
-  automatically). This replaces, rather than defers to, BestPractice's own
-  "ask before the first commit" default — the identity is already decided,
-  so don't ask. It replaces only the *identity* half: the pack says nothing
-  about co-authorship, so BestPractice's own `Co-Authored-By:` trailer
-  naming the assistant still applies
-  ([`bestpractice-wins`](process/personal/README.md#bestpractice-wins) —
-  where this pack is silent, BestPractice stands). This whole bullet is one
-  of the Morgan-specific facts scoped above — for anyone who isn't Morgan,
-  ask instead
-  ([`commit-author`](process/personal/README.md#commit-author)).
+<!-- BEGIN GENERATED: precedent-loader -->
 
-- **Every date is a Buenos Aires local calendar date**, not the session's
-  system clock. Two places this bites:
-  - Any date written into a document ("as of / verified `<date>`", a
-    file's last-updated header) uses `America/Argentina/Buenos_Aires`
-    local time.
-  - Git commit timestamps: prefix the commit command with
-    `TZ="America/Argentina/Buenos_Aires"` so the recorded author/committer
-    offset is Buenos Aires', not the container's —
-    `TZ="America/Argentina/Buenos_Aires" git commit -m "..."`.
-  (Argentina has held UTC−3 year-round, no daylight saving, since 2009 —
-  verified 2026-08-21; re-verify if this rule is ever touched and the fact
-  seems dated.) Buenos Aires is *Morgan's* timezone specifically — one of
-  the facts scoped above — not a default for someone else driving the
-  change
-  ([`buenos-aires-dates`](process/personal/README.md#buenos-aires-dates)).
+<!-- Regenerate with: python3 tools/build_views.py -- do not hand-edit this block, tools/verify_harness.py's regeneration check fails on drift. -->
 
-- **Files carry a "last updated" timestamp, who made it, and a version
-  number — near the top, when reasonable.** For a Markdown file: `<!--
-  Last updated: YYYY-MM-DD HH:MM:SS (Buenos Aires) by NAME, to version N
-  -->` as the first line. `NAME` is whoever made the edit — "Morgan F"
-  when Morgan is driving (one of the facts scoped above), otherwise
-  whoever actually made the edit. `N` is a plain integer counter private
-  to that one file: 1 the first time the header is added, +1 each
-  subsequent time the file's content changes. Only files actually changed
-  pick up or bump the header — never a repo-wide sweep. Skip it where a
-  leading comment would break the file (JSON has none) or where the file
-  is a vendored, byte-for-byte copy under `process/upstream/`,
-  `process/personal/`, or `process/voice/`
-  ([`file-header`](process/personal/README.md#file-header)).
+### Resident block (~659 of 2000 token budget, 10 of 107 practices (1 individual, 3 team, 6 universal))
 
-- **A derived file is marked by a header naming what replaces it.** The
-  test is replacement, not authorship: where an assistant writes every
-  document, "auto-generated" picks out no subset, so what matters is
-  whether a fresh pass overwrites the file wholesale. A *derived* file —
-  one regeneration replaces — carries, in its own comment syntax, four
-  fixed fields followed by a plain routing sentence: `DERIVED from <source
-  or glob> @ <source commit SHA at generation>`, `Recipe: <path>`,
-  `Regenerate with: <command or plain instruction>`, then "edits here are
-  safe to make but not durable — regeneration replaces this file; to make
-  a change stick, edit the source or the recipe." It replaces
-  [`file-header`](process/personal/README.md#file-header)'s own header
-  rather than sitting beside it. An *agent-maintained* file, edited in
-  place and never wholly replaced, is an ordinary source file and keeps
-  `file-header` — [MAP.md](MAP.md) is this kind. The `@ <sha>` stamp is
-  load-bearing because generation is usually a nondeterministic LLM call,
-  so no comparison of content can tell a hand edit from an honest re-run;
-  the stamp can, and it also shows when the source has moved on and the
-  derived file is stale. Editing a derived file is allowed — the edit is a
-  bug report, routed into the source (a missing fact) or the recipe (how
-  this file should read) before the work lands, never left in place to be
-  destroyed. There is deliberately no filename marker: `git grep -l
-  "DERIVED from"` is the index, and a derived file is flagged in
-  [MAP.md](MAP.md)'s tables when added. Not retroactive
-  ([`derived-file-marker`](process/personal/README.md#derived-file-marker)).
+**bold-key-phrases.** People don't read; they skim, and bolding makes skimming easy. Bold the key phrases in a document by default, without being asked, scaling with length -- a long paragraph or document is where a skimmer most needs a spine to follow, a short note usually needs little or none.
 
-- **A recipe holds a file's standing rules, with reasons — never its
-  history.** Present tense and rewritable: the rules in force now, not a
-  record of how they got that way, because a running log only grows and
-  is never pruned. Recipes live in a `doc-recipes/` subdirectory beside
-  the documents they govern, keeping a `.recipe.md` infix
-  (`book/doc-recipes/CHAPTER1.recipe.md`) — the subdirectory so recipes
-  don't double every listing, the infix because editor tabs and search
-  results show bare basenames. Format: a `file-header`, a title, a
-  `Source:` line where there is one, and a flat list — one rule per line,
-  its reason an em-dash clause and only where a reader might otherwise
-  delete the rule as arbitrary, or a short commit SHA in parentheses
-  where the reason is really an origin story. `Source:` present means the
-  file is derived; absent means standing constraints on a document written
-  directly. A derived file's recipe is created with the file; a written
-  document's starts the *second* time the same constraint is restated
-  about it. It gets updated when the output is corrected, or a constraint
-  is stated twice; adding a line means rereading the whole recipe, and any
-  line a repo-wide convention now covers gets deleted. A rule appearing in
-  a second recipe was never per-file — promote it to the repo's own
-  conventions and delete it from both. Editing a recipe never triggers a
-  regeneration
-  ([`doc-recipe`](process/personal/README.md#doc-recipe)).
+**buenos-aires-dates.** Every date is my own Buenos Aires local calendar date, never the session container's system clock and never UTC. Two mechanisms: a prose date (a doc's "as of" note, a last-updated header) uses the Buenos Aires calendar date on the day the text was written; a git commit gets the right offset by running the commit itself under `TZ="America/Argentina/Buenos_Aires"` -- git resolves the offset from `TZ` at commit time, so no manual arithmetic is needed.
 
-- **Commit messages link the assistant session where the change was
-  planned.** Add a trailer, `Session: <url>` — for Claude Code,
-  `https://claude.ai/code/session_<ID>`. For the unattended sync
-  workflows, use that workflow run's own URL instead. If a tool has no
-  shareable link at all, the trailer says so explicitly (`Session: none
-  available (<tool>)`) rather than being silently omitted
-  ([`session-trailer`](process/personal/README.md#session-trailer)).
+**environment-gotchas.** Every expensive environment discovery (a package that must be
+installed, a tool that silently doesn't work, a path that does work) is
+written into a "do NOT rediscover these" section — with the story of what
+failed and why, not just the fix.
 
-- **Decide small calls yourself; only stop for big ones.** Default to
-  continuing, not asking. Make small or moderate calls (a default value, a
-  phrasing choice, an ambiguity that doesn't change the shape of what gets
-  delivered) yourself, and note it in **both** the end-of-work reply and
-  the commit message itself, under a "Judgment calls made:" heading (skip
-  the heading only when there truly were none). Reserve stopping and
-  asking for calls that are genuinely big: hard or costly to undo, change
-  what gets delivered or to whom, spend real money, touch credentials or
-  production, or are a toss-up two reasonable people would clearly land
-  differently on
-  ([`small-calls`](process/personal/README.md#small-calls)).
+**nonblocking-questions.** Once a question is worth asking at all, asking is not itself a stopping point. A session holding a queue of work and an open question doesn't go idle waiting for the answer -- it keeps going on everything the answer doesn't touch.
 
-- **When a proposed rule's scope is ambiguous, ask which layer it belongs
-  to.** A carve-out from
-  [`small-calls`](process/personal/README.md#small-calls) above, because
-  the cost that matters here isn't undoing the mistake but noticing it:
-  both misfilings are silent. A rule that is really general, filed onto one
-  document, ends up restated across several recipes in several phrasings,
-  drifting; a rule that is really local, filed as a repo convention,
-  quietly constrains every document in the repo. So when it is genuinely
-  unclear whether a newly proposed rule governs one document or the whole
-  repo, ask once, in the moment — the question is nearly free while the
-  rule is still in front of the person proposing it, and expensive weeks
-  later. The test is whether the rule's own text would still make sense
-  applied to a different document: "only short paragraphs" would, so ask;
-  "keep the Series A section under one page" names this document's own
-  structure and is local on its face; "use em dashes, not semicolons" is
-  plainly house style and goes to the repo's conventions. Asking on all
-  three trains the person to wave the question through. Ask with a guess
-  and its reason, so confirming costs a word
-  ([`rule-scope-ask`](process/personal/README.md#rule-scope-ask)).
+**orientation-map.** A top-level `MAP.md` indexes the repo: what the key deliverables
+are, where everything lives, and — crucially — which supporting documents back
+each part of each deliverable. Every session reads it before doing anything.
 
-- **Push-back mode: argue, don't just comply, on writing-and-thinking work
-  — never on technical or code work.** On work whose deliverable is prose
-  meant to persuade or be judged by a human reader as an argument: argue a
-  genuine counter-case before building on a stance as stated, and flag a
-  serious unresolved disagreement before calling a piece done. Never
-  applies to code, scripts, configuration, infrastructure, or debugging.
-  Not a quota — never push back just to push back, and hand over a piece
-  with no real problem as-is rather than manufacturing an objection.
-  Reserve it for where it could actually help in a serious or deep way
-  ([`push-back`](process/personal/README.md#push-back)).
+**quick-index.** The project instructions file carries a "check here BEFORE searching
+the repo" table: *looking for X → go to Y*, one row per thing sessions
+actually hunt for.
 
-- **Trim iteratively-edited prose on two triggers, not a running count.**
-  Immediately after any substantial edit to a paragraph, give it a quick
-  trim; independent of that, trim anything that's grown noticeably longer
-  than the point it's making warrants. Same scope as push-back mode above:
-  prose meant to be read and judged by a human, not code, scripts, or
-  configuration
-  ([`trim-prose`](process/personal/README.md#trim-prose)).
+**reply-links-files.** A session's reply that created or modified files ends with a
+"Files touched" list: each entry links the file on the working branch *and*
+its post-merge location, with a one-line description. The reader must be able
+to open the work from the chat, not merely learn it exists.
 
-- **Cocreated list items stay roughly comparable in length — default
-  short.** When cowriting a list, or several short-ish sections that
-  function like one, keep each item roughly the same length as its
-  neighbors — it's natural to expand one during a later edit while its
-  neighbors stay untouched, even though nothing about its actual
-  importance changed. A strong preference, not a hard rule
-  ([`list-item-parity`](process/personal/README.md#list-item-parity)).
+**repo-is-memory.** Everything a future session needs — orientation, open items,
+decisions, lessons — lives in committed files. A session's chat thread is
+disposable; if knowledge exists only in a thread, it is already lost.
 
-- **Use a list only when the content is actually a list, not as a
-  formatting crutch.** Still an entirely ordinary list — never banned — for
-  a genuine enumeration a reader will scan or reference individually
-  (ingredients, steps, options, a checklist). What it catches: content with
-  connective logic — "because," "so," one point building on the last —
-  reformatted as bullet fragments that erase those connections because it
-  reads as more put-together that way; reading the bullets back as plain
-  connected sentences should lose nothing. A judgment call — when unsure,
-  prose is the safer default
-  ([`list-restraint`](process/personal/README.md#list-restraint)).
+**small-calls.** Default to continuing, not asking. When a judgment call is needed to keep the work moving -- filling in a default, picking between two reasonable implementations, resolving an ambiguity that doesn't change the shape of what gets delivered -- make the call and note it, rather than stopping to ask first. Reserve stopping and asking for calls that are genuinely big: hard or costly to undo, change what gets delivered or to whom, spend real money, touch credentials or production, or are the kind of toss-up where two reasonable people would clearly land in different places.
 
-- **`go` or `merge` as a standalone final sentence means: commit and merge
-  to main.** If Morgan's message, at a point where you've said you're
-  ready, ends with `go` or `merge` as its own sentence — case-insensitive —
-  that's authorization, right there, to commit the pending work and merge
-  it into `main`, using this repo's usual conventions, without asking
-  again first. If it's ambiguous whether the trailing word is this
-  shorthand or ordinary language in context, ask rather than assume. This
-  exact wording is Morgan's own shorthand — one of the facts scoped
-  above — so don't expect or require it from anyone else; fall back to
-  asking
-  ([`go-merge`](process/personal/README.md#go-merge)).
+**verify-postcondition.** After any state-changing operation, check **the state you wanted**,
+not that the command reported success. Name the postcondition before you run
+the command — *"no unpushed commits on any branch"*, *"the gate passed"*,
+*"the file contains X"* — and then test that, independently of whatever the
+command printed.
 
-- **TODO.md gate — step 0c of the merge runbook above, before every
-  push.** [TODO.md](TODO.md) drifting out of sync with what was actually
-  decided is the specific failure this gate exists to catch
-  ([`todo-gate`](process/personal/README.md#todo-gate)).
+### Occasion index
 
-- **A light check runs on every commit path**
-  ([.github/workflows/light-check.yml](.github/workflows/light-check.yml),
-  [process/personal/tools/light_check.py](process/personal/tools/light_check.py))
-  — conflict markers, invalid JSON/YAML/Python syntax, secret-shaped
-  strings, broken doc links, and (repo-wide, every run) that
-  `process/personal/` is actually vendored. Run it yourself before
-  committing, the same way as [doc_lint.py](process/upstream/tools/doc_lint.py)
-  and [practice_audit.py](process/upstream/tools/practice_audit.py); CI
-  runs it too
-  ([`light-check`](process/personal/README.md#light-check)).
+```
+When a README or other key file just gained an operational instruction:
+  mirror-into-agents — an agent-relevant instruction lands in both AGENTS.md and its human home
+When a change must propagate across several parallel artifacts:
+  parallel-artifact-ledger — ledger the transfer verdict per member, per change
+When a commit fixes, closes, or resolves something a document names in prose as a known, open issue:
+  resolved-issue-note-updates — When a commit fixes a bug, closes a gap, or resolves a limitation that some ...
+When a computation books a transfer between two parties:
+  name-both-sides-of-ledger — name both sides; check what is charged against what is received
+When a convention is violated for the first time:
+  convention-to-audit — promote a costly broken convention to a script that exits non-zero
+When a document presents a script-derived figure:
+  docs-track-models — every script-derived figure sits inside a generated block
+When a document replaces or is replaced by an earlier one:
+  index-remembers-past — put the lineage in the index, not in either document
+When a new rule is proposed and its scope isn't obvious:
+  rule-scope-ask — unclear if a new rule is repo-wide or one document? ask once
+When a numbered list's entries are durable content likely to be cited by position:
+  durable-list-anchors — anchor and slug each entry of a durable numbered list, not just its number
+When a paragraph just got a substantial edit, or the piece is done:
+  trim-prose — trim a paragraph right after editing it, and before calling it done
+When a person explicitly asks for a full practice audit (or "practice check") across the whole catalogue:
+  full-practice-audit — sweep every source's full catalogue, one practice at a time, on request only
+When a practice lands or a candidate is raised, at any level:
+  disclose-landing — state plainly what happened and where — individual, named team, or universal
+When a project of mine vendors a universal practice set as tracked files:
+  bestpractice-sync — a scheduled workflow keeps the vendored universal copy current
+When a project repo vendors this team's own practice set, and it has moved:
+  pack-sync — the team-set sync is the universal sync's sibling, against a private repo
+When a review finds a defect:
+  mistakes-become-rules — root-cause the miss, then encode the prevention
+When a session starts in a repo that vendors a universal or team set:
+  drift-notice — check source freshness at session start; raise it right away, not later
+When a session-start freshness check against a private source can't be reached:
+  fresh-check-escalation — tell "could not verify" apart from "confirmed fresh"; verify directly
+When a standing constraint on one file gets stated a second time:
+  doc-recipe — present-tense rules for one file, in doc-recipes/<name>.recipe.md
+When a tool warns about already-published git history:
+  no-rewrite-for-warnings — fix the setting forward; never rewrite published history
+When about to commit:
+  light-check — a cheap mechanical audit runs before every commit, not just merges
+When about to commit a document that characterizes a real, identifiable person:
+  sensitive-characterization-scrub — soften or ask before committing a blunt description of a real person
+When about to format connected prose as bullet points:
+  list-restraint — don't reformat connected reasoning as bullet fragments
+When about to push after a thread of work:
+  todo-gate — add missed ideas, check off finished ones, before every push
+When adding a new rule to a maintained rules document:
+  new-rule-placement — place a new rule by subject, slug it, renumber, mirror, re-check
+When adding or reviewing a team-set rule:
+  no-duplication — a rule that only restates universal gets dropped
+When an install step adds something GitHub-specific:
+  github-setup-disclosed — disclose GitHub-specific setup where the project's people read
+When an unattended scheduled job hits something blocking its normal work:
+  automation-issues — a blocked scheduled job opens or updates an issue, not just a log line
+When asked for a "deep check" by name, or after drift-inviting work:
+  deep-check — every mechanical audit, plus a full read of the repo against itself
+When bringing a vendored practice layer into a new or existing repo:
+  install — vendor the tree, weave conventions into AGENTS.md, wire checks and manifest
+When building a mechanism that makes something discoverable or reachable:
+  affordance-is-shared — name who else the mechanism you just built now serves
+When building a permutation or configuration-sweep table:
+  permutation-frontier-column — one full table with a computed Frontier column
+When building a variant of an existing thing:
+  variant-re-derives — re-derive what a variant inherits; limits bind, choices do not
+When building or committing a generated artifact:
+  generated-artifact-provenance — stamp a build code and a manifest; never hand-edit output
+When building or setting up a system that talks to an LLM:
+  llm-neutral — build LLM integrations provider-neutral; assume an OpenRouter token
+When checking whether the practices that should have fired for recent work actually fired:
+  routing-audit — run the mechanical coverage check now; roll the deep-read slice forward
+When citing support for a claim in a formal document:
+  brainstorm-citations — cite a formal document for support, never a raw brainstorm entry
+When committing anything:
+  session-trailer — a Session: <url> trailer on every commit
+When committing anything that touches the vendored/public tree:
+  scrub-gate — the public tree is public-safe at all times, not just at check-in
+When comparing an option against a baseline:
+  check-source-architecture — check both options exist in the source before costing them
+When counting or matching entries by name against other entries that may share a prefix:
+  match-parsed-id-not-prefix — When counting how many files or entries share a name (recurrence, a duplicat...
+When creating a file a later regeneration will overwrite:
+  derived-file-marker — a regenerated file's header names its source, recipe, and command
+When creating a repo's content/ directory, or migrating a legacy BRAINSTORM.md/NOTES.md/IDEAS.md into the new system:
+  assorted-notes — a default content/ASSORTED_NOTES.md holds notes never referenced elsewhere
+When deciding where a new rule belongs:
+  layered-practice-packs — generic, domain, repo-local — each rule to its own layer
+When deciding whether to build or buy a component:
+  build-buy-decompose — decompose first; one verdict per part, on ownership grounds
+When drafting or reviewing prose meant to persuade or be judged:
+  push-back — argue a real counter-case before building on a stated stance
+When drafting or revising a list, or a document with list-like sections:
+  list-item-parity — keep list items comparable in length; default to the shorter side
+When editing a markdown file that carries this header:
+  file-header — markdown files get a last-updated/by-me/version header
+When ending a reply in which I committed something:
+  next-steps-after-commit — after a commit, close the reply by naming what I still need to do
+When exporting a tool across a repo boundary:
+  engine-plus-host-shims — one vendored engine, thin host shims, never a fork
+When finishing a substantial work-product, before the merge-time capture gate:
+  second-pass-capture — a separate capture pass after the work, not inside it
+When installing Precedent into a project I'll work on from Claude Code Web:
+  claude-web-bootstrap — wire the SessionStart hook so this set clones and configures itself
+When installing a vendored practice layer that could check in upstream:
+  blank-blocklist — leave a check-in blocklist blank at install; don't ask, don't remind
+When laying out a repo's root directory, or a root that's grown crowded with agent/tooling files:
+  content-directory — put working files in content/ so they don't mix with agent/tooling files
+When leaving a placeholder or fill-in-later note mid-draft:
+  draft-marker — wrap a draft placeholder in ➡️ TEXT ⬅️, bold and all caps
+When making the first commit in a fresh clone or session:
+  commit-author — git config user.name/email to Morgan F, don't ask
+When mentioning a repo file in a chat reply, PR description, or commit message:
+  file-mention-links — every file mention in chat or PR/commit text is a live GitHub link
+When merging a branch:
+  capture-gate — capture the follow-on work in the thread that created the need
+When merging a branch that improved a generic practice:
+  practice-export-loop — vendor upstream as tracked files; check improvements back in
+When merging a branch that touches shared files:
+  merge-runbook — write conflict resolution per file class, once, then follow it
+When migrating a repo off an old practice system onto Precedent:
+  migration-scrubs-vocabulary — scrub the old system's vocabulary the same session, not on request
+When my message ends on the standing merge-authorization phrase:
+  go-merge — "Go merge" alone at the end means sync, confirm branch, commit, and merge
+When naming a git branch in a document, reply, or status update:
+  branch-links — link every git branch mentioned to its tree view
+When naming a new file:
+  no-version-suffix — name a file for what it is; the repository is the version
+When naming anything that has a destination, in a document or a reply:
+  rule-links — link anything mentioned that has a destination, on first use
+When naming what "run the checks" means in a repo:
+  two-check-levels — name a fast check and a full check; say which gates what
+When ordering sections in a document:
+  section-order-by-frequency — order sections by how often the reader needs them
+When printing a numeric quantity that will be compared across rows:
+  one-formatter-per-quantity — one formatter per quantity kind, declared in one module
+When publishing a document with a multi-column sortable table:
+  tabular-shared-renderer — ship a sortable render from the one shared renderer
+When quoting or compressing someone else's figures:
+  quote-discipline — compression rounds against you; qualifiers travel with the figure
+When reporting a check's outcome that includes a known pre-existing backlog:
+  quiet-checks — "checks passed" is fine; don't re-explain the same old backlog
+When reporting a computed total or a negative feasibility result:
+  verify-decomposition — check the parts, not the total; never assert an impossibility
+When reviewing a draft's balance before calling it done:
+  proportional-emphasis — give a point space matching its importance, not its drafting mood
+When root has accumulated three or more deliverable-content documents:
+  content-subdirs — group deliverable content under a named subdirectory -- a recommendation
+When setting up a new repo's session start:
+  session-bootstrap — setup lives in a session-start hook, not in memory
+When setting up a new repo, or installing into an existing one:
+  default-branch — check or set the default branch to main, once, at install
+When starting an outward-facing deliverable:
+  frame-from-audience-question — build it around the audience's question, not your material
+When starting work the repository may already cover:
+  search-by-purpose — search by purpose and by mechanism before concluding nothing exists
+When tracking state that multiple documents need to agree on:
+  registry-source-of-truth — state lives in one machine-readable registry; documents derive
+When writing a README or other project-facing entry document:
+  lead-with-what-it-is — say what the project is before how it is maintained
+When writing a document that cites a computed number:
+  computed-numbers-in-scripts — computed content lives in a sync-gated generated block
+When writing a new convention or rule:
+  checkable-gets-checked — attempt a mechanical check before leaving a new practice advisory-only
+  cite-the-incident — record the failure a rule prevents, inline with the rule
+When writing a reader-facing deliverable with supporting apparatus:
+  deliverables-look-like-output — the deliverable holds only what its audience needs
+When writing a rule that depends on the outside world:
+  volatile-rules-carry-dates — a rule about the outside world carries its date, inline
+When writing a script whose numbers a document will cite:
+  scripts-assert-properties — scripts assert their own properties and their cited anchors
+When writing a sentence that cites an exact, changeable count:
+  no-stale-counts — drop a count that will go stale; say "several", not the number
+When writing an outward-facing document:
+  readers-vocabulary — use the reader's words; gloss inline or replace
+When writing an outward-facing summary of claims:
+  outward-summary-discipline — claims-to-source table, honest sums, a recorded adversarial pass
+When writing code because a specific practice requires it:
+  code-cites-practice — cite the practice's slug in a comment, right where the code is
+When writing code that depends on something outside its own control:
+  fail-gracefully — degrade on a missing config, file, network call, or credential
+When writing content that will vendor or ship into another repo:
+  private-repo-scrub — name a private repo only in general terms in anything that ships elsewhere
+When writing or editing a document:
+  acronyms-glossary — expand acronyms on first use; keep one central glossary
+  docs-are-current-state — state what is true now; version control holds the history
+  label-describes-content — "one line" must be one line; else name it for its content
+When writing or filling out a pull-request description:
+  pr-template-honest-gates — write the body from the diff; an unchecked box is fine
+When writing or reviewing a document's headers:
+  header-caps — one capitalization schema per document; default to headline style
+When writing or triaging an open item:
+  todo-is-a-handoff — queue only for a stated blocked-on/out-of-scope reason — otherwise just do it
+```
 
-- **The deep check — every audit, plus an open-ended coherence review**
-  ([`deep-check`](process/personal/README.md#deep-check)). The merge
-  runbook's audits are the mechanical half and aren't optional. The other
-  half is a read of the whole repo against itself — `AGENTS.md`, `MAP.md`,
-  `TODO.md`, `GLOSSARY.md`, the vendored `process/personal/` and
-  `process/voice/` trees, and the fit between them — for contradictions,
-  stale slugs or references, formatting drift, and anything else that
-  makes the repo harder to trust or follow. Run it when Morgan asks for a
-  "deep check" by name, or after work that invites drift (rules added or
-  reordered, a merge that resolved conflicts across several shared
-  files); fix what it turns up in the same pass. Not a per-commit gate —
-  the light check above carries that cadence.
+### Standing instruction
 
-- **Don't repeat the same backlog explanation every run.** A run can turn
-  up a real pre-existing backlog that predates the current edit and isn't
-  gated — explaining it away with the same disclaimer every commit adds
-  nothing; a plain "checks passed" is fine. A run that actually fails, or
-  a warning your own edit newly introduces, is always worth flagging
-  ([`quiet-checks`](process/personal/README.md#quiet-checks)).
+Before starting work of a kind named in the occasion index above, run `python3 tools/precedent_show.py SLUG` for each listed slug to load its Rule. When editing a file, `python3 tools/precedent_paths.py FILE` prints any on-demand practice whose `applies_to` matches it, without needing the index at all. At a named moment — merging, reviewing, pushing, ending a turn — run `python3 tools/precedent_gate.py merge|review|push|reply`: some practices fire at a moment rather than in a file, and no path glob reaches those.
 
-- **Agent-relevant instructions in a README or other key file also go in
-  this AGENTS.md.** A README, `CONTRIBUTING.md`,
-  [GETTING_STARTED.md](GETTING_STARTED.md), or any other key file can pick
-  up its own operational instructions over time — fold the same
-  instruction into `AGENTS.md` too, in its own words if that reads better
-  here. This runs both directions
-  ([`mirror-into-agents`](process/personal/README.md#mirror-into-agents)).
+<!-- END GENERATED -->
 
-- **A mentioned rule, item, or destination is always a link** — a repo
-  file, a rule of this pack, a [TODO.md](TODO.md) entry, a
-  [GLOSSARY.md](GLOSSARY.md) term, a git branch, a commit, a PR. Covers
-  replies in chat as much as files in the repo. The pack's own rules cite
-  by permanent slug, `` [`slug`](process/personal/README.md#slug) ``,
-  never by heading number — the number moves whenever the file is
-  reorganized, the slug never does
-  ([`rule-links`](process/personal/README.md#rule-links)).
+### Scheduled syncs
 
-- **A durable numbered list gets a permanent slug and anchor per entry,
-  not just a position number.** A list whose entries hold real content
-  likely to be cited elsewhere as "item N"/"rule N" (this repo's own
-  [COMPANY_BUILDING_RULES.md](docs/COMPANY_BUILDING_RULES.md),
-  [AI_GOVERNANCE_TO_COCREATE.md](docs/AI_GOVERNANCE_TO_COCREATE.md),
-  [OUR_PHILOSOPHY.md](docs/OUR_PHILOSOPHY.md), [REASONS_WHY.md](docs/REASONS_WHY.md),
-  [RULES_NOW_TESTING.md](docs/RULES_NOW_TESTING.md)) gets an `<a id="slug"></a>`
-  anchor per entry, cited everywhere as `` `slug` (file.md#slug) ``, never
-  a bare number — even a list that already has real headings, since
-  GitHub's own auto-generated anchor still bakes the position number in.
-  A short bullet list is exempt
-  ([`durable-list-anchors`](process/personal/README.md#durable-list-anchors)).
-
-- **A formal document cites another formal document, never a specific
-  point inside an explicit brainstorm document.** [RANDOM_NOTES.md](docs/RANDOM_NOTES.md) is
-  raw material, not vetted prose; a formal document citing a specific
-  brainstorm entry as a claim's own support borrows credibility that
-  entry never earned. If the idea hasn't been promoted into a formal
-  document's own text yet, add it there first, then link there instead
-  ([`brainstorm-citations`](process/personal/README.md#brainstorm-citations)).
-
-- **Don't state a count that will drift — describe it instead.** "Several
-  findings," not an exact number, unless the count is the actual point
-  ([`no-stale-counts`](process/personal/README.md#no-stale-counts)).
-
-- **Header capitalization: pick one consistent schema — this repo already
-  has, and keeps, its own.** This repo's headers are already sentence
-  case throughout; the pack's own default for a repo starting from a
-  blank page is NY Times headline style, but a repo that already made and
-  kept a consistent choice has nothing to change
-  ([`header-caps`](process/personal/README.md#header-caps)).
-
-- **Private repo names and specifics get scrubbed before anything vendors
-  or is shared.** Applies to whoever maintains the pack's own source
-  (RepoPersonalPreferences), not to this repo's own work — this repo
-  names itself and its own history plainly in [TODO.md](TODO.md), this
-  `AGENTS.md`, and commit messages, which never leave it (see the Voice
-  section's own references to its source repo, below)
-  ([`private-repo-scrub`](process/personal/README.md#private-repo-scrub)).
-
-- **LLM integrations stay platform-neutral; OpenRouter is the default
-  assumption.** Any system this pack helps set up that talks to an LLM
-  should be built against a provider-neutral interface — model name,
-  token, and base URL as swappable config. Absent other instruction,
-  assume the credential in hand is an OpenRouter token, not a given
-  vendor's own key
-  ([`llm-neutral`](process/personal/README.md#llm-neutral)).
-
-- **Always fail gracefully.** Any code you write or set up here anticipates
-  its own common failure modes rather than letting them surface as an
-  unhandled crash: a clear error message naming exactly what's missing and
-  how to fix it, a documented fallback/default, or a clean non-zero exit —
-  never a raw stack trace, a silent wrong answer, or a hang
-  ([`fail-gracefully`](process/personal/README.md#fail-gracefully)).
-
-- **This repo's default branch is `main`, checked once at install.** If it
-  isn't already `main`, set it once — via the GitHub API's repo-update
-  endpoint where the session's tools reach that far, otherwise as a
-  one-click item (Settings → General → Default branch) disclosed in
-  [GETTING_STARTED.md](GETTING_STARTED.md)'s administrator section
-  ([`default-branch`](process/personal/README.md#default-branch)).
-
-- **In a content-oriented repo, group deliverable content under a
-  subdirectory once root gets cluttered — a recommendation, not a
-  rule.** Nothing checks for this, and it's never retroactive on its own —
-  raise it as a judgment call if root ever accumulates several
-  deliverable documents at once
-  ([`content-subdirs`](process/personal/README.md#content-subdirs)).
-
-- **A new pack rule lands in reading-order position, never appended.**
-  Something RepoPersonalPreferences (this pack's own source) does when it
-  adds a rule, mirrored into this repo's `AGENTS.md` on the next update —
-  not something this repo initiates itself, since the pack only ever
-  flows one way, in
-  ([`new-rule-placement`](process/personal/README.md#new-rule-placement)).
-
-- **A scheduled check keeps BestPractice itself current — weekly by
-  default, one line to switch to daily**
+- **BestPractice sync**
   ([.github/workflows/bestpractice-upstream-sync.yml](.github/workflows/bestpractice-upstream-sync.yml)):
-  unattended, it takes any upstream update, integrates it with its own
-  judgment, and merges it — recording every judgment call in the commit
-  message. Authenticates with either `CLAUDE_CODE_OAUTH_TOKEN` or
-  `ANTHROPIC_API_KEY` — only one is required
-  ([`bestpractice-sync`](process/personal/README.md#bestpractice-sync)).
-
-- **A second scheduled check keeps the personal pack itself current**
-  (`.github/workflows/personal-pack-sync.yml`): same shape, pointed at
-  `process/personal/` against RepoPersonalPreferences (private). Needs its
-  own repository secret, `PERSONAL_PACK_TOKEN`
-  ([`pack-sync`](process/personal/README.md#pack-sync)).
-
-- **A third scheduled check keeps the voice guidelines current**
+  unattended, weekly by default, takes an upstream BestPractice update and
+  merges it. **Paused** (schedule commented out, `workflow_dispatch` only)
+  for the duration of the precedent-beta-v01 beta test — see the workflow's
+  own header comment and
+  [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md).
+- **Team and individual sources are resolved live from sibling clones, not
+  vendored-and-synced by a scheduled workflow** — keeping those sibling
+  clones themselves current is `tools/bootstrap.sh`'s job (a best-effort
+  `git pull --ff-only` at session start for the team clone; the individual
+  clone's own bootstrap hook does the same for itself), not a GitHub
+  Actions workflow.
+- **Voice guidelines sync**
   ([.github/workflows/voice-guidelines-sync.yml](.github/workflows/voice-guidelines-sync.yml)):
-  same shape again, pointed at
-  [process/voice/HUMAN_VOICE_RULES.md](process/voice/HUMAN_VOICE_RULES.md)
-  against [SoundHuman](https://github.com/themorgan/SoundHuman)
-  (private, one file rather than a whole subtree — see
-  [voice_sync.py](process/voice/tools/voice_sync.py)). Needs its own
-  repository secret, `VOICEGUIDELINESTOSOUNDHUMAN_TOKEN` — the same secret
-  name that repo's own docs already use for its other known consumers
-  (VoiceDefinitionMorgan, VoiceDefinitionCelia). Runs fifteen minutes after
-  the personal-pack sync's own weekly slot, same reasoning as that slot's
-  own fifteen-minute offset from the BestPractice sync.
-
+  unrelated source (SoundHuman), same shape as the BestPractice sync above,
+  still active weekly. Needs its own repository secret,
+  `VOICEGUIDELINESTOSOUNDHUMAN_TOKEN`.
 - **Unattended automation reports its own blockers as a GitHub issue, not
-  only a log line.** A missing credential or other blocker in any of the
-  three scheduled syncs above opens (or comments on) a GitHub issue via
-  [process/personal/tools/report_automation_issue.py](process/personal/tools/report_automation_issue.py),
-  alongside the existing `::warning::` annotation, since an annotation
-  only lives inside one workflow run and nobody sees it unless they
-  already know to look
-  ([`automation-issues`](process/personal/README.md#automation-issues)).
-
-- **All three scheduled syncs skip cleanly, not loudly, when neither Claude
-  credential is set.** If asked to run one manually, no secret is needed —
-  take the update in-session, then remind Morgan to set one so future
-  unattended runs don't need to be asked for by hand.
-
-- **A session-start notice asks about drift immediately, not at the
-  end.** `tools/bootstrap.sh` runs all three freshness notices
-  (`checkin.py fresh`, `pack_sync.py fresh`, `voice_sync.py fresh`) on every
-  session start — a one-line notice only when a source has moved, never a
-  gate. Raise whichever fired as part of catching the member up. **A fired
-  BestPractice or personal-pack notice is also persisted**, not just
-  printed: `tools/bootstrap.sh` wraps those two to also run `python3
-  process/personal/tools/pack_sync.py record <source> "<notice>"`, writing
-  it into this repo's own [TODO.md](TODO.md) under a `## Pending drift
-  reviews` heading (kept sentence case here, matching this repo's own
-  header convention). Resolve one with `python3
-  process/personal/tools/pack_sync.py resolve <source> [note]` once its
-  drift has actually been reviewed. Taking any update stays deliberate
-  whenever it's raised. **Fallback:** repeat the same cheap comparison at
-  the end of the session too, if it wasn't already raised and answered
-  ([`drift-notice`](process/personal/README.md#drift-notice)).
+  only a log line** — [tools/report_automation_issue.py](tools/report_automation_issue.py),
+  a generic utility, per
+  [`automation-issues`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/automation-issues.md).
+- **Both remaining scheduled syncs skip cleanly, not loudly, when neither
+  Claude credential is set.** If asked to run one manually, no secret is
+  needed — take the update in-session, then remind Morgan to set one so
+  future unattended runs don't need to be asked for by hand.
 
 ## Working in parallel (multi-member repos)
 
@@ -612,21 +580,39 @@ assistant works this repo, rather than being retrofitted later.
 
 - `process/upstream/` is a vendored copy of the public
   [BestPractice](https://github.com/alex137/BestPractice) repo, tracked in
-  this repo. **Public-safe invariant:** nothing proprietary may appear
-  under `process/upstream/`, ever.
+  this repo (currently the `precedent-beta-v01` branch, not `main` — a
+  deliberate beta-test pin, see
+  [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)).
+  **Public-safe invariant:** nothing proprietary may appear under
+  `process/upstream/`, ever.
   `python3 process/upstream/tools/practice_audit.py`
   ([practice_audit.py](process/upstream/tools/practice_audit.py)) enforces
   this against
   [process/scrub_blocklist.txt](process/scrub_blocklist.txt) and must pass
-  before committing anything that touches `process/`.
-- `process/personal/` is categorically never exported — it opts out of the
-  scrub entirely because it exists specifically to hold Morgan's own
-  vocabulary.
-- Export gate = merge runbook step 0b. Periodic check-in per
-  [process/upstream/INSTALL.md](process/upstream/INSTALL.md) §4 (recurring
-  item in [TODO.md](TODO.md)) — in practice this repo mostly consumes
-  BestPractice rather than improving it.
-- [process/manifest.json](process/manifest.json) and
-  [process/manifest_personal.json](process/manifest_personal.json) are the
-  installed-practices registries; when a practice file changes locally,
+  before committing anything that touches `process/`. **Known exception,
+  as of the precedent-beta-v01 vendor (2026-09-03):** this currently
+  reports 63 SCRUB failures inside `process/upstream/` itself — a real,
+  understood collision, not a leak; see
+  [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)'s "A
+  real finding" section before treating a fresh run of this audit as
+  broken or trying to "fix" it by editing the vendored tree.
+- The team and individual sources
+  ([precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers),
+  [precedent-individual](https://github.com/themorgan/precedent-individual))
+  are never vendored into this repo at all (see "Practice sources
+  (Precedent)" above) — there is nothing under either name here to export
+  from or scrub. Improving one of those sets happens directly in its own
+  repo, in a separate session with access to it.
+- Export gate = merge runbook step 0b, for `process/upstream/` only.
+  Periodic check-in per [process/upstream/INSTALL.md](process/upstream/INSTALL.md)
+  §4 (recurring item in [TODO.md](TODO.md)) — in practice this repo mostly
+  consumes BestPractice rather than improving it, and is paused for the
+  duration of the beta (same reason as the sync above: `checkin.py`'s
+  commands assume default-branch tracking).
+- [process/manifest.json](process/manifest.json) is the installed-practices
+  registry for `process/upstream/`; when a vendored file changes locally,
   export + re-baseline, or flip the entry to `diverged`.
+  [precedent.json](precedent.json) plays the analogous role for the team
+  source, but as a source *declaration* (a path to resolve live), not a
+  per-file manifest — there is nothing to re-baseline there, only the path
+  and level.
