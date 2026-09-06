@@ -2,32 +2,32 @@
   "checks": [
     {
       "path": "tools/checks/check_assorted_notes.py",
-      "sha256_16": "6a534a67a534366f",
+      "sha256_16": "de7ff4e42ab66083",
       "source": "precedent-individual"
     },
     {
       "path": "tools/checks/check_buenos_aires_dates.py",
-      "sha256_16": "005143a230788eb9",
+      "sha256_16": "0ab4ca716a9abee8",
       "source": "precedent-individual"
     },
     {
       "path": "tools/checks/check_claude_web_bootstrap.py",
-      "sha256_16": "cefe59bc0d3e547d",
+      "sha256_16": "89089e642f3d1d23",
       "source": "precedent-individual"
     },
     {
       "path": "tools/checks/check_commit_author.py",
-      "sha256_16": "c19c80d02b03f788",
+      "sha256_16": "59ab8c03ed2ea3bb",
       "source": "precedent-individual"
     },
     {
       "path": "tools/checks/check_file_header.py",
-      "sha256_16": "f1fd769c5b867c46",
+      "sha256_16": "7f009a748bdb4f8f",
       "source": "precedent-individual"
     },
     {
       "path": "tools/checks/check_my_identity_is_not_private.py",
-      "sha256_16": "79e46c85841d88be",
+      "sha256_16": "e38081501e0139a7",
       "source": "precedent-individual"
     },
     {
@@ -62,42 +62,42 @@
     },
     {
       "path": "tools/checks/check_default_branch.py",
-      "sha256_16": "3dcf1529b8e7259d",
+      "sha256_16": "2bdb0c20bba12e3f",
       "source": "precedent-team-maintainers"
     },
     {
       "path": "tools/checks/check_derived_file_marker.py",
-      "sha256_16": "8b4999c6de8f0384",
+      "sha256_16": "f8e5ac27d584cd90",
       "source": "precedent-team-maintainers"
     },
     {
       "path": "tools/checks/check_draft_marker.py",
-      "sha256_16": "1142db9eb9a1b91c",
+      "sha256_16": "5deff8386b9d662c",
       "source": "precedent-team-maintainers"
     },
     {
       "path": "tools/checks/check_header_caps.py",
-      "sha256_16": "0bd71e40ec2385d4",
+      "sha256_16": "9e33aec581e2c040",
       "source": "precedent-team-maintainers"
     },
     {
       "path": "tools/checks/check_light_check.py",
-      "sha256_16": "55afebe42d76e930",
+      "sha256_16": "7bfb612002becb75",
       "source": "precedent-team-maintainers"
     },
     {
       "path": "tools/checks/check_no_stale_counts.py",
-      "sha256_16": "e3547d92f5c55245",
+      "sha256_16": "0c2693e622348ace",
       "source": "precedent-team-maintainers"
     },
     {
       "path": "tools/checks/check_private_repo_scrub.py",
-      "sha256_16": "73500b9b804000ad",
+      "sha256_16": "449d57ca3fa6e2da",
       "source": "precedent-team-maintainers"
     },
     {
       "path": "tools/checks/check_session_trailer.py",
-      "sha256_16": "441bbca91d2236b0",
+      "sha256_16": "9a171a35150e0d36",
       "source": "precedent-team-maintainers"
     },
     {
@@ -141,7 +141,7 @@
       "source": "precedent-team-maintainers"
     }
   ],
-  "generated_at_utc": "2026-09-06T16:20:34+00:00",
+  "generated_at_utc": "2026-09-06T17:39:26+00:00",
   "generated_by": "tools/precedent_materialize.py",
   "note": "DERIVED ARTIFACT -- never hand-edit. Regenerate by re-running precedent_materialize.py with the same --repo/--user-config; this file records exactly what produced the snapshot so drift is visible, per generated-artifact-provenance.",
   "practices": [
@@ -428,10 +428,10 @@
     {
       "level": "team",
       "links_rewritten": false,
-      "sha256_16": "f9ff0b76253a275f",
+      "sha256_16": "3b5d2a201cba6610",
       "slug": "fail-gracefully",
       "source": "precedent-team-maintainers",
-      "source_sha256_16": "f9ff0b76253a275f"
+      "source_sha256_16": "3b5d2a201cba6610"
     },
     {
       "level": "individual",

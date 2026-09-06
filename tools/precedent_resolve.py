@@ -68,7 +68,7 @@ Run:
 Exit: 0 on a resolved set, 1 on a conflict, a malformed source, or --strict
 with a source missing.
 """
-import json, os, pathlib, posixpath, subprocess, sys
+import json, os, pathlib, posixpath, re, subprocess, sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
@@ -109,17 +109,25 @@ def _self_heal_individual_source(repo_root):
     local machine's persistent $HOME -- and (b) the project actually ships
     the conventional hook. Never raises: a self-heal attempt that itself
     fails is exactly the "missing source" case this function was trying to
-    avoid misreporting, not a new failure mode."""
+    avoid misreporting, not a new failure mode.
+
+    Returns WHICH of those happened -- 'attempted', 'not-remote' or
+    'no-hook' -- because the caller cannot otherwise tell a self-heal that
+    ran and found nothing from one that never ran at all, and those are
+    different answers to "do you have an individual set?" (2026-09-06: this
+    returned None either way, and the difference was the whole reason a real
+    rule went looked-for and not found.)"""
     if os.environ.get('CLAUDE_CODE_REMOTE') != 'true':
-        return
+        return 'not-remote'
     hook = repo_root / INDIVIDUAL_BOOTSTRAP_HOOK
     if not hook.is_file():
-        return
+        return 'no-hook'
     try:
         subprocess.run(['bash', str(hook)], cwd=str(repo_root),
                        capture_output=True, timeout=60)
     except (OSError, subprocess.TimeoutExpired):
         pass
+    return 'attempted'
 
 # HIGHEST PRECEDENCE FIRST -- read this tuple left to right as strongest to
 # weakest. (Changed 2026-09-03: this used to be listed lowest-first, weakest
@@ -143,6 +151,83 @@ def _precedence_rank(level):
     rather than re-deriving the inversion locally."""
     return len(PRECEDENCE) - 1 - PRECEDENCE.index(level)
 
+# practice: source-naming -- a source's NAME is fixed by its level, exactly
+# as its `path` already is for repo-local. The convention was written down
+# early (PRACTICE_ENGINE_PLAN.md's naming section) and left in a plan's human
+# checklist rather than here, and it drifted where it mattered most: the one
+# document a new adopter follows was telling them to pick
+# `<your-name>-individual` OR SIMILAR -- dropping the prefix, repeating the
+# owner the account already namespaces, and inviting a third variant -- while
+# this very module had meanwhile begun defaulting an unnamed individual source
+# to `precedent-individual`, and precedent_materialize.py had begun recording
+# the name as per-file attribution in a committed MANIFEST.json, where a
+# rename silently stops matching. See spec/SOURCE_NAMING.md.
+SOURCE_NAME_SHAPE = {
+    'universal':  (re.compile(r'^precedent$'), 'precedent'),
+    'individual': (re.compile(r'^precedent-individual$'), 'precedent-individual'),
+    'team':       (re.compile(r'^precedent-team-[a-z0-9]+(?:-[a-z0-9]+)*$'),
+                   'precedent-team-<slug>, slug lowercase and hyphenated'),
+    'repo-local': (re.compile(r'^local$'), 'local'),
+}
+
+
+def check_source_name(level, name, where):
+    """Raise ResolveError unless `name` matches the shape its level fixes.
+
+    Shared with tools/precedent_check.py so the engine and the gate cannot
+    disagree about what the convention is -- one regular expression per
+    level, in one place."""
+    shape = SOURCE_NAME_SHAPE.get(level)
+    if shape is None:
+        return
+    pattern, expected = shape
+    if isinstance(name, str) and pattern.match(name):
+        return
+    raise ResolveError(
+        f"{where}: the {level} source named {name!r} is not the name its "
+        f"level fixes -- expected {expected}. A source's name is not chosen. "
+        f"The owning "
+        f"account already namespaces the repository, so the owner is never "
+        f"repeated in the name, and every person's individual set carries the "
+        f"same name in their own account. This is a fixed convention rather "
+        f"than a per-repo choice for the same reason repo-local's `path` is: "
+        f"tools/precedent_materialize.py records this exact string as the "
+        f"attribution for every check it materializes, so a differently-named "
+        f"source stops matching its own committed MANIFEST.json -- and a name "
+        f"nobody can predict is one a session cannot carry from one Precedent "
+        f"repository to the next. See spec/SOURCE_NAMING.md.")
+
+
+def warn_name_matches_path(level, name, path, where):
+    """Warn -- never refuse -- when a source's clone directory looks like it
+    was MEANT to carry the source's name and does not.
+
+    Refusing is wrong here and was considered: a continuous integration
+    checkout, a git worktree, and a vendored universal copy at
+    `process/upstream` all legitimately put a conforming source in a
+    differently-named directory.
+
+    Warning on every mismatch is wrong too, and that is the narrower point.
+    The first version did, and it fired on perfectly correct fixtures and
+    checkouts whose directory is simply named something else ('team-set',
+    'ind', a temporary directory) -- noise on legitimate work, which is the
+    fastest way to teach a reader to ignore a warning. So it fires only when
+    the directory basename already carries the `precedent-` prefix: that is a
+    directory someone meant to name after a source, and a mismatch there is a
+    typo or a half-finished rename, not a deliberate choice."""
+    base = posixpath.basename(posixpath.normpath(str(path).replace('\\', '/')))
+    if level in ('universal', 'repo-local') or not base or base in ('.', '..'):
+        return
+    if not base.startswith('precedent-'):
+        return
+    if base != name:
+        print(f"precedent resolve: {where} declares the {level} source "
+              f"{name!r} at a path whose directory is {base!r}. That resolves "
+              f"fine here, but the two disagreeing is usually a typo -- the "
+              f"clone directory should carry the source's own name.",
+              file=sys.stderr)
+
+
 # A practice that is not active is resolvable by slug -- so `supersedes:`
 # still points somewhere real -- but is not in force.
 IN_FORCE_STATUS = 'active'
@@ -161,6 +246,68 @@ def _read_json(path, what):
     except json.JSONDecodeError as e:
         raise ResolveError(f"{what} at {path} is not valid JSON ({e}). A config the "
                            f"resolver cannot read is not an empty config.")
+
+
+# Set by every load_config() call: None when an individual source WAS
+# declared (its own fate is then reported through `missing` like any other
+# source), otherwise the finding from _diagnose_no_individual below. Module
+# state because load_config returns a plain list of sources that a dozen
+# callers unpack positionally, and widening that return type to carry one
+# diagnosis would be a worse trade than this.
+INDIVIDUAL_STATUS = None
+
+
+def _diagnose_no_individual(why, heal, user_cfg_path, repo_root):
+    """-> {'certain', 'code', 'message'} for a session that resolved NO
+    individual source.
+
+    `certain` is the whole point. "You have no individual practices" and
+    "this session could not find out whether you have any" are different
+    answers, and until 2026-09-06 both came out as the same silence: nothing
+    was appended to `sources`, so nothing reached the `missing` report, so
+    the run printed a confident resolved-set summary that simply had no
+    individual level in it. That is the exact failure the report loop's own
+    comment says must not happen ("'personal practices are missing' and 'you
+    have no personal practices' must not look the same") -- it was enforced
+    for declared sources and unenforced for this one.
+
+    The incident: a rule Morgan believed was in his individual set went
+    unapplied, and every diagnostic in the repository agreed there was
+    nothing to apply. Nothing was wrong with the individual set; this
+    session simply had no way to reach it and never said so."""
+    if why == 'config-declares-none':
+        return {'certain': True, 'code': why,
+                'message': (f"{user_cfg_path} exists and declares no "
+                            f"individual source. No individual practices are "
+                            f"in force, and that is a definite answer.")}
+    if heal == 'no-hook':
+        return {'certain': False, 'code': 'no-bootstrap-hook',
+                'message': (
+                    f"no individual source resolved, and this session could "
+                    f"not find out whether you have one. {user_cfg_path} does "
+                    f"not exist, and the self-heal that would create it did "
+                    f"not run: this project ships no "
+                    f"{INDIVIDUAL_BOOTSTRAP_HOOK}. On a hosted session that "
+                    f"hook is the ONLY route to a private individual set, so "
+                    f"treat this as unknown, not as 'none'. Instantiate it "
+                    f"with `python3 tools/precedent_bootstrap_source.py "
+                    f"--write-session-hook` (see spec/BOOTSTRAP_NEW_SOURCES.md), "
+                    f"or point {USER_CONFIG_ENV} at a config yourself.")}
+    if heal == 'attempted':
+        return {'certain': False, 'code': 'bootstrap-hook-failed',
+                'message': (
+                    f"no individual source resolved. {INDIVIDUAL_BOOTSTRAP_HOOK} "
+                    f"ran and did not produce {user_cfg_path}, which usually "
+                    f"means its clone could not be fetched (a private "
+                    f"repository this session was never granted). Treat this "
+                    f"as unknown rather than 'none': run the hook by hand to "
+                    f"see its error.")}
+    # Not a hosted session: $HOME is this person's own persistent machine, so
+    # an absent user config really is an absent individual set.
+    return {'certain': True, 'code': 'no-config-file',
+            'message': (f"{user_cfg_path} does not exist, so no individual "
+                        f"practices are in force. On a local machine that is "
+                        f"a definite answer; declare one there to change it.")}
 
 
 def load_config(repo, user_config=None):
@@ -245,6 +392,10 @@ def load_config(repo, user_config=None):
                     f"tool before), and it is what lets a session that has "
                     f"seen one Precedent repo's repo-local practices find "
                     f"another's without re-deriving the name each time.")
+            # practice: source-naming
+            check_source_name(level, entry.get('name'), str(repo_cfg_path))
+            warn_name_matches_path(level, entry.get('name'), entry['path'],
+                                   str(repo_cfg_path))
             entry_path = (repo_root / entry['path']).resolve()
             sources.append({'level': level, 'name': entry.get('name', level),
                             'path': str(entry_path)})
@@ -264,18 +415,19 @@ def load_config(repo, user_config=None):
         hook killed part-way by a failing `git clone` actually leaves --
         was reported as 'this person has no individual set' forever."""
         if not user_cfg_path.exists():
-            return None, False
+            return None, False, 'no-config-file'
         cfg = _read_json(user_cfg_path, 'the user config')
         ind = cfg.get('individual')
         if not ind or not ind.get('path'):
-            return None, False
+            return None, False, 'config-declares-none'
         path = pathlib.Path(ind['path']).expanduser()
         entry = {'level': 'individual',
                  'name': ind.get('name', 'precedent-individual'),
                  'path': str(path)}
-        return entry, (path / 'practices').is_dir()
+        return entry, (path / 'practices').is_dir(), 'declared'
 
-    entry, usable = _individual_entry()
+    entry, usable, why = _individual_entry()
+    heal = None
     if not usable:
         # practice: session-bootstrap -- a hook that ran too early to have
         # this session's own `add_repo` access yet (guaranteed on a fresh
@@ -283,13 +435,29 @@ def load_config(repo, user_config=None):
         # person has no individual set". Try once, now that the agent's own
         # turn (and its add_repo call) has actually happened, before
         # reporting the latter.
-        _self_heal_individual_source(repo_root)
-        entry, usable = _individual_entry()
+        heal = _self_heal_individual_source(repo_root)
+        entry, usable, why = _individual_entry()
     # A DECLARED-but-unusable source is still appended: load_source() then
     # reports the real reason ("<path> has no practices/ directory") instead
     # of the source vanishing, which would be the same silence the self-heal
-    # exists to break. Only a person who declared nothing gets no entry.
+    # exists to break. Only a person who declared nothing gets no entry --
+    # and THAT case is now diagnosed rather than passed over: see
+    # _diagnose_no_individual, and INDIVIDUAL_STATUS for how it is reported.
+    global INDIVIDUAL_STATUS
+    INDIVIDUAL_STATUS = (None if entry is not None
+                         else _diagnose_no_individual(why, heal, user_cfg_path,
+                                                      repo_root))
+    if INDIVIDUAL_STATUS and INDIVIDUAL_STATUS['certain'] is False:
+        print(f"precedent resolve: {INDIVIDUAL_STATUS['message']}",
+              file=sys.stderr)
     if entry is not None:
+        # practice: source-naming -- _individual_entry()'s own default is the
+        # convention, so an unnamed individual source always passes; a
+        # differently-named one is refused here rather than carried into a
+        # MANIFEST.json that will stop matching it.
+        check_source_name('individual', entry['name'], str(user_cfg_path))
+        warn_name_matches_path('individual', entry['name'], entry['path'],
+                               str(user_cfg_path))
         sources.append(entry)
     sources.sort(key=lambda s: _precedence_rank(s['level']))
     return sources
@@ -587,6 +755,10 @@ def main():
             'blocked': [{'slug': b['slug'], 'kept': b['kept']['level'],
                          'refused': b['refused']['level']} for b in res['blocked']],
             'missing': res['missing'],
+            # None when an individual source was declared (its fate is then
+            # in 'missing' like any other source's). Otherwise says whether
+            # "no individual practices" is a finding or merely a silence.
+            'individual_status': INDIVIDUAL_STATUS,
             'resident': rstats,
         }, indent=2, sort_keys=True))
         if rstats['over_budget']:

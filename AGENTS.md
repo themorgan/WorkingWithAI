@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-06 13:24:34 (Buenos Aires) by Morgan F, to version 37 -->
+<!-- Last updated: 2026-09-06 14:39:37 (Buenos Aires) by Morgan F, to version 38 -->
 
 # Repository instructions — read me first
 
@@ -564,8 +564,8 @@ When writing an outward-facing summary of claims:
   outward-summary-discipline — claims-to-source table, honest sums, a recorded adversarial pass
 When writing code because a specific practice requires it:
   code-cites-practice — cite the practice's slug in a comment, right where the code is
-When writing code that depends on something outside its own control:
-  fail-gracefully — degrade on a missing config, file, network call, or credential
+When writing code that depends on something outside its own control, or handling a part that could not run:
+  fail-gracefully — keep going on a missing config, file, call or credential — and tell the session's human
 When writing content that will vendor or ship into another repo:
   private-repo-scrub — name a private repo only in general terms in anything that ships elsewhere
 When writing or editing a document:

@@ -34,13 +34,29 @@ Exit 0 and print nothing when clean. Exit 1 and print the practice's own
 Rule text (never a paraphrase) plus the specific finding(s) on a violation.
 """
 import json
+import os
 import pathlib
 import re
 import subprocess
 import sys
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
-PRACTICE_FILE = ROOT / "practices" / "file-header.md"
+# TWO different questions, which used to share one name -- and that is exactly
+# how a practice file went missing. SOURCE_ROOT is the practice set this script
+# ships in; ROOT is the repository it AUDITS.
+#
+# They are the same directory in both normal cases: run in place inside its own
+# set, and materialized into a consuming repo (where precedent_materialize.py
+# has written practices/ and tools/checks/ side by side). They differ in the
+# third case -- a repo that DECLARES this source but never materializes it, and
+# runs the script in place against itself. Precedent's own repo is exactly
+# that: its practices/ is the universal catalogue, so `parents[2]/practices/`
+# resolved to a directory this practice was never in, and rule_text() raised
+# FileNotFoundError from inside the violation printer (2026-09-06). The rule
+# text always ships beside the script, so it is looked up against SOURCE_ROOT
+# and can no longer be absent; only what to audit is overridable.
+SOURCE_ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
+ROOT = pathlib.Path(os.environ.get("PRECEDENT_CHECK_ROOT") or SOURCE_ROOT)
+PRACTICE_FILE = SOURCE_ROOT / "practices" / "file-header.md"
 
 HEADER_RE = re.compile(
     r"^<!-- Last updated: (\d{4}-\d{2}-\d{2}) (\d{2}):(\d{2}):(\d{2}) "

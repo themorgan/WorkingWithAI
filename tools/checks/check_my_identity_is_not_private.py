@@ -11,12 +11,28 @@ own instructions saying that gate must pass before any commit touching
 Exit 0 clean, 1 violated, 2 could-not-run.
 """
 import json
+import os
 import pathlib
 import re
 import sys
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
-PRACTICE_FILE = ROOT / "practices" / "my-identity-is-not-private.md"
+# TWO different questions, which used to share one name -- and that is exactly
+# how a practice file went missing. SOURCE_ROOT is the practice set this script
+# ships in; ROOT is the repository it AUDITS.
+#
+# They are the same directory in both normal cases: run in place inside its own
+# set, and materialized into a consuming repo (where precedent_materialize.py
+# has written practices/ and tools/checks/ side by side). They differ in the
+# third case -- a repo that DECLARES this source but never materializes it, and
+# runs the script in place against itself. Precedent's own repo is exactly
+# that: its practices/ is the universal catalogue, so `parents[2]/practices/`
+# resolved to a directory this practice was never in, and rule_text() raised
+# FileNotFoundError from inside the violation printer (2026-09-06). The rule
+# text always ships beside the script, so it is looked up against SOURCE_ROOT
+# and can no longer be absent; only what to audit is overridable.
+SOURCE_ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
+ROOT = pathlib.Path(os.environ.get("PRECEDENT_CHECK_ROOT") or SOURCE_ROOT)
+PRACTICE_FILE = SOURCE_ROOT / "practices" / "my-identity-is-not-private.md"
 
 # Named exactly as the practice names them. A blocklist line is a regex, so
 # the comparison is on the line's text with regex punctuation stripped --

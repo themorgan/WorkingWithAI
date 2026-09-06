@@ -68,6 +68,7 @@ jobs:
     outputs:
       moved: ${{ steps.check.outputs.moved }}
       credential_set: ${{ steps.credential-check.outputs.credential_set }}
+      token_set: ${{ steps.check.outputs.token_set }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -103,8 +104,10 @@ jobs:
           if [ -z "${VOICEGUIDELINESTOSOUNDHUMAN_TOKEN:-}" ]; then
             echo "::warning::VOICEGUIDELINESTOSOUNDHUMAN_TOKEN secret not set -- cannot reach the private voice guidelines source (SoundHuman); this sync is skipping this run. Set the VOICEGUIDELINESTOSOUNDHUMAN_TOKEN repository secret (see GETTING_STARTED.md's administrator section) if this is unexpected."
             echo "moved=false" >> "$GITHUB_OUTPUT"
+            echo "token_set=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
+          echo "token_set=true" >> "$GITHUB_OUTPUT"
           REPO=$(python3 -c "import json;print(json.load(open('process/manifest_voice.json'))['upstream']['repo'])")
           RECORDED=$(python3 -c "import json;print(json.load(open('process/manifest_voice.json'))['upstream']['commit'])")
           AUTHED=$(echo "$REPO" | sed "s#https://#https://x-access-token:${VOICEGUIDELINESTOSOUNDHUMAN_TOKEN}@#")
@@ -116,6 +119,40 @@ jobs:
             echo "moved=false" >> "$GITHUB_OUTPUT"
           fi
 
+  # A blocked unattended run reports itself as a tracked ISSUE, not only as an
+  # annotation and a job summary -- precedent-team-maintainers'
+  # practices/automation-issues.md. Nobody reads the Actions tab of a job that
+  # is supposed to be quiet, which is exactly the job whose silence means
+  # something is wrong. Added 2026-09-06: this workflow was written by copying
+  # bestpractice-upstream-sync.yml and the issue-reporting half was not carried
+  # across, so both of its blockers were annotation-only for as long as it had
+  # existed. The same shape -- copied from a sibling, one property dropped --
+  # as the check-family bug found the same day.
+  note-missing-token:
+    name: Note skipped run (no source-repo token set)
+    needs: check
+    if: needs.check.outputs.token_set == 'false'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Open or update a GitHub issue (precedent-team-maintainers/practices/automation-issues.md)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 tools/report_automation_issue.py \
+            automation-blocked:voice-guidelines-sync-token \
+            "Voice guidelines sync blocked: no source-repo token set" \
+            "The scheduled voice guidelines sync cannot reach its private source repo (SoundHuman) because the \`VOICEGUIDELINESTOSOUNDHUMAN_TOKEN\` repository secret is not set, so every run is skipping without checking whether the guidelines moved.
+
+          Set it at **Settings -> Secrets and variables -> Actions -> New repository secret** (see GETTING_STARTED.md's administrator section). A fine-grained, read-only personal access token scoped to just that one repository is enough.
+
+          Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+
   note-missing-credential:
     name: Note skipped run (no Claude credential set)
     needs: check
@@ -123,7 +160,11 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      issues: write
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
       - name: Explain why this run did nothing
         run: |
           {
@@ -132,6 +173,19 @@ jobs:
             echo "Set one of the two secrets at **Settings -> Secrets and variables -> Actions -> New repository secret** so future runs can take the update unattended (see GETTING_STARTED.md's administrator section), or ask a chat session to take this update manually in the meantime."
           } | tee -a "$GITHUB_STEP_SUMMARY"
           echo "::warning::Voice guidelines sync skipped: neither CLAUDE_CODE_OAUTH_TOKEN nor ANTHROPIC_API_KEY is set."
+
+      - name: Open or update a GitHub issue (precedent-team-maintainers/practices/automation-issues.md)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 tools/report_automation_issue.py \
+            automation-blocked:voice-guidelines-sync-credential \
+            "Voice guidelines sync blocked: no Claude credential set" \
+            "The voice guidelines' source has moved, but neither \`CLAUDE_CODE_OAUTH_TOKEN\` nor \`ANTHROPIC_API_KEY\` is set, so the scheduled sync could not take the update.
+
+          Set one of the two secrets at **Settings -> Secrets and variables -> Actions -> New repository secret** (see GETTING_STARTED.md's administrator section), or ask a chat session to take the update manually in the meantime -- it doesn't need either secret, since it's already Claude.
+
+          Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
 
   update:
     name: Take the update, integrate, PR, merge
