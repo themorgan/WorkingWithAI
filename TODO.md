@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-05 21:37:23 (Buenos Aires) by Morgan F, to version 55 -->
+<!-- Last updated: 2026-09-05 21:44:22 (Buenos Aires) by Morgan F, to version 56 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -1373,3 +1373,26 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   `groups-not-individuals`), which are hyphenated by the
   [`durable-list-anchors`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/durable-list-anchors.md)
   practice's own convention. Nothing else needed changing.
+- [x] **Fix `python3 tools/precedent_gate.py merge|push|reply|review` —
+  every invocation failed with `FileNotFoundError: tools/routing_scope.json`.**
+  Decided 2026-09-05 → done, same day. Found while running the merge-time
+  gate check for the rename above. Root cause: `tools/precedent_gate.py`
+  and `tools/split_practices.py` were vendored into this repo's own
+  `tools/` (byte-identical to `process/upstream/tools/`) so AGENTS.md's
+  standing instruction to run the gate at named moments actually works —
+  but `tools/routing_scope.json`, the data file `precedent_gate.py`
+  hardcodes as `ROOT / 'tools' / 'routing_scope.json'`
+  (`tools/precedent_gate.py` line 46), was never copied alongside them; only
+  the `process/upstream/tools/routing_scope.json` copy existed.
+  [tools/precedent_sync_views.py](tools/precedent_sync_views.py)'s own
+  docstring confirms this class of file (the engine scripts, listed by
+  name) has to already be sitting together in `tools/` — it isn't something
+  a sync regenerates — so this was a real, incomplete vendoring gap, not a
+  deliberate omission. Fixed by copying
+  `process/upstream/tools/routing_scope.json` to `tools/routing_scope.json`
+  (same as the existing `precedent_gate.py`/`split_practices.py` copies).
+  Verified: all four gates (`merge`, `push`, `reply`, `review`) now resolve
+  their practices correctly, confirmed via `--list` and by invoking each one
+  directly. No manifest entry added — this file isn't part of the tracked
+  BestPractice check-in list (`process/manifest.json`), same as its two
+  sibling engine scripts.
