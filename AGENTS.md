@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-06 11:40:00 (Buenos Aires) by Morgan F, to version 35 -->
+<!-- Last updated: 2026-09-06 11:50:00 (Buenos Aires) by Morgan F, to version 36 -->
 
 # Repository instructions — read me first
 
@@ -44,6 +44,17 @@ person-specific rules win.
 
 ## Build-environment gotchas — do NOT rediscover these
 
+- **`file-header` compares content against the PARENT COMMIT, so the
+  content change and the version bump have to be in the SAME commit.**
+  Split across two, both commits are invalid even though the end state is
+  right: the content commit bumped nothing, and the bump commit changed
+  nothing. Bumping preemptively fails the same way — a version that moves
+  while the file's body sits still is exactly what the check refuses.
+  There is no forward fix that is only a version edit, because reverting
+  the bump is itself a version-change-with-no-content-change; the escape is
+  a commit carrying a real content change alongside the bump. Hit twice on
+  2026-09-06, once in each direction. Bump the version in the same commit
+  as the edit that earned it, and never ahead of one.
 - **A source that was MIGRATED into place, rather than created by
   `precedent_bootstrap_source.py`, never had its shape checked.** The tool
   only ever ran for sources it created, so a set assembled by hand from an
