@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 15:11:13 (Buenos Aires) by Morgan F, to version 22 -->
+<!-- Last updated: 2026-09-05 21:37:23 (Buenos Aires) by Morgan F, to version 23 -->
 
 # Reasons why
 
@@ -56,7 +56,7 @@ follow-up chore
 **5. The power isn't documentation — it's protocols generated
 automatically, since no one finds the time to write them by hand.** One
 third of
-[THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md)'s case for
+[THREE_PILLARS.md](THREE_PILLARS.md)'s case for
 this repo's approach: writing up a record always loses to what's due
 today, so what pays off is that same work turning into rules the next
 session inherits, captured as it happens
@@ -127,6 +127,6 @@ nobody wrote down — judgment this repo routes to people, not models
   themselves should be configured, built, and run.
 - [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — pipeline stage 2: the
   practical rules actually being tried in real work right now.
-- [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md) — one-page
+- [THREE_PILLARS.md](THREE_PILLARS.md) — one-page
   pitch: the three ideas this repo argues are unique specifically taken
   together.

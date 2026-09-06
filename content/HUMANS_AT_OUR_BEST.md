@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 14:56:06 (Buenos Aires) by Morgan F, to version 9 -->
+<!-- Last updated: 2026-09-05 21:37:23 (Buenos Aires) by Morgan F, to version 10 -->
 
 # Humans at our best
 
@@ -85,6 +85,6 @@ this page doesn't replace them.*
   themselves should be configured, built, and run.
 - [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — pipeline stage 2: the
   practical rules actually being tried in real work right now.
-- [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md) — one-page
+- [THREE_PILLARS.md](THREE_PILLARS.md) — one-page
   pitch: the three ideas this repo argues are unique specifically taken
   together.

@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-02 16:01:37 (Buenos Aires) by Morgan F, to version 18 -->
+<!-- Last updated: 2026-09-05 21:37:23 (Buenos Aires) by Morgan F, to version 19 -->
 
 # Rules for building a company around AI
 
@@ -56,7 +56,7 @@ logic, the option you missed, the better version. That layer also pushes
 things into happening — the commit, the message, the next step — instead
 of a good idea that never left somebody's head. Put a model between intent
 and action, and arguing before you commit becomes free. (One third of
-[THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md)'s case for
+[THREE_PILLARS.md](THREE_PILLARS.md)'s case for
 what makes this approach unique.)
 
 <a id="co-create-dont-delegate"></a>
@@ -207,6 +207,6 @@ discipline of running agent-driven processes. (Full list:
   themselves should be configured, built, and run.
 - [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — pipeline stage 2: the
   practical rules actually being tried in real work right now.
-- [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md) — one-page
+- [THREE_PILLARS.md](THREE_PILLARS.md) — one-page
   pitch: the three ideas this repo argues are unique specifically taken
   together.

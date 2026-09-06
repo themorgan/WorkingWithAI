@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-04 14:11:43 (Buenos Aires) by Morgan F, to version 21 -->
+<!-- Last updated: 2026-09-05 21:37:23 (Buenos Aires) by Morgan F, to version 22 -->
 
 # WorkingWithAI
 
@@ -89,7 +89,7 @@ pipeline looks like from inside one session, see
 - [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md) — the practical rules
   actually being tried right now, and candidates for promotion further
   along the pipeline (pipeline stage 2).
-- [THE_REVOLUTIONARY_FORMULA.md](content/THE_REVOLUTIONARY_FORMULA.md) —
+- [THREE_PILLARS.md](content/THREE_PILLARS.md) —
   one-page pitch: the three ideas this repo argues are unique specifically
   taken together.
 

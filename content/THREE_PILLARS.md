@@ -1,6 +1,6 @@
-<!-- Last updated: 2026-09-01 16:35:00 (Buenos Aires) by Morgan F, to version 4 -->
+<!-- Last updated: 2026-09-05 21:37:23 (Buenos Aires) by Morgan F, to version 5 -->
 
-# The revolutionary formula
+# Three pillars
 
 Three things, not one, are what set this repo's approach apart from other AI harnesses.
 
