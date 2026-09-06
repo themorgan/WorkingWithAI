@@ -59,7 +59,7 @@ Run:
   python3 tools/precedent_check.py --explain        # what each check does NOT check
   python3 tools/precedent_check.py --strict         # a SKIP is a failure
 """
-import difflib, io, json, os, pathlib, re, subprocess, sys
+import difflib, functools, io, json, os, pathlib, re, subprocess, sys
 
 # `git rev-parse --show-toplevel`, not `Path(__file__).resolve().parents[1]`:
 # this module runs two ways -- self-hosted at THIS repo's own tools/
@@ -224,7 +224,30 @@ def register_materialized_checks():
             if cb.endswith('.py') and '/checks/' in cb:
                 claimed[pathlib.PurePath(cb).name] = fm.get('slug', f.stem)
 
-    for script in sorted(s for d in checks_dirs for s in d.glob('check_*.py')):
+    # One script per FILENAME, and the materialized copy wins. The two
+    # locations require different `ROOT` depths from the same file --
+    # `tools/checks/x.py` counts three parents up to the repo root,
+    # `local/tools/checks/x.py` four -- and a script hardcodes whichever
+    # one it was written for. A repo-local source that is ALSO materialized
+    # therefore has two byte-identical copies of every check, exactly one
+    # of which resolves ROOT correctly, and this used to run both and let
+    # alphabetical order decide which finding you saw: `local/...` sorts
+    # before `tools/...`, so the WRONG one won every time.
+    #
+    # 2026-09-06, in a real consuming repo: two of its own repo-local
+    # checks reported `no book-*/ directory exists` and `README.md: file
+    # does not exist` about files sitting in plain view. Both scripts were
+    # correct; run from `local/tools/checks/` their ROOT resolved to
+    # `<repo>/local`, where indeed neither exists. Preferring the
+    # materialized copy is right in both directions -- a repo that cannot
+    # materialize into itself (Precedent's own `path: "."` source) has no
+    # `tools/checks/` at all, so its `local/` scripts still run in place,
+    # which is what they are written for.
+    by_name = {}
+    for d in checks_dirs:
+        for s in sorted(d.glob('check_*.py')):
+            by_name.setdefault(s.name, s)   # checks_dirs is in preference order
+    for script in sorted(by_name.values()):
         slug = claimed.get(script.name, script.stem)
         if slug in CHECKS:          # a built-in check already owns this slug
             continue
@@ -767,7 +790,9 @@ def _session_bootstrap(ctx):
        'no file outside the vendored tree duplicates a run of lines from '
        'inside it — that is a fork, not a shim',
        'a fork that was reworded as it was copied. It catches the verbatim '
-       'copy, which is the one that silently drifts.')
+       'copy, which is the one that silently drifts -- except where '
+       'tools/ENGINE_MANIFEST.json records the copy, in which case it '
+       'cannot drift silently and is not this check\'s business.')
 def _engine_plus_host_shims(ctx):
     vendored = ROOT / 'process' / 'upstream'
     if not vendored.is_dir():
@@ -775,6 +800,24 @@ def _engine_plus_host_shims(ctx):
                             'process/upstream/, so there is no engine/shim '
                             'boundary to hold. This is the expected state in '
                             'the upstream repo itself')
+    # A copy the ENGINE MANIFEST records is not a fork. This check's whole
+    # concern is a duplicate that drifts unnoticed, and
+    # precedent_vendor_engine.py exists to make exactly these copies
+    # impossible to drift unnoticed: ENGINE_MANIFEST.json pins the source
+    # commit and a sha256 per file, and `precedent_vendor_engine.py status`
+    # reports the moment one differs. Prohibiting the copy outright made
+    # the check permanently red in every correctly-installed consumer --
+    # the engine's own tools resolve ROOT from their own location, so they
+    # HAVE to sit at <repo>/tools/ to see the consuming repo at all, and
+    # the sanctioned mechanism for putting them there is a vendored copy.
+    #
+    # Verified against the two real consumers, 2026-09-06: it keeps firing
+    # on WorkingWithAI's hand-copied root tools (three of which had drifted
+    # to OLDER content than that repo's own vendored tree, which is the
+    # failure this rule is about), and stops firing on a manifest-recorded
+    # engine.
+    vendored_engine = _vendored_engine_files()
+
     RUN = 8
 
     def runs(path):
@@ -783,14 +826,33 @@ def _engine_plus_host_shims(ctx):
         lines = [l for l in lines if len(l) > 12 and not l.startswith('#')]
         return {tuple(lines[i:i + RUN]) for i in range(len(lines) - RUN + 1)}
 
+    # templates/ is excluded from the corpus, not exempted from the finding:
+    # a file under it is SUPPOSED to be copied into the host repo -- that is
+    # what a template is, and INSTALL.md instructs it. Matching a template
+    # therefore proves the host followed the install, and reporting it as a
+    # fork tells a correctly-installed repo to undo its own installation.
+    # 2026-09-06: a consuming repo's `.claude/hooks/stop-git-check.sh` was
+    # flagged for matching `templates/harness/claude-code/hooks/stop-git-check.sh`,
+    # which is the file it is required to be a copy of.
+    # `.claude/` is excluded for the same reason one step removed: the
+    # upstream repo's own harness config is its own INSTANTIATION of those
+    # same templates -- it dogfoods them -- so a host that installed the
+    # template correctly matches that copy too, and excluding only
+    # templates/ just moves the false finding rather than removing it.
+    # Neither directory holds engine mechanism a host could shim.
+    not_engine = (vendored / 'templates', vendored / '.claude')
     upstream = {}
     for p in sorted(vendored.rglob('*')):
+        if any(d in p.parents for d in not_engine):
+            continue
         if p.is_file() and p.suffix in ('.py', '.sh'):
             for r in runs(p):
                 upstream.setdefault(r, str(p.relative_to(ROOT)))
     out = []
     for rel in _git('ls-files').stdout.split():
         if rel.startswith('process/'):
+            continue
+        if rel in vendored_engine:
             continue
         p = ROOT / rel
         if not p.is_file() or p.suffix not in ('.py', '.sh'):
@@ -1715,6 +1777,20 @@ def _code_cites_practice(ctx):
             except sp.PracticeFileError:
                 continue
             known[fm['slug']] = fm.get('status')
+            # A slug some IN-FORCE practice declares it overrides is
+            # superseded, not missing. In a consuming repo a higher-precedence
+            # source can replace a universal practice under a different name
+            # -- precedent-team-maintainers' `rule-links` overrides the
+            # universal `doc-references-are-links` -- and the overridden slug
+            # then resolves to no file at all. The universal engine code that
+            # cites it is still correct about why it exists; the rule simply
+            # arrives under another name here. Reported as a typo or a
+            # deletion (2026-09-06, in a real four-source consumer) it is
+            # unfixable from the consuming repo: the citation is in vendored
+            # code, and the "missing" practice is deliberately absent.
+            ov = (fm.get('overrides') or 'null').strip().strip('"').strip("'")
+            if ov and ov != 'null':
+                known.setdefault(ov, fm.get('status'))
     out = []
     for f in sorted((ROOT / 'tools').glob('*.py')):
         if f.name in CODE_CITE_SKIP_FILES:
@@ -1753,6 +1829,44 @@ def _code_cites_practice(ctx):
                                     f'once after a renumbering; use `practice: '
                                     f'SLUG` instead'))
     return out
+
+
+# A retired term is a NAME, so it matches at name boundaries -- not as a
+# substring of a longer, current one. A plain `term in line` reported
+# `voice_pack_sync.py` three times in a real consuming repo (2026-09-06) for
+# carrying the retired term `pack_sync`: a live tool that syncs a voice pack,
+# named years after and unrelated to the personal-pack sync that was retired.
+# There is no way to satisfy that finding except by renaming a current file
+# or exempting the document that mentions it, and both are worse than the
+# collision. `_` and `-` count as name characters, so `pack_sync` no longer
+# matches inside `voice_pack_sync` while `personal-pack-sync` still matches
+# on its own.
+@functools.lru_cache(maxsize=None)
+def _vendored_engine_files():
+    """Paths tools/ENGINE_MANIFEST.json records as vendored engine code.
+
+    A consuming repo does not author these and cannot edit them: the next
+    `precedent_vendor_engine.py refresh` overwrites whatever it changed.
+    Reporting a finding inside one is unactionable -- 2026-09-06, seeding a
+    real consumer's engine through the sanctioned tool immediately produced
+    retired-vocabulary findings against the engine's own source code,
+    including the comment in this very file explaining the voice_pack_sync
+    collision.
+    """
+    manifest = (ROOT / 'tools').joinpath('ENGINE_MANIFEST.json')
+    if not manifest.is_file():
+        return frozenset()
+    try:
+        m = json.loads(manifest.read_text(encoding='utf-8'))
+    except (json.JSONDecodeError, OSError):
+        return frozenset()
+    names = m.get('files') or []
+    return frozenset([f'tools/{n}' for n in names] + ['tools/ENGINE_MANIFEST.json'])
+
+
+@functools.lru_cache(maxsize=None)
+def _retired_term_re(term):
+    return re.compile(r'(?<![\w-])' + re.escape(term) + r'(?![\w-])')
 
 
 RETIRED_VOCAB_CONFIG = 'process/retired_vocabulary.json'
@@ -1847,13 +1961,15 @@ def _migration_scrubs_vocabulary(ctx):
                 continue
             if any(_exempt_matches(rel, e) for e in exempt_files):
                 continue
+            if rel in _vendored_engine_files():
+                continue
             try:
                 text = (ROOT / rel).read_text(encoding='utf-8')
             except (UnicodeDecodeError, OSError):
                 continue
             for i, line in enumerate(text.splitlines(), 1):
                 for term in terms:
-                    if term in line:
+                    if _retired_term_re(term).search(line):
                         out.append(Finding(f'{rel}:{i}',
                                             f'still carries retired term '
                                             f'{term!r} -- scrub it, or add '

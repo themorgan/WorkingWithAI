@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-05 21:44:22 (Buenos Aires) by Morgan F, to version 56 -->
+<!-- Last updated: 2026-09-06 09:25:00 (Buenos Aires) by Morgan F, to version 57 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -17,7 +17,7 @@ See [AGENTS.md](AGENTS.md) merge runbook step 0c.
 ## Pending drift reviews
 
 Auto-maintained by `pack_sync.py record` / `resolve`
-([`drift-notice`](process/personal/README.md#drift-notice)) -- a
+([`drift-notice`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/drift-notice.md)) -- a
 session-start freshness notice lands here, not just on stdout, so it
 can't lose a priority fight against whatever task is already in front
 of a session and go unaddressed. `light_check.py` warns on every commit
@@ -25,10 +25,10 @@ while an entry below stays unchecked. Check an item off (or run
 `pack_sync.py resolve <source>`) once its drift has actually been
 reviewed -- the update taken, or deliberately deferred with a reason.
 
-- [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (1e06a5349a43; your base d436be779be1) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via WorkingWithAI RPP sync, this session
-- [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (570f86c520fc; your base b10c163a96dd) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via RPP sync: durable-list-anchors + brainstorm-citations, this session
-- [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (b54461560435; your base 9793691dcecb) — review at the next session (process/personal/README.md#drift-notice). -- resolved 2026-08-29: taken via RPP sync: derived-file-marker + doc-recipe + rule-scope-ask + list-restraint, this session
-- [x] **personal-pack** (2026-09-02): COULD NOT VERIFY: couldn't reach the personal pack's source (https://github.com/themorgan/RepoPersonalPreferences) to check freshness — `git ls-remote` failed (fatal: could not read Username for 'https://github.com': terminal prompts disabled). This is NOT the same as 'confirmed fresh': if you need to know, verify directly instead of trusting this silence (process/personal/README.md#fresh-check-escalation). -- resolved 2026-09-02: moot. `process/personal/` and RepoPersonalPreferences tracking were retired the same day in the Precedent migration below — there is no personal-pack source left to check freshness against.
+- [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (1e06a5349a43; your base d436be779be1) — review at the next session (https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/drift-notice.md). -- resolved 2026-08-29: taken via WorkingWithAI RPP sync, this session
+- [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (570f86c520fc; your base b10c163a96dd) — review at the next session (https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/drift-notice.md). -- resolved 2026-08-29: taken via RPP sync: durable-list-anchors + brainstorm-citations, this session
+- [x] **personal-pack** (2026-08-29): NOTICE: the personal pack's source has moved (b54461560435; your base 9793691dcecb) — review at the next session (https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/drift-notice.md). -- resolved 2026-08-29: taken via RPP sync: derived-file-marker + doc-recipe + rule-scope-ask + list-restraint, this session
+- [x] **personal-pack** (2026-09-02): COULD NOT VERIFY: couldn't reach the personal pack's source (https://github.com/themorgan/RepoPersonalPreferences) to check freshness — `git ls-remote` failed (fatal: could not read Username for 'https://github.com': terminal prompts disabled). This is NOT the same as 'confirmed fresh': if you need to know, verify directly instead of trusting this silence (https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/fresh-check-escalation.md). -- resolved 2026-09-02: moot. `process/personal/` and RepoPersonalPreferences tracking were retired the same day in the Precedent migration below — there is no personal-pack source left to check freshness against.
 - [x] **bestpractice** (2026-09-02): NOTICE: BestPractice upstream has moved (558b16a62030; your base c76f06f87e52) — review at the next check-in (process/upstream/INSTALL.md sec.2/sec.4). -- resolved 2026-09-02: superseded, not taken as a normal update. The same-day Precedent migration below re-vendored `process/upstream/` from `alex137/BestPractice`'s `precedent-beta-v01` branch instead (a deliberate beta-test pin, not this notice's own default-branch head at 558b16a62030) — see [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md). The BestPractice sync is paused until the beta branch merges to main, at which point this repo should take a normal update against whatever main's head is by then, not against this now-stale commit.
 - [x] **bestpractice** (2026-09-04): re-vendored `process/upstream/` from `alex137/BestPractice`'s `precedent-beta-v01` at `16a9becf` to `3d03afd` (~30 commits, PRs #83-#98) via the same one-off manual mirror (`checkin.py` still can't track a non-default branch). -- resolved 2026-09-04: taken, this session → [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)'s "2026-09-04 follow-up" section.
 
@@ -57,7 +57,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   title, the opening paragraph, and every cross-reference that named it
   (this file, [AGENTS.md](AGENTS.md), [RANDOM_NOTES.md](content/RANDOM_NOTES.md),
   [MAP.md](MAP.md)) — the file's own
-  [`no-stale-counts`](process/personal/README.md#no-stale-counts).
+  [`no-stale-counts`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/no-stale-counts.md).
   (2) Rule 1's title dropped ", Labor isn't" — read as needlessly
   dismissive of labor; the body already makes the point without it.
   (3) The old rule 6 rewritten from two reflexes to three, adding "What
@@ -516,7 +516,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   match — replaced `generated-file-marker` with `derived-file-marker`,
   added its new `doc-recipe` sibling, inserted `rule-scope-ask` after
   `small-calls`, and `list-restraint` after `list-item-parity`, all in
-  reading-order position. [process/manifest_personal.json](process/manifest_personal.json)
+  reading-order position. `process/manifest_personal.json` (retired with the pack it tracked)
   records the new upstream commit and the re-weave. Judgment call made:
   the template's `file-mention-links` bullet also grew a new
   "mechanically enforced" paragraph (a Claude Code Stop hook) in this
@@ -531,7 +531,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   repo).** [AGENTS.md](AGENTS.md) has never carried this pack rule —
   every mention of a repo file in chat/PR/commit text becomes a
   clickable absolute GitHub URL — even though
-  [process/personal/README.md](process/personal/README.md#file-mention-links)
+  [process/personal/README.md](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/file-mention-links.md)
   has documented it for a while and RepoPersonalPreferences now
   mechanically enforces it on itself via a Claude Code Stop hook
   (`process/personal/tools/check_file_mention_links.py`, wired through
@@ -577,7 +577,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
 
 - [x] **Give [AI_GOVERNANCE_TO_COCREATE.md](content/AI_GOVERNANCE_TO_COCREATE.md)
   the same permanent slugs
-  [`durable-list-anchors`](process/personal/README.md#durable-list-anchors)
+  [`durable-list-anchors`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/durable-list-anchors.md)
   already requires of its sibling essay lists.** Decided 2026-08-29 →
   done, doc. Morgan noticed [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md) item 1
   cited AI_GOVERNANCE_TO_COCREATE.md's "argue in the open" by quoted
@@ -585,7 +585,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   AI_GOVERNANCE_TO_COCREATE.md should get the same `<a id="slug"></a>`
   treatment as [COMPANY_BUILDING_RULES.md](content/COMPANY_BUILDING_RULES.md) —
   it was the one essay list
-  [`durable-list-anchors`](process/personal/README.md#durable-list-anchors)'s
+  [`durable-list-anchors`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/durable-list-anchors.md)'s
   own [AGENTS.md](AGENTS.md) bullets had left off their named list, an
   oversight rather than a deliberate exemption. All sixteen items across
   its eight thematic sections now carry a running number and a permanent
@@ -628,19 +628,19 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   explicitly marked as dropped material, not part of the list.
 
 - [x] **Cite every durable numbered list by permanent slug, not position —
-  [`durable-list-anchors`](process/personal/README.md#durable-list-anchors).**
+  [`durable-list-anchors`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/durable-list-anchors.md).**
   Decided 2026-08-29 → done, doc. Direct follow-on from the
   brainstorm-citations fix below: giving REASONS_WHY.md item 7's idea a
   home in [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md) required a corollary
   bolted onto an existing item specifically to avoid renumbering every
   "item N" cross-reference a clean insertion would have forced — Morgan
   flagged that as the same problem the personal pack's own
-  [`rule-links`](process/personal/README.md#rule-links) already solved
+  [`rule-links`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/rule-links.md) already solved
   for its own rules (cite by slug, never by number), generalized. New
   personal-pack rule (companion PR against RepoPersonalPreferences, its
   own TODO.md decision record); pulled into this repo via a personal-pack
   sync in the same session, along with the still-pending
-  [`brainstorm-citations`](process/personal/README.md#brainstorm-citations)
+  [`brainstorm-citations`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/brainstorm-citations.md)
   sync from the last one. Implemented here on the four lists it names:
   every rule in [COMPANY_BUILDING_RULES.md](content/COMPANY_BUILDING_RULES.md)
   (15), every item in [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md) (7) and
@@ -664,7 +664,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   did not add anchors to [RANDOM_NOTES.md](content/RANDOM_NOTES.md)'s own numbered brainstorm
   list (points 1–5, with 3a/3b) — it's append-only by this repo's own
   convention, so position-drift risk is much lower than the essay lists,
-  and [`brainstorm-citations`](process/personal/README.md#brainstorm-citations)
+  and [`brainstorm-citations`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/brainstorm-citations.md)
   already discourages a *formal* document from citing it by position
   going forward, reducing the practical need; did update the plain "rule
   N" mentions inside [RANDOM_NOTES.md](content/RANDOM_NOTES.md) itself that cite
@@ -674,7 +674,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   citation form Morgan floated when asking for this — kept "§" meaning
   exactly what it already means in this repo (BestPractice's own
   independently-numbered `practice N`), and used
-  [`rule-links`](process/personal/README.md#rule-links)'s existing
+  [`rule-links`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/rule-links.md)'s existing
   `` `slug` (file.md#slug) `` form as-is for this repo's own lists; see
   RepoPersonalPreferences' own TODO.md for the same call made there,
   where the rule itself was written. (3) Also brought this repo's
@@ -1188,7 +1188,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   resurfacing of rules) is still open — see [RANDOM_NOTES.md](content/RANDOM_NOTES.md)
   §"Why BestPractice specifically works" → "Open question" for the rest of
   it. Once the personal-pack sync pulls
-  [`push-back`](process/personal/README.md#push-back) into this repo's own
+  [`push-back`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/push-back.md) into this repo's own
   `process/personal/` and re-weaves `AGENTS.md`, this repo picks up
   push-back mode automatically.
 - [x] **Halve [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md)'s and
@@ -1268,13 +1268,13 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   at" items when they show up elsewhere) moved out of the document body
   into [content/doc-recipes/HUMANS_AT_OUR_BEST.recipe.md](content/doc-recipes/HUMANS_AT_OUR_BEST.recipe.md) — a standing rule
   about the file, not part of its content, which is exactly what
-  [`doc-recipe`](process/personal/README.md#doc-recipe) is for.
+  [`doc-recipe`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/doc-recipe.md) is for.
 
   (4) [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md)'s `groups-not-individuals`
   point cut to roughly 40% of its prior length; item 8's "not hidden
   inside Claude" changed to "not hidden inside an AI Assistant"
   (provider-neutral wording, matching
-  [`llm-neutral`](process/personal/README.md#llm-neutral)'s spirit even
+  [`llm-neutral`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/llm-neutral.md)'s spirit even
   though that rule is scoped to LLM-*integrations*, not repo prose), and
   its paragraph also cut to roughly 40%.
 
@@ -1298,7 +1298,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   Judgment calls made: (1) which documents count as "main content" for
   both the `docs/` move and the "See also" lists — the eight above, based
   on this pack's own existing
-  [`content-subdirs`](process/personal/README.md#content-subdirs)
+  [`content-subdirs`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/content-subdirs.md)
   recommendation and [README.md](README.md)'s pre-existing "What's here"
   split; `GLOSSARY.md` stayed at root as a cross-cutting reference used by
   both halves of the repo, not itself an essay. **Confirmed 2026-09-01:**

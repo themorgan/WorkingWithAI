@@ -47,10 +47,30 @@ PRACTICE_FILE = ROOT / "practices" / "assorted-notes.md"
 
 # Legacy names this practice says to consolidate into ASSORTED_NOTES.md --
 # a link to any of these, in an unrenamed legacy repo, is the same violation.
-NOTES_FILENAMES = ("ASSORTED_NOTES.md", "BRAINSTORM.md", "NOTES.md", "IDEAS.md")
+LEGACY_FILENAMES = ("BRAINSTORM.md", "NOTES.md", "IDEAS.md")
+CANONICAL_FILENAME = "ASSORTED_NOTES.md"
+
+
+def notes_filenames() -> tuple:
+    """The canonical name always; the legacy names only until the migration
+    this practice describes has actually happened.
+
+    "In an unrenamed legacy repo" is the condition the comment above states
+    and the check did not test: it matched any file named NOTES.md, anywhere,
+    forever. Once `content/ASSORTED_NOTES.md` exists the consolidation is
+    done, and a file that merely shares a legacy name is an ordinary file
+    with its own subject -- 2026-09-06, a repo with a perfectly good
+    content/ASSORTED_NOTES.md was flagged for linking `book-moses/NOTES.md`,
+    a manuscript-scoped brainstorm about Moses that is not this repo's
+    catch-all and was never meant to become it. Reading the legacy names as
+    permanent turns a one-time migration rule into a standing ban on a
+    common filename."""
+    if (ROOT / "content" / CANONICAL_FILENAME).is_file():
+        return (CANONICAL_FILENAME,)
+    return (CANONICAL_FILENAME,) + LEGACY_FILENAMES
 
 # Matches any markdown link's target; the target is then checked against
-# NOTES_FILENAMES by basename, not by this regex, so a filename that merely
+# notes_filenames() by basename, not by this regex, so a filename that merely
 # ends the same way (MARKETING_IDEAS.md, RANDOM_NOTES.md) doesn't match.
 LINK_RE = re.compile(r"\]\(([^)]+)\)")
 
@@ -62,7 +82,7 @@ LINK_RE = re.compile(r"\]\(([^)]+)\)")
 # own "listing vs. citation" distinction.
 EXEMPT_BASENAMES = (
     {"assorted-notes.md", "readme.md", "map.md"}
-    | {n.lower() for n in NOTES_FILENAMES}
+    | {n.lower() for n in notes_filenames()}
 )
 
 # This check's own machinery: its docstring illustrates the exact link
@@ -118,7 +138,7 @@ def find_violations() -> list[str]:
                 continue
             for m in LINK_RE.finditer(line):
                 target = m.group(1)
-                if pathlib.Path(target).name in NOTES_FILENAMES:
+                if pathlib.Path(target).name in notes_filenames():
                     findings.append(f"{path}:{lineno}: links to {target!r}")
     return findings
 

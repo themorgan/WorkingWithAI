@@ -140,6 +140,44 @@ if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
 
+# Once content/ASSORTED_NOTES.md exists the consolidation this practice
+# describes has happened, and a legacy NAME is just a filename again. A repo
+# with a real ASSORTED_NOTES.md was flagged for linking book-moses/NOTES.md,
+# a manuscript brainstorm that is not its catch-all (2026-09-06).
+SCRATCH5="$(mktemp -d)"
+(
+  set -e
+  git clone -q "$ROOT" "$SCRATCH5"
+  cd "$SCRATCH5"
+  mkdir -p content book-moses
+  echo "# Assorted notes" > content/ASSORTED_NOTES.md
+  echo "# Moses notes" > book-moses/NOTES.md
+  echo "See [the Moses notes](book-moses/NOTES.md) for that draft." > TODO.md
+  git add -A
+  git -c user.name="Test" -c user.email="test@example.com" commit -q -m "migrated repo, unrelated NOTES.md"
+  if ! python3 tools/checks/check_assorted_notes.py > /dev/null; then
+    echo "FAIL: fired on a legacy-named file in a repo that already has content/ASSORTED_NOTES.md" >&2
+    exit 1
+  fi
+  echo "ok: legacy names stop counting once the migration is done"
+
+  # ...and the canonical file is still guarded in that same repo, so the
+  # case above cannot be met by a check that simply stopped running.
+  echo "Per [the notes](content/ASSORTED_NOTES.md), we should ship it." > TODO.md
+  git add -A
+  git -c user.name="Test" -c user.email="test@example.com" commit -q -m "citation of the real notes file"
+  if python3 tools/checks/check_assorted_notes.py > /dev/null; then
+    echo "FAIL: stopped guarding content/ASSORTED_NOTES.md itself" >&2
+    exit 1
+  fi
+  echo "ok: still fires on a citation of the canonical notes file"
+)
+status=$?
+rm -rf "$SCRATCH5"
+if [ "$status" -ne 0 ]; then
+  exit "$status"
+fi
+
 if ! python3 tools/checks/check_assorted_notes.py > /dev/null; then
   echo "FAIL: check_assorted_notes.py is not clean on the real, current repo" >&2
   exit 1

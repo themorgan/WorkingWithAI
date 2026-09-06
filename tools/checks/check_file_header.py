@@ -33,6 +33,7 @@ Two things are checked mechanically for every file that does carry it:
 Exit 0 and print nothing when clean. Exit 1 and print the practice's own
 Rule text (never a paraphrase) plus the specific finding(s) on a violation.
 """
+import json
 import pathlib
 import re
 import subprocess
@@ -66,6 +67,67 @@ def rule_text() -> str:
     return m.group(1).strip() if m else "(no Rule found)"
 
 
+# --- scope: this repo's own content only ---------------------------------
+#
+# A check runs in two very different places. In the SOURCE repo that
+# authors these practices, everything is authored and everything is in
+# scope. In a CONSUMING repo, `practices/` is precedent_materialize.py's
+# output and the universal source's `path` (e.g. `process/upstream/`) is a
+# vendored copy of somebody else's tree -- content this repo did not write
+# and cannot fix. Reporting a finding there is noise: the fix belongs in
+# the source, and the consumer's only options are to ignore its own gate or
+# to hand-edit a file the next sync overwrites.
+#
+# 2026-09-06, in a real four-source consumer: no-stale-counts reported 81
+# findings, 81 of them inside materialized practices/ and vendored
+# process/upstream/; private-repo-scrub reported 12 of 26 there. A gate
+# that loud is a gate nobody reads.
+#
+# Attributed by the COMMITTED MANIFEST.json (which precedent_materialize.py
+# writes, recording exactly which files it produced) and by precedent.json's
+# declared source paths -- never by which sources happen to resolve in this
+# environment, which is the mistake that once failed a repo's own CI on
+# every team- and individual-sourced file because a bare checkout can reach
+# neither. A repo-local source at `local/` stays in scope: that IS the
+# repo's own hand-authored content.
+def _foreign_prefixes() -> tuple:
+    out = set()
+    cfg = ROOT / "precedent.json"
+    if cfg.is_file():
+        try:
+            for s in json.loads(cfg.read_text(encoding="utf-8")).get("sources", []):
+                p = str(s.get("path", "")).strip().strip("/")
+                if p and p != "local" and not p.startswith("..") and (ROOT / p).is_dir():
+                    out.add(p + "/")
+        except (OSError, json.JSONDecodeError, AttributeError):
+            pass
+    return tuple(sorted(out))
+
+
+def _materialized_files() -> frozenset:
+    mf = ROOT / "MANIFEST.json"
+    if not mf.is_file():
+        return frozenset()
+    try:
+        m = json.loads(mf.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return frozenset()
+    files = {f"practices/{e['slug']}.md" for e in m.get("practices", []) if "slug" in e}
+    files |= {e["path"] for e in m.get("checks", []) if "path" in e}
+    return frozenset(files)
+
+
+_FOREIGN = _foreign_prefixes()
+_MATERIALIZED = _materialized_files()
+
+
+def not_ours(rel) -> bool:
+    """True when `rel` is content this repo vendored or materialized rather
+    than wrote."""
+    rel = str(rel).replace("\\", "/")
+    return rel.startswith(_FOREIGN) or rel in _MATERIALIZED
+
+
 def tracked_md_files() -> list[str]:
     result = subprocess.run(
         ["git", "-C", str(ROOT), "ls-files", "*.md"],
@@ -73,7 +135,8 @@ def tracked_md_files() -> list[str]:
         text=True,
         check=True,
     )
-    return [line for line in result.stdout.splitlines() if line.strip()]
+    return [line for line in result.stdout.splitlines()
+            if line.strip() and not not_ours(line.strip())]
 
 
 def read_at_head(path: str, rev: str) -> str | None:

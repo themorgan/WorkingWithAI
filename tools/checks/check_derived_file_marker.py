@@ -73,7 +73,13 @@ def find_violations() -> list[str]:
             missing.append("`Recipe: <path>` line")
         if not REGENERATE_RE.search(header):
             missing.append("`Regenerate with: <command>` line")
-        if ROUTING_SNIPPET not in header:
+        # Compare with whitespace collapsed. A header comment wraps, and the
+        # routing sentence is long enough that it usually does -- two real
+        # derived files carried it correctly and were reported as missing it
+        # because the wrap fell between "replaces" and "this file"
+        # (2026-09-06). A check that demands prose sit on one physical line
+        # is checking the line width, not the sentence.
+        if ROUTING_SNIPPET not in " ".join(header.split()):
             missing.append("the routing sentence (\"...regeneration replaces this file...\")")
 
         if missing:

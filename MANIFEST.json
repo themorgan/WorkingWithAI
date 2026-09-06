@@ -2,12 +2,12 @@
   "checks": [
     {
       "path": "tools/checks/check_assorted_notes.py",
-      "sha256_16": "3eb4bfde4a938779",
+      "sha256_16": "4742f338a67f3a6a",
       "source": "precedent-individual"
     },
     {
       "path": "tools/checks/check_buenos_aires_dates.py",
-      "sha256_16": "974f065959f653a3",
+      "sha256_16": "6f3a56eafffede92",
       "source": "precedent-individual"
     },
     {
@@ -17,17 +17,17 @@
     },
     {
       "path": "tools/checks/check_commit_author.py",
-      "sha256_16": "cc5350903ec35189",
+      "sha256_16": "82e360794bcac6fc",
       "source": "precedent-individual"
     },
     {
       "path": "tools/checks/check_file_header.py",
-      "sha256_16": "ca5ee18a86277b68",
+      "sha256_16": "28eae090c9f9c0af",
       "source": "precedent-individual"
     },
     {
       "path": "tools/checks/tests/test_assorted_notes.sh",
-      "sha256_16": "b2241fe7bbae5e2b",
+      "sha256_16": "a509d2ec2b765672",
       "source": "precedent-individual"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": "tools/checks/check_derived_file_marker.py",
-      "sha256_16": "1d8f7a10cd65a0d5",
+      "sha256_16": "74e4553877facbc0",
       "source": "precedent-team-maintainers"
     },
     {
@@ -67,7 +67,7 @@
     },
     {
       "path": "tools/checks/check_header_caps.py",
-      "sha256_16": "d2b364d3068dcff8",
+      "sha256_16": "97e834292748034e",
       "source": "precedent-team-maintainers"
     },
     {
@@ -77,12 +77,12 @@
     },
     {
       "path": "tools/checks/check_no_stale_counts.py",
-      "sha256_16": "5a1b85dcc0181239",
+      "sha256_16": "a1d358d9795af695",
       "source": "precedent-team-maintainers"
     },
     {
       "path": "tools/checks/check_private_repo_scrub.py",
-      "sha256_16": "19e0842c86637542",
+      "sha256_16": "04bb5cc5ce0b3292",
       "source": "precedent-team-maintainers"
     },
     {
@@ -97,7 +97,7 @@
     },
     {
       "path": "tools/checks/tests/test_derived_file_marker.sh",
-      "sha256_16": "031f1ceda8c68676",
+      "sha256_16": "6d522766af889ef3",
       "source": "precedent-team-maintainers"
     },
     {
@@ -117,7 +117,7 @@
     },
     {
       "path": "tools/checks/tests/test_no_stale_counts.sh",
-      "sha256_16": "044d32a65e27459c",
+      "sha256_16": "f62829f37d73166b",
       "source": "precedent-team-maintainers"
     },
     {
@@ -131,7 +131,7 @@
       "source": "precedent-team-maintainers"
     }
   ],
-  "generated_at_utc": "2026-09-06T11:09:02+00:00",
+  "generated_at_utc": "2026-09-06T12:10:20+00:00",
   "generated_by": "tools/precedent_materialize.py",
   "note": "DERIVED ARTIFACT -- never hand-edit. Regenerate by re-running precedent_materialize.py with the same --repo/--user-config; this file records exactly what produced the snapshot so drift is visible, per generated-artifact-provenance.",
   "practices": [

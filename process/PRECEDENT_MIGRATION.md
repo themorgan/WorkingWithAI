@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-04 12:13:55 (Buenos Aires) by Morgan F, to version 7 -->
+<!-- Last updated: 2026-09-06 09:25:00 (Buenos Aires) by Morgan F, to version 8 -->
 
 # Migrating this repo from BestPractice-only to Precedent (2026-09-02)
 
@@ -19,8 +19,8 @@ resulting day-to-day rules.
 | | Before | After |
 |---|---|---|
 | Universal practices | Vendored at `process/upstream/`, tracking `alex137/BestPractice`'s `main` branch | Vendored at `process/upstream/`, now tracking the `precedent-beta-v01` branch (a deliberate beta pin — see "Why a vendored copy, still" below) |
-| Team / personal conventions | Vendored at `process/personal/`, mirrored from the private repo `themorgan/RepoPersonalPreferences` (46 rules, one flat file, `process/personal/README.md`) | Resolved **live** from a sibling clone of the now-real [precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers) (41 practices), declared in the new [precedent.json](../precedent.json) — not vendored at all |
-| Morgan-specific facts | Mixed into the same `process/personal/` pack, flagged only by convention (`morgan-scope`) | Split into [precedent-individual](https://github.com/themorgan/precedent-individual) (6 practices), resolved from Morgan's own user-level config, **never** named in this repo's tracked files |
+| Team / personal conventions | Vendored at `process/personal/`, mirrored from the private repo `themorgan/RepoPersonalPreferences` (46 rules, one flat file, `process/personal/README.md`) | Resolved **live** from a sibling clone of the now-real [precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers) (the team set), declared in the new [precedent.json](../precedent.json) — not vendored at all |
+| Morgan-specific facts | Mixed into the same `process/personal/` pack, flagged only by convention (`morgan-scope`) | Split into [precedent-individual](https://github.com/themorgan/precedent-individual) (the individual set), resolved from Morgan's own user-level config, **never** named in this repo's tracked files |
 | Sync automation | Three scheduled workflows: BestPractice sync, personal-pack sync, voice-guidelines sync | Two: BestPractice sync (paused for the beta) and voice-guidelines sync (unaffected). Personal-pack sync retired outright — there is nothing left to vendor-and-sync for the team/individual sources |
 | `AGENTS.md` | A "Personal setup rules (Morgan's pack)" section with all ~40 rules copied in full | A "Practice sources (Precedent)" section: explains the three sources, points at `precedent_resolve.py` for the real merged set, and hand-curates only the resident + most-frequently-needed practices (see "Known gap" below for why it isn't fully automatic) |
 

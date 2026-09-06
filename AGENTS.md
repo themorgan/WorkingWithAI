@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-05 21:37:23 (Buenos Aires) by Morgan F, to version 30 -->
+<!-- Last updated: 2026-09-06 09:20:00 (Buenos Aires) by Morgan F, to version 31 -->
 
 # Repository instructions — read me first
 
@@ -44,9 +44,15 @@ person-specific rules win.
 
 ## Build-environment gotchas — do NOT rediscover these
 
-- At session start, run `bash tools/bootstrap.sh` before other work (Claude
-  Code runs it automatically via the SessionStart hook — see
-  `.claude/settings.json`).
+- **At session start, run `bash tools/bootstrap.sh` before other work** —
+  Claude Code runs it automatically via the SessionStart hook (see
+  `.claude/settings.json`), so this matters when the hook did not fire or
+  its work did not stick. What it prevents: the script is what clones the
+  sibling team source and re-mirrors the voice pack, and both fail
+  silently by design rather than failing the session. Skip it and the
+  session runs on a partial rule set that looks complete — no error, just
+  fewer practices in force than the loader block claims — the same shape
+  as the individual-source gap recorded below.
 - **A brand-new Claude Code Remote/Cloud session started on this repo alone
   does not automatically have git read access to `precedent-team-maintainers`
   or `precedent-individual`** — the team and individual sources
@@ -74,7 +80,15 @@ person-specific rules win.
   to the next session.
   - **Individual** (`precedent-individual`): once added,
     `.claude/hooks/precedent-individual-bootstrap.sh` clones (or pulls) it
-    and writes the user config automatically, every session.
+    and writes the user config automatically, every session. The failure
+    worth knowing: on a session whose FIRST tool calls are the `add_repo`s
+    above, that hook has already run and already failed — session-start
+    hooks fire before the agent's first tool call, so the access it needs
+    did not exist yet. It exits 0 by design, so nothing is reported. The
+    symptom is an individual-only slug `precedent_show.py` calls unknown,
+    and a `precedent_sync_views.py --check` that looks clean because the
+    drift is invisible without the source it is missing. Re-run the hook by
+    hand once `add_repo` has completed.
   - **Team** (`precedent-team-maintainers`): once added, `tools/bootstrap.sh`
     clones it (to `../precedent-team-maintainers`) if it isn't already
     there, or fast-forward pulls it if it is. Its clone URL is hardcoded in
@@ -116,6 +130,23 @@ person-specific rules win.
 repos — see "Build-environment gotchas" above, no asking first — then
 `bash tools/bootstrap.sh`, then these two.)
 
+### Two check levels
+
+Two fixed names, so "run the check" is never ambiguous:
+
+- **light check** — `python3 tools/light_check.py`
+  ([light_check.py](tools/light_check.py)). Cheap and mechanical: conflict
+  markers, invalid JSON/YAML, secret-shaped strings, broken doc links.
+  **Gates a commit.**
+- **deep check** — the light check plus
+  `python3 process/upstream/tools/doc_lint.py`,
+  `python3 process/upstream/tools/practice_audit.py`,
+  `python3 process/upstream/tools/precedent_check.py`, and
+  `python3 tools/precedent_sync_views.py --repo . --check`. **Gates a push
+  or a merge**, and it is step 3 of the runbook below.
+
+`0 failed` / `0 violated` is what matters in either, never a passed count.
+
 ### Merging a thread branch (runbook — follow, don't improvise)
 
 Conflicts in shared files are EXPECTED. The fast, safe path:
@@ -156,7 +187,7 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
      path is retired; a merge that still has changes queued against it
      predates [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)
      and needs that record read before resolving it.
-3. Run the audits — **all must pass before the merge commits**:
+3. Run the **deep check** — **all must pass before the merge commits**:
    `python3 process/upstream/tools/doc_lint.py`,
    `python3 tools/light_check.py`, and
    `python3 process/upstream/tools/practice_audit.py`. A plain "checks

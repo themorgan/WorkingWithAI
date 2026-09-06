@@ -1,0 +1,6 @@
+{
+  "_note": "Commits already published here that predate this repo running the individual source's commit-identity check. Recorded rather than rewritten, per no-rewrite-for-warnings: fix the setting forward, leave the history alone. `git config user.name/user.email` is now set in this clone, so new commits are correct on their own merit.",
+  "commits": [
+    "c0578487170d3447f856772925d5f4609a208d59"
+  ]
+}
