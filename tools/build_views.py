@@ -333,6 +333,66 @@ def _occasion_clause(rule_text, max_len=90):
     return clause
 
 
+# practice: cite-the-incident -- 2026-09-06, precedent-team-tms. That set
+# deleted its bootstrap placeholder, leaving one resident practice and no
+# on-demand ones, and the block it generated told every session to consult
+# an occasion index that rendered as an empty ``` ``` box and to run four
+# `precedent_gate.py` commands, ALL FOUR of which exit with FAIL there
+# because no practice in that set registers a gate. Reproduced against
+# fixtures in all three shapes (resident-only, on-demand-only, and a set
+# with no practices at all): the three sections and the four gate names
+# were emitted unconditionally, so the block described the engine's
+# channels rather than the ones this source actually fills. A standing
+# instruction that names a command which fails is worse than no standing
+# instruction, because it teaches the session that the block is decorative.
+def _live_gates(practices):
+    """Gate names to advertise: in the engine's own closed vocabulary AND
+    holding at least one in-force practice in THIS source.
+
+    Both halves are load-bearing. The vocabulary is what
+    precedent_gate.py will accept at all (it lives beside the engine, not
+    under --repo, deliberately -- see that script's own SCOPE comment), and
+    a practice naming a gate outside it is refused as unknown. Having a
+    practice registered is what makes the gate print anything: an empty
+    gate is refused by name, on purpose, so advertising one guarantees a
+    failing command."""
+    scope = _ENGINE_DIR / 'routing_scope.json'
+    if not scope.is_file():
+        # Same graceful degradation as precedent_gate.gate_vocabulary(): a
+        # partial vendor can leave this file out, and that must not take
+        # the whole view build down. With no vocabulary readable, advertise
+        # nothing rather than guess -- an omitted sentence costs a session
+        # one channel; a wrong one costs it a failing command.
+        return []
+    try:
+        vocab = json.loads(scope.read_text(encoding='utf-8')).get('gates', {})
+    except (ValueError, OSError):
+        return []
+    live = set()
+    for fm, _sections, _f in practices:
+        for g in json.loads(fm.get('gates', '[]') or '[]'):
+            if g in vocab and not g.startswith('_'):
+                live.add(g)
+    # Vocabulary order, not sorted(): routing_scope.json lists the gates
+    # along the arc of a piece of work (merge, review, push, reply), and
+    # JSON object order survives the parse. Sorting alphabetically is just
+    # as deterministic and throws that away for nothing.
+    return [g for g in vocab if g in live]
+
+
+def _gate_moment(vocab_description):
+    """The short moment phrase for one gate, taken from the vocabulary's
+    own description rather than hand-written here. The descriptions carry a
+    qualifier after a comma or an em-dash ("reviewing work, or a review
+    finding a defect"; "before pushing -- the pre-push hook") that reads as
+    a run-on inside a comma-joined list, so the phrase stops at whichever
+    comes first. Derived, not hardcoded: the sentence this feeds used to
+    name all four moments as fixed prose, which is exactly how it came to
+    claim gates the source did not have."""
+    phrase = re.split(r' — |, ', vocab_description, maxsplit=1)[0]
+    return phrase.strip()
+
+
 def build_loader_block(practices, source_levels=None):
     """practices: (fm, sections, file) triples, exactly as load_practices()
     returns for this repo's own single-source catalogue. source_levels:
@@ -387,28 +447,57 @@ def build_loader_block(practices, source_levels=None):
                                         for fm, _s in resident)
         count_detail += ' (' + ', '.join(f"{by_level[l]} {l}" for l in
                                           sorted(by_level) if by_level[l]) + ')'
-    lines.append(f"## Resident block (~{token_count} of {RESIDENT_BUDGET_TOKENS} token budget, "
-                 f"{count_detail})")
-    lines.append('')
-    lines.append(resident_text)
-    lines.append('')
-    lines.append("## Occasion index")
-    lines.append('')
-    lines.append("```")
-    lines.append(index_text)
-    lines.append("```")
-    lines.append('')
-    lines.append("## Standing instruction")
-    lines.append('')
-    lines.append("Before starting work of a kind named in the occasion index above, run "
-                 "`python3 tools/precedent_show.py SLUG` for each listed slug to load its "
-                 "Rule. When editing a file, `python3 tools/precedent_paths.py FILE` prints "
-                 "any on-demand practice whose `applies_to` matches it, without needing the "
-                 "index at all. At a named moment — merging, reviewing, pushing, ending a "
-                 "turn — run `python3 tools/precedent_gate.py merge|review|push|reply`: "
-                 "some practices fire at a moment rather than in a file, and no path glob "
-                 "reaches those.")
-    lines.append('')
+    # Every section below is emitted ONLY if this source actually fills the
+    # channel it describes. See _live_gates' own note for the incident: a
+    # block that names an empty channel sends the session to a command that
+    # fails, and the honest rendering of "this source has nothing here" is
+    # silence, not an empty heading.
+    if resident:
+        lines.append(f"## Resident block (~{token_count} of {RESIDENT_BUDGET_TOKENS} token budget, "
+                     f"{count_detail})")
+        lines.append('')
+        lines.append(resident_text)
+        lines.append('')
+    if index_text:
+        lines.append("## Occasion index")
+        lines.append('')
+        lines.append("```")
+        lines.append(index_text)
+        lines.append("```")
+        lines.append('')
+
+    instruction = []
+    if index_text:
+        instruction.append(
+            "Before starting work of a kind named in the occasion index above, run "
+            "`python3 tools/precedent_show.py SLUG` for each listed slug to load its Rule.")
+    if on_demand:
+        instruction.append(
+            "When editing a file, `python3 tools/precedent_paths.py FILE` prints any "
+            "on-demand practice whose `applies_to` matches it, without needing the index "
+            "at all.")
+    live_gates = _live_gates(practices)
+    if live_gates:
+        scope = _ENGINE_DIR / 'routing_scope.json'
+        vocab = json.loads(scope.read_text(encoding='utf-8')).get('gates', {})
+        moments = ', '.join(_gate_moment(vocab[g]) for g in live_gates)
+        instruction.append(
+            f"At a named moment — {moments} — run "
+            f"`python3 tools/precedent_gate.py {'|'.join(live_gates)}`: some practices "
+            f"fire at a moment rather than in a file, and no path glob reaches those.")
+    if instruction:
+        lines.append("## Standing instruction")
+        lines.append('')
+        lines.append(' '.join(instruction))
+        lines.append('')
+
+    if not resident and not index_text and not instruction:
+        # Not an empty block: a bootstrapped source with no practices yet is
+        # a normal state, and saying so beats leaving a reader to work out
+        # whether the generator failed.
+        lines.append("This source has no practices in force, so nothing loads from it. "
+                     "Add one under `practices/` and regenerate this block.")
+        lines.append('')
     lines.append(END_MARKER)
     return '\n'.join(lines), token_count, len(resident)
 
@@ -442,6 +531,116 @@ def source_levels_from_manifest(root):
     levels = {e['slug']: e['level'] for e in data.get('practices', [])
               if 'slug' in e and 'level' in e}
     return levels or None
+
+
+class _BlockNotVerifiable(Exception):
+    """A declared source is unreachable, so the block cannot be judged."""
+
+
+def loader_practices(root, own_practices):
+    """-> (practices, source_levels) for the AGENTS.md loader block.
+
+    THE BLOCK RENDERS EVERY SOURCE THE REPO DECLARES, not just its own
+    catalogue. Precedent's own repo declares three -- universal (itself),
+    a team set, and a repo-local one -- and rendered ONLY the universal
+    one, so 65 of 65 universal practices reached the block while 0 of 41
+    team and 0 of 11 individual did. The config said they were in force,
+    the resolver agreed, and the one artifact a session actually reads
+    listed none of them: a rule nothing can load is not in force, it is
+    filed. Measured 2026-09-06, fixed here at Morgan's direction.
+
+    A consuming repo gets this through precedent_sync_views.py, which
+    materializes every source into one practices/ tree and leaves a
+    MANIFEST.json for source_levels_from_manifest() to read. Precedent
+    itself cannot take that route: its practices/ IS the universal source
+    (`path: "."`), and precedent_materialize.py refuses a self-referential
+    source by name, since its output directory would be that source's only
+    copy. So the sources are resolved IN MEMORY here instead -- the same
+    resolver, the same precedence, nothing written to disk.
+
+    PRIVATE SOURCES ARE EXCLUDED FROM A PUBLIC REPO'S BLOCK. The block is
+    a tracked file; in a public repo, writing it publishes whatever it
+    contains, permanently. Universal and repo-local sources are already
+    public -- one is the repo itself, the other lives in its own tree. Team
+    and individual sets are private repositories whose practice text has
+    never been published, so rendering their clauses here is publication by
+    another route: precedent_resolve.py already refuses to let a shared repo
+    DECLARE an individual source, because "naming it here leaks its
+    existence and location", and this is the same disclosure by a different
+    door. Precedent's own repo is the public case, and
+    decisions/2026-09-06-precedent-binds-itself.md rejected multi-source
+    generated views THERE on exactly this ground. A repo says which it is
+    with `"visibility": "public"` in precedent.json; absent that, nothing is
+    excluded -- which is the right default, because the repos that most need
+    the multi-source block are the private consumers.
+    """
+    config = root / 'precedent.json'
+    if not config.is_file():
+        return own_practices, source_levels_from_manifest(root)
+    try:
+        sys.path.insert(0, str(_ENGINE_DIR))
+        import precedent_resolve as _pr
+    except Exception as e:                       # keep going, and say so
+        print(f"build_views NOTICE: precedent_resolve.py did not import "
+              f"({e}); the loader block covers this repo's own practices/ "
+              f"only, not the other sources precedent.json declares.",
+              file=sys.stderr)
+        return own_practices, source_levels_from_manifest(root)
+
+    try:
+        declared = _pr.load_config(root)
+    except Exception as e:
+        print(f"build_views NOTICE: {config} did not resolve ({e}); the "
+              f"loader block covers this repo's own practices/ only.",
+              file=sys.stderr)
+        return own_practices, source_levels_from_manifest(root)
+
+    try:
+        public = json.loads(config.read_text(
+            encoding='utf-8')).get('visibility') == 'public'
+    except (ValueError, OSError):
+        public = False
+    # Exclude, keep going, and SAY so on stderr rather than silently.
+    PRIVATE_LEVELS = ('team', 'individual')
+    if public:
+        dropped = [f"{s['name']} ({s['level']})" for s in declared
+                   if s['level'] in PRIVATE_LEVELS]
+        declared = [s for s in declared if s['level'] not in PRIVATE_LEVELS]
+        if dropped:
+            print(f"build_views: {', '.join(dropped)} excluded from the "
+                  f"loader block -- this repo declares visibility: public, "
+                  f"and the block is a tracked file, so rendering a private "
+                  f"source into it would publish its practice text.",
+                  file=sys.stderr)
+
+    # Only this repo's own source: nothing to merge, keep the old path.
+    if len(declared) <= 1:
+        return own_practices, source_levels_from_manifest(root)
+
+    res = _pr.resolve(declared)
+    if res['missing']:
+        # A declared source that does not resolve HERE makes the block
+        # unverifiable, not stale. A team source is a sibling clone and an
+        # individual source resolves through a private user-level config, so
+        # neither exists in a bare CI checkout -- and the committed block was
+        # built where they did. Regenerating without them and calling the
+        # difference "drift" would fail every CI run and every fixture, on
+        # evidence the environment could not have. Found the moment this
+        # went multi-source, 2026-09-06: the harness's own temp-dir fixtures
+        # reported the freshly-generated block as hand-edited.
+        for m in res['missing']:
+            print(f"build_views NOTICE: the {m['level']} source "
+                  f"{m['name']!r} is not available ({m['reason']}).",
+                  file=sys.stderr)
+        print("build_views: NOT VERIFIABLE -- the loader block is built from "
+              "sources this environment cannot reach, so it can be neither "
+              "confirmed current nor reported stale here. Re-run where every "
+              "declared source resolves.", file=sys.stderr)
+        raise _BlockNotVerifiable()
+    practices = [(v['fm'], v['sections'], v['file'])
+                 for v in res['practices'].values()]
+    levels = {slug: v['level'] for slug, v in res['practices'].items()}
+    return practices, levels
 
 
 def render_agents_md(practices, agents_md=None, source_levels=None):
@@ -651,8 +850,22 @@ def main():
     agents_only = '--agents-only' in argv
     practices = load_practices(practices_dir)
 
-    levels = source_levels_from_manifest(root)
-    new_agents = render_agents_md(practices, agents_md, source_levels=levels)
+    # MAP.md and GLOSSARY.md stay this repo's OWN catalogue -- they document
+    # the set it publishes. Only the loader block covers every declared
+    # source, because that block is what a session actually loads.
+    try:
+        block_practices, levels = loader_practices(root, practices)
+    except _BlockNotVerifiable:
+        # Exit 0: not verified is not a failure, and not a pass either --
+        # the reason is already on stderr, in those words.
+        if check:
+            return 0
+        sys.exit("build_views FAIL: refusing to WRITE a loader block from an "
+                 "incomplete source set -- that would silently drop every "
+                 "practice the unreachable sources contribute. Make them "
+                 "resolvable, then re-run.")
+    new_agents = render_agents_md(block_practices, agents_md,
+                                  source_levels=levels)
     targets = [(agents_md, new_agents)]
     if not agents_only:
         targets.append((map_md, render_map_md(practices)))

@@ -95,7 +95,31 @@ SELF = pathlib.Path(__file__).resolve().relative_to(ROOT).as_posix()
 
 TEXT_EXT = {'.md', '.py', '.sh', '.json', '.txt', '.yml', '.yaml', '.toml', '.template'}
 
+def _declared_base_branch(root):
+    """The branch this repo's work is measured against, as DECLARED in
+    precedent.json's `base_branch` -- not inferred from `origin/HEAD`.
+
+    Two different questions with usually the same answer, which is why asking
+    the wrong one survives so long. `origin/HEAD` answers "what does GitHub
+    show first"; callers here mean "what lineage does this work belong to".
+    They diverge the moment a repo pins its work to a branch that is not the
+    configured default, and then every inference is quietly wrong with nothing
+    failing. Returns None when undeclared or unreadable, so callers fall back
+    to the old inference rather than breaking (practice: fail-gracefully).
+    Enforced by precedent_check.py's `declared-base-branch`.
+    """
+    try:
+        import json as _json, pathlib as _pathlib
+        v = _json.loads((_pathlib.Path(root) / 'precedent.json')
+                        .read_text(encoding='utf-8')).get('base_branch')
+        return v if isinstance(v, str) and v.strip() else None
+    except Exception:
+        return None
+
 def default_branch():
+    declared = _declared_base_branch(ROOT)
+    if declared:
+        return declared
     head = _git(['symbolic-ref', 'refs/remotes/origin/HEAD'], cwd=ROOT)
     if head:
         return head.rsplit('/', 1)[-1]

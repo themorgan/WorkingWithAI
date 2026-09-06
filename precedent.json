@@ -1,5 +1,6 @@
 {
   "format_version": 1,
+  "base_branch": "main",
   "_comment": [
     "The practice sources in force in this repository, per Precedent's",
     "three-source model (alex137/BestPractice, branch precedent-beta-v01,",

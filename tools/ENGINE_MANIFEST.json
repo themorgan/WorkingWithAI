@@ -3,7 +3,7 @@
   "kind": "consumer",
   "source_repo": "https://github.com/alex137/BestPractice",
   "source_branch": "precedent-beta-v01",
-  "source_commit": "b9cb04a7cca4faa448d39a6c59a9efd53c97c4ee",
+  "source_commit": "82b47223ca766ae42584b0041c8e732b8263c9ac",
   "files": [
     "build_views.py",
     "build_codeowners.py",
@@ -25,7 +25,7 @@
     "routing_scope.json"
   ],
   "sha256": {
-    "build_views.py": "e7fdecc351ffde966317e1c0c316690480d3d72c5b953896375f48351e96f0a1",
+    "build_views.py": "ae4aa92cd20eb4a632038fcdbd926eafd45140ac903c4cd61c59e861afb6a867",
     "build_codeowners.py": "8a136c7f31303886b36d40faa2e106832a062d9ece6557a7d49b9598fa3bb819",
     "precedent_gate.py": "d489b5f2b6e3fa984968b256bdfb0929fa40aa7e378051873965f252dfae7f2b",
     "precedent_paths.py": "784de310cfb1035d2a550146dc04fbea8fe37f0c28c2094135993cde29d0dd90",
@@ -33,14 +33,14 @@
     "split_practices.py": "deca3156115d90af25def0bde23d8191cc5e6f5c8fd1854876810e8c3f7016f6",
     "precedent_migrate_status.py": "715dc47486c5b791b6a99007ebfa5bb78a2bba48de4e1ea908a32be4798311b6",
     "precedent_materialize.py": "223f77115a1462e781e57e35d8bc430c15c3750cd68adcb28b3cae9c18247221",
-    "precedent_resolve.py": "157547db55ac3c1cee69fe4da085d030be8834b4b3db8b1367e7b6cf093719dc",
+    "precedent_resolve.py": "cab1fa4aa8ea2fb89f238a25f206d089b79349fafcbd2bf67d31663a48df105f",
     "precedent_sync_views.py": "030e4d1f492845170f3c723cc7603e9569ec12122b068cb758bc6ce83a047d10",
-    "doc_lint.py": "6417bdcce9e41dddc0ee844a55a50d956ac89e68a093d8e169ef2be59579b0ae",
+    "doc_lint.py": "66a61d65624facdbc4c8851bbb9120744b0f3613fe7af6721a4d8704e367cc31",
     "doc_sync.py": "28648d33bcb37fc6df8f2e44ca58999868cbe3fabc69b86907de3f50a7b39189",
-    "routing_audit.py": "b9bc91a0db35da98788c2e7451f00ba16949bd82a3e32a2d3fedc667b4aca1a6",
+    "routing_audit.py": "f5fb7e3cec0a51d70b8b3844c0ce9896e2ed2bcb0932430ed4e6fd3e98109282",
     "title_case.py": "3bc3e2df0528a24acd22293c54b1cf7c2858c70445bae11787745648247612e5",
     "precedent_source_bootstrap.py": "fd97eb3d3a3cd361b7f6bebd6d78253e6367d77d59a217d017290f4b5c4f4e50",
-    "precedent_check.py": "928399852b1ad3c5c7f81e32211f9e9170a9fb0144d8036c63d3f55e4809d31d",
+    "precedent_check.py": "51d1f8c8964f754a3d9513c28ed24bdc57db7cbdeb74ba9d16656953324ab600",
     "precedent_vendor_engine.py": "67c4c68c2d0ee43dc167a705b9e852e3db01e27ead5a63c3c9f7a2e24e68e52d",
     "routing_scope.json": "70275a23f46c832c2540f27bd790a6c2935c8f5f7acedef1a8596d054b774a45"
   },
