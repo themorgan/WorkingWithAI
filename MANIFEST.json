@@ -26,6 +26,11 @@
       "source": "precedent-individual"
     },
     {
+      "path": "tools/checks/check_my_identity_is_not_private.py",
+      "sha256_16": "79e46c85841d88be",
+      "source": "precedent-individual"
+    },
+    {
       "path": "tools/checks/tests/test_assorted_notes.sh",
       "sha256_16": "a509d2ec2b765672",
       "source": "precedent-individual"
@@ -48,6 +53,11 @@
     {
       "path": "tools/checks/tests/test_file_header.sh",
       "sha256_16": "db3c26cf2bb6d1f7",
+      "source": "precedent-individual"
+    },
+    {
+      "path": "tools/checks/tests/test_my_identity_is_not_private.sh",
+      "sha256_16": "52e9ac1473fa5c4f",
       "source": "precedent-individual"
     },
     {
@@ -131,7 +141,7 @@
       "source": "precedent-team-maintainers"
     }
   ],
-  "generated_at_utc": "2026-09-06T13:01:17+00:00",
+  "generated_at_utc": "2026-09-06T13:26:05+00:00",
   "generated_by": "tools/precedent_materialize.py",
   "note": "DERIVED ARTIFACT -- never hand-edit. Regenerate by re-running precedent_materialize.py with the same --repo/--user-config; this file records exactly what produced the snapshot so drift is visible, per generated-artifact-provenance.",
   "practices": [
@@ -606,6 +616,14 @@
       "slug": "mistakes-become-rules",
       "source": "precedent",
       "source_sha256_16": "b8f096b48b899289"
+    },
+    {
+      "level": "individual",
+      "links_rewritten": false,
+      "sha256_16": "64d34e9e01ce874d",
+      "slug": "my-identity-is-not-private",
+      "source": "precedent-individual",
+      "source_sha256_16": "64d34e9e01ce874d"
     },
     {
       "level": "universal",

@@ -313,7 +313,7 @@ Do not hand-edit the block below — the next sync overwrites it.
 
 <!-- Regenerate with: python3 tools/build_views.py -- do not hand-edit this block, tools/verify_harness.py's regeneration check fails on drift. -->
 
-### Resident block (~659 of 2000 token budget, 10 of 109 practices (1 individual, 3 team, 6 universal))
+### Resident block (~659 of 2000 token budget, 10 of 110 practices (1 individual, 3 team, 6 universal))
 
 **bold-key-phrases.** People don't read; they skim, and bolding makes skimming easy. Bold the key phrases in a document by default, without being asked, scaling with length -- a long paragraph or document is where a skimmer most needs a spine to follow, a short note usually needs little or none.
 
@@ -406,6 +406,8 @@ When about to push after a thread of work:
   todo-gate — add missed ideas, check off finished ones, before every push
 When adding a new rule to a maintained rules document:
   new-rule-placement — place a new rule by subject, slug it, renumber, mirror, re-check
+When adding a term to a scrub or leak blocklist, or flagging an author or date as a disclosure risk:
+  my-identity-is-not-private — never blocklist my name, city, timezone or timestamps; never warn about them
 When adding or reviewing a team-set rule:
   no-duplication — a rule that only restates universal gets dropped
 When an install step adds something GitHub-specific:
