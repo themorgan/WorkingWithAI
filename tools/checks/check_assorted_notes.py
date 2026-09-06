@@ -100,6 +100,17 @@ HEADING_RE = re.compile(r"^## ")
 
 
 def rule_text() -> str:
+    # A materialized check runs in whatever repo its source was resolved
+    # into, and the practice file it quotes is not guaranteed to be there:
+    # a repo that declares the source but never materializes it, or a
+    # practice retired out of the tree, both leave PRACTICE_FILE absent.
+    # Unguarded, this raised FileNotFoundError from inside the violation
+    # PRINTER -- so the finding was correctly detected, correctly printed,
+    # and then buried under a traceback. Found 2026-09-06 running every
+    # source-supplied check against BestPractice; 14 of the 16 shared this
+    # exact body. The Rule text being unavailable is not the check failing.
+    if not PRACTICE_FILE.is_file():
+        return "(practice file not found at %s)" % PRACTICE_FILE
     text = PRACTICE_FILE.read_text(encoding="utf-8")
     m = re.search(r"## Rule\n(.*?)\n## ", text, re.S)
     return m.group(1).strip() if m else "(no Rule found)"

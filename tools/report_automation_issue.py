@@ -91,4 +91,10 @@ def main():
 
 
 if __name__ == '__main__':
+    # `--help` is what anyone types first, and this used to answer with a
+    # usage FAIL. The module docstring is the usage text. (Same fix applied
+    # across the upstream engine's tools on 2026-09-06.)
+    if any(a in ('--help', '-h') for a in sys.argv[1:]):
+        print((__doc__ or '').strip())
+        sys.exit(0)
     sys.exit(main())

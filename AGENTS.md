@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-06 11:50:00 (Buenos Aires) by Morgan F, to version 36 -->
+<!-- Last updated: 2026-09-06 13:24:34 (Buenos Aires) by Morgan F, to version 37 -->
 
 # Repository instructions — read me first
 
@@ -232,8 +232,14 @@ Conflicts in shared files are EXPECTED. The fast, safe path:
   happened on this branch. Check a `## Gates` box only when it is actually
   true for this change — an unchecked box, or a "not applicable" note, is
   normal. Never check every box just to make the form look complete.
-- **Doc references are links** ([practice 11](process/upstream/PRACTICES.md#11-document-references-are-links-approximation-is)):
-  relative markdown links, never bare backticked filenames.
+- **Doc references are links** ([`rule-links`](practices/rule-links.md)):
+  relative markdown links, never bare backticked filenames. The team-level
+  `rule-links` is what is actually in force here — it overrides the
+  universal `doc-references-are-links`, so that slug resolves to no file in
+  this repo's materialized `practices/`. (The old pointer here was a
+  position-numbered anchor into the pre-Precedent
+  [PRACTICES.md](process/upstream/PRACTICES.md), which stopped resolving
+  when that catalogue was split into per-practice files.)
 - **A durable numbered list is cited by permanent slug, never by
   position** ([`durable-list-anchors`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/durable-list-anchors.md)):
   every rule or item in this repo's own essay lists —
