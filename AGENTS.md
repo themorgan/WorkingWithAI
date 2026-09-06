@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-06 11:00:00 (Buenos Aires) by Morgan F, to version 33 -->
+<!-- Last updated: 2026-09-06 11:10:00 (Buenos Aires) by Morgan F, to version 34 -->
 
 # Repository instructions — read me first
 
@@ -44,6 +44,16 @@ person-specific rules win.
 
 ## Build-environment gotchas — do NOT rediscover these
 
+- **A source that was MIGRATED into place, rather than created by
+  `precedent_bootstrap_source.py`, never had its shape checked.** The tool
+  only ever ran for sources it created, so a set assembled by hand from an
+  older system was never asked whether it came out with the files its
+  skeleton ships. 2026-09-06: both migrated sets were missing one —
+  `precedent-team-maintainers` had no `leak-blocklist.txt`,
+  `precedent-individual` no `config.json.sample` — while the set the tool
+  actually bootstrapped had both, and nobody had noticed because nothing
+  was looking. `python3 process/upstream/tools/very_deep_check.py` reports
+  it now, under SOURCE SHAPE.
 - **At session start, run `bash tools/bootstrap.sh` before other work** —
   Claude Code runs it automatically via the SessionStart hook (see
   `.claude/settings.json`), so this matters when the hook did not fire or
