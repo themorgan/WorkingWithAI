@@ -100,6 +100,17 @@
       ],
       "gates_why": "Fires when a convention is violated, which is something a review notices."
     },
+    "cross-source-rollout": {
+      "globs": [
+        "**"
+      ],
+      "why": "A moment, not a place -- what makes a change cross-source-relevant is its meaning, not which file it touched, so no glob identifies it. Routed by the `merge` gate instead.",
+      "decided": "2026-09-05, same session that added very-deep-check's source-presence and stale-branch additions",
+      "gates": [
+        "merge"
+      ],
+      "gates_why": "The rollout (or the blocked-on TODO standing in for it) has to happen before the thread ends, the same timing capture-gate and todo-is-a-handoff already use."
+    },
     "deliverables-look-like-output": {
       "globs": [
         "**/*.md"
@@ -480,6 +491,13 @@
       ],
       "why": "Not a place -- a whole-catalogue sweep is invoked explicitly by a person, not triggered by touching any one file. Reachability comes from its occasion clause.",
       "decided": "2026-09-03, full-practice-audit / routing-audit session"
+    },
+    "very-deep-check": {
+      "globs": [
+        "**"
+      ],
+      "why": "Not a place -- a whole-repo coherence review is invoked explicitly by a person, or after drift-inviting work, not triggered by touching any one file. Reachability comes from its occasion clause, the same as its full-practice-audit and routing-audit siblings.",
+      "decided": "2026-09-05, TODO.md item 17 session (RPP 'very deep check' enumerated and wired)"
     }
   },
   "gates": {

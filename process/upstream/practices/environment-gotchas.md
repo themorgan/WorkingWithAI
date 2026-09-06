@@ -1,6 +1,6 @@
 ---
 slug:        environment-gotchas
-title:       Recorded lore: environment gotchas with their stories
+title:       "Recorded lore: environment gotchas with their stories"
 tier:        resident
 severity:    default
 applies_to:  ["**"]
@@ -34,5 +34,5 @@ whether the note still applies.
 
 ## Install
 A gotchas section in the instructions file
-([templates/AGENTS.md.template](templates/AGENTS.md.template)), plus
+([templates/AGENTS.md.template](../templates/AGENTS.md.template)), plus
 [session-bootstrap](session-bootstrap.md) (encode the fixes as a bootstrap hook so they apply themselves).

@@ -282,7 +282,7 @@ Do not hand-edit the block below — the next sync overwrites it.
 
 <!-- Regenerate with: python3 tools/build_views.py -- do not hand-edit this block, tools/verify_harness.py's regeneration check fails on drift. -->
 
-### Resident block (~659 of 2000 token budget, 10 of 107 practices (1 individual, 3 team, 6 universal))
+### Resident block (~659 of 2000 token budget, 10 of 108 practices (1 individual, 3 team, 6 universal))
 
 **bold-key-phrases.** People don't read; they skim, and bolding makes skimming easy. Bold the key phrases in a document by default, without being asked, scaling with length -- a long paragraph or document is where a skimmer most needs a spine to follow, a short note usually needs little or none.
 
@@ -325,6 +325,8 @@ command printed.
 ```
 When a README or other key file just gained an operational instruction:
   mirror-into-agents — an agent-relevant instruction lands in both AGENTS.md and its human home
+When a change here has implications for how an attached team, individual, or repo-local source should work:
+  cross-source-rollout — roll it out to attached sources now; else a blocked-on TODO
 When a change must propagate across several parallel artifacts:
   parallel-artifact-ledger — ledger the transfer verdict per member, per change
 When a commit fixes, closes, or resolves something a document names in prose as a known, open issue:
@@ -343,6 +345,8 @@ When a numbered list's entries are durable content likely to be cited by positio
   durable-list-anchors — anchor and slug each entry of a durable numbered list, not just its number
 When a paragraph just got a substantial edit, or the piece is done:
   trim-prose — trim a paragraph right after editing it, and before calling it done
+When a person explicitly asks for a "very deep check" across the whole repo, or after work that invites drift:
+  very-deep-check — read the whole repo against itself for drift; never a routine gate
 When a person explicitly asks for a full practice audit (or "practice check") across the whole catalogue:
   full-practice-audit — sweep every source's full catalogue, one practice at a time, on request only
 When a practice lands or a candidate is raised, at any level:
@@ -377,8 +381,6 @@ When an install step adds something GitHub-specific:
   github-setup-disclosed — disclose GitHub-specific setup where the project's people read
 When an unattended scheduled job hits something blocking its normal work:
   automation-issues — a blocked scheduled job opens or updates an issue, not just a log line
-When asked for a "deep check" by name, or after drift-inviting work:
-  deep-check — every mechanical audit, plus a full read of the repo against itself
 When bringing a vendored practice layer into a new or existing repo:
   install — vendor the tree, weave conventions into AGENTS.md, wire checks and manifest
 When building a mechanism that makes something discoverable or reachable:
@@ -406,7 +408,7 @@ When counting or matching entries by name against other entries that may share a
 When creating a file a later regeneration will overwrite:
   derived-file-marker — a regenerated file's header names its source, recipe, and command
 When creating a repo's content/ directory, or migrating a legacy BRAINSTORM.md/NOTES.md/IDEAS.md into the new system:
-  assorted-notes — a default content/ASSORTED_NOTES.md holds notes never referenced elsewhere
+  assorted-notes — a default content/ASSORTED_NOTES.md holds ideas never cited elsewhere (a plain listing link is fine)
 When deciding where a new rule belongs:
   layered-practice-packs — generic, domain, repo-local — each rule to its own layer
 When deciding whether to build or buy a component:
@@ -444,7 +446,7 @@ When merging a branch that touches shared files:
 When migrating a repo off an old practice system onto Precedent:
   migration-scrubs-vocabulary — scrub the old system's vocabulary the same session, not on request
 When my message ends on the standing merge-authorization phrase:
-  go-merge — "Go merge" alone at the end means sync, confirm branch, commit, and merge
+  go-merge — "Go merge" alone at the end means sync, confirm branch, commit, push, PR, and merge
 When naming a git branch in a document, reply, or status update:
   branch-links — link every git branch mentioned to its tree view
 When naming a new file:

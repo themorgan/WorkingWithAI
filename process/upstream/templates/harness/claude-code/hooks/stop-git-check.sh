@@ -19,9 +19,30 @@ if command -v jq >/dev/null 2>&1; then
   [[ "$stop_hook_active" == "true" ]] && exit 0
 fi
 
-# Not a git repo, or a git repo with no remote at all (e.g. a scratch clone)
-# — nothing to push, nothing to check.
+# Not a git repo — nothing to check at all.
 git rev-parse --git-dir >/dev/null 2>&1 || exit 0
+
+# The REPLY gate (`disclose-landing`, `reply-links-files`, `repo-is-memory`,
+# `verify-postcondition`) — the gate-triggered channel's other real
+# invocation point, alongside templates/hooks/pre-push's `push` gate.
+# tools/routing_scope.json names this gate's moment as "the stop hook", but
+# a 2026-09-04 gate audit found this script — the only stop-hook mechanism
+# any adapter has (see templates/harness/README.md) — never called it: the
+# claim and the wiring had drifted apart, the same failure class phase 4
+# found in eight fake `checked_by` claims. It never blocks; printing costs
+# nothing when the Rules are already being followed.
+root="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+if [[ -n "$root" ]]; then
+  for gate_script in "$root/tools/precedent_gate.py" "$root/process/upstream/tools/precedent_gate.py"; do
+    if [[ -f "$gate_script" ]]; then
+      python3 "$gate_script" reply >&2 || true
+      break
+    fi
+  done
+fi
+
+# No remote at all (e.g. a scratch clone) — nothing to push, nothing else to
+# check below.
 [[ -n "$(git remote 2>/dev/null)" ]] || exit 0
 
 if ! git diff --quiet || ! git diff --cached --quiet; then

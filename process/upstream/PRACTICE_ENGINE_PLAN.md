@@ -133,7 +133,7 @@ Each names where the plan addresses it.
 | The anti-bloat guard is prose competing with fifty other prose rules | [The Resident Budget](#the-resident-budget) and [Promotion Criteria](#stage-3--promotion-criteria) |
 | No way to note something without promoting it to a resident rule, so everything worth noticing became one — 21 to 46 rules in three days | [The Candidate](#stage-2--the-candidate) |
 | Only 2 of 46 practices mechanically enforced; `fail-gracefully` asserted, never tested | Phase 5 |
-| [checkin.py](process/upstream/tools/checkin.py) `fresh` is silent on failure, so unreachable reads as "current" | Phase 1 |
+| [checkin.py](tools/checkin.py) `fresh` is silent on failure, so unreachable reads as "current" | Phase 1 |
 | Practices cited by position (169 by-number references), making insertion a cross-repo sweep | Slugs, phase 1 |
 | An unresolved drift notice re-stamps its own date every session, so every session inherits a diff it did not create | Phase 1 tooling pass |
 | The export path is one-way in practice — RPP has essentially never checked anything in | Phase 7, and the branch's re-sync discipline |
@@ -431,22 +431,35 @@ world-readability risk the other three levels are structured around: a
 repo-local practice is already exactly as visible as everything else in
 that repo, to everyone who can already read it.
 
-**Recommended: a subdirectory (`path: "local"`, holding `local/practices/`),
-not the bare repo root (`path: "."`).** Either satisfies "never leaves the
-repo" — `tools/precedent_resolve.py`'s own validation only refuses a path
-OUTSIDE the declaring repo — but `path: "."` puts repo-local's own
-hand-authored `practices/` in the exact same place
-`tools/precedent_materialize.py`'s resolved output goes when a repo
-materializes into its own root, which is the ordinary way a consuming repo
-regenerates its own `AGENTS.md`. Reproduced, not hypothetical: materializing
-a `path: "."` repo-local source into that same repo's own root silently
-overwrote the hand-authored source file the moment another source won
-resolution on a shared slug — no crash, no warning, just different content
-on disk than the person wrote, with nothing left to show it had changed.
-A subdirectory keeps the two physically apart: the hand-authored source at
-`local/practices/`, the generated, resolved view at the repo's own
-`practices/`, never colliding regardless of which source wins any given
-slug.
+**Required: a subdirectory (`path: "local"`, holding `local/practices/`),
+never the bare repo root (`path: "."`) and never any other subdirectory
+name.** This was only ever a *recommendation* through 2026-09-04 — any
+path inside the repo passed `tools/precedent_resolve.py`'s validation, a
+subdirectory was merely "the better choice" — until a cross-repo
+comparison found that being advisory, not enforced, meant nothing actually
+stopped a new dependent repo from picking a different name. Two reasons
+this is now a hard rule instead: (1) reproduced, not hypothetical —
+materializing a `path: "."` repo-local source into that same repo's own
+root silently overwrote the hand-authored source file the moment another
+source won resolution on a shared slug, no crash, no warning, just
+different content on disk than the person wrote, with nothing left to
+show it had changed; (2) the name itself needs to be the same everywhere
+— a session that has seen one Precedent repo's `local/practices/` should
+not have to re-derive the name for the next one, and "recommended" left
+every dependent repo free to pick its own. `tools/precedent_resolve.py`'s
+`load_config` now refuses any repo-local source whose `path` is not
+exactly `"local"`, unconditionally — see `check_source_precedence` in
+`tools/verify_harness.py` for the cases this fires on (bare root, and an
+in-repo but differently-named subdirectory), and
+[CHANGES_TO_TELL_ALEX.md](CHANGES_TO_TELL_ALEX.md)'s 2026-09-04 entry for
+the incident that prompted it. A subdirectory keeps the two physically
+apart regardless: the hand-authored source at `local/practices/`, the
+generated, resolved view at the repo's own `practices/`, never colliding
+regardless of which source wins any given slug. (Universal may still sit
+at `path: "."` — this repo's own self-hosted `precedent.json` does exactly
+that — `tools/precedent_materialize.py`'s level-agnostic
+`_self_referential_sources` guard remains the backstop for that case,
+unaffected by this rule.)
 
 See PRACTICES.md
 practice 23 (layered-practice-packs) for what belongs at this level in the
@@ -948,7 +961,7 @@ BestPractice-only, and BestPractice+RPP.
 
 ### The Converter
 
-Splitting [PRACTICES.md](process/upstream/PRACTICES.md) into per-practice files is mechanical. Splitting each
+Splitting [PRACTICES.md](PRACTICES.md) into per-practice files is mechanical. Splitting each
 practice's prose into Rule / Why / Story is a judgment call, so it is
 **LLM-assisted and human-reviewed, once per practice**. Guard against content
 drift: **no sentence may appear in the output that does not appear in the
@@ -1770,6 +1783,21 @@ just a dated index of what moved and where its record actually lives,
 matching the rest of this document's own current-state discipline
 ([docs-are-current-state](practices/docs-are-current-state.md)).
 
+- **2026-09-04 — v32.** An adopter with no individual or team repo yet had
+  nowhere to start — closed for the case that doesn't need the full
+  creation pipeline. New skeletons
+  ([templates/practice-set-individual/](templates/practice-set-individual/),
+  [templates/practice-set-team/](templates/practice-set-team/)), a new
+  bootstrap tool
+  ([tools/precedent_bootstrap_source.py](tools/precedent_bootstrap_source.py),
+  harness-tested against a real resolve, precedence included), and a real
+  [SETUP.md](SETUP.md)/[INSTALL.md](INSTALL.md) branch replace what used to
+  be a dead end at "do you already have one?" — deliberately independent of
+  [spec/PHASE6_BRIEF.md](spec/PHASE6_BRIEF.md) item 2, which stays open.
+  The procedure itself is
+  [spec/BOOTSTRAP_NEW_SOURCES.md](spec/BOOTSTRAP_NEW_SOURCES.md). Full
+  reasoning, alternatives considered, and what this does not close:
+  [decisions/2026-09-04-bootstrap-new-sources.md](decisions/2026-09-04-bootstrap-new-sources.md).
 - **2026-09-03 — v31.** [SETUP.md](SETUP.md) and
   [templates/GETTING_STARTED.md](templates/GETTING_STARTED.md) now disclose
   the capture-gate mechanism to newcomers, calibrated to what a clean
@@ -1877,7 +1905,7 @@ matching the rest of this document's own current-state discipline
   point of the field, one practice per scope. Two sharing a slug where the
   scopes *overlap* (including one narrower and one `null`/wide-open) is a
   conflict the resolver refuses loudly, the same way
-  [source precedence](#precedence-and-the-one-case-where-the-individual-does-not-win)
+  [source precedence](#precedence-and-the-one-case-precedence-alone-does-not-decide)
   already refuses an ambiguous `overrides:` rather than picking one
   arbitrarily — a resolver that silently picked the first match on disk
   would make "which one applies here" depend on filesystem iteration
@@ -1903,11 +1931,11 @@ matching the rest of this document's own current-state discipline
 
 Open items from the 2026-08-29 review that this rewrite does not resolve:
 
-- **Header capitalization** in [VOICE.md](VOICE.md),
-  [STYLEGUIDE.md](STYLEGUIDE.md) and
+- **Header capitalization** in `VOICE.md`,
+  `STYLEGUIDE.md` and
   [.github/pull_request_template.md](.github/pull_request_template.md) still
   differs from the repo's stated convention. Needs a decision either way.
 - **An allowlist fix is pending export upstream** — the harness template
-  allowlists [practice_audit.py](process/upstream/tools/practice_audit.py) with and without arguments but
-  [doc_lint.py](process/upstream/tools/doc_lint.py) only with, so the merge runbook's own bare invocation prompts on every run
+  allowlists [practice_audit.py](tools/practice_audit.py) with and without arguments but
+  [doc_lint.py](tools/doc_lint.py) only with, so the merge runbook's own bare invocation prompts on every run
   in every repo installing the harness.

@@ -1,8 +1,17 @@
-# How to install BestPractice for you and your team
+# How to install Precedent for you and your team
 
-Instructions for wiring BestPractice into a *dependent repo*, keeping it
+Instructions for wiring Precedent into a *dependent repo*, keeping it
 current, and flowing improvements back. Read [PRACTICES.md](PRACTICES.md)
 first for what each practice is and why.
+
+This document only covers **installing** Precedent. For what working
+with it looks like once it's installed, see
+[documentation/HOW_TO_USE_THIS_TECHNICAL.md](documentation/HOW_TO_USE_THIS_TECHNICAL.md)
+if you're technical, or
+[documentation/HOW_TO_USE_THIS_NONTECHNICAL.md](documentation/HOW_TO_USE_THIS_NONTECHNICAL.md)
+if you're not — and
+[documentation/WHAT_IS_THIS.md](documentation/WHAT_IS_THIS.md) if you
+haven't decided to adopt it yet.
 
 You don't need to run the technical steps yourself to follow, or approve,
 this setup: read just the shaded **"In plain terms"** note at the start of
@@ -15,7 +24,7 @@ To have this conversation live with your assistant rather than reading about
 it, start at [SETUP.md](SETUP.md) instead — this page is the detailed
 reference it works from.
 
-> **In plain terms.** BestPractice is a set of working habits — how a
+> **In plain terms.** Precedent is a set of working habits — how a
 > project remembers its decisions, how contributors avoid overwriting each
 > other's work, and how private information stays private even though this
 > rulebook itself is public. What follows is how that layer gets installed
@@ -30,105 +39,17 @@ their real locations. **Export is abstractive** — when installed practice
 improves, you fold the generic form back into `process/upstream/`. The
 **manifest** records the mapping in both directions; the **audit** makes
 drift and proprietary leakage loud instead of silent. **This is the
-classic model** (§1 below) — a repo with no prior BestPractice install
-that wants Precedent's three-source loader directly, without ever going
-through `process/upstream/`, should read §0 first instead.
-
-## 0. Installing directly onto the Precedent loader (new, 2026-09-03 — read the caveat before using)
-
-> **In plain terms.** This is an alternative to §1 below, for a project
-> that has never installed BestPractice before and wants to start on
-> Precedent's newer three-source system (universal + team + individual)
-> directly, rather than installing the older single-source model first and
-> migrating later. Most projects today should still use §1 — this path is
-> new and has not yet been rehearsed end to end against a real project
-> (see the caveat at the end of this section). [SETUP.md](SETUP.md)'s
-> guided conversation still uses §1 by default; ask for this path by name
-> if you want it.
-
-**When to use this instead of §1**: a genuinely fresh repo, never
-BestPractice-vendored before. A repo that already vendored BestPractice
-the old way and wants to move to the three-source model is a different,
-already-documented case —
-[spec/MIGRATING_EXISTING_INSTALLS.md](spec/MIGRATING_EXISTING_INSTALLS.md),
-not this section.
-
-1. **Vendor the universal source.** Clone Precedent
-   (`precedent-beta-v01` today; `main` once phase 7 merges it back) and
-   copy two things into this repo as ordinary tracked files: its
-   `practices/` tree, into a tracked path of your choosing (recommended:
-   `precedent/universal/practices/`), and its whole `tools/` directory —
-   the engine (`precedent_resolve.py`, `precedent_materialize.py`,
-   `precedent_sync_views.py`, `build_views.py`, `precedent_show.py`,
-   `precedent_paths.py`, `precedent_gate.py`, `precedent_check.py`,
-   `split_practices.py`, and everything else there — `checked_by:
-   "tools/precedent_check.py"` claims are hollow without it) — into this
-   repo's own `tools/`. Record the exact commit you copied from.
-2. **Write `precedent.json`** at the repo root, naming the universal
-   source (`level: "universal"`, `path` pointing at step 1's vendored
-   copy) and, if the administrator answered yes to the team/individual
-   question (step 3 below, same question §1 step 9 asks), a `team` source
-   too — resolved live from a sibling clone, per
-   [spec/MIGRATING_EXISTING_INSTALLS.md](spec/MIGRATING_EXISTING_INSTALLS.md)'s
-   §3, **never vendored**. Never declare a `level: "individual"` entry —
-   `tools/precedent_resolve.py` refuses this by name, and for good
-   reason: naming a person's individual set in a repo anyone else on the
-   team can read leaks its existence and location to them.
-3. **Ask the team/individual-source question** exactly as §1 step 9
-   describes, and wire the individual source's own bootstrap pattern the
-   same way if the person has one — this step doesn't change between the
-   two install models.
-4. **Instantiate `AGENTS.md` from
-   [templates/AGENTS.md.loader.template](templates/AGENTS.md.loader.template)**
-   — not `templates/AGENTS.md.template`, which is §1's classic-model
-   version. Adapt it the same way §1 step 2 describes (real subject
-   matter, keep the section structure), and leave the
-   `<!-- BEGIN GENERATED: precedent-loader -->` /
-   `<!-- END GENERATED -->` markers exactly as the template has them,
-   empty — step 6 fills them in.
-5. **Instantiate everything else §1 step 2 already covers**: `MAP.md`,
-   `TODO.md`, `GLOSSARY.md`, `GETTING_STARTED.md`, `VOICE.md`,
-   `STYLEGUIDE.md`, the README agent-entry block, the harness adapter(s),
-   `tools/bootstrap.sh`, the Actions check, the PR template — unchanged
-   by which install model this is. **Skip** `process/manifest.json` and
-   `process/scrub_blocklist.txt` — those are §1's own bookkeeping for a
-   model this path doesn't use.
-6. **Run `python3 tools/precedent_sync_views.py`** — it resolves every
-   source `precedent.json` declares and writes `AGENTS.md`'s generated
-   block from the result (the resident block, the occasion index, the
-   standing instruction). Confirm it prints `OK`, not `FAIL`, and that
-   the reported resident-block size is inside its stated budget.
-7. **Root-hygiene rule, adapted from §1**: nothing from Precedent lands
-   loose at the repo root except the instantiated files above — the
-   vendored engine and universal catalogue live under `tools/` and step
-   1's tracked path, not scattered elsewhere.
-8. Commit everything on a branch, same as §1.
-
-**The caveat, stated plainly rather than left to be discovered.** This
-section is new. Steps 1–2 and 6 (vendoring, `precedent.json`, and
-`precedent_sync_views.py` actually producing a working `AGENTS.md`) were
-dry-run tested in a scratch fixture while writing this section and do
-work as described — but the section as a whole has not yet been rehearsed
-end to end against a real repo, which
-[spec/PHASE6_BRIEF.md](spec/PHASE6_BRIEF.md) names as still ahead. Two
-things it deliberately does **not** cover, by design and not oversight:
-
-- **`MAP.md`/`GLOSSARY.md` generation.** `tools/precedent_sync_views.py`
-  deliberately does not build these for a consuming repo (see its own
-  docstring) — they stay hand-templated, same as §1.
-- **The creation pipeline isn't wired into a fresh install yet.**
-  Candidates, promotion, and approval routing
-  (`tools/precedent_candidate.py` and friends) exist in Precedent's own
-  `tools/` and in the private team/individual repos, not in what this
-  section vendors. `templates/AGENTS.md.loader.template`'s own
-  merge-runbook export-gate step says so explicitly and names the real
-  mechanism until it is wired in: an ordinary pull request against the
-  vendored source's own upstream repo.
+classic model** (§1) — the right default for essentially every install
+today, and where the sections below start. A repo with no prior
+BestPractice install that wants Precedent's three-source loader directly,
+without ever going through `process/upstream/`, should use §0 instead —
+covered after §1, since it is the rarer path; see §0's own note for when
+it applies.
 
 ## 1. Install into a dependent repo
 
 > **In plain terms.** This is the one-time setup. An assistant copies
-> BestPractice's files into your project, then rewrites a handful of
+> Precedent's files into your project, then rewrites a handful of
 > them to describe *your* project specifically — a map of where things
 > live, a to-do list, a page that welcomes new members. Nothing from
 > this step becomes visible to anyone but you until you (or whoever has
@@ -259,12 +180,12 @@ things it deliberately does **not** cover, by design and not oversight:
    `STYLEGUIDE.md`, `.gitignore`, and the README entry-block edit — plus
    `tools/bootstrap.sh`, `.github/workflows/bestpractice-docs.yml`, and
    `.github/pull_request_template.md`. Everything else that ships
-   with BestPractice (INSTALL.md, PRACTICES.md, SETUP.md,
+   with Precedent (INSTALL.md, PRACTICES.md, SETUP.md,
    GITHUB_ACTIONS.md, MOBILE.md, METHOD.md, GIT.md, templates/, tools/,
    deck/) exists ONLY under `process/upstream/` — never copy any of it to
    the root. A contributor browsing the root should see the project's own
    subject matter plus the instantiated files, and nothing about how
-   BestPractice works internally. The audit enforces this: an
+   Precedent works internally. The audit enforces this: an
    upstream-internal doc found at the root fails unless the manifest
    records it as the repo's own document.
 7. Run `python3 process/upstream/tools/practice_audit.py` — it must pass.
@@ -290,11 +211,39 @@ things it deliberately does **not** cover, by design and not oversight:
    "Source — Who a Practice Belongs To"). This universal layer is one of
    three a project can run. Ask the administrator directly: *"Does your
    team already have its own practices repo — shared conventions beyond
-   what's generic enough for the public BestPractice? Does anyone here
+   what's generic enough for the public Precedent? Does anyone here
    have their own personal one — facts specific to them, like a commit
    identity or a personal shorthand?"* Most projects have neither yet, and
-   that's a complete, valid answer — this step exists so the option is
-   actually offered, not assumed away.
+   that's a complete, valid answer — but don't let it be the end of the
+   question. **This step's default follow-up is an active offer, not a
+   passive one:** if the answer to either half is no, the very next thing
+   this session says is *"Want me to set one up for you right now? It only
+   takes a minute and needs nothing from you but a name."* — not a
+   once-mentioned option left for the administrator to bring back up
+   later. Nobody using Precedent should have to already know
+   `spec/BOOTSTRAP_NEW_SOURCES.md` exists to get offered it.
+   - **If yes, set one (or both) up now — same flow whether this is the
+     first ask or a "yes" to the active offer above:** follow
+     [spec/BOOTSTRAP_NEW_SOURCES.md](spec/BOOTSTRAP_NEW_SOURCES.md) — it
+     creates the repository (or hands the administrator the exact
+     command/click-path where this session can't create one itself), runs
+     `tools/precedent_bootstrap_source.py` to instantiate a real starter
+     set in the right format, and wires the result in exactly as the two
+     "if yes, one already exists" branches below describe. Do this before
+     those two branches, since after it the answer to this step's
+     question is yes.
+   - **If a source already exists (this session's first ask, or a prior
+     session's), confirm this session can actually reach it — right now,
+     in this step, not by assumption.** Call `add_repo` (read access) for
+     it immediately, before moving on. A "yes, we have one" that this
+     session cannot read yet is not wired — it is a promise the *next*
+     step's hook will silently fail to keep. This is exactly the check
+     that would have caught the incident
+     [`practices/session-bootstrap.md`](practices/session-bootstrap.md)'s
+     Story records: an install (or migration) that assumed a named source
+     would resolve on some *future* session, purely because `add_repo` for
+     it was named as a standing instruction, rather than confirming this
+     session — the one doing the wiring — could reach it too.
    - **If yes to a team source:** add `precedent.json` at the project root
      (create it if this is the first source beyond universal) declaring it:
      ```json
@@ -350,19 +299,54 @@ things it deliberately does **not** cover, by design and not oversight:
      exactly that reason. On an ephemeral or cloud coding environment where
      nothing under `$HOME` survives between sessions, that config has to be
      recreated every session — a `SessionStart` hook, committed to the
-     *project* (not the individual repo), that clones the person's set and
-     writes the config file automatically. **That clone still needs the
-     session to actually have git read access to the individual repo
-     first, and on a hosted agent platform that access is not automatic
-     just because the hook exists** — a session's git access is scoped per
-     session, and a shell hook has no way to grant itself more of it. No
-     token or secret closes this gap: it costs nothing but a behavioral
-     instruction, told to the agent itself (not the hook), to extend its
-     own session's access to that repo, unconditionally, before the hook
-     ever runs. See
+     *project* (not the individual repo). Write it with
+     `python3 tools/precedent_bootstrap_source.py --level individual
+     --name <the set's name> --dest <local clone path>
+     --write-session-hook <this project's path>
+     --repo-url <the individual repo's URL>` rather than by hand: it
+     instantiates
+     [`templates/harness/claude-code/hooks/individual-source-bootstrap.sh.template`](templates/harness/claude-code/hooks/individual-source-bootstrap.sh.template)
+     at `.claude/hooks/precedent-individual-bootstrap.sh`, which delegates
+     to the vendored
+     [`tools/precedent_source_bootstrap.py`](tools/precedent_source_bootstrap.py)
+     rather than a one-off hand-written clone.
+
+     **That clone still needs the session to actually have git read access
+     to the individual repo first, and on a hosted agent platform that
+     access is not automatic just because the hook exists** — a session's
+     git access is scoped per session, and a shell hook has no way to
+     grant itself more of it. The consuming repo's own instructions file
+     still needs the standing instruction
+     [spec/MIGRATING_EXISTING_INSTALLS.md](spec/MIGRATING_EXISTING_INSTALLS.md)'s
+     step 4 gives in full (`add_repo` for both sibling sources at the very
+     start of every session, unconditionally) — but **read the next
+     sentence even if you already know that instruction, because two
+     independent adopters had it in place and still hit the gap it was
+     supposed to close**: a
+     `SessionStart` hook runs *entirely to completion* before the agent's
+     own first turn starts — this is a strict ordering, not a race with
+     variable odds (Claude Code's own docs for this hook: synchronous
+     mode "guarantees dependencies are installed before your session
+     starts") — so telling the agent to call `add_repo` "before running
+     any bootstrap script" cannot make that tool call precede a hook the
+     harness has already started running, at any retry count or delay.
+     **An earlier version of this paragraph claimed a retry loop inside
+     the hook closed the gap; a follow-up testing session proved that
+     false by direct test, not just unconvincing in theory** — see
+     [`practices/session-bootstrap.md`](practices/session-bootstrap.md)'s
+     Story for both incidents and this correction. What actually closes
+     it: `tools/precedent_resolve.py`'s own `load_config()` treats a
+     still-missing individual config, on a remote session, as "try the
+     bootstrap hook once more" rather than "no individual set" — and
+     because that re-invocation happens from inside the agent's own turn,
+     after `add_repo` has already run, it succeeds where the original hook
+     invocation structurally could not. The `add_repo` instruction above
+     is still required — the self-heal has nothing to succeed *into*
+     without real repo access — it just isn't, and never was, helped by
+     retrying earlier. See
      [spec/MIGRATING_EXISTING_INSTALLS.md](spec/MIGRATING_EXISTING_INSTALLS.md)'s
      step 4 for the worked pattern, including the access gate and exactly
-     how to close it.
+     how it's closed now.
    - See [examples/practice-set/](examples/practice-set) for what an
      individual set's files actually look like, and
      [PRACTICE_ENGINE_PLAN.md](PRACTICE_ENGINE_PLAN.md)'s Vocabulary table
@@ -387,13 +371,124 @@ appended to the baseline `.gitignore` instantiated above from
 <generated-md-glob> binary   # stop git text-merging generated files
 ```
 
+## 0. Installing directly onto the Precedent loader (new, 2026-09-03 — read the caveat before using)
+
+> **In plain terms.** This is an alternative to §1 above, for a project
+> that has never installed BestPractice before and wants to start on
+> Precedent's newer three-source system (universal + team + individual)
+> directly, rather than installing the older single-source model first and
+> migrating later. Most projects today should still use §1 — this path is
+> new and has not yet been rehearsed end to end against a real project
+> (see the caveat at the end of this section). [SETUP.md](SETUP.md)'s
+> guided conversation still uses §1 by default; ask for this path by name
+> if you want it.
+
+**When to use this instead of §1**: a genuinely fresh repo, never
+BestPractice-vendored before. A repo that already vendored BestPractice
+the old way and wants to move to the three-source model is a different,
+already-documented case —
+[spec/MIGRATING_EXISTING_INSTALLS.md](spec/MIGRATING_EXISTING_INSTALLS.md),
+not this section.
+
+1. **Vendor the universal source.** Clone Precedent
+   (`precedent-beta-v01` today; `main` once phase 7 merges it back) and
+   copy two things into this repo as ordinary tracked files: its
+   `practices/` tree, into a tracked path of your choosing (recommended:
+   `precedent/universal/practices/`), and the loader engine itself.
+   **Don't hand-copy the engine files** — from the Precedent clone, run
+   `python3 tools/precedent_vendor_engine.py seed <this repo's path> --kind consumer`
+   to write the engine into this repo's own `tools/`: the loader
+   (`build_views.py`, `precedent_show.py`, `precedent_paths.py`,
+   `precedent_gate.py`, `split_practices.py`), the multi-source resolver
+   (`precedent_resolve.py`, `precedent_materialize.py`,
+   `precedent_sync_views.py`), the enforced channel (`precedent_check.py`,
+   plus `doc_lint.py`, `doc_sync.py` and `routing_audit.py`, which several
+   universal practices' checks call by name), the individual-source
+   bootstrap (`precedent_source_bootstrap.py`), and the vendoring tool
+   itself — plus a trimmed `routing_scope.json` and a tracked
+   `tools/ENGINE_MANIFEST.json` recording the exact commit and a sha256 per
+   file. See "Keep the vendored engine current (consumer repos)" under §2
+   for what that buys over a hand-copy, and how to refresh it later.
+   **Nothing here is hand-copied any more.** `precedent_check.py` used to
+   be, on the reasoning that the enforced channel is not the loader engine
+   — which left the one file whose absence makes every
+   `checked_by: "tools/precedent_check.py"` claim hollow as the only
+   untracked copy in the tree, with no manifest and no way to tell stale
+   from current. Vendoring it from Precedent's own commit
+   (2026-09-06) is what made a fresh install's first `precedent_check.py`
+   run come back clean.
+2. **Write `precedent.json`** at the repo root, naming the universal
+   source (`level: "universal"`, `path` pointing at step 1's vendored
+   copy) and, if the administrator answered yes to the team/individual
+   question (step 3 below, same question §1 step 9 asks), a `team` source
+   too — resolved live from a sibling clone, per
+   [spec/MIGRATING_EXISTING_INSTALLS.md](spec/MIGRATING_EXISTING_INSTALLS.md)'s
+   §3, **never vendored**. Never declare a `level: "individual"` entry —
+   `tools/precedent_resolve.py` refuses this by name, and for good
+   reason: naming a person's individual set in a repo anyone else on the
+   team can read leaks its existence and location to them.
+3. **Ask the team/individual-source question** exactly as §1 step 9
+   describes, and wire the individual source's own bootstrap pattern the
+   same way if the person has one — this step doesn't change between the
+   two install models.
+4. **Instantiate `AGENTS.md` from
+   [templates/AGENTS.md.loader.template](templates/AGENTS.md.loader.template)**
+   — not `templates/AGENTS.md.template`, which is §1's classic-model
+   version. Adapt it the same way §1 step 2 describes (real subject
+   matter, keep the section structure), and leave the
+   `<!-- BEGIN GENERATED: precedent-loader -->` /
+   `<!-- END GENERATED -->` markers exactly as the template has them,
+   empty — step 6 fills them in.
+5. **Instantiate everything else §1 step 2 already covers**: `MAP.md`,
+   `TODO.md`, `GLOSSARY.md`, `GETTING_STARTED.md`, `VOICE.md`,
+   `STYLEGUIDE.md`, the README agent-entry block, the harness adapter(s),
+   `tools/bootstrap.sh`, the Actions check, the PR template — unchanged
+   by which install model this is. **Skip** `process/manifest.json` and
+   `process/scrub_blocklist.txt` — those are §1's own bookkeeping for a
+   model this path doesn't use.
+6. **Run `python3 tools/precedent_sync_views.py`** — it resolves every
+   source `precedent.json` declares and writes `AGENTS.md`'s generated
+   block from the result (the resident block, the occasion index, the
+   standing instruction). Confirm it prints `OK`, not `FAIL`, and that
+   the reported resident-block size is inside its stated budget.
+7. **Root-hygiene rule, adapted from §1**: nothing from Precedent lands
+   loose at the repo root except the instantiated files above — the
+   vendored engine and universal catalogue live under `tools/` and step
+   1's tracked path, not scattered elsewhere.
+8. Commit everything on a branch, same as §1.
+
+**What has and has not been rehearsed, stated plainly rather than left to
+be discovered.** Every step here has now been walked end to end against a
+scratch repository (2026-09-06, the pre-launch audit): vendor, declare
+sources, instantiate, sync, and run the deep check on the result, which
+comes back clean — 15 checks passed, 0 violated. That pass is what found
+the eight violations a fresh install used to end on, five of which the
+installer could do nothing about, and they are fixed. **What is still
+missing is a real project**: a scratch repository has no subject matter,
+so nothing here has been tested against an adopter actually adapting the
+templates to their own work, which [spec/PHASE6_BRIEF.md](spec/PHASE6_BRIEF.md)
+names as still ahead. Two things this section deliberately does **not**
+cover, by design and not oversight:
+
+- **`MAP.md`/`GLOSSARY.md` generation.** `tools/precedent_sync_views.py`
+  deliberately does not build these for a consuming repo (see its own
+  docstring) — they stay hand-templated, same as §1.
+- **The creation pipeline isn't wired into a fresh install yet.**
+  Candidates, promotion, and approval routing
+  (`tools/precedent_candidate.py` and friends) exist in Precedent's own
+  `tools/` and in the private team/individual repos, not in what this
+  section vendors. `templates/AGENTS.md.loader.template`'s own
+  merge-runbook export-gate step says so explicitly and names the real
+  mechanism until it is wired in: an ordinary pull request against the
+  vendored source's own upstream repo.
+
 ## 2. Take an upstream update
 
 *Knowing* an update exists is automated: the session-start bootstrap runs
 `checkin.py fresh` (one `ls-remote`, notice-only). *Taking* it is the
 deliberate procedure below.
 
-> **In plain terms.** BestPractice itself keeps improving — other
+> **In plain terms.** Precedent itself keeps improving — other
 > projects find better ways of doing things and publish them here. This
 > section is how your project pulls those improvements in later,
 > without losing anything you've customized. Nothing here needs you
@@ -423,10 +518,10 @@ deliberate procedure below.
    sources now** — a project doesn't get only one chance at install to say
    yes, and a "no" the first time (or before the option existed at all)
    isn't permanent. Instantiate them exactly as §1 describes and add
-   manifest entries — a short catch-up prompt ("take the BestPractice
+   manifest entries — a short catch-up prompt ("take the Precedent
    update") is enough to
    propagate a newly introduced template like this to every repo that
-   already installed BestPractice before it existed.
+   already installed Precedent before it existed.
 4. **Fix legacy layout.** Older installs sometimes scattered
    upstream-internal docs (INSTALL.md, GITHUB_ACTIONS.md, …) at the repo
    root; the audit's LAYOUT check now fails on them. Delete the strays —
@@ -439,15 +534,54 @@ deliberate procedure below.
    (export first, or `--force` to overwrite) — then update
    `upstream.commit` (`checkin.py record <upstream-clone>`), run the
    audit `--update-baseline`, commit.
+6. **Keep the vendored engine current (consumer repos).** Steps 1–5 above
+   are about `process/upstream/` — the vendored *content* (universal
+   practices, `PRACTICES.md`, the audit scripts). This step is about the
+   separate tree at this repo's own top-level `tools/`: the loader
+   *engine* (`build_views.py`, `precedent_gate.py`, `precedent_paths.py`,
+   `precedent_show.py`, `split_practices.py`, `precedent_materialize.py`,
+   `precedent_resolve.py`, `precedent_sync_views.py`, and
+   `precedent_vendor_engine.py` itself) that resolves universal + team +
+   individual + repo-local into one materialized tree and regenerates
+   `AGENTS.md`'s loader block from it. If this repo has
+   `tools/ENGINE_MANIFEST.json`, it was vendored with
+   [`tools/precedent_vendor_engine.py`](tools/precedent_vendor_engine.py)'s
+   `'consumer'` kind (§0 step 1, or the migration path
+   [spec/MIGRATING_EXISTING_INSTALLS.md](spec/MIGRATING_EXISTING_INSTALLS.md)
+   step 7 documents) — the same mechanism
+   [spec/BOOTSTRAP_NEW_SOURCES.md](spec/BOOTSTRAP_NEW_SOURCES.md)'s "The
+   vendored engine" section already documents for an individual/team
+   *source* set, extended to a four-source *consumer*'s larger file list.
+   From a sibling BestPractice clone:
+   ```
+   python3 tools/precedent_vendor_engine.py status  ../BestPractice   # drift? behind?
+   python3 tools/precedent_vendor_engine.py refresh ../BestPractice   # pull, re-vendor, re-stamp
+   ```
+   `refresh` reads `kind` back out of `ENGINE_MANIFEST.json` itself — no
+   `--kind` flag needed here, only at first `seed`. It pulls
+   `precedent-beta-v01` specifically (not this clone's configured default
+   branch — see
+   [local/practices/merge-target-is-beta-branch.md](local/practices/merge-target-is-beta-branch.md)),
+   and refuses to overwrite a hand-edited vendored file unless `--force` —
+   this engine carries zero local variance by design, so a local edit is a
+   signal to move the change upstream into Precedent instead. After a
+   refresh, re-run `python3 tools/precedent_sync_views.py --repo . --check`
+   to confirm the freshly refreshed engine still produces the same
+   materialized tree and `AGENTS.md` (or, if the refresh changed loader
+   behavior, review the diff before committing). A repo installed before
+   this mechanism existed (a hand-copy with no `ENGINE_MANIFEST.json`) has
+   nothing to refresh from yet — vendor it for the first time the same way
+   §0 step 1 does, `--kind consumer`, from a sibling BestPractice clone
+   instead of BestPractice's own checkout.
 
 ## 3. (Optional) Give back an improvement — the export gate
 
 > **In plain terms.** This whole section, and §4 after it, are entirely
-> **optional** — nothing about using BestPractice requires your project to
+> **optional** — nothing about using Precedent requires your project to
 > give anything back. They exist for when your project discovers a *better
 > way of working* — not a fact about your business, just a sharper habit
 > (a clearer checklist, a smarter automatic check) — that could help every
-> other project using BestPractice, the same way yours benefited from
+> other project using Precedent, the same way yours benefited from
 > lessons other projects learned first. Think of it as reporting a better
 > recipe back to a shared cookbook, with your kitchen's specific
 > ingredients removed first. If your project chooses to do this, the
@@ -490,8 +624,8 @@ If yes, in the **same branch**:
 > it if your project would rather keep its improvements to itself. For
 > projects that do want to give back, this is where §3's accumulated
 > improvements actually leave your project: on a schedule, they get
-> bundled up and offered to the public BestPractice project as a formal
-> proposal — a pull request — so that everyone else using BestPractice can
+> bundled up and offered to the public Precedent project as a formal
+> proposal — a pull request — so that everyone else using Precedent can
 > learn from what your team figured out. **This is the step where a human
 > reviewer other than you looks at what's being shared**, as a second
 > check that nothing private slipped through the automatic scrub. If
@@ -504,7 +638,7 @@ If yes, in the **same branch**:
 
 **Session scope note (hosted agent platforms).** Repo access is typically
 fixed when a session is created: a session opened on the dependent repo
-alone can usually *read* the public BestPractice repo (clone, fetch, diff)
+alone can usually *read* the public Precedent repo (clone, fetch, diff)
 but **cannot push branches or open PRs there** — writes fail even though
 the day-to-day export loop (§3) works fine, because that loop is purely
 local commits. So: **open check-in sessions with BOTH repos selected at
@@ -512,7 +646,7 @@ creation.** Everything else can be prepared, scrubbed, and audited in
 ordinary single-repo sessions; only this step needs the dual-repo session.
 
 For projects that choose to give back: on a schedule (a recurring
-`TODO.md` item), in a session with access to the BestPractice repo.
+`TODO.md` item), in a session with access to the Precedent repo.
 [tools/checkin.py](tools/checkin.py) drives the mechanical steps against a
 local clone of the upstream repo; the deliberate steps (review, PR, merge)
 stay manual:
@@ -534,7 +668,7 @@ stay manual:
 2. `python3 process/upstream/tools/checkin.py push <upstream-clone>` —
    runs the **scrub audit first (must pass; nothing is copied on failure)**,
    then mirrors the vendored tree into the clone's working tree.
-3. Commit in the clone on a branch and open a PR against BestPractice.
+3. Commit in the clone on a branch and open a PR against Precedent.
    Human review of that PR is the second scrub line — the blocklist catches
    known vocabulary; the reviewer catches what the blocklist doesn't know
    yet (and adds it to the blocklist).
@@ -655,7 +789,7 @@ Checks, in order — any FAIL exits non-zero:
 ## 7. Practice packs (domain layers)
 
 > **In plain terms.** Some rules are too specific to your industry or
-> workflow to belong in the public BestPractice project, but too general
+> workflow to belong in the public Precedent project, but too general
 > to belong only to your one project either — think a compliance
 > procedure that any project in your regulated field would need, not
 > just yours. A "pack" is a separate, smaller rulebook for exactly that
@@ -711,7 +845,7 @@ on, across the whole lifecycle:
   [guided install](SETUP.md) for the conversational version of this.
 - **At every check-in (§4), only if your project gives back at all
   (§3–§4 are both optional):** review the plain-language summary of what's
-  being proposed back to the public BestPractice project, and approve,
+  being proposed back to the public Precedent project, and approve,
   adjust, or hold it back. This is the one recurring moment where content
   leaves your project's boundary, so it's the one worth actually reading
   rather than rubber-stamping.

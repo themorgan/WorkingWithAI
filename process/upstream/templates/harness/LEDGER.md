@@ -1,0 +1,57 @@
+# Harness adapter family — transfer ledger
+
+Practice: [parallel-artifact-ledger](../../practices/parallel-artifact-ledger.md).
+The family: [claude-code/](claude-code/), [codex/](codex/), and
+[gemini-cli/](gemini-cli/) are one design (the practice layer's harness
+wiring) in three parallel forms — see [README.md](README.md) for what each
+adapter actually is. A change to the mechanism inside one presumptively
+transfers to the others; this table records, per change, the verdict for
+each member — *applied as `<what>`*, or *no transfer because `<reason>`* —
+so a headline-level "this one's harness-specific" call can't silently skip
+a mechanism that should have propagated. Origin incident:
+[parallel-artifact-ledger](../../practices/parallel-artifact-ledger.md)'s
+own `## Story`. Add a row here in the same commit as any change to a
+member's wiring, before this file existed retroactively for the one already
+in the tree.
+
+| Date | Originating change | claude-code | codex | gemini-cli |
+|---|---|---|---|---|
+| 2026-07-20 | [`f2078d6`](https://github.com/alex137/BestPractice/commit/f2078d6ef32731e35d30e279c90d72a55e9b6268) — the commit that created this family in the first place, replacing the old flat `CLAUDE.md.template`/`settings.json`/`session-start.sh` layout with `templates/harness/README.md` plus one adapter directory per harness | created together with codex and gemini-cli, as the family's own inception commit — `CLAUDE.md`, `hooks/session-start.sh`, `settings.json` — no transfer verdict applicable (nothing pre-existed for any member to transfer from or to; the three came into being as parallel siblings in the same commit) | created together, same reason as claude-code — `README.md` | created together, same reason as claude-code — `GEMINI.md` |
+| 2026-08-29 | [`9de83a2`](https://github.com/alex137/BestPractice/commit/9de83a283735da32985142bbbb3e3239cf68737f) — Stop hook blocking a turn end with uncommitted/untracked/unpushed work | applied as `hooks/stop-git-check.sh`, wired into `settings.json`'s `Stop` hook | no transfer because codex has no teardown/stop-hook mechanism to wire it into (per [README.md](README.md)'s adapter table — a soft-guarantee harness, not a decision left open) | no transfer because gemini-cli has no teardown/stop-hook mechanism either, same reason as codex |
+| 2026-09-01 | [`969be87`](https://github.com/alex137/BestPractice/commit/969be87c8ad9268795276febe7c597d274e515bd) — an accidental merge of Alex's own in-progress branches added scaffolding to all three adapters, then was reverted the same session as an authorization mistake unrelated to the content's merit | reverted; no transfer verdict applicable — the content never actually landed as this repo's own decision | reverted, same as claude-code | reverted, same as claude-code |
+| 2026-09-03 | [`0980ae3`](https://github.com/alex137/BestPractice/commit/0980ae3bf051a97ac0fb5aecc70e7e6590fb0163) — wired the path-triggered loading channel into a `PreToolUse` hook | applied as `hooks/precedent-paths.sh`, wired into `settings.json`'s `PreToolUse` (matcher `Edit\|Write\|NotebookEdit`) | no transfer because codex has no hook mechanism to wire it into, same reason as the Stop hook rows above | no transfer, same reason as codex |
+| 2026-09-04 | [`36dbeb9`](https://github.com/alex137/BestPractice/commit/36dbeb90e18ffa222c5fca117d00a23ae6feed43) — the gate-channel audit found `reply` cited as firing "at the stop hook" but never actually wired there | applied: `hooks/stop-git-check.sh` now also fires `tools/precedent_gate.py reply` before blocking on git hygiene | no transfer because codex has no teardown/stop-hook mechanism (same as the row above) — `reply` stays cited-only there, by design, not by omission (the commit's own stated reasoning) | no transfer, same reason as codex |
+| 2026-09-05 | [`6e4d48f`](https://github.com/alex137/BestPractice/commit/6e4d48f3ae8e3a2b97bc0de31f940b09812c9f07) — the individual-source `SessionStart` hook race fix added a new, retry-capable canonical hook template | applied as `hooks/individual-source-bootstrap.sh.template`, instantiated per-adopter by `tools/precedent_bootstrap_source.py --write-session-hook` | no transfer because codex has no `SessionStart`-equivalent hook mechanism to wire a bootstrap script into, same reason as every other hook-based row above | no transfer, same reason as codex |
+| 2026-09-06 | [`7fa0dc7`](https://github.com/alex137/BestPractice/commit/7fa0dc7b7ab636dbbe20da114a8654d067f33f82) — corrected the same hook template's header comment: a retry loop inside the `SessionStart` hook cannot close the `add_repo` access gap (a follow-up testing session proved the prior claim false) | applied: `hooks/individual-source-bootstrap.sh.template`'s header comment corrected in place; no mechanism change, no new file | no transfer because codex has no member file this correction touches, same reason as the row above | no transfer, same reason as codex |
+| 2026-09-06 | [`7d4988d`](https://github.com/alex137/BestPractice/commit/7d4988dad5527ee0a436f245b04fe0362e1ea33c) — the pre-launch audit's new-install pass: the `PreToolUse` context hook stopped emitting a permission verdict, and the allowlist was repointed from the classic `process/upstream/tools/` paths (dead in a Precedent-loader install) to the loader's own commands, each listed bare AND with arguments | applied as `hooks/precedent-paths.sh` (dropped `"permissionDecision": "allow"`, keeping `additionalContext`) and `settings.json` (36 allowlist entries, both layouts) | no transfer because codex has neither a hook mechanism to carry the first change nor a permission-allowlist file to carry the second — same reason as every other hook-based row above | no transfer, same reason as codex |
+| 2026-09-06 | [`fc90ea6`](https://github.com/alex137/BestPractice/commit/fc90ea6419dfb30f0361567c07356807eadcc5f8) — the `PreToolUse` context hook stopped re-sending Rules it had already sent this session, keying a scratch `--seen-file` on the session id | applied as `hooks/precedent-paths.sh` (reads `.session_id` off the hook payload, passes `--seen-file $TMPDIR/precedent-paths-seen-<id>.txt` to the vendored engine; the dedup logic itself is in `tools/precedent_paths.py`, per engine-plus-host-shims) | no transfer because codex has no hook mechanism to carry it — same reason as every other hook-based row above | no transfer, same reason as codex |
+| 2026-09-06 | [`b0a5efe`](https://github.com/alex137/BestPractice/commit/b0a5efed4197ecd23486956ab4f95bc844996763) — the product rename to Precedent reached one member file, as a single word inside a shell comment | applied as `hooks/individual-source-bootstrap.sh.template`'s header comment; **no mechanism change** — the row exists because this ledger's own rule is that every commit touching a member carries a verdict, including "nothing to transfer" | no transfer because codex has no member file carrying this comment | no transfer, same reason as codex |
+
+**Mechanically audited as of 2026-09-05**: `tools/precedent_check.py`'s
+`parallel-artifact-ledger` check (`checked_by` on
+[the practice file](../../practices/parallel-artifact-ledger.md)) walks
+`git log --no-merges` for each member directory and fails if any commit's
+hash isn't referenced somewhere above — the "audit that fails any change
+date lacking a complete row" the practice's own Rule names. Found four
+real backfill gaps on its first run (the three rows above added 2026-09-05,
+plus the reply-gate row added 2026-09-04 the day before the audit existed)
+— this file's own retroactive backfill from 2026-09-04 had missed them.
+What it does not check: whether a recorded verdict is *correct*, only that
+a row exists.
+
+**Fifth gap found 2026-09-05, later the same day**, by a pull request (PR)
+unrelated to this file whose continuous integration (CI) still failed
+against it (`tools/precedent_check.py`'s
+`--only parallel-artifact-ledger` fails against `templates/harness/`
+regardless of what a given diff touches, since its scope is the whole
+tree, not the change): the `f2078d6` row above, the family's own
+inception commit, had been missed by every prior backfill pass —
+including the 2026-09-05 one this note originally described as
+exhaustive. The check's own exemption only excludes the *repository's*
+root commit (`git rev-list --max-parents=0`), not each family's own
+first commit; `f2078d6` predates the ledger file itself by five weeks
+and was never a repository root, so nothing had excluded it. Backfilled
+by row instead of by changing the check's exemption logic — whether to
+also exempt each family's own inception commit mechanically is tracked as
+[TODO.md](../../TODO.md) item 18, a separate, smaller follow-up not
+folded into this fix.

@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 (Buenos Aires) by a follow-up session, after old-system vocabulary was found lingering in WorkingWithAI a day past its own migration -->
+<!-- Last updated: 2026-09-05 (Buenos Aires) -- step 7's engine vendoring now uses precedent_vendor_engine.py's 'consumer' kind instead of a hand-copy, piloted against themorgan/HavrutaBrainstorm; before that, 2026-09-03 by a follow-up session, after old-system vocabulary was found lingering in WorkingWithAI a day past its own migration -->
 
 # Migrating a repo that already has BestPractice installed
 
@@ -30,12 +30,12 @@ A repo whose `process/manifest.json` records an `upstream.repo` pointing at
 BestPractice, **and** which has some second vendored tree for
 domain/team/personal rules that did not come from BestPractice itself (a
 "personal pack," a compliance pack, anything installed under
-[layered-practice-packs](../PRACTICES.md#23-a-layered-set-of-practice-packs-generic-domain-repo-local)'s
+[layered-practice-packs](../PRACTICES.md#23-layered-practice-packs-a-domain-layer-between-generic-and-repo-local)'s
 old pack mechanism) — where that second tree's *source* repo has since
 split, or is splitting, into Precedent-shaped team/individual sets. If the
 second tree's source repo has no plans to split, there's nothing to
 migrate: the pack mechanism, described in
-[layered-practice-packs](../PRACTICES.md#23-a-layered-set-of-practice-packs-generic-domain-repo-local)'s
+[layered-practice-packs](../PRACTICES.md#23-layered-practice-packs-a-domain-layer-between-generic-and-repo-local)'s
 own Install section, is still supported for a repo that hasn't migrated to
 the loader.
 
@@ -89,70 +89,107 @@ the loader.
      file directly) carried rules true only of *this* repo's own subject
      matter, per [layered-practice-packs](../PRACTICES.md#23-layered-practice-packs-a-domain-layer-between-generic-and-repo-local)'s
      own decision rule ("only here?"). `path: "local"` — a subdirectory,
-     holding `local/practices/*.md` — not the bare repo root
-     (`path: "."`): the root's own `practices/` is where
+     holding `local/practices/*.md` — **is now the only path
+     `tools/precedent_resolve.py` accepts for this level**, not merely the
+     recommended one: the bare repo root (`path: "."`) is refused
+     outright, because the root's own `practices/` is where
      `tools/precedent_sync_views.py` writes its resolved output, and a
      repo-local source declared there collides with that (see this
      document's own "Known gap" section below for what that collision
-     actually does, reproduced, not theoretical).
+     actually does, reproduced, not theoretical). Every dependent repo
+     ends up with the *same* name for its own local practices, `local/`,
+     rather than each one picking its own.
 
 4. **Wire the individual source's own bootstrap, if the person has one and
    the harness needs it.** For a Claude Code Web session specifically, this
-   is the individual repo's own
-   `claude-web-bootstrap` practice (see that repo's own `practices/` for
-   the exact slug and file) — copy its `bootstrap/session-start.sh` into
-   the target repo as a tracked `.claude/hooks/<name>-bootstrap.sh`
-   (**copied**, not referenced by a `$HOME`-relative path — on a brand-new
-   container nothing under `$HOME` exists yet, so the hook that populates
-   `$HOME` cannot itself live there), and merge its
-   `bootstrap/settings.snippet.json` into the target's own
-   `.claude/settings.json` (append to an existing `SessionStart` array,
-   don't replace it). This makes the individual source resolvable without
-   ever naming it in the repo's own tracked config — but on its own it is
-   **not** zero manual steps on a hosted agent platform, which is the next
-   part of this step, not a separate concern.
+   is [`templates/harness/claude-code/hooks/individual-source-bootstrap.sh.template`](../templates/harness/claude-code/hooks/individual-source-bootstrap.sh.template) —
+   instantiate it with
+   `python3 tools/precedent_bootstrap_source.py --level individual
+   --name <the set's name> --dest <local clone path>
+   --write-session-hook <target repo path> --repo-url <the set's git URL>`
+   (see [BOOTSTRAP_NEW_SOURCES.md](BOOTSTRAP_NEW_SOURCES.md)), which writes
+   the target repo's tracked `.claude/hooks/precedent-individual-bootstrap.sh`
+   for you, and merge its `bootstrap/settings.snippet.json` into the
+   target's own `.claude/settings.json` (append to an existing
+   `SessionStart` array, don't replace it). This makes the individual
+   source resolvable without ever naming it in the repo's own tracked
+   config — but on its own it is **not** zero manual steps on a hosted
+   agent platform, which is the next part of this step, not a separate
+   concern.
 
-   **The session-repo-access gate, and the one behavioral fix that closes
-   it for both sources at once.** On Claude Code Remote/Web, a session's
-   git access is scoped *per session* — attached when it's created, or
-   added mid-session — never inherited just because a project's config or
-   a hook references another repo by name. A brand-new session opened on
-   only the consuming project has no git credentials for either sibling
-   repo at all, so the individual bootstrap hook above, and the team
-   source's live resolution in step 3, both fail on a fresh session with
-   nothing wrong in the code — until this gate is closed.
+   *(Before 2026-09-05 this step said to hand-copy the individual repo's
+   own `claude-web-bootstrap`-practice script. Don't — that per-adopter
+   hand copy is exactly what let the gap below go unnoticed in more than
+   one place at once; see the incident this rewrite is based on below.)*
+
+   **The session-repo-access gate.** On Claude Code Remote/Web, a
+   session's git access is scoped *per session* — attached when it's
+   created, or added mid-session — never inherited just because a
+   project's config or a hook references another repo by name. A
+   brand-new session opened on only the consuming project has no git
+   credentials for either sibling repo at all, so the individual
+   bootstrap hook above, and the team source's live resolution in step 3,
+   both fail on a fresh session with nothing wrong in the code — until
+   this gate is closed.
 
    **This costs no token or secret.** The tool that extends a session's
    scope to another repo (`add_repo` in Claude Code Remote/Web) rides the
    *same* GitHub identity already behind that session; it only ever
    succeeds because the person is already a collaborator on the target
    repo — the same fact that let them declare the source at all. There is
-   nothing to generate, store, or rotate.
+   nothing to generate, store, or rotate. The consuming repo's own
+   `AGENTS.md` still needs the plain instruction this always required:
+   **call `add_repo` (read access) for both the team and individual
+   sibling repos at the very start of every session, before running any
+   bootstrap script, without asking first** — reaching for both is the
+   session's own job every time, since repo access is a per-session grant
+   that does not persist to the next one, and `add_repo` granting only
+   read access is exactly why it doesn't need to wait for a human's yes
+   first.
 
-   **What actually closes the gap is an instruction to the agent, not to
-   the hook.** A `SessionStart` shell hook cannot grant its own session
-   more repo access — that is an agent-level action, not a shell command
-   — so the fix cannot live in `bootstrap/session-start.sh` no matter how
-   it's written. It has to live in the consuming repo's own `AGENTS.md`,
-   as a plain instruction to the agent: **call `add_repo` (read access)
-   for both the team and individual sibling repos at the very start of
-   every session, before running any bootstrap script, without asking
-   first.** Not "if the clone fails, ask to add the repo" — that only
-   works when a human happens to be watching for the failure, and the
-   whole point is that a person only ever attaches the *one* repo they're
-   actually working in. Reaching for the other two has to be the
-   session's own job, every single time, since repo access is a
-   per-session grant that does not persist to the next one. `add_repo`
-   granting only read access, and this being a reversible, no-cost scope
-   extension rather than anything touching credentials or production,
-   is exactly why it doesn't need to wait for a human's yes first.
+   **That instruction is necessary and, on its own, not sufficient — two
+   independent adopters proved it, 2026-09-05.** This step used to claim
+   the `add_repo` instruction above was "the one behavioral fix that
+   closes [the gate] for both sources at once." It is not: a
+   `SessionStart` hook runs *entirely to completion* before the agent's
+   own first turn starts — a strict ordering, not a race with variable
+   odds (Claude Code's own docs for this hook: synchronous mode
+   "guarantees dependencies are installed before your session starts") —
+   so an instruction telling the agent to call `add_repo` "before running
+   any bootstrap script" cannot make that tool call precede a hook the
+   harness has already started running, at any retry count or delay. Both
+   `HavrutaBrainstorm` and (by report) a second, independent repo hit
+   exactly this: the individual source silently wasn't resolving because
+   its bootstrap hook had already run and failed before `add_repo`
+   completed, and nothing said so — it read as "no individual set," not
+   "not yet."
 
-   `WorkingWithAI`'s own migration got this wrong on the first pass —
-   its `AGENTS.md` said to *ask* to add the repo once a clone had already
-   failed — and its fix is the pattern to copy (private repo, not
-   fetchable from here, but the shape: state plainly that no credential
-   is needed, then instruct the agent to call `add_repo` for both sources
-   unconditionally, ahead of the clone hook, every session).
+   **The real fix ships in the engine, and — corrected 2026-09-06 — only
+   one of its two originally-claimed halves actually does anything.**
+   [`tools/precedent_resolve.py`](../tools/precedent_resolve.py)'s own
+   `load_config()` treats "the individual config is absent, and this is a
+   remote session" as "try the bootstrap hook once more" rather than "no
+   individual set" — and because that re-invocation runs from inside the
+   agent's own turn, always after `add_repo`, it succeeds where the
+   original hook invocation structurally could not. This is the entire
+   fix. A first version of this paragraph also credited
+   [`tools/precedent_source_bootstrap.py`](../tools/precedent_source_bootstrap.py)
+   retrying the clone "instead of trying once (the hook usually wins the
+   race on its own now)" — a follow-up testing session proved that false
+   by direct test: every retry the hook itself makes runs before the
+   agent's turn, and therefore `add_repo`, can start, on a genuinely fresh
+   session, without exception. It is not a partial mitigation; it is
+   inert for this specific gap, and previously cost every cold session
+   real, wasted latency. Corrected the same day: that tool now defaults
+   to a single attempt (retrying stays available, opt-in, for an
+   unrelated genuine transient-network case — never claimed as a fix for
+   this one). See
+   [`practices/session-bootstrap.md`](../practices/session-bootstrap.md)'s
+   Story for the incident, and this correction, in full. The `add_repo`
+   instruction above stays required — the self-heal has nothing to
+   retry *into* without it — it is just closed by a hook running again
+   *after* that instruction has taken effect, never by one trying harder
+   *before* it has.
 
 5. **Retire the old vendored pack tree**, but salvage anything in it that
    was never really *pack content* — a generic utility script the pack
@@ -203,21 +240,43 @@ the loader.
 
 7. **Rewrite the consuming repo's own instructions file** (`AGENTS.md` or
    equivalent) with the same `<!-- BEGIN GENERATED: precedent-loader -->` /
-   `<!-- END GENERATED -->` markers this repo's own `AGENTS.md` uses, then
-   run `python3 tools/precedent_sync_views.py` (vendor it alongside
-   `precedent_resolve.py`, `precedent_materialize.py`, `build_views.py`,
-   `precedent_show.py`, `precedent_paths.py`, `precedent_gate.py`, and
-   `split_practices.py` — all together, at the consuming repo's own
-   `tools/`, not nested under `process/upstream/tools/`, which stays
-   reserved for the audit/sync tools that operate on the vendored
-   universal tree itself) to fill them in from the *real* resolved set —
-   universal, team, individual and repo-local, all four. **Don't hand-curate
-   a subset and call it a stopgap**: that was only ever necessary because
-   nothing connected the resolver's output to a generated view; now
-   something does, so there's nothing to approximate by hand. The
-   temptation to inline the team/individual catalogues the way the old
-   pack was inlined in full still applies just as much as it always did —
-   resist it; the generated block *is* the non-duplicated form.
+   `<!-- END GENERATED -->` markers this repo's own `AGENTS.md` uses. Before
+   running it, vendor the whole engine at the consuming repo's own `tools/`
+   — not nested under `process/upstream/tools/`, which stays reserved for
+   the audit/sync tools that operate on the vendored universal tree itself
+   — with
+   `python3 tools/precedent_vendor_engine.py seed <consuming repo> --kind consumer`,
+   run from a Precedent (BestPractice) clone, rather than copying files by
+   hand. It writes a tracked `tools/ENGINE_MANIFEST.json` (the exact commit
+   vendored, a sha256 per file) so a later Precedent update can be picked
+   up with `status`/`refresh` instead of repeating this step from scratch —
+   see [INSTALL.md](../INSTALL.md)'s "Keep the vendored engine current
+   (consumer repos)" step under §2. Then run
+   `python3 tools/precedent_sync_views.py` to fill the markers in from the
+   *real* resolved set — universal, team, individual and repo-local, all
+   four. **Don't hand-curate a subset and call it a stopgap**: that was only
+   ever necessary because nothing connected the resolver's output to a
+   generated view; now something does, so there's nothing to approximate by
+   hand. The temptation to inline the team/individual catalogues the way the
+   old pack was inlined in full still applies just as much as it always did
+   — resist it; the generated block *is* the non-duplicated form.
+
+   **`tools/precedent_check.py` no longer needs a separate hand-copy**
+   (changed 2026-09-06). It used to: the vendoring tool covered the loader
+   engine only, on the reasoning that `checked_by` enforcement is a
+   different channel — so a migration that ran the vendor step and stopped
+   ended up with a working loader and **no enforced-checks tool at all**.
+   Confirmed real, not hypothetical: `themorgan/WorkingWithAI` followed
+   this step exactly as it was then written (2026-09-06) and ended up
+   without `tools/precedent_check.py` for precisely that reason. It is in
+   `CONSUMER_ENGINE_FILES` now, along with the three audit tools several
+   universal practices' checks call by name (`doc_lint.py`, `doc_sync.py`,
+   `routing_audit.py`) and the individual-source bootstrap
+   (`precedent_source_bootstrap.py`), each of which was silently absent for
+   the same reason. Still verify with a real run — `python3
+   tools/precedent_check.py --list`, then a plain invocation — before
+   moving on: the vendoring manifest proves the bytes arrived, not that
+   they run here.
 
 8. **Validate for real**, not against a fixture: `python3
    tools/precedent_sync_views.py --repo .` from the consuming repo, with
@@ -342,12 +401,14 @@ another source shadowed a repo-local slug — reproduced directly, not
 theoretical. Fixed two ways: `precedent_materialize.py` now reads every
 source file into memory before deleting anything, so the crash and the
 silent-overwrite-with-no-trace case are both gone; and repo-local's
-recommended `path` is now a subdirectory (`"local"`, holding
+`path` is now required to be a subdirectory (`"local"`, holding
 `local/practices/`), which keeps the hand-authored source and the
-materialized output physically apart regardless. `path: "."` still
-resolves — `tools/precedent_resolve.py`'s validation only refuses a path
-OUTSIDE the repo — it just isn't the recommended shape anymore for a repo
-that also runs `precedent_sync_views.py` against its own root.
+materialized output physically apart regardless. **2026-09-04 addendum:**
+`path: "."` no longer resolves at all for a repo-local source —
+`tools/precedent_resolve.py`'s `load_config` refuses anything but
+`path: "local"` outright, closing the gap this paragraph originally left
+open (a recommendation a repo could still ignore). See
+[CHANGES_TO_TELL_ALEX.md](../CHANGES_TO_TELL_ALEX.md)'s 2026-09-04 entry.
 
 Tested against a real four-source fixture, not just reasoned about
 (`check_sync_views_cross_source` in
@@ -411,3 +472,37 @@ pattern depends on that had never been exercised against real content
 before. That's exactly why this document keeps asking a migrating session
 to validate for real (step 8) and report back what looked wrong, rather
 than treating a clean run as proof the machinery is correct.
+
+## A third real bug — this document's own step 7, incomplete — found 2026-09-06
+
+Unlike the two above, this one was in the pattern itself, not in tooling
+it depends on. `themorgan/WorkingWithAI` followed step 7 exactly as
+written and ended up with a repo that could load practices but not check
+them: `tools/precedent_check.py` was simply absent, because step 7's file
+list (the nine engine files plus `routing_scope.json`, all handled by
+`precedent_vendor_engine.py --kind consumer`) never named it —
+`precedent_check.py` is deliberately excluded from that tool's scope (a
+separate enforcement channel, not the loader), and the step's prose never
+said so or told the reader to handle it another way. The gap was silent
+until someone actually tried to run a check: `precedent_gate.py` fails
+loudly (`FileNotFoundError` on the missing `routing_scope.json`, in this
+case not the cause but caught the same way), while a missing
+`precedent_check.py` just means the enforced channel doesn't exist —
+nothing errors, there is simply nothing there to catch anything. Fixed
+two ways the same session: step 7 named `precedent_check.py` explicitly as
+a required, separate hand-copy; and (tracked in [TODO.md](../TODO.md)) a
+mechanical check now scans every vendored engine file for hardcoded
+`ROOT / 'tools' / '<name>'` paths and flags any that don't exist locally —
+the same class of gap this one was, caught structurally instead of by a
+downstream crash.
+
+**Fixed a third way on 2026-09-06, which is the one that actually closes
+it**: `precedent_check.py` is in `CONSUMER_ENGINE_FILES`, so the vendoring
+step brings it. A required hand-copy documented in prose is a step a
+migration can skip, which is what this incident was; the point of the
+vendoring tool is that nothing about the engine depends on remembering.
+The same pass found three more files in the same position — `doc_lint.py`,
+`doc_sync.py` and `routing_audit.py`, each named by a universal practice's
+own check — plus `precedent_source_bootstrap.py`, which the
+individual-source session hook execs and whose absence was swallowed
+silently at both call sites.

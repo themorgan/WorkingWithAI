@@ -26,6 +26,16 @@ origin incident happened. Full story, the mechanical check, and the
 retirement condition:
 [local/practices/merge-target-is-beta-branch.md](local/practices/merge-target-is-beta-branch.md).**
 
+**This repo's standing merge-authorization keyword is "Go merge"** —
+standing alone (its own line, or set off by a preceding sentence-ending
+punctuation mark; case-insensitive), it means: commit and push what the
+thread just agreed on to `precedent-beta-v01`, per the paragraph above,
+after the usual checks, without asking again — and then fetch and confirm
+local `HEAD` and `origin/precedent-beta-v01` actually match before calling
+it done ([verify-postcondition](practices/verify-postcondition.md)). See
+[practices/merge-authorization-keyword.md](practices/merge-authorization-keyword.md)
+for the full rule and what does *not* count as standing alone.
+
 **This repo is becoming Precedent, a restructuring of BestPractice — read
 [PRACTICE_ENGINE_PLAN.md](PRACTICE_ENGINE_PLAN.md) first, in full, before
 touching anything else here.** It is the approved plan of record; its "For
@@ -44,7 +54,7 @@ plan's premise.
 
 <!-- Regenerate with: python3 tools/build_views.py -- do not hand-edit this block, tools/verify_harness.py's regeneration check fails on drift. -->
 
-### Resident block (~312 of 2000 token budget, 6 of 59 practices)
+### Resident block (~312 of 2000 token budget, 6 of 61 practices)
 
 **environment-gotchas.** Every expensive environment discovery (a package that must be
 installed, a tool that silently doesn't work, a path that does work) is
@@ -77,6 +87,8 @@ command printed.
 ### Occasion index
 
 ```
+When a change here has implications for how an attached team, individual, or repo-local source should work:
+  cross-source-rollout — roll it out to attached sources now; else a blocked-on TODO
 When a change must propagate across several parallel artifacts:
   parallel-artifact-ledger — ledger the transfer verdict per member, per change
 When a computation books a transfer between two parties:
@@ -87,6 +99,8 @@ When a document presents a script-derived figure:
   docs-track-models — every script-derived figure sits inside a generated block
 When a document replaces or is replaced by an earlier one:
   index-remembers-past — put the lineage in the index, not in either document
+When a person explicitly asks for a "very deep check" across the whole repo, or after work that invites drift:
+  very-deep-check — read the whole repo against itself for drift; never a routine gate
 When a person explicitly asks for a full practice audit (or "practice check") across the whole catalogue:
   full-practice-audit — sweep every source's full catalogue, one practice at a time, on request only
 When a practice lands or a candidate is raised, at any level:
@@ -215,20 +229,27 @@ that skips them in this repo of all places is the joke writing itself.
 | The phase-5 candidate file format (Stage 2) and why universal candidates are GitHub Issues, not files | [spec/CANDIDATE_FORMAT.md](spec/CANDIDATE_FORMAT.md) |
 | The phase-5 deep-check before phase 6: real bugs found and fixed, real candidates landed, open questions for Morgan | [spec/PHASE5_DEEPCHECK.md](spec/PHASE5_DEEPCHECK.md) |
 | The phase-6 brief: what's closed, what's blocked and needs Morgan, what's still ahead and needs the target repo attached | [spec/PHASE6_BRIEF.md](spec/PHASE6_BRIEF.md) |
+| The pre-launch audit (2026-09-06): what a real from-scratch install, a real migration and a real two-team resolve actually broke, what got fixed, and the list of what is still open — **read this before the next audit pass** | [spec/PRELAUNCH_AUDIT.md](spec/PRELAUNCH_AUDIT.md) |
 | The pre-fork catalogue audit: verdict per inherited practice against this plan's architecture | [spec/PREFORK_AUDIT.md](spec/PREFORK_AUDIT.md) |
 | Populating the two private sets (done 2026-09-01, closing phase 3 — brief kept for how it was done) | [spec/PRIVATE_SETS_BRIEF.md](spec/PRIVATE_SETS_BRIEF.md) |
+| Bootstrapping a brand-new individual or team set from zero — the generalized procedure any adopter follows, plus the tool and skeletons it uses | [spec/BOOTSTRAP_NEW_SOURCES.md](spec/BOOTSTRAP_NEW_SOURCES.md), tool at [tools/precedent_bootstrap_source.py](tools/precedent_bootstrap_source.py), skeletons at [templates/practice-set-individual/](templates/practice-set-individual/) and [templates/practice-set-team/](templates/practice-set-team/) |
 | Bringing mechanical checks to the two private sets' practices (open; cannot run from here) | [spec/PRIVATE_ENFORCEMENT_BRIEF.md](spec/PRIVATE_ENFORCEMENT_BRIEF.md) |
 | How a repo that already had BestPractice installed migrates to Precedent's three-source model (the recommended pattern, from the first real dependent-repo test) | [spec/MIGRATING_EXISTING_INSTALLS.md](spec/MIGRATING_EXISTING_INSTALLS.md) |
 | Moving an existing, still-wanted practice from one level to another (team ↔ individual, team ↔ team) — distinct from creating one or retiring one outright | [spec/MOVING_PRACTICES.md](spec/MOVING_PRACTICES.md) |
 | Why the miss rate is what it is, and the plan for it (read before phase 5) | [spec/ATTENTION_CEILING.md](spec/ATTENTION_CEILING.md) |
+| A locked-down access pattern for non-technical contributors (Triage/Read GitHub role + restricted session config + plain-language candidate flow) — drafted, not yet executed | [spec/NONTECHNICAL_CONTRIBUTOR_ACCESS.md](spec/NONTECHNICAL_CONTRIBUTOR_ACCESS.md) |
+| Team-level practice capture for non-technical document work at scale (a shared editorial team repo + a reusable document-project template — the "alternative to Google Docs" use case) — Steps 1-2 done (2026-09-05: `precedent-team-tms` bootstrapped, template built); the pilot itself deliberately still not done | [spec/NONTECHNICAL_TEAM_PRACTICE_CAPTURE.md](spec/NONTECHNICAL_TEAM_PRACTICE_CAPTURE.md) |
+| The reusable document-project template a future pilot instantiates from | [templates/nontechnical-document-project/](templates/nontechnical-document-project/) |
 | Why each practice is routed the way it is (every glob, and every `**`) | [tools/routing_scope.json](tools/routing_scope.json) |
 | The routing audit: coverage check + rotating deep read, on-demand, never a routine gate | [practices/routing-audit.md](practices/routing-audit.md), engine at [tools/routing_audit.py](tools/routing_audit.py) |
 | The full practice audit: manual, whole-catalogue sweep across every source, on request only | [practices/full-practice-audit.md](practices/full-practice-audit.md), engine at [tools/full_practice_audit.py](tools/full_practice_audit.py) |
+| The very deep check: whole-repo coherence review (the audit list inherited from RepoPersonalPreferences (RPP)), on request only, distinct from the full practice audit above | [practices/very-deep-check.md](practices/very-deep-check.md), engine at [tools/very_deep_check.py](tools/very_deep_check.py) |
 | Gaps between what the plan approved and what got built (routing audit's own history, and what else to check) | [spec/UNBUILT_PLAN_ITEMS.md](spec/UNBUILT_PLAN_ITEMS.md) |
 | Practices that fire at a moment rather than in a file | [tools/precedent_gate.py](tools/precedent_gate.py) — `merge`, `review`, `push`, `reply` |
 | Which practices are enforced, and running one check | [tools/precedent_check.py](tools/precedent_check.py) — `--list`, `--explain`, `--only SLUG` |
 | The catalogue's own figures (resident size, Rule share, coverage) | [tools/catalogue_stats.py](tools/catalogue_stats.py) — never hand-type these into prose |
 | Precedent explained for someone adopting it (not a developer) | [ADOPTING.md](ADOPTING.md) |
+| Public-facing pitch and how-to guides, for people outside the project (marketing, technical how-to, non-technical how-to) | [documentation/](documentation/) |
 | Which practice libraries are in force in this repo | [precedent.json](precedent.json) |
 | An example personal practice set | [examples/practice-set/](examples/practice-set/) |
 | The private-term blocklist template (copy into your own private set) | [templates/leak-blocklist.txt.template](templates/leak-blocklist.txt.template) |
@@ -267,6 +288,44 @@ section: an entry with no failure attached fails `--only environment-gotchas`.
   [.claude/hooks/session-start.sh](.claude/hooks/session-start.sh) installs
   it, but only when `CLAUDE_CODE_REMOTE=true`; a local shell has to do it.
 
+- **A git helper that returns stdout and drops the exit code will hand you a
+  ref *name* where a commit hash belongs.** `git rev-parse <missing-ref>` exits
+  non-zero but *prints the ref you asked for* on stdout, so
+  `_git(...'rev-parse', ref) or <fallback>` never falls back: it binds the
+  truthy string `origin/precedent-beta-v01` and carries it forward as a hash.
+  Reached continuous integration on 2026-09-06 as `precedent-beta-v01 @ origin/prece has no
+  tools/build_views.py` — a 12-char truncation of a ref name. Use
+  `rev-parse --verify --quiet` (silent, exit 1) whenever a ref may be absent.
+  Note the trigger: a *non-repo* prints nothing, so the plain form looks fine
+  for years — it only echoes on an **unborn `HEAD`** (a repo with no commits) or
+  a missing ref, which is why this survived so long. Audited across
+  [tools/precedent_vendor_engine.py](tools/precedent_vendor_engine.py) on
+  2026-09-06 and found twice more: `status()` reported a clone that simply has
+  no `SOURCE_BRANCH` as *"upstream has moved — run `refresh`"*, a false alarm
+  wired to what was then a destructive remedy; and `seed()` recorded
+  `source_commit: "HEAD"` into `ENGINE_MANIFEST.json`, after which every later
+  comparison read as "moved" forever. A sweep found the same one-liner in
+  [tools/routing_audit.py](tools/routing_audit.py), where it was persisting a
+  review record at commit `"HEAD"`.
+  The same swallowed exit code hid a failing `git checkout` in a dirty tree
+  during the very session that fixed this, making a broken negative control
+  look like a passing test — so treat "the command reported nothing" as no
+  evidence at all.
+
+- **A stale container is indistinguishable from missing work, and the
+  freshness guard can be the thing that's lying.** On 2026-09-06 a session
+  started on a 5-day-old shallow clone, 207 commits behind
+  `precedent-beta-v01`, and concluded that
+  [tools/precedent_check.py](tools/precedent_check.py) and
+  [.github/workflows/deep-check.yml](.github/workflows/deep-check.yml) "did
+  not exist" — they had landed days earlier.
+  [.claude/hooks/session-start.sh](.claude/hooks/session-start.sh) stayed
+  silent because its `git fetch` failed and it then compared the local commit
+  against an unrefreshed remote-tracking ref: both were equally old, so nothing looked
+  behind. Fixed to warn when the fetch itself fails. Before concluding that
+  anything is missing or unfinished, run `git fetch origin <branch>` and
+  `git rev-list --count HEAD..origin/<branch>`.
+
 - **This repo is normally cloned `--depth 1`, and several tools degrade
   rather than fail on that.** [tools/behavioral_replay.py](tools/behavioral_replay.py)
   divided by the replayable-commit count and took the whole harness down with
@@ -283,6 +342,22 @@ section: an entry with no failure attached fails `--only environment-gotchas`.
   shallow clone for an hour and was not — the bug it was written to catch was
   still there. Use `file:///some/path` to force a genuinely shallow local
   clone.
+
+- **A `scope: 'tree'` check in `tools/precedent_check.py` can silently
+  report a false *pass* on an under-fetched local clone, not just degrade
+  loudly like the two entries above.** `parallel-artifact-ledger` walks
+  `git log --no-merges -- <member-dir>` for each harness-adapter directory
+  and fails on any commit whose hash isn't in `templates/harness/LEDGER.md`.
+  2026-09-05: a local run reported `0 violated`, but GitHub Actions' own
+  checkout of the exact same commit reported a real violation (twice) —
+  `templates/harness/LEDGER.md` was missing a row for a commit from
+  five weeks before the ledger file existed. The local clone's history
+  simply didn't reach back far enough for `git log` to find that commit at
+  all, so the check had nothing to flag — an empty result read as "clean,"
+  not as "couldn't check." `git fetch --depth=1000 origin <branch>` (or
+  deeper — this check needs the *entire* history of the directories it
+  walks, not just enough for the current branch's own diff) before
+  trusting a clean local run of any `scope: 'tree'` check.
 
 - **The leak gate's vocabulary layer fails open unless you also set the git
   config.** `export PRECEDENT_LEAK_BLOCKLIST=<a path OUTSIDE this repo>` is
@@ -309,17 +384,38 @@ section: an entry with no failure attached fails `--only environment-gotchas`.
   warning, and your working tree is clean: `git checkout -B <branch>
   origin/<branch>`.
 
-- **Four inherited audits are NOT APPLICABLE in this repo, and three of them
-  used to say `FAIL` instead.** [tools/practice_audit.py](tools/practice_audit.py)
-  wants a `process/manifest*.json`, [tools/doc_sync.py](tools/doc_sync.py)'s
-  `PAIRS` is empty and [tools/model_audit.py](tools/model_audit.py)'s
-  `INSTRUMENTED` is empty — all correct, because this repo is the upstream
-  they audit a *dependent* repo against. Two of them exited non-zero for that
-  reason and one printed `OK` on having inspected nothing, so the first were
-  permanently red and the last was a confident all-clear from a scan that
-  never ran. They now say NOT APPLICABLE with the reason, and
+- **On a shallow clone, `git merge-base` between two *different* branches
+  can exit 1 ("no common ancestor") even when the branches genuinely share
+  history — and that false negative reads exactly like a destructive
+  force-push.** On 2026-09-06, comparing `precedent-beta-v01` against an
+  older feature branch this way returned exit 1, which looked like proof
+  the two had disjoint, independently-rewritten histories; the session
+  nearly asked the user to confirm a branch rewrite that had never
+  happened. `git merge-base <A> origin/main` and `git merge-base <B>
+  origin/main` each resolved fine in the meantime — the shallow fetch
+  simply didn't reach far enough back to contain the real common ancestor
+  of `<A>` and `<B>` themselves, even though each one individually had a
+  shorter path back to `main`. `git merge-base` exiting 1 is not by itself
+  evidence of a rewritten or discarded branch: `git fetch --unshallow
+  origin` (or a deep enough bounded `git fetch --depth=<N> origin
+  <branch>`, per the entries above) and recheck before concluding
+  anything about two branches' relationship.
+
+- **Inherited audits that have nothing to inspect say so, rather than
+  passing or failing.** [tools/practice_audit.py](tools/practice_audit.py)
+  wants a `process/manifest*.json` this repo does not have, because this
+  repo is the upstream it audits a *dependent* repo against. It used to
+  exit non-zero for that reason — permanently red, so nobody ran it — and
+  [tools/doc_sync.py](tools/doc_sync.py) and
+  [tools/model_audit.py](tools/model_audit.py), whose `PAIRS` and
+  `INSTRUMENTED` lists were then empty, printed `OK` on having inspected
+  nothing: a confident all-clear from a scan that never ran. All three now
+  say NOT APPLICABLE with the reason, and
   [tools/precedent_check.py](tools/precedent_check.py) reports that as
-  skipped rather than passed.
+  skipped rather than passed. (`PAIRS` and `INSTRUMENTED` have both since
+  been filled in here — two documents and one script — so only
+  `practice_audit.py` is still NOT APPLICABLE in this repo. Corrected
+  2026-09-06; the entry had gone on asserting all three were empty.)
 
 - **`git log --format=%P` silently reports no parents at all for a commit
   sitting at a shallow clone's boundary, even when it really has two.** Writing a mechanical check for `precedent-team-maintainers`
@@ -334,6 +430,33 @@ section: an entry with no failure attached fails `--only environment-gotchas`.
   reads that header directly and is unaffected — count lines starting with
   `parent ` instead of parsing `%P`, anywhere a check needs to know a
   shallow-clone-safe parent count or parent list.
+
+- **A consuming repo's own mechanical check against materialized
+  `tools/checks/`/`practices/` output cannot just call
+  `precedent_resolve.load_config()` and trust every source it lists.** A
+  repo-local (or team, or individual) source's own check script belongs
+  under that source's own declared `path` (`local/tools/checks/` for a
+  source declared `path: "local"`), never directly in the consuming
+  repo's own `tools/checks/` — that is `precedent_materialize.py`'s own
+  *output* directory, deleted and rewritten from every declared source on
+  every `precedent_sync_views.py` run, so a hand-added file there
+  survives only until the next sync. A dependent repo built exactly this
+  mechanical check (verify every materialized `check_*.py` has a
+  byte-identical twin in its source) and shipped a first version that
+  resolved sources live to decide what counts as reachable — it passed
+  locally, then failed the repo's own CI on the very next push, on `main`
+  itself, flagging every check script sourced from its team and
+  individual sources. A team source is a live sibling clone outside the
+  repo; an individual source resolves only via a private, non-repo
+  user-level config — neither exists in a bare CI checkout, and never
+  will, so "this source didn't resolve here" is not evidence of an
+  orphaned file. The fix: attribute by the *committed* `MANIFEST.json`'s
+  own `checks` list (already written by `precedent_materialize.py`,
+  recording exactly which source produced each file) instead of by live
+  resolution — a file with no entry there at all is the real signature of
+  a hand-dropped orphan and always fails; a recorded file whose source
+  simply is not reachable in the current environment is skipped, never
+  failed.
 
 ## Working in this repo
 
@@ -359,9 +482,12 @@ section: an entry with no failure attached fails `--only environment-gotchas`.
   **deep check** is the full gate suite run before push or merge:
   `python3 tools/verify_harness.py`, `python3 tools/doc_lint.py`,
   `python3 tools/leak_gate.py`, `python3 tools/precedent_check.py`, and
-  `python3 tools/doc_sync.py` (see [spec/ATTENTION_CEILING.md](spec/ATTENTION_CEILING.md)'s
-  closing section for the exact expected counts). Light check gates a
-  commit; deep check gates a push.
+  `python3 tools/doc_sync.py`. **What matters is `0 failed` and
+  `0 violated`, never a passed/skipped count** — those grow as checks are
+  added, so a figure written down here goes stale by design; see
+  [spec/ATTENTION_CEILING.md](spec/ATTENTION_CEILING.md)'s closing section,
+  which says the same thing and records the audit that found a hardcoded
+  one already wrong. Light check gates a commit; deep check gates a push.
 
 ## Conventions (every session, every reply)
 

@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-04 (Buenos Aires) by a cleanup session -->
+<!-- Last updated: 2026-09-04 (Buenos Aires) by the session merging pull request (PR) #86, folding in a cleanup session's and the phase-6 pre-fork audit session's own entries -->
 
 # Changes to tell Alex
 
@@ -87,6 +87,37 @@ closed something the one above left open.
 See [practices/layered-practice-packs.md](practices/layered-practice-packs.md)
 and [spec/SOURCES.md](spec/SOURCES.md).
 
+### `layered-practice-packs` (BestPractice practice 23) — 2026-09-04, repo-local's `path` is now a fixed rule, not a recommendation
+
+**What changed.** The entry above formalized repo-local as a real source
+but left its subdirectory placement as a *recommendation*: `path: "."` or a
+subdirectory both resolved, with a subdirectory only ever "the better
+choice." Raised by a dependent-repo comparison (`WorkingWithAI` has no
+repo-local practices at all and so no `local/`; `TodoMorgan` does, at
+`local/practices/`, following the recommendation) — the two repos are not
+actually inconsistent with each other, but the convention itself was only
+ever advisory, so a third repo was always free to pick a different
+subdirectory name, or the bare root, and nothing would have refused it.
+`tools/precedent_resolve.py`'s `load_config` now requires a repo-local
+source's `path` to be exactly `"local"` — refused outright otherwise, with
+the reproduced silent-overwrite bug named in the refusal message. This is
+the `checkable-gets-checked` treatment: what was prose-only advice is now
+a mechanical check, with a firing test in `tools/verify_harness.py`
+(`check_source_precedence`'s bare-root and other-subdirectory-name cases).
+
+**What did not change.** `tools/precedent_materialize.py`'s own
+level-agnostic `_self_referential_sources` guard (any source, not just
+repo-local, whose `path` equals the materialize target) is untouched and
+still the backstop for the levels this new rule doesn't reach — universal
+self-hosted at `path: "."` (this repo's own `precedent.json`, unaffected)
+remains legal. Every existing repo-local declaration already in the wild
+(this repo's own `local/`, `TodoMorgan`'s) already used `"local"`, so
+nothing that already followed the recommendation needed to change.
+
+See [practices/layered-practice-packs.md](practices/layered-practice-packs.md),
+[spec/SOURCES.md](spec/SOURCES.md), and
+[PRACTICE_ENGINE_PLAN.md](PRACTICE_ENGINE_PLAN.md)'s "Source" section.
+
 ### The phase-4 enforcement rollout — 24 inherited practices gained a real `checked_by` — 2026-09-03, found doing the pre-fork audit
 
 **What changed.** This branch's own scope statement, above, says plainly:
@@ -132,6 +163,87 @@ the entry above names for enforcement, for a different mechanism.
 
 **What did not change.** Same as above — the Rule text of all six is
 untouched; only where and how often a session sees it changed.
+
+### `session-bootstrap` (BestPractice practice 13) — 2026-09-05
+
+**What changed.** `## Detail` and `## Story` were both empty in this
+practice since phase 1 (Story, like every practice's, was never
+populated at conversion; Detail simply had nothing to hold once added at
+phase 3). Both are now populated, for real: Detail states the specific,
+stronger case where a session-start hook depends on the session's own
+still-forming git access (a privately-scoped individual or team source
+whose clone needs `add_repo` access the agent grants itself, in its own
+turn, which a `SessionStart` hook — running before that turn starts —
+cannot wait for), and Story records the incident that surfaced it: two
+independent Precedent adopters' individual-source bootstrap hook ran
+before the agent's own `add_repo` call could possibly have fired, degraded
+on purpose, and then silently never re-ran. **The fix, and a same-day
+correction to it (2026-09-06):** the first fix shipped a bounded retry in
+[`tools/precedent_source_bootstrap.py`](tools/precedent_source_bootstrap.py)
+alongside a lazy self-heal in
+[`tools/precedent_resolve.py`](tools/precedent_resolve.py)'s
+`load_config()`, framed as two contributing halves. A follow-up testing
+session proved the retry half inert by direct test: a `SessionStart` hook
+runs entirely to completion before the agent's own turn starts, so no
+retry count or delay inside the hook can ever observe `add_repo` access
+appearing — only the lazy self-heal, which runs later from inside the
+agent's own turn, actually closes the gap. Corrected the same day: the
+tool now defaults to a single attempt, and every document (this one
+included) that stated the retry as a real, contributing fix has been
+rewritten. New engine work this branch's own phase structure never
+covered either way, not a change to anything pre-fork.
+
+**What did not change.** `## Rule` — "environment setup... lives in a
+session-start hook... warning loudly on failure" — is untouched,
+byte-for-byte, and so is what `checked_by: `[`tools/precedent_check.py`](tools/precedent_check.py)'s
+`session-bootstrap` check actually enforces (still: a named setup command
+has a real hook running it). This is Detail elaborating a harder case of
+the same Rule, not a new decision. Logged here rather than left silent
+because it moves a phase-3 catalogue figure
+([`spec/PRACTICE_FORMAT.md`](spec/PRACTICE_FORMAT.md)'s "carries a
+Detail" count, 15 → 16) and because this file's own
+`_amended_and_logged` mechanism ([`tools/verify_harness.py`](tools/verify_harness.py))
+needs this slug named here to keep exempting it from the fidelity checks
+honestly —
+it already was, from the unrelated 2026-09-01 slug-link sweep below, but
+that entry doesn't disclose *this* change, so it needed its own.
+
+### `merge-authorization-keyword` (BestPractice practice 45) — 2026-09-06
+
+**What changed.** `## Detail` and `## Story` were both empty in this
+practice since phase 1 — it describes a mechanism a repo *can* adopt, but
+this repo had never actually adopted a specific word for it. Both are now
+populated: Detail names this repo's adopted phrase, "Go merge"
+(case-insensitive), and states concretely what saying it authorizes here
+(commit and push the thread's agreed change to `precedent-beta-v01`, after
+the usual checks); Story records the incident that prompted formalizing
+it — Morgan closed two consecutive messages with "Go merge" before the
+keyword existed as a documented rule. The generic Rule text — one fixed
+word, said standing alone, means "merge as agreed," documented in
+`GLOSSARY.md` — is untouched; this only exercises the practice's own
+`## Install` step for the first time in this repo.
+
+**Same-day addition (2026-09-06):** Detail now also requires that "Go
+merge" isn't treated as fulfilled by the push command reporting success —
+the session must fetch the target branch afterward and confirm local
+`HEAD` and `origin/precedent-beta-v01` actually resolve to the same
+commit ([`verify-postcondition`](practices/verify-postcondition.md)),
+prompted by Morgan asking whether the keyword should require that, not by
+anything having gone wrong. Cross-linked from `AGENTS.md`'s merge-keyword
+paragraph too.
+
+**What did not change.** `## Rule` is untouched, byte-for-byte, and
+`checked_by` is still `null` — this practice has no mechanical check, by
+design (see its own `## Rule`: an ambiguous case is treated as *not*
+authorization, which is a human judgment call, not something a script can
+verify). Logged here rather than left silent because it moves a phase-3
+catalogue figure ([`spec/PRACTICE_FORMAT.md`](spec/PRACTICE_FORMAT.md)'s
+"carries a Detail" count, 16 → 17) and because this file's own
+`_amended_and_logged` mechanism ([`tools/verify_harness.py`](tools/verify_harness.py))
+needs this slug named here to keep exempting it from the fidelity checks
+honestly — it already was, from the unrelated 2026-09-01 slug-link sweep
+below, but that entry doesn't disclose *this* change, so it needed its
+own, same reasoning as the `session-bootstrap` entry above.
 
 ## Cross-referenced only, not a behavior change
 
@@ -217,6 +329,35 @@ them, and a numeric-only citation check can only confirm a cited number
 *exists*, not that it is the *right* one. Worth a note upstream at the next
 real check-in, alongside the existing practice-39 finding.
 
+### Relative-link sweep in `practices/` — 2026-09-06
+
+**What changed.** 67 markdown links across 28 practice files were repointed
+from `](tools/doc_lint.py)` to `](../tools/doc_lint.py)`. A practice file
+lives in `practices/`, one directory below the repo root, so a root-relative
+link inside one resolved to `practices/tools/doc_lint.py` and returned a
+404 on GitHub for anyone reading the practice file itself — which, since
+the fork, is the primary way a practice is read. The newer practice files
+already used `../`; the inherited ones did not, and nothing checked. No
+prose changed: only the target inside the parentheses, never the label.
+
+**Why this needs an entry**, given no Rule's substance moved: the sentence
+identity half of `verify_harness.py`'s fidelity checks compares the rendered
+link target along with the words, so eight practices whose repointed links
+sit inside a checked section needed a disclosed exemption in
+`AMENDED_POST_CONVERSION` — whose own rule is that an exemption must be both
+declared *and* found in this file. The word-multiset checks (no invented
+content, no lost content) still pass untouched, which is the evidence that
+this is a target change and not a text change.
+
+**Affected practices** (the eight carrying the exemption; the other 20 files
+in the sweep needed none): `doc-references-are-links`,
+`github-setup-disclosed`, `lead-with-what-it-is`, `orientation-map`,
+`pr-template-honest-gates`, `quick-index`, `reply-links-files`,
+`section-order-by-frequency`.
+
+**Forward guard.** `tools/doc_lint.py` gained a broken-relative-link check
+so the next one fails a gate instead of a reader.
+
 ## Considered, not changed
 
 ### `practice-export-loop` (BestPractice practice 14) and `mistakes-become-rules` (BestPractice practice 20) — 2026-09-01
@@ -230,6 +371,24 @@ needs, not commentary about a related mechanism elsewhere. That cross-reference
 now lives in `PRACTICE_ENGINE_PLAN.md`'s "What phase 5 should carry forward"
 instead. **Both files are byte-for-byte unchanged from BestPractice's
 original text.**
+
+### `engine-plus-host-shims` (BestPractice practice 50) — 2026-09-03
+
+The new `templates/harness/claude-code/hooks/precedent-paths.sh`
+(a `PreToolUse` hook wiring the path-triggered loading channel into a
+fresh install — see `spec/LOADER.md`) is a real, new *application* of this
+practice's engine-plus-shim split: the vendored engine
+(`tools/precedent_paths.py`) stays the single implementation, the new file
+is a thin host shim that shells out and reshapes its output for Claude
+Code's own hook contract. Considered logging it here as a mechanism
+change and decided against it: this practice's own Rule, Why, and Story
+are untouched, byte-for-byte — a new instance of an existing pattern is
+not a change to what the pattern means or how it works, any more than a
+new practice file citing `code-cites-practice` would be. This is purely
+Precedent-native engine work (phase 6, consumer-repo integration for a
+channel that did not exist pre-fork), so it needs no separate call-out by
+this file's own stated scope; `git log` and `spec/LOADER.md`'s own status
+table already say what was added.
 
 ## Alex's real-time additions
 

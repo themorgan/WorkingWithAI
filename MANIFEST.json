@@ -1,791 +1,1003 @@
 {
   "checks": [
     {
-      "path": "tools/checks/checks/check_assorted_notes.py",
-      "sha256_16": "3e84c691ed1013c5",
+      "path": "tools/checks/check_assorted_notes.py",
+      "sha256_16": "3eb4bfde4a938779",
       "source": "precedent-individual"
     },
     {
-      "path": "tools/checks/checks/check_buenos_aires_dates.py",
-      "sha256_16": "aa99f68f3d98a051",
+      "path": "tools/checks/check_buenos_aires_dates.py",
+      "sha256_16": "974f065959f653a3",
       "source": "precedent-individual"
     },
     {
-      "path": "tools/checks/checks/check_claude_web_bootstrap.py",
-      "sha256_16": "f6a09f2cbbbac42f",
+      "path": "tools/checks/check_claude_web_bootstrap.py",
+      "sha256_16": "7ce6fa64a23b8af4",
       "source": "precedent-individual"
     },
     {
-      "path": "tools/checks/checks/check_commit_author.py",
-      "sha256_16": "ac4e9e88ba32d150",
+      "path": "tools/checks/check_commit_author.py",
+      "sha256_16": "cc5350903ec35189",
       "source": "precedent-individual"
     },
     {
-      "path": "tools/checks/checks/check_file_header.py",
-      "sha256_16": "1310b2bbd291d736",
+      "path": "tools/checks/check_file_header.py",
+      "sha256_16": "ca5ee18a86277b68",
       "source": "precedent-individual"
     },
     {
-      "path": "tools/checks/checks/tests/test_assorted_notes.sh",
-      "sha256_16": "9e04ad237acec924",
+      "path": "tools/checks/tests/test_assorted_notes.sh",
+      "sha256_16": "b2241fe7bbae5e2b",
       "source": "precedent-individual"
     },
     {
-      "path": "tools/checks/checks/tests/test_buenos_aires_dates.sh",
+      "path": "tools/checks/tests/test_buenos_aires_dates.sh",
       "sha256_16": "50f28aff6fbadd5a",
       "source": "precedent-individual"
     },
     {
-      "path": "tools/checks/checks/tests/test_claude_web_bootstrap.sh",
-      "sha256_16": "f03d41c3f4bc5d1f",
+      "path": "tools/checks/tests/test_claude_web_bootstrap.sh",
+      "sha256_16": "79ca22e85913bdb5",
       "source": "precedent-individual"
     },
     {
-      "path": "tools/checks/checks/tests/test_commit_author.sh",
+      "path": "tools/checks/tests/test_commit_author.sh",
       "sha256_16": "68a745df4c667474",
       "source": "precedent-individual"
     },
     {
-      "path": "tools/checks/checks/tests/test_file_header.sh",
-      "sha256_16": "f91b2978ee3bf602",
+      "path": "tools/checks/tests/test_file_header.sh",
+      "sha256_16": "db3c26cf2bb6d1f7",
       "source": "precedent-individual"
     },
     {
-      "path": "tools/checks/checks/check_deep_check.py",
-      "sha256_16": "e4ddd428405d119b",
-      "source": "precedent-team-maintainers"
-    },
-    {
-      "path": "tools/checks/checks/check_default_branch.py",
+      "path": "tools/checks/check_default_branch.py",
       "sha256_16": "40250b1fecb82ae2",
       "source": "precedent-team-maintainers"
     },
     {
-      "path": "tools/checks/checks/check_derived_file_marker.py",
+      "path": "tools/checks/check_derived_file_marker.py",
       "sha256_16": "1d8f7a10cd65a0d5",
       "source": "precedent-team-maintainers"
     },
     {
-      "path": "tools/checks/checks/check_draft_marker.py",
+      "path": "tools/checks/check_draft_marker.py",
       "sha256_16": "60d656ed4a74e118",
       "source": "precedent-team-maintainers"
     },
     {
-      "path": "tools/checks/checks/check_header_caps.py",
+      "path": "tools/checks/check_header_caps.py",
       "sha256_16": "d2b364d3068dcff8",
       "source": "precedent-team-maintainers"
     },
     {
-      "path": "tools/checks/checks/check_light_check.py",
-      "sha256_16": "c24b553d23aa87e5",
+      "path": "tools/checks/check_light_check.py",
+      "sha256_16": "0b773e29d5b7e213",
       "source": "precedent-team-maintainers"
     },
     {
-      "path": "tools/checks/checks/check_no_stale_counts.py",
+      "path": "tools/checks/check_no_stale_counts.py",
       "sha256_16": "5a1b85dcc0181239",
       "source": "precedent-team-maintainers"
     },
     {
-      "path": "tools/checks/checks/check_private_repo_scrub.py",
+      "path": "tools/checks/check_private_repo_scrub.py",
       "sha256_16": "19e0842c86637542",
       "source": "precedent-team-maintainers"
     },
     {
-      "path": "tools/checks/checks/check_session_trailer.py",
+      "path": "tools/checks/check_session_trailer.py",
       "sha256_16": "36584e7f0a94f29e",
       "source": "precedent-team-maintainers"
     },
     {
-      "path": "tools/checks/checks/tests/test_deep_check.sh",
-      "sha256_16": "a87564e7d4645583",
-      "source": "precedent-team-maintainers"
-    },
-    {
-      "path": "tools/checks/checks/tests/test_default_branch.sh",
+      "path": "tools/checks/tests/test_default_branch.sh",
       "sha256_16": "39064c722881ad55",
       "source": "precedent-team-maintainers"
     },
     {
-      "path": "tools/checks/checks/tests/test_derived_file_marker.sh",
+      "path": "tools/checks/tests/test_derived_file_marker.sh",
       "sha256_16": "031f1ceda8c68676",
       "source": "precedent-team-maintainers"
     },
     {
-      "path": "tools/checks/checks/tests/test_draft_marker.sh",
+      "path": "tools/checks/tests/test_draft_marker.sh",
       "sha256_16": "5481246b0c0ac12e",
       "source": "precedent-team-maintainers"
     },
     {
-      "path": "tools/checks/checks/tests/test_header_caps.sh",
+      "path": "tools/checks/tests/test_header_caps.sh",
       "sha256_16": "f4c4ffe5e5ad7233",
       "source": "precedent-team-maintainers"
     },
     {
-      "path": "tools/checks/checks/tests/test_light_check.sh",
-      "sha256_16": "d5e4215dd892b28a",
+      "path": "tools/checks/tests/test_light_check.sh",
+      "sha256_16": "32793264950ab71e",
       "source": "precedent-team-maintainers"
     },
     {
-      "path": "tools/checks/checks/tests/test_no_stale_counts.sh",
+      "path": "tools/checks/tests/test_no_stale_counts.sh",
       "sha256_16": "044d32a65e27459c",
       "source": "precedent-team-maintainers"
     },
     {
-      "path": "tools/checks/checks/tests/test_private_repo_scrub.sh",
+      "path": "tools/checks/tests/test_private_repo_scrub.sh",
       "sha256_16": "6f7d91ed071ed344",
       "source": "precedent-team-maintainers"
     },
     {
-      "path": "tools/checks/checks/tests/test_session_trailer.sh",
+      "path": "tools/checks/tests/test_session_trailer.sh",
       "sha256_16": "3148a8e6abbd5756",
       "source": "precedent-team-maintainers"
     }
   ],
-  "generated_at_utc": "2026-09-04T15:21:10+00:00",
+  "generated_at_utc": "2026-09-06T11:09:02+00:00",
   "generated_by": "tools/precedent_materialize.py",
   "note": "DERIVED ARTIFACT -- never hand-edit. Regenerate by re-running precedent_materialize.py with the same --repo/--user-config; this file records exactly what produced the snapshot so drift is visible, per generated-artifact-provenance.",
   "practices": [
     {
       "level": "universal",
-      "sha256_16": "f7d20f2fce0871f5",
+      "links_rewritten": false,
+      "sha256_16": "efea75fe665649d2",
       "slug": "acronyms-glossary",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "efea75fe665649d2"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "7d7b87e2580bc4b2",
       "slug": "affordance-is-shared",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "7d7b87e2580bc4b2"
     },
     {
       "level": "individual",
-      "sha256_16": "32a4e7b02ba12084",
+      "links_rewritten": false,
+      "sha256_16": "c656ee61e267d103",
       "slug": "assorted-notes",
-      "source": "precedent-individual"
+      "source": "precedent-individual",
+      "source_sha256_16": "c656ee61e267d103"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "5f3238eac9d72cfa",
       "slug": "automation-issues",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "5f3238eac9d72cfa"
     },
     {
       "level": "individual",
+      "links_rewritten": false,
       "sha256_16": "e34fde2b13e8fbd4",
       "slug": "bestpractice-sync",
-      "source": "precedent-individual"
+      "source": "precedent-individual",
+      "source_sha256_16": "e34fde2b13e8fbd4"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "86d8c3cfcc3509aa",
       "slug": "blank-blocklist",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "86d8c3cfcc3509aa"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "dba2ba06d12a9471",
       "slug": "bold-key-phrases",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "dba2ba06d12a9471"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "2b5e83b548087862",
       "slug": "brainstorm-citations",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "2b5e83b548087862"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "8171efeb48f19b20",
       "slug": "branch-links",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "8171efeb48f19b20"
     },
     {
       "level": "individual",
+      "links_rewritten": false,
       "sha256_16": "11028f0c6c9d60c3",
       "slug": "buenos-aires-dates",
-      "source": "precedent-individual"
+      "source": "precedent-individual",
+      "source_sha256_16": "11028f0c6c9d60c3"
     },
     {
       "level": "universal",
-      "sha256_16": "4e06922df514deef",
+      "links_rewritten": false,
+      "sha256_16": "b996baee7422fe66",
       "slug": "build-buy-decompose",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "b996baee7422fe66"
     },
     {
       "level": "universal",
-      "sha256_16": "a38a222959ee490c",
+      "links_rewritten": true,
+      "sha256_16": "52747887be9134bc",
       "slug": "capture-gate",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "184708081bbf8eae"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "801925b79f7a57bc",
       "slug": "check-source-architecture",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "801925b79f7a57bc"
     },
     {
       "level": "universal",
-      "sha256_16": "864aaebf6da2beb8",
+      "links_rewritten": true,
+      "sha256_16": "c9df5b5fedadeafd",
       "slug": "checkable-gets-checked",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "f98aa6b40ab960cb"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "26be2caf801f8c9e",
       "slug": "cite-the-incident",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "26be2caf801f8c9e"
     },
     {
       "level": "individual",
-      "sha256_16": "bdf3aae2e30d455d",
+      "links_rewritten": false,
+      "sha256_16": "ecd65718b9cdce77",
       "slug": "claude-web-bootstrap",
-      "source": "precedent-individual"
+      "source": "precedent-individual",
+      "source_sha256_16": "ecd65718b9cdce77"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "4e0753e6db8eaac7",
       "slug": "code-cites-practice",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "4e0753e6db8eaac7"
     },
     {
       "level": "individual",
+      "links_rewritten": false,
       "sha256_16": "9ebeced5a84ac368",
       "slug": "commit-author",
-      "source": "precedent-individual"
+      "source": "precedent-individual",
+      "source_sha256_16": "9ebeced5a84ac368"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "497fdd6a44724993",
       "slug": "computed-numbers-in-scripts",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "497fdd6a44724993"
     },
     {
       "level": "individual",
+      "links_rewritten": false,
       "sha256_16": "27d0215bbe889c66",
       "slug": "content-directory",
-      "source": "precedent-individual"
+      "source": "precedent-individual",
+      "source_sha256_16": "27d0215bbe889c66"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "e7cc5d4ffc1abf4d",
       "slug": "content-subdirs",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "e7cc5d4ffc1abf4d"
     },
     {
       "level": "universal",
-      "sha256_16": "8586756cf3e750f6",
+      "links_rewritten": true,
+      "sha256_16": "ce98e96e0a1482fe",
       "slug": "convention-to-audit",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "66c87010290b9202"
+    },
+    {
+      "level": "universal",
+      "links_rewritten": false,
+      "sha256_16": "b8454be597fa1cd2",
+      "slug": "cross-source-rollout",
+      "source": "precedent",
+      "source_sha256_16": "b8454be597fa1cd2"
     },
     {
       "level": "team",
-      "sha256_16": "84908c68c8c7ca1d",
-      "slug": "deep-check",
-      "source": "precedent-team-maintainers"
-    },
-    {
-      "level": "team",
+      "links_rewritten": false,
       "sha256_16": "bec3549ad5640644",
       "slug": "default-branch",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "bec3549ad5640644"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "dd77562f80f10c71",
       "slug": "deliverables-look-like-output",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "dd77562f80f10c71"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "90bd0f179684a68f",
       "slug": "derived-file-marker",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "90bd0f179684a68f"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "fdfd50d8c411edf6",
       "slug": "disclose-landing",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "fdfd50d8c411edf6"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "6e7efce08e136e82",
       "slug": "doc-recipe",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "6e7efce08e136e82"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "1ff2eab4d6a97b76",
       "slug": "docs-are-current-state",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "1ff2eab4d6a97b76"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "63ea0b8765639fcc",
       "slug": "docs-track-models",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "63ea0b8765639fcc"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "91f97b16185c2615",
       "slug": "draft-marker",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "91f97b16185c2615"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "9aa17062deb44c01",
       "slug": "drift-notice",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "9aa17062deb44c01"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "a63947daa0024400",
       "slug": "durable-list-anchors",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "a63947daa0024400"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "c2e9948840c7e281",
       "slug": "engine-plus-host-shims",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "c2e9948840c7e281"
     },
     {
       "level": "universal",
-      "sha256_16": "c8154906701c9724",
+      "links_rewritten": true,
+      "sha256_16": "40a08919b89e9fc7",
       "slug": "environment-gotchas",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "0ca93ef76165ba0f"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "f9ff0b76253a275f",
       "slug": "fail-gracefully",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "f9ff0b76253a275f"
     },
     {
       "level": "individual",
+      "links_rewritten": false,
       "sha256_16": "fdef4bb92333c251",
       "slug": "file-header",
-      "source": "precedent-individual"
+      "source": "precedent-individual",
+      "source_sha256_16": "fdef4bb92333c251"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "6d7a964abe276d65",
       "slug": "file-mention-links",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "6d7a964abe276d65"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "262aea177e931155",
       "slug": "frame-from-audience-question",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "262aea177e931155"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "312bf43068e63412",
       "slug": "fresh-check-escalation",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "312bf43068e63412"
     },
     {
       "level": "universal",
-      "sha256_16": "6e03b1a4c275b429",
+      "links_rewritten": true,
+      "sha256_16": "a22d700d321f03d7",
       "slug": "full-practice-audit",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "c8a938fa80beadd9"
     },
     {
       "level": "universal",
-      "sha256_16": "5cfba54b6c2cbb2f",
+      "links_rewritten": true,
+      "sha256_16": "cc6b49dd476125b2",
       "slug": "generated-artifact-provenance",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "ea0ee187490f0408"
     },
     {
       "level": "universal",
-      "sha256_16": "3db9b10a520d6b73",
+      "links_rewritten": true,
+      "sha256_16": "ea69a51e61e80dda",
       "slug": "github-setup-disclosed",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "12e9544b7e595f99"
     },
     {
       "level": "individual",
-      "sha256_16": "7aa019a2a3116f26",
+      "links_rewritten": false,
+      "sha256_16": "f0596a053cc945e2",
       "slug": "go-merge",
-      "source": "precedent-individual"
+      "source": "precedent-individual",
+      "source_sha256_16": "f0596a053cc945e2"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "18fbe12135a24310",
       "slug": "header-caps",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "18fbe12135a24310"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "448c74ca6e49964a",
       "slug": "index-remembers-past",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "448c74ca6e49964a"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "c7100671393391de",
       "slug": "install",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "c7100671393391de"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "556dcbcf77f8ad4e",
       "slug": "label-describes-content",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "556dcbcf77f8ad4e"
     },
     {
       "level": "universal",
-      "sha256_16": "a6aa4253d571c6c4",
+      "links_rewritten": true,
+      "sha256_16": "52751bdbfa85143c",
       "slug": "layered-practice-packs",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "8dfb8f89e4af10ce"
     },
     {
       "level": "universal",
-      "sha256_16": "030547e28fc44f72",
+      "links_rewritten": true,
+      "sha256_16": "772572dac03d6183",
       "slug": "lead-with-what-it-is",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "48553ed1b08c1d94"
     },
     {
       "level": "team",
-      "sha256_16": "c27a78a6780416f7",
+      "links_rewritten": false,
+      "sha256_16": "a2ff9e3ca7bf3da0",
       "slug": "light-check",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "a2ff9e3ca7bf3da0"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "12fafc9e63cb2bde",
       "slug": "list-item-parity",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "12fafc9e63cb2bde"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "004be7f53b0e660c",
       "slug": "list-restraint",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "004be7f53b0e660c"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "12f2744f7fddf1b8",
       "slug": "llm-neutral",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "12f2744f7fddf1b8"
     },
     {
       "level": "individual",
+      "links_rewritten": false,
       "sha256_16": "471123500efd45f7",
       "slug": "match-parsed-id-not-prefix",
-      "source": "precedent-individual"
+      "source": "precedent-individual",
+      "source_sha256_16": "471123500efd45f7"
     },
     {
       "level": "universal",
-      "sha256_16": "cc8673feee16a5b7",
+      "links_rewritten": true,
+      "sha256_16": "812deeb1fe2d74da",
       "slug": "merge-runbook",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "ef5845841b509a12"
     },
     {
       "level": "universal",
-      "sha256_16": "4a25f6a9fa55abda",
+      "links_rewritten": true,
+      "sha256_16": "b17411689c8636a1",
       "slug": "migration-scrubs-vocabulary",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "4a25f6a9fa55abda"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "b36093b7b94feadf",
       "slug": "mirror-into-agents",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "b36093b7b94feadf"
     },
     {
       "level": "universal",
-      "sha256_16": "6fce4a3675a1ba8e",
+      "links_rewritten": false,
+      "sha256_16": "b8f096b48b899289",
       "slug": "mistakes-become-rules",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "b8f096b48b899289"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "40050573902cd706",
       "slug": "name-both-sides-of-ledger",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "40050573902cd706"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "8ac06225fe82d4c8",
       "slug": "new-rule-placement",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "8ac06225fe82d4c8"
     },
     {
       "level": "individual",
-      "sha256_16": "185e18b18139dbc9",
+      "links_rewritten": false,
+      "sha256_16": "65641df686bcdb8e",
       "slug": "next-steps-after-commit",
-      "source": "precedent-individual"
+      "source": "precedent-individual",
+      "source_sha256_16": "65641df686bcdb8e"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "72c37b2b82e36f65",
       "slug": "no-duplication",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "72c37b2b82e36f65"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "a3f5b18b22cce5f1",
       "slug": "no-rewrite-for-warnings",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "a3f5b18b22cce5f1"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "417c901202277b8f",
       "slug": "no-stale-counts",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "417c901202277b8f"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "17c187f079877b27",
       "slug": "no-version-suffix",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "17c187f079877b27"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "4d0cac6ef76db80c",
       "slug": "nonblocking-questions",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "4d0cac6ef76db80c"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "e2bdb5d299b767d3",
       "slug": "one-formatter-per-quantity",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "e2bdb5d299b767d3"
     },
     {
       "level": "universal",
-      "sha256_16": "b01be5dfed57476c",
+      "links_rewritten": true,
+      "sha256_16": "5201db0f54b08d00",
       "slug": "orientation-map",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "dd77b56672551693"
     },
     {
       "level": "universal",
-      "sha256_16": "65adeebc8d8f718f",
+      "links_rewritten": false,
+      "sha256_16": "36486c8556402a92",
       "slug": "outward-summary-discipline",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "36486c8556402a92"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "bb261f0e15377f0a",
       "slug": "pack-sync",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "bb261f0e15377f0a"
     },
     {
       "level": "universal",
-      "sha256_16": "a57f2dd8b255f207",
+      "links_rewritten": true,
+      "sha256_16": "1076e3176df2253b",
       "slug": "parallel-artifact-ledger",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "e67d53250372579a"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "febd24deb81f14ff",
       "slug": "permutation-frontier-column",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "febd24deb81f14ff"
     },
     {
       "level": "universal",
-      "sha256_16": "93b809748f631e5c",
+      "links_rewritten": true,
+      "sha256_16": "b1e8d5f1584728d9",
       "slug": "pr-template-honest-gates",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "d2c51bcea3b5c31d"
     },
     {
       "level": "universal",
-      "sha256_16": "e08260be0b2fbee8",
+      "links_rewritten": true,
+      "sha256_16": "cc591304dd49e33b",
       "slug": "practice-export-loop",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "d6d3ea1a71e45dbb"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "242349c6105feeea",
       "slug": "private-repo-scrub",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "242349c6105feeea"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "653e5bc86b1e86eb",
       "slug": "proportional-emphasis",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "653e5bc86b1e86eb"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "af80043e4c23c902",
       "slug": "push-back",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "af80043e4c23c902"
     },
     {
       "level": "universal",
-      "sha256_16": "70e5ce53d00d0947",
+      "links_rewritten": true,
+      "sha256_16": "4defc18d095d6604",
       "slug": "quick-index",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "154d553865203462"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "18219e2888a66df0",
       "slug": "quiet-checks",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "18219e2888a66df0"
     },
     {
       "level": "universal",
-      "sha256_16": "4331b9c8609e83fd",
+      "links_rewritten": false,
+      "sha256_16": "0dc461d43ae8c1fd",
       "slug": "quote-discipline",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "0dc461d43ae8c1fd"
     },
     {
       "level": "universal",
-      "sha256_16": "94cf927febf67fa6",
+      "links_rewritten": false,
+      "sha256_16": "1a3c9afaaa6cb5aa",
       "slug": "readers-vocabulary",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "1a3c9afaaa6cb5aa"
     },
     {
       "level": "universal",
-      "sha256_16": "b789192e52f4104d",
+      "links_rewritten": true,
+      "sha256_16": "9e407095ef164e4f",
       "slug": "registry-source-of-truth",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "61f30a8fb400e3f6"
     },
     {
       "level": "universal",
-      "sha256_16": "5ef1dd5c27687580",
+      "links_rewritten": true,
+      "sha256_16": "b22b0a4512a2015e",
       "slug": "reply-links-files",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "2571ea93dc4cfa93"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "c1601339647574d8",
       "slug": "repo-is-memory",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "c1601339647574d8"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "978e90829448921f",
       "slug": "resolved-issue-note-updates",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "978e90829448921f"
     },
     {
       "level": "universal",
-      "sha256_16": "f8c822fa7bfc6ee3",
+      "links_rewritten": true,
+      "sha256_16": "53488609e028c60b",
       "slug": "routing-audit",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "30c914d6717725b1"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "74efe522946c53fb",
       "slug": "rule-links",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "74efe522946c53fb"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "106042ab29bc883f",
       "slug": "rule-scope-ask",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "106042ab29bc883f"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "dd45f3c69a0a6f67",
       "slug": "scripts-assert-properties",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "dd45f3c69a0a6f67"
     },
     {
       "level": "universal",
-      "sha256_16": "f5b90d3b4465e888",
+      "links_rewritten": true,
+      "sha256_16": "f579a0b0e2df65bd",
       "slug": "scrub-gate",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "232b5990a8034fe4"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "2251d7bbc40c061f",
       "slug": "search-by-purpose",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "2251d7bbc40c061f"
     },
     {
       "level": "universal",
-      "sha256_16": "ee49ac969b007149",
+      "links_rewritten": false,
+      "sha256_16": "cb958e287d9ed2a0",
       "slug": "second-pass-capture",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "cb958e287d9ed2a0"
     },
     {
       "level": "universal",
-      "sha256_16": "6b7746553de2b88e",
+      "links_rewritten": true,
+      "sha256_16": "cf485574a41d4082",
       "slug": "section-order-by-frequency",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "a6018469807e42be"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "3a3e20fa9eb873eb",
       "slug": "sensitive-characterization-scrub",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "3a3e20fa9eb873eb"
     },
     {
       "level": "universal",
-      "sha256_16": "4046e24f9b29fda9",
+      "links_rewritten": true,
+      "sha256_16": "04eae4f3e9de9f8d",
       "slug": "session-bootstrap",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "67701c2d597f7659"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "ad0af4121f954e05",
       "slug": "session-trailer",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "ad0af4121f954e05"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "9f29475e41d3a8c1",
       "slug": "small-calls",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "9f29475e41d3a8c1"
     },
     {
       "level": "universal",
-      "sha256_16": "da21adb4ef5642e5",
+      "links_rewritten": true,
+      "sha256_16": "ceb8781798604f97",
       "slug": "tabular-shared-renderer",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "59131ccec2588b0c"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "bf8900d6118639cb",
       "slug": "todo-gate",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "bf8900d6118639cb"
     },
     {
       "level": "universal",
-      "sha256_16": "18ec1a1d86da5fc7",
+      "links_rewritten": true,
+      "sha256_16": "1a246ee5978a4e1d",
       "slug": "todo-is-a-handoff",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "93750ff1e0c164d1"
     },
     {
       "level": "team",
+      "links_rewritten": false,
       "sha256_16": "2563a16cc785ec9d",
       "slug": "trim-prose",
-      "source": "precedent-team-maintainers"
+      "source": "precedent-team-maintainers",
+      "source_sha256_16": "2563a16cc785ec9d"
     },
     {
       "level": "universal",
-      "sha256_16": "8967dea0b1d93fb0",
+      "links_rewritten": true,
+      "sha256_16": "807975ca3ad1bd41",
       "slug": "two-check-levels",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "734c608f5a28d8ee"
     },
     {
       "level": "universal",
-      "sha256_16": "4d8a8da9b87d1de4",
+      "links_rewritten": false,
+      "sha256_16": "6d903b708e5b5499",
       "slug": "variant-re-derives",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "6d903b708e5b5499"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "aa81aecab6d221e3",
       "slug": "verify-decomposition",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "aa81aecab6d221e3"
     },
     {
       "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "bae0c1938c40e56f",
       "slug": "verify-postcondition",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "bae0c1938c40e56f"
     },
     {
       "level": "universal",
+      "links_rewritten": true,
+      "sha256_16": "e45fd319c9b097d9",
+      "slug": "very-deep-check",
+      "source": "precedent",
+      "source_sha256_16": "eecc426a7526d42b"
+    },
+    {
+      "level": "universal",
+      "links_rewritten": false,
       "sha256_16": "fb02d23794d40a50",
       "slug": "volatile-rules-carry-dates",
-      "source": "precedent"
+      "source": "precedent",
+      "source_sha256_16": "fb02d23794d40a50"
     }
   ],
   "resident": {
@@ -849,7 +1061,7 @@
     {
       "level": "universal",
       "name": "precedent",
-      "path": "/home/user/WorkingWithAI/process/upstream"
+      "path": "/home/user/workingwithai/process/upstream"
     },
     {
       "level": "individual",

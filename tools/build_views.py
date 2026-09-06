@@ -39,16 +39,35 @@ Run:
       # BestPractice itself" prose); a team or individual source repo
       # vendoring this same file for its own practices/ catalogue wants
       # the resident-block/occasion-index mechanism, not those two.
+  python3 tools/build_views.py --repo DIR [--agents-only] [--check]
+      # operate on DIR's practices/AGENTS.md/MAP.md/GLOSSARY.md instead of
+      # this repo's own -- --repo defaults to this script's own parent
+      # directory when omitted. The "## The engine" table inside MAP.md
+      # still always lists the tools sitting beside THIS SCRIPT, regardless
+      # of --repo: that table describes the engine's own code inventory,
+      # not the target repo's content, the same "sibling files travel with
+      # the script, not with --repo" rule sibling-module imports follow.
 """
 import collections, json, pathlib, re, sys
 
-ROOT = pathlib.Path(__file__).resolve().parents[1]
+# _ENGINE_DIR (where this file itself lives) is only ever used for the
+# sibling-module import and the MAP.md "## The engine" listing below --
+# both describe the engine's own code, which travels with wherever this
+# script physically is, never with --repo. ROOT is which repo's CONTENT
+# (practices/, AGENTS.md, MAP.md, GLOSSARY.md) to read and (re)generate; it
+# defaults to the engine's own parent directory but is overridable with
+# --repo in main() -- see precedent_show.py for the fuller rationale, and
+# precedent_sync_views.py's own docstring for the trap this avoids
+# (computing ROOT from `__file__` alone breaks the moment this script is
+# relocated or vendored somewhere other than <repo>/tools/whatever.py).
+_ENGINE_DIR = pathlib.Path(__file__).resolve().parent
+ROOT = _ENGINE_DIR.parent  # unchanged default when --repo is omitted
 PRACTICES_DIR = ROOT / 'practices'
 AGENTS_MD = ROOT / 'AGENTS.md'
 MAP_MD = ROOT / 'MAP.md'
 GLOSSARY_MD = ROOT / 'GLOSSARY.md'
 
-sys.path.insert(0, str(ROOT / 'tools'))
+sys.path.insert(0, str(_ENGINE_DIR))
 import split_practices as sp
 
 BEGIN_MARKER = '<!-- BEGIN GENERATED: precedent-loader -->'
@@ -62,9 +81,10 @@ def _approx_tokens(text):
     return int(len(WORD_RE.findall(text)) * 1.3)
 
 
-def load_practices():
+def load_practices(practices_dir=None):
+    practices_dir = practices_dir if practices_dir is not None else PRACTICES_DIR
     out = []
-    for f in sorted(PRACTICES_DIR.glob('*.md')):
+    for f in sorted(practices_dir.glob('*.md')):
         fm, sections = sp._read_practice_file(f)
         out.append((fm, sections, f))
     return out
@@ -228,11 +248,43 @@ def build_loader_block(practices, source_levels=None):
     return '\n'.join(lines), token_count, len(resident)
 
 
-def render_agents_md(practices):
-    original = AGENTS_MD.read_text(encoding='utf-8')
-    block, _tokens, _n = build_loader_block(practices)
+def source_levels_from_manifest(root):
+    """{slug: level} read back out of a consuming repo's MANIFEST.json, or
+    None where there is no such file.
+
+    WHY THIS EXISTS. precedent_sync_views.py renders the loader block with
+    `source_levels=` (it has the resolution in hand), and this tool's own
+    main() rendered it WITHOUT -- so the two wrote different header lines
+    for the same catalogue ("6 of 61 practices (6 universal)" vs "6 of 61
+    practices"). In a consuming repo, where both are documented commands,
+    that is a permanent unresolvable flip-flop: session start runs
+    precedent_sync_views.py, then `build_views.py --check` -- which
+    generated-artifact-provenance runs on every precedent_check.py --
+    reports the block as hand-edited or stale, forever, whichever ran
+    last. MANIFEST.json is precedent_materialize.py's own record of which
+    source produced each practice, so reading it here makes the two
+    renderers agree by construction rather than by both remembering to
+    pass the same argument. Absent in a single-source repo (Precedent
+    itself), where there are no levels to break down and the header is
+    unchanged."""
+    manifest = root / 'MANIFEST.json'
+    if not manifest.is_file():
+        return None
+    try:
+        data = json.loads(manifest.read_text(encoding='utf-8'))
+    except (json.JSONDecodeError, OSError):
+        return None
+    levels = {e['slug']: e['level'] for e in data.get('practices', [])
+              if 'slug' in e and 'level' in e}
+    return levels or None
+
+
+def render_agents_md(practices, agents_md=None, source_levels=None):
+    agents_md = agents_md if agents_md is not None else AGENTS_MD
+    original = agents_md.read_text(encoding='utf-8')
+    block, _tokens, _n = build_loader_block(practices, source_levels=source_levels)
     if BEGIN_MARKER not in original or END_MARKER not in original:
-        sys.exit("build_views FAIL: AGENTS.md has no "
+        sys.exit(f"build_views FAIL: {agents_md} has no "
                  f"{BEGIN_MARKER} / {END_MARKER} markers to regenerate between.")
     pre = original[:original.index(BEGIN_MARKER)]
     post = original[original.index(END_MARKER) + len(END_MARKER):]
@@ -275,7 +327,7 @@ def render_map_md(practices):
         "| Path | What it is |",
         "|---|---|",
     ]
-    for name in sorted(p.name for p in (ROOT / 'tools').glob('*.py')):
+    for name in sorted(p.name for p in _ENGINE_DIR.glob('*.py')):
         try:
             desc = TOOLS_DESCRIPTIONS[name]
         except KeyError:
@@ -302,16 +354,21 @@ def render_map_md(practices):
 TOOLS_DESCRIPTIONS = {
     'behavioral_replay.py': "Measures the path-triggered loader against this repo's own commit history",
     'build_views.py': "This file, GLOSSARY.md, and AGENTS.md's loader block — generated views",
+    'build_codeowners.py': "A team practice set's CODEOWNERS, generated from its own approvers.json",
     'catalogue_stats.py': "The figures about the catalogue that other documents cite, computed rather than hand-typed",
     'checkin.py': "Drives the periodic check-in (INSTALL.md §4) mechanically",
     'doc_html.py': "The one sortable-table HTML renderer for repo documents",
     'doc_lint.py': "Markdown hygiene checks — strikethrough, links, acronyms",
     'doc_sync.py': "Keeps script-generated blocks inside documents in sync with what the script emits",
+    'full_practice_audit.py': "The full practice audit — on-demand, whole-catalogue sweep across every source",
     'leak_gate.py': "The push-time leak gate — structural rules always, private-term blocklist when configured",
     'model_audit.py': "Runs each computing script's own self-assertions and checks the figures it recites",
     'practice_audit.py': "Audits the practice-export layer for a repo that vendors one (this repo does not)",
+    'practice_simulation.py': "Synthetic scenario generation for routing quality — invented cases, never a replayed benchmark",
     'precedent_check.py': "The ENFORCED loading channel — runs every practice's `checked_by` script",
     'precedent_gate.py': "The GATE-TRIGGERED loading channel — Rules for a named moment (merge, review, push, reply)",
+    'precedent_bootstrap_source.py': "Instantiates a brand-new individual or team practice set from a skeleton, for an adopter who has neither yet",
+    'precedent_source_bootstrap.py': "Retry-capable clone-or-pull for a privately-scoped individual source, used by its SessionStart hook and by precedent_resolve.py's own lazy self-heal",
     'precedent_candidate.py': "Stage 2 (phase 5) — raise, list and expire creation-pipeline candidates",
     'precedent_detect.py': "Stage 1 (phase 5) — the mechanical half of candidate detection",
     'precedent_land.py': "Stage 5 (phase 5) — writes an approved candidate into practices/, enforcing the registered-check invariant",
@@ -321,12 +378,16 @@ TOOLS_DESCRIPTIONS = {
     'precedent_resolve.py': "Resolves the universal, team and individual sources into one set, by precedence",
     'precedent_retire.py': "Stage 6 (phase 5) — the periodic retirement report; proposes, never acts",
     'precedent_show.py': "Loads a practice's Rule/Detail/Why/Story/Install — the one code path that reads a practice file",
+    'precedent_simulate.py': "One command over the reach/mechanical-correctness and synthetic-batch tiers, plus the running trend log",
     'precedent_sync_views.py': "One command for a consuming repo: precedent_materialize.py + build_views.py --agents-only, glued together",
+    'precedent_vendor_engine.py': "Vendors the minimal source-repo engine (this file, precedent_gate/paths/show.py, split_practices.py, a trimmed routing_scope.json) into an individual or team set, and keeps it refreshable",
     'resplit_sections.py': "The editorial Rule/Detail/Why/Story/Install split, applied from tools/section_split.json",
+    'routing_audit.py': "The routing audit — mechanical coverage check plus a rotating deep-read slice",
     'routing_eval.py': "Measures whether trigger-based loading actually beats carrying the whole catalogue",
     'split_practices.py': "PRACTICES.md ↔ practices/ converter",
     'table_fmt.py': "One formatter per quantity kind — the engine",
     'verify_harness.py': "The verification harness — run before trusting any change here",
+    'very_deep_check.py': "The very deep check — on-demand whole-repo coherence review, distinct from full-practice-audit",
 }
 
 
@@ -363,7 +424,21 @@ def render_glossary_md(practices):
 
 
 def main():
-    check = '--check' in sys.argv
+    argv = sys.argv[1:]
+    repo = None
+    if '--repo' in argv:
+        i = argv.index('--repo')
+        if i + 1 >= len(argv):
+            sys.exit("build_views FAIL: --repo needs a value.")
+        repo = argv[i + 1]
+        argv = argv[:i] + argv[i + 2:]
+    root = pathlib.Path(repo).resolve() if repo else ROOT
+    practices_dir = root / 'practices'
+    agents_md = root / 'AGENTS.md'
+    map_md = root / 'MAP.md'
+    glossary_md = root / 'GLOSSARY.md'
+
+    check = '--check' in argv
     # --agents-only: regenerate just AGENTS.md's loader block (resident
     # block, occasion index, standing instruction), skip MAP.md and
     # GLOSSARY.md. render_map_md()'s TOOLS_DESCRIPTIONS table and "this repo
@@ -374,14 +449,15 @@ def main():
     # just a hand-written README describing the practice list in prose)
     # wants only the loader-block mechanism, not BestPractice's own MAP/
     # GLOSSARY conventions.
-    agents_only = '--agents-only' in sys.argv
-    practices = load_practices()
+    agents_only = '--agents-only' in argv
+    practices = load_practices(practices_dir)
 
-    new_agents = render_agents_md(practices)
-    targets = [(AGENTS_MD, new_agents)]
+    levels = source_levels_from_manifest(root)
+    new_agents = render_agents_md(practices, agents_md, source_levels=levels)
+    targets = [(agents_md, new_agents)]
     if not agents_only:
-        targets.append((MAP_MD, render_map_md(practices)))
-        targets.append((GLOSSARY_MD, render_glossary_md(practices)))
+        targets.append((map_md, render_map_md(practices)))
+        targets.append((glossary_md, render_glossary_md(practices)))
 
     if check:
         drift = []
@@ -399,7 +475,8 @@ def main():
 
     for path, new_text in targets:
         path.write_text(new_text, encoding='utf-8')
-    _block, tokens, n_resident = build_loader_block(practices)
+    _block, tokens, n_resident = build_loader_block(
+        practices, source_levels=source_levels_from_manifest(root))
     wrote = ', '.join(p.name for p, _t in targets)
     print(f"build_views OK: wrote {wrote} (loader block regenerated, resident "
           f"{n_resident}/{len(practices)} practices, ~{tokens} tokens)")

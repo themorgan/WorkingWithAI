@@ -25,7 +25,9 @@ sides keeps both sides' additions (renumbering the side not yet referenced
 elsewhere); **generated outputs are never hand-merged** (the side matching
 the committed manifest wins; unshipped builds are deleted and rebuilt). The
 audits ([convention-to-audit](convention-to-audit.md)) must pass before the merge commits — the audit, not
-re-inspection, is what makes fast mechanical resolution safe.
+re-inspection, is what makes fast mechanical resolution safe. Authorization
+to actually run this runbook is the user saying so; this repo's standing
+shorthand for that is documented in [merge-authorization-keyword](../process/upstream/practices/merge-authorization-keyword.md).
 
 ## Detail
 
@@ -39,5 +41,5 @@ dropped a registry entry. Fixed rules plus a loud audit made merges fast
 
 ## Install
 Runbook section in
-[templates/AGENTS.md.template](templates/AGENTS.md.template); adapt the file
+[templates/AGENTS.md.template](../process/upstream/templates/AGENTS.md.template); adapt the file
 classes to your repo.

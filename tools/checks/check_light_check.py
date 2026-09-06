@@ -16,6 +16,12 @@ of one -- there is no manifest here to check -- so that half doesn't
 apply to this repo's own tree and isn't implemented here; a repo that
 vendors this set would extend the check with that piece itself.
 
+The broken-relative-link check skips process/upstream/ unconditionally
+(always a vendored mirror, wherever found) and nothing else. It used to
+skip a materialized practices/ too, as a workaround for an upstream bug
+that has since been fixed -- see _link_check_exempt for the full note and
+what a finding there means now.
+
 Exit 0 and print nothing when clean. Exit 1 and print the practice's own
 Rule text (never a paraphrase) plus the specific finding(s) on a violation.
 """
@@ -94,7 +100,33 @@ def check_yaml_file(rel: str, text: str, findings: list[str]) -> None:
         findings.append(f"{rel}: not valid YAML ({e})")
 
 
+# process/upstream/ is ALWAYS a vendored mirror of another repo -- its tree
+# is never hand-edited here (generated-artifact-provenance, and the merge
+# runbook's own "never hand-merge" rule for it), so a link written relative
+# to that repo's own root is correct THERE, not resolvable once copied flat
+# into this tree, and would be restored identically by the next sync.
+# Reporting it every run is a permanent, unactionable backlog.
+#
+# MATERIALIZED practices/ USED TO BE EXEMPT HERE TOO, and is not any more
+# (2026-09-06). The exemption was a workaround for a real upstream bug: a
+# practice's relative links were copied verbatim into a consuming repo,
+# where `../tools/very_deep_check.py` and `../spec/ATTENTION_CEILING.md`
+# point at nothing -- so every consuming repo shipped ~60 practice files
+# with dead internal links, and this check had to look away to stay green.
+# Precedent's precedent_materialize.py now repoints those links for where
+# the file actually lands (a commit URL into the source repository, or a
+# recomputed relative path when the target is in this repo), so a broken
+# link in a materialized practice is once again a real finding: it means
+# the sync is stale, or the rewrite genuinely failed. Both are worth
+# knowing. If this starts firing across the whole tree, the fix is
+# `python3 tools/precedent_sync_views.py`, not a new exemption.
+def _link_check_exempt(rel: str) -> bool:
+    return rel.startswith("process/upstream/")
+
+
 def check_md_links(rel: str, text: str, findings: list[str]) -> None:
+    if _link_check_exempt(rel):
+        return
     base = (ROOT / rel).parent
     for lineno, line in enumerate(text.splitlines(), start=1):
         for target in MD_LINK_RE.findall(line):

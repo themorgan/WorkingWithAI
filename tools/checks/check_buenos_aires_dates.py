@@ -40,7 +40,24 @@ EXPECTED_OFFSET = "-0300"
 # offset on their own merit, so the exemption list is empty rather than
 # removed outright -- the mechanism stays in place for the next real
 # pre-check commit that needs it.
-GRANDFATHERED_SHAS: set[str] = set()
+# 2026-09-06: three more, from two sessions on 2026-09-05/06 that committed
+# without setting `git config user.name`/`user.email` (and so without the
+# Buenos Aires TZ either) -- the same one-off session mistake aa2155d was,
+# not a gap in this check. All three were already merged into `main` and
+# pushed by the time the pre-launch audit ran this check, so they are
+# published history: `no-rewrite-for-warnings` reserves a rewrite for an
+# explicit human instruction and none was given for these, so they are
+# grandfathered rather than rewritten. Left permanently red, this check is
+# a check nobody runs, which is the failure mode the exemption mechanism
+# exists to prevent.
+#   7fb401f  Correct v2: the retry loop cannot close the SessionStart/add_repo gap
+#   b40a903  Retry the SessionStart bootstrap clone instead of trying once
+#   977e360  Spell out push and PR as explicit go-merge steps
+GRANDFATHERED_SHAS: set[str] = {
+    "7fb401f294638d38c4495117ca7f608d3e9d6492",
+    "b40a903c8444b7052bfdf1a9470317ceee2804ca",
+    "977e3607cd679c4056cd763733abfbe7565c2aaf",
+}
 
 
 def rule_text() -> str:

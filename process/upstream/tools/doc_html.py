@@ -158,7 +158,9 @@ LINK_BASE = _link_base()
 
 # Registry: (repo-relative source .md, page title). Output = same stem, .html.
 # Host repos fill this in.
-DOCS = []
+DOCS = [
+    ('spec/PREFORK_AUDIT.md', 'Pre-Fork Catalogue Audit'),
+]
 
 # Hosted-render registry: repo-relative .md path -> URL of that document's
 # hosted render. Cross-links between renders resolve here first (see the

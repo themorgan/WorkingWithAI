@@ -68,7 +68,7 @@ Run:
 Exit: 0 on a resolved set, 1 on a conflict, a malformed source, or --strict
 with a source missing.
 """
-import json, os, pathlib, sys
+import json, os, pathlib, posixpath, subprocess, sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
@@ -78,6 +78,48 @@ import build_views as bv
 REPO_CONFIG = 'precedent.json'
 USER_CONFIG_ENV = 'PRECEDENT_USER_CONFIG'
 DEFAULT_USER_CONFIG = pathlib.Path.home() / '.config' / 'precedent' / 'config.json'
+
+# The project-committed path a session-start hook that bootstraps a
+# privately-scoped individual source lives at, by convention (INSTALL.md
+# step 9, spec/BOOTSTRAP_NEW_SOURCES.md, the
+# individual-source-bootstrap.sh.template this repo ships). Fixed rather
+# than configurable: the self-heal below has to find it without first
+# resolving a config that might be exactly what's missing.
+INDIVIDUAL_BOOTSTRAP_HOOK = '.claude/hooks/precedent-individual-bootstrap.sh'
+
+def _self_heal_individual_source(repo_root):
+    """practice: session-bootstrap -- "config absent" and "no individual
+    set" are not the same fact, and treating them as the same fact is
+    exactly the bug two independent adopters hit (see
+    tools/precedent_source_bootstrap.py's module docstring for the
+    incident, and its 2026-09-06 correction for why THIS function -- not
+    a retry loop inside the hook itself -- is the thing that actually
+    closes it). A `SessionStart` hook runs entirely to completion before
+    the agent's own turn starts, so on a genuinely fresh session it is
+    GUARANTEED to run before `add_repo` can have been called even once --
+    not a race it might win, one it structurally cannot. By the time
+    anything calls this function, though, the agent's own turn (and its
+    `add_repo` call, per the standing session-start instruction) has
+    already happened -- so a single re-invocation of the project's hook,
+    here, now has the access it needed the first time and should succeed
+    on this one attempt.
+
+    Deliberately narrow: only fires when (a) CLAUDE_CODE_REMOTE=true --
+    this is specific to a hosted session's per-session git access, never a
+    local machine's persistent $HOME -- and (b) the project actually ships
+    the conventional hook. Never raises: a self-heal attempt that itself
+    fails is exactly the "missing source" case this function was trying to
+    avoid misreporting, not a new failure mode."""
+    if os.environ.get('CLAUDE_CODE_REMOTE') != 'true':
+        return
+    hook = repo_root / INDIVIDUAL_BOOTSTRAP_HOOK
+    if not hook.is_file():
+        return
+    try:
+        subprocess.run(['bash', str(hook)], cwd=str(repo_root),
+                       capture_output=True, timeout=60)
+    except (OSError, subprocess.TimeoutExpired):
+        pass
 
 # HIGHEST PRECEDENCE FIRST -- read this tuple left to right as strongest to
 # weakest. (Changed 2026-09-03: this used to be listed lowest-first, weakest
@@ -127,32 +169,38 @@ def load_config(repo, user_config=None):
     The repo config may name universal, team, and repo-local sources. An
     individual source declared in a SHARED repo is refused by name, because
     that is the privacy boundary above, and a mistake that is silent here is
-    a mistake nobody finds. A repo-local source is refused if its path
-    resolves to somewhere OUTSIDE the declaring repo -- the whole point of
-    the level is that it never leaves the one repo it describes
-    (practice: layered-practice-packs: "repo-local ... live in that repo's
-    instructions files and never leave"); a repo-local entry pointing
-    elsewhere would let a repo quietly claim another repo's tree as if it
-    were its own local content. It does NOT have to be the repo's bare
-    root, though: a subdirectory (the recommended convention -- see
-    PRACTICE_ENGINE_PLAN.md's "Source" section) is exactly as "inside the
-    repo" as the root itself, and keeps repo-local's own hand-authored
-    practices/ physically separate from tools/precedent_materialize.py's
-    output directory, which by convention IS the bare root's practices/ --
-    a real, reproduced bug (not a hypothetical): materializing a repo-local
-    source declared at `path: "."` into that same repo's own root silently
-    overwrote the hand-authored source file the moment another source won
-    resolution on a shared slug, with no trace left that it had ever held
-    different content. `path: "."` still resolves HERE -- this validation
-    only guarantees the path stays inside the declaring repo, not that it
-    differs from wherever a session later points precedent_materialize.py's
-    --out -- but a 2026-09-03 deep-check audit found the silent-overwrite
-    case survived that first fix (which only protected a WINNING practice's
-    file, not one that loses right where it lives) plus a second, worse
-    case (materialize()'s own prior output gets read back on the next run
-    as if this source had authored it). precedent_materialize.py now
-    refuses outright, unconditionally, whenever any source's resolved path
-    equals its own --out -- see its `_self_referential_sources`."""
+    a mistake nobody finds. A repo-local source's `path` must be EXACTLY
+    "local" -- not the bare repo root (`"."`), and not some other
+    subdirectory name a repo happened to pick. This used to be only a
+    recommended convention (any path inside the repo passed validation) and
+    two real, reproduced bugs are what closed that gap, not a style
+    preference: (1) `path: "."` puts repo-local's own hand-authored
+    practices/ in the exact same place tools/precedent_materialize.py's
+    resolved output goes when a repo materializes into its own root --
+    materializing a `path: "."` repo-local source into that same repo's own
+    root silently overwrote the hand-authored source file the moment
+    another source won resolution on a shared slug, with no trace left that
+    it had ever held different content; a 2026-09-03 deep-check audit found
+    a second, worse case surviving the first fix too (materialize()'s own
+    prior output gets read back on the NEXT run as if this source had
+    authored it). (2) two dependent repos that both installed Precedent
+    picked two different subdirectory names for the same thing (`local/`
+    in one, a bare `practices/` with no repo-local source declared at all
+    in the other) -- structurally fine on its own, since the second repo
+    simply had no repo-local practices yet, but it meant "where do this
+    repo's own rules live" had no single answer a session could carry from
+    one Precedent repo to the next, and the next repo to actually need one
+    was free to pick a THIRD name. Fixing the name to "local" removes that
+    degree of freedom: every repo-local source, in every repo, lives at
+    `local/practices/`, so the answer travels.
+
+    tools/precedent_materialize.py's `_self_referential_sources` remains
+    as a separate, level-agnostic backstop (a UNIVERSAL source can
+    legitimately sit at `path: "."` too, e.g. this repo's own
+    self-hosted precedent.json) -- this validation prevents repo-local
+    specifically from ever being declared at a colliding or inconsistent
+    path in the first place, rather than relying on materialize() to catch
+    it after the fact."""
     repo_root = pathlib.Path(repo).resolve()
     sources = []
     repo_cfg_path = repo_root / REPO_CONFIG
@@ -173,22 +221,44 @@ def load_config(repo, user_config=None):
                 raise ResolveError(
                     f"{repo_cfg_path}: source {entry.get('name')!r} has level "
                     f"{level!r}; expected one of {', '.join(PRECEDENCE)}.")
-            entry_path = (repo_root / entry['path']).resolve()
-            if level == 'repo-local' and entry_path != repo_root \
-                    and repo_root not in entry_path.parents:
+            # Compare the NORMALIZED path, not the raw string: "local/",
+            # "./local" and "local" all name the identical directory, and a
+            # strict `!= 'local'` on the raw JSON value refused the first
+            # two as if they were a different, non-compliant path -- a real
+            # bug found testing this rule, not a hypothetical one.
+            raw_path = entry.get('path')
+            normalized_path = (posixpath.normpath(raw_path)
+                                if isinstance(raw_path, str) else raw_path)
+            if level == 'repo-local' and normalized_path != 'local':
                 raise ResolveError(
                     f"{repo_cfg_path} declares a repo-local source "
-                    f"({entry.get('name')!r}) at {entry_path}, which is "
-                    f"outside {repo_root}. A repo-local source's `path` must "
-                    f"resolve to the declaring repo's own root or a "
-                    f"subdirectory of it -- that is what keeps it from ever "
-                    f"being someone else's vendored copy of a different "
-                    f"repo's local practices.")
+                    f"({entry.get('name')!r}) at path {entry.get('path')!r}. "
+                    f"A repo-local source's `path` must resolve to exactly "
+                    f"\"local\" (holding local/practices/) -- not the bare "
+                    f"repo root (\".\") and not any other subdirectory "
+                    f"name. This is a fixed convention, not a per-repo "
+                    f"choice: it is what "
+                    f"keeps repo-local's own hand-authored practices/ "
+                    f"physically separate from tools/precedent_materialize.py's "
+                    f"output directory (a `path: \".\"` repo-local source has "
+                    f"silently lost its own hand-authored content to that "
+                    f"tool before), and it is what lets a session that has "
+                    f"seen one Precedent repo's repo-local practices find "
+                    f"another's without re-deriving the name each time.")
+            entry_path = (repo_root / entry['path']).resolve()
             sources.append({'level': level, 'name': entry.get('name', level),
                             'path': str(entry_path)})
 
     user_cfg_path = pathlib.Path(user_config) if user_config else pathlib.Path(
         os.environ.get(USER_CONFIG_ENV, str(DEFAULT_USER_CONFIG))).expanduser()
+    if not user_cfg_path.exists():
+        # practice: session-bootstrap -- a hook that ran too early to have
+        # this session's own `add_repo` access yet (guaranteed on a fresh
+        # session, not just possible) looks identical, from here, to "this
+        # person has no individual set". Try once, now that the agent's own
+        # turn (and its add_repo call) has actually happened, before
+        # reporting the latter.
+        _self_heal_individual_source(repo_root)
     if user_cfg_path.exists():
         cfg = _read_json(user_cfg_path, 'the user config')
         ind = cfg.get('individual')
@@ -305,6 +375,28 @@ def resolve(sources):
                         del resolved[ov]
 
             if prior_own is not None and not _is_blocking(prior_own):
+                # Two DIFFERENT sources at the SAME level claiming one slug
+                # is not a precedence question -- there is no precedence
+                # between them to fall back on, so the winner would be
+                # whichever the config happens to list second. The plan
+                # says this fails loudly ("the resolver fails loudly if two
+                # same-level practices claim one slug"), and until
+                # 2026-09-06 it did not: two team sources with a shared
+                # slug resolved silently to the later one, reported only as
+                # an `overridden:` notice on stderr that reads exactly like
+                # a legitimate higher-level override. load_source() already
+                # refuses this WITHIN one source; this is the same rule
+                # across sources at one level.
+                if prior_own['level'] == practice['level']:
+                    raise ResolveError(
+                        f"{practice['source']} and {prior_own['source']} are "
+                        f"both {practice['level']}-level sources and both "
+                        f"define the practice {slug!r} "
+                        f"({practice['file']} and {prior_own['file']}). Slugs "
+                        f"are identities; nothing orders two sources at the "
+                        f"same level, so there is no answer to which one "
+                        f"wins -- rename one of them, retire one, or move "
+                        f"one to a different level.")
                 shadowed.append({'slug': slug, 'shadowed': prior_own, 'by': practice})
             resolved[slug] = practice
     return {'practices': resolved, 'shadowed': shadowed, 'blocked': blocked,

@@ -7,7 +7,12 @@ Scope: change, over every markdown file tracked in the repo (applies_to
 "**/*.md"). A file "carries this header" (the practice's own occasion
 clause) once its first line matches the format below -- untouched files
 that never had one are not required to grow one; that's a per-edit choice,
-not a repo-wide sweep, per the practice's own Detail section.
+not a repo-wide sweep, per the practice's own Detail section. A line has
+to both start "<!-- Last updated:" *and* name Morgan to count as an
+attempt at this header -- vendored third-party content (e.g. a consuming
+repo's process/upstream/ tree) can have its own, different, complete
+attribution convention that happens to share the prefix; that's not this
+practice's business and isn't flagged as malformed.
 
 Two things are checked mechanically for every file that does carry it:
 
@@ -43,6 +48,16 @@ HEADER_RE = re.compile(
 # A line that's clearly *trying* to be the header but doesn't match exactly
 # -- used to flag malformed headers, not just missing ones.
 HEADER_ATTEMPT_RE = re.compile(r"^<!--\s*Last updated:", re.IGNORECASE)
+
+
+def is_header_attempt(line: str) -> bool:
+    # A "Last updated:" prefix alone isn't enough to call a line an attempt
+    # at *this* header format -- vendored third-party content (e.g. a
+    # consuming repo's process/upstream/ tree) can carry its own, different,
+    # complete attribution convention that happens to start the same way.
+    # That's not this practice's business and shouldn't be flagged as
+    # malformed just for not saying "Morgan F". Require the name too.
+    return bool(HEADER_ATTEMPT_RE.match(line)) and "morgan" in line.lower()
 
 
 def rule_text() -> str:
@@ -81,7 +96,7 @@ def find_violations() -> list[str]:
         lines = current.splitlines()
         first = lines[0] if lines else ""
 
-        if not HEADER_ATTEMPT_RE.match(first):
+        if not is_header_attempt(first):
             continue  # doesn't carry the header at all -- not required to
 
         m = HEADER_RE.match(first)
@@ -113,7 +128,7 @@ def find_violations() -> list[str]:
             # already-published formatting slip. Recover a version number
             # from the malformed line if one is findable at all, and only
             # fall back to "no header" semantics when it truly isn't.
-            if HEADER_ATTEMPT_RE.match(parent_first):
+            if is_header_attempt(parent_first):
                 loose = re.search(r"version (\d+)", parent_first)
                 if loose:
                     parent_version = int(loose.group(1))

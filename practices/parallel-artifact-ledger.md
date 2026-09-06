@@ -1,13 +1,13 @@
 ---
 slug:        parallel-artifact-ledger
-title:       Parallel-artifact families: transfer verdicts are per-mechanism, per-change, and ledgered
+title:       "Parallel-artifact families: transfer verdicts are per-mechanism, per-change, and ledgered"
 tier:        on-demand
 severity:    default
 applies_to:  ["templates/harness/**"]
 occasion:    "a change must propagate across several parallel artifacts"
 gates:       []
 index_clause: "ledger the transfer verdict per member, per change"
-checked_by:  null
+checked_by:  "tools/precedent_check.py"
 defines:     ["parallel-artifact family"]
 status:      active
 supersedes:  []
@@ -46,9 +46,37 @@ ledger kills: wrong granularity (headline vs mechanism), staleness (new
 changes inherit old verdicts), and unauditability (nothing can check what was
 never recorded).
 
+**2026-09-05, a second incident, in the check rather than the ledger:**
+this practice's own `checked_by` audit was wired into continuous
+integration (CI) the same day it was written and immediately found a real
+gap (a missing row, backfilled). Two more real, independently confirmed
+fixes followed. None of them resolved GitHub Actions still reporting a
+violation on content confirmed correct four independent ways (a GitHub
+API read of the pull request (PR)'s own live content, a full local
+reproduction, and two diagnostic commits proving the check itself
+completes normally without ever surfacing their own logging in that CI
+step's log). This check is **advisory-only as of 2026-09-05**
+(findings still print; they no longer fail the run) until that CI-only
+anomaly is root-caused — see [tools/precedent_check.py](../tools/precedent_check.py)'s
+own dated comment above `_parallel_artifact_ledger()` for the full
+account, and [TODO.md](../TODO.md) for the tracked follow-up and re-promotion
+condition. A session reading this practice should not expect its own
+`checked_by` audit to gate a merge right now.
+
 ## Install
 A ledger table (date | originating change | one verdict column
 per family member) plus a small audit keyed on dated change markers in
 whatever registry tracks the family — any marked date without a complete
 ledger row fails. The family definition itself lives at the top of the
 ledger, with the origin incident ([mistakes-become-rules](mistakes-become-rules.md)).
+
+This repo's own instance: [templates/harness/LEDGER.md](../process/upstream/templates/harness/LEDGER.md)
+for the [claude-code/codex/gemini-cli harness adapter family](../process/upstream/templates/harness/README.md);
+`tools/precedent_check.py`'s `parallel-artifact-ledger` check (found by
+`checked_by` above) walks `git log --no-merges` for each member directory
+(excluding the repository's own root commit, which is inception rather
+than a change) and fails if any commit's hash isn't referenced somewhere
+in the ledger. Checks only that a row exists for every commit that touched
+a member, not that the recorded verdict is correct — see
+[spec/ATTENTION_CEILING.md](../process/upstream/spec/ATTENTION_CEILING.md)'s "audit-judgment
+result" for the run whose blind judge named this gap in the first place.
