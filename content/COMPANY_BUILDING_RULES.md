@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-05 21:37:23 (Buenos Aires) by Morgan F, to version 19 -->
+<!-- Last updated: 2026-09-05 21:46:41 (Buenos Aires) by Morgan F, to version 20 -->
 
 # Rules for building a company around AI
 
@@ -93,7 +93,7 @@ reflexes — the same three the AI is running too:
 - What rules or protocols should come from this?
 - Have I done this shape before, or will I again? If yes, it's a
   workflow, and you're doing it by hand.
-- Is there a way Claude could make this better? Not faster — better.
+- Is there a way AI Assistant could make this better? Not faster — better.
 
 *Faster* gets people thinking about the work they already do. *Better*
 gets them noticing the work they'd quietly stopped proposing.

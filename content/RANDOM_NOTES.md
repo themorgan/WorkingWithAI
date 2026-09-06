@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-05 21:37:23 (Buenos Aires) by Morgan F, to version 16 -->
+<!-- Last updated: 2026-09-05 21:46:41 (Buenos Aires) by Morgan F, to version 17 -->
 
 # Random notes — how to work with AI
 
@@ -10,7 +10,7 @@ from [MAP.md](../MAP.md) when that happens).
 entry below is raw material dropped in from a session, lightly organized.
 Treat it as a standing agenda, not a finished write-up — the point of doing
 this in a repo instead of a doc is that any thread can pick up one entry,
-argue it out with Claude (per
+argue it out with AI Assistant (per
 [`co-create-dont-delegate`](COMPANY_BUILDING_RULES.md#co-create-dont-delegate)),
 and push the sharpened version back in.
 
@@ -146,8 +146,8 @@ one-page pitch naming the same three ideas (linked from
 [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), and
 [REASONS_WHY.md](REASONS_WHY.md)). One correction from the chat discussion
 that led there: "chat as the sole intermediary" means chat is how a
-*person* touches any document or artifact — talk to Claude and have Claude
-edit it, instead of opening a doc and editing it yourself — not a claim
+*person* touches any document or artifact — talk to AI Assistant and have
+AI Assistant edit it, instead of opening a doc and editing it yourself — not a claim
 that chat is literally the only medium anything happens in (PR review
 comments still carry part of the argument, per the merge runbook above). A
 second correction, same day: the first bullet wasn't
@@ -176,14 +176,14 @@ simple prompting — and never discover the deeper mode, unless something
 pushes them there. Candidate mechanisms, none decided yet (this is a
 **decision**-class item, see [TODO.md](../TODO.md)):
 
-- Have Claude push back harder than its default on direct instructions —
+- Have AI Assistant push back harder than its default on direct instructions —
   question them instead of just complying.
 - Constant, visible reminders of the deeper mode, rather than a one-time
   onboarding note.
 - Make the automatic rule-extraction (3a) more "in your face" — if people
   *see* the rules being generated live, the "wow" reaction itself teaches
   them the system has more to offer than a simple prompt box.
-- Have Claude proactively surface a previously-extracted rule when it's
+- Have AI Assistant proactively surface a previously-extracted rule when it's
   relevant in a new context, rather than leaving it inert in a file
   nobody re-reads.
 
@@ -208,7 +208,7 @@ front becomes visible in the history, for that person and for everyone else
 on the team simultaneously — a much stronger and more continuous signal
 than a periodic review.
 
-**Rethinking an ad campaign AI-first — a conversation with Claude.** Prompted
+**Rethinking an ad campaign AI-first — a conversation with AI Assistant.** Prompted
 by thinking through what it would mean to run an ad campaign in a truly
 AI-first way. The framing generalizes well past ads:
 
@@ -263,7 +263,7 @@ most operational work — normally means constantly tweaking options,
 constantly pushing buttons, and never recording why any button got pushed.
 The BestPractice approach forces recording every small decision and its
 reason, and it does this *automatically*, purely as a side effect of the
-system's shape: the only interface is prompting Claude, and Claude tracks
+system's shape: the only interface is prompting AI Assistant, and AI Assistant tracks
 everything via the repo. Same mechanism as 3a/3b above. The other point
 worth keeping from that conversation: having the AI push back harder,
 explicitly, rather than defaulting to compliance — connects directly to the
@@ -305,7 +305,7 @@ call as much as mine):
   [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md) just was. A dedicated file gets its
   own version history, so you can watch one idea sharpen over many sessions
   instead of only ever seeing its latest state.
-- **Periodically ask Claude to look for contradictions across entries.**
+- **Periodically ask AI Assistant to look for contradictions across entries.**
   Loosely-grouped brainstorm entries accumulated over many sessions will
   eventually disagree with each other (e.g.,
   [`build-five-kill-four`](COMPANY_BUILDING_RULES.md#build-five-kill-four)'s
