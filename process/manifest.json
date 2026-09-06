@@ -3,9 +3,9 @@
     "repo": "https://github.com/alex137/BestPractice",
     "branch": "precedent-beta-v01",
     "vendored_at": "process/upstream",
-    "commit": "21b7fcb",
+    "commit": "4e09f7b",
     "_note": "commit = upstream hash last synced (2026-09-04, recorded 2026-09-04; verified tree-identical). Picks up ~30 upstream commits since the prior sync (PRs #83-#98): phase-6 pre-fork work -- the catalogue audit, a naming fix, disclosing the practice-capture mechanism at install and to members, and INSTALL.md §0 for a clean install straight onto the Precedent loader; a routing/full-practice audit (tools/precedent_check.py --list/--explain, the coverage sweep); a temporary merge-target-guard practice (every PR in the upstream repo targets precedent-beta-v01, never main, until Alex folds the beta branch into main -- see upstream AGENTS.md and local/practices/merge-target-is-beta-branch.md; irrelevant to this repo's own PRs, which target this repo's own main); and a 4-phase 'practice simulation' build (mechanical correctness replay, synthetic scenario generation, multi-repo testing, and a trend-log command). BETA TEST, deliberate departure from the normal model: this vendors the alex137/BestPractice precedent-beta-v01 branch, not its default branch (main) -- the first real test of Precedent against a repo that already had BestPractice installed (see process/PRECEDENT_MIGRATION.md and, upstream, spec/MIGRATING_EXISTING_INSTALLS.md). checkin.py's fresh/update/record commands resolve the remote's default-branch HEAD unconditionally (tools/checkin.py, _default_branch()), so they do not track this branch -- this sync was done as a one-off manual mirror instead, and .github/workflows/bestpractice-upstream-sync.yml is paused (workflow_dispatch only) for the duration of the beta. Once precedent-beta-v01 merges to main, switch \"branch\" back to the default, re-run a normal checkin.py update/record against main, and re-enable the scheduled sync. 2026-09-06: re-vendored at c55eed1 during a pre-launch pass on Precedent itself, for which this repo was one of two real test consumers. Carries fixes this repo helped surface: precedent_sync_views.py --check no longer writes to the working tree (it dirtied 17 files here on a clean tree, and deleted a whole source's files whenever that source was unreachable); a materialized practice's relative links are placed for where the file lands; and practice/decision frontmatter is now valid YAML. The root tools/ mirror was also completed to the full consumer engine set -- three root copies were older than this repo's own vendored ones, and precedent_check.py was missing routing_audit.py beside it.",
-    "synced_from": "21b7fcb"
+    "synced_from": "4e09f7b"
   },
   "entries": [
     {
@@ -96,7 +96,7 @@
       "granularity": "file",
       "status": "local-only",
       "notes": "Fully adapted to this repo's own layout — this repo's map is its own subject matter, not upstream-exportable content.",
-      "local_sha256": "7bbb6e8ca50522d6b78f01ae413b61de59a5b764bf2af292a5219e5a28faa5ed"
+      "local_sha256": "db9695fd909aa51c1edfe07d151c88a962eb65f58e09a12d058a133a391f504d"
     },
     {
       "practice": "todo",
@@ -105,7 +105,7 @@
       "granularity": "file",
       "status": "local-only",
       "notes": "This repo's own open-items list, including the recurring BestPractice check-in item; not upstream-exportable content.",
-      "local_sha256": "4c2f6f3f6781ea2391aacdf0cf4f926e22a3ead6e33fbd84372f54821f1a07d5"
+      "local_sha256": "0fa4158ca80bc1a31f469ef767992dcbf4dcfff76d1e17d79231696a368c7a68"
     },
     {
       "practice": "glossary",
@@ -114,7 +114,7 @@
       "granularity": "file",
       "status": "local-only",
       "notes": "This repo's own canonical names; not upstream-exportable content.",
-      "local_sha256": "df519c2888ce7444561f856b6084437fe0e4fed01e8c0c1126f6263b4ff22c17"
+      "local_sha256": "3eaff6fb0ec35d67ca339dcbc2eaf062c81585498aac6dca3ed67061734c4a07"
     },
     {
       "practice": "getting-started",
