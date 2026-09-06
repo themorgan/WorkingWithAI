@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-06 09:20:00 (Buenos Aires) by Morgan F, to version 31 -->
+<!-- Last updated: 2026-09-06 10:10:00 (Buenos Aires) by Morgan F, to version 32 -->
 
 # Repository instructions — read me first
 
@@ -313,7 +313,7 @@ Do not hand-edit the block below — the next sync overwrites it.
 
 <!-- Regenerate with: python3 tools/build_views.py -- do not hand-edit this block, tools/verify_harness.py's regeneration check fails on drift. -->
 
-### Resident block (~659 of 2000 token budget, 10 of 108 practices (1 individual, 3 team, 6 universal))
+### Resident block (~659 of 2000 token budget, 10 of 109 practices (1 individual, 3 team, 6 universal))
 
 **bold-key-phrases.** People don't read; they skim, and bolding makes skimming easy. Bold the key phrases in a document by default, without being asked, scaling with length -- a long paragraph or document is where a skimmer most needs a spine to follow, a short note usually needs little or none.
 
@@ -494,6 +494,8 @@ When publishing a document with a multi-column sortable table:
   tabular-shared-renderer — ship a sortable render from the one shared renderer
 When quoting or compressing someone else's figures:
   quote-discipline — compression rounds against you; qualifiers travel with the figure
+When renaming, moving, or deleting a file other files may link to:
+  rename-updates-links — renaming a file means repointing every link to it, in the same commit
 When reporting a check's outcome that includes a known pre-existing backlog:
   quiet-checks — "checks passed" is fine; don't re-explain the same old backlog
 When reporting a computed total or a negative feasibility result:
@@ -622,13 +624,21 @@ assistant works this repo, rather than being retrofitted later.
   ([practice_audit.py](process/upstream/tools/practice_audit.py)) enforces
   this against
   [process/scrub_blocklist.txt](process/scrub_blocklist.txt) and must pass
-  before committing anything that touches `process/`. **Known exception,
-  as of the precedent-beta-v01 vendor (2026-09-03):** this currently
-  reports 63 SCRUB failures inside `process/upstream/` itself — a real,
-  understood collision, not a leak; see
-  [process/PRECEDENT_MIGRATION.md](process/PRECEDENT_MIGRATION.md)'s "A
-  real finding" section before treating a fresh run of this audit as
-  broken or trying to "fix" it by editing the vendored tree.
+  before committing anything that touches `process/`, and **as of
+  2026-09-06 it does** — the "known exception" that used to sit here, a
+  standing count of SCRUB failures inside `process/upstream/` itself, is
+  gone. It had grown to 116 and was structurally unclearable: the terms
+  were Morgan's own display name, city, timezone and header timestamps,
+  which upstream writes in its own date headers, so they were arriving
+  FROM upstream rather than leaking TO it. They were on the blocklist to
+  stop sessions flagging them, and had the opposite effect — a gate that
+  could only be ignored, which is worse than no gate. They are off the
+  list now and must not go back (see
+  [process/scrub_blocklist.txt](process/scrub_blocklist.txt)'s own header):
+  Morgan wants his name and the timestamp on every file he edits, and
+  never wants a warning about it again. The two remaining hits, in
+  upstream's decision record that quotes the blocklist patterns it
+  explains, are handled by a `!` path exemption in the same file.
 - The team and individual sources
   ([precedent-team-maintainers](https://github.com/themorgan/precedent-team-maintainers),
   [precedent-individual](https://github.com/themorgan/precedent-individual))

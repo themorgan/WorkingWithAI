@@ -3,7 +3,7 @@
   "kind": "consumer",
   "source_repo": "https://github.com/alex137/BestPractice",
   "source_branch": "precedent-beta-v01",
-  "source_commit": "91786dcec1ccc7f9eeb6830c861fada17a7c5432",
+  "source_commit": "21b7fcb57aedd10aa2254a1635ae45919277ba18",
   "files": [
     "build_views.py",
     "build_codeowners.py",
@@ -36,7 +36,7 @@
     "doc_sync.py": "89de1ed6e286412859550daf8aca47be531ce745ff2960ae3f8418cb1c6cfea8",
     "routing_audit.py": "f8f90e9d7d7a635adecd1dd49694df9ae2663caea1d6ac4c5876c36ffd8fac70",
     "precedent_source_bootstrap.py": "fd97eb3d3a3cd361b7f6bebd6d78253e6367d77d59a217d017290f4b5c4f4e50",
-    "precedent_check.py": "7d0ccccf5f565975dd238a632e44df26a923c3ee09bfbbb27a4b57ca92b4d0b0",
+    "precedent_check.py": "b1e5539705cc14b9eb9ac1ce421dab426597b6aad071c8436d3b0c96a7599908",
     "precedent_vendor_engine.py": "86989957aff5c6f6a17af8356f0fd5e2a9a0abfff8c68b816a591dde55081e84",
     "routing_scope.json": "70275a23f46c832c2540f27bd790a6c2935c8f5f7acedef1a8596d054b774a45"
   },

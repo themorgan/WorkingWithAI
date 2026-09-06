@@ -2,19 +2,32 @@
 # in process/upstream/ (the public BestPractice repo would receive them on
 # the next check-in). One regex per line; # starts a comment. Err broad.
 #
-# Reviewed 2026-08-26 (Buenos Aires). Add a line the moment a new private
-# name, nickname, or identifier shows up in this repo's own content.
+# Reviewed 2026-09-06 (Buenos Aires).
+#
+# WHAT IS DELIBERATELY *NOT* HERE, and must never be re-added:
+# Morgan's display name, his city and timezone, and the dates and
+# timestamps in file headers. Those are not private and are not leaks —
+# they are the point. He wants every file he edits to carry who edited it
+# and exactly when, and BestPractice already publishes all three in its
+# own date headers, which is why listing them made this gate report 116
+# failures it was impossible to clear: the terms were arriving FROM
+# upstream, not leaking TO it. They were added originally to silence
+# session-by-session flagging, and had the opposite effect — a permanently
+# red gate that had to be ignored to get any work done, which is worse
+# than no gate. Adding them back re-breaks the gate; do not.
+#
+# What belongs here is vocabulary that is genuinely private to this repo's
+# subject matter and would be a real disclosure upstream. Add a line the
+# moment such a name, nickname, or identifier shows up in this repo's own
+# content.
 
-# Real contact / identity details (the GitHub display name "Morgan F" is
-# itself the personal-pack convention and appears throughout process/personal/
-# on purpose — it must never migrate into the generic upstream text under
-# process/upstream/).
 morgan@westegg\.com
 westegg\.com
 morganfriedman
-themorgan
 6497032
-Morgan F
-Buenos Aires
-America/Argentina/Buenos_Aires
-WorkingWithAI
+
+# Path exemptions (a leading "!" exempts a path prefix, not a pattern).
+# Upstream's own decision record about the leak-gate vocabulary quotes the
+# identifiers it explains. Those arrived FROM upstream; they are not this
+# repo leaking TO it, and there is nothing here to scrub.
+!process/upstream/decisions/

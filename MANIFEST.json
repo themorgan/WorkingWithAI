@@ -22,7 +22,7 @@
     },
     {
       "path": "tools/checks/check_file_header.py",
-      "sha256_16": "28eae090c9f9c0af",
+      "sha256_16": "11ba4369dafe2183",
       "source": "precedent-individual"
     },
     {
@@ -67,7 +67,7 @@
     },
     {
       "path": "tools/checks/check_header_caps.py",
-      "sha256_16": "97e834292748034e",
+      "sha256_16": "577b5a33385b8a52",
       "source": "precedent-team-maintainers"
     },
     {
@@ -77,12 +77,12 @@
     },
     {
       "path": "tools/checks/check_no_stale_counts.py",
-      "sha256_16": "a1d358d9795af695",
+      "sha256_16": "9124f2b7b6f384ec",
       "source": "precedent-team-maintainers"
     },
     {
       "path": "tools/checks/check_private_repo_scrub.py",
-      "sha256_16": "04bb5cc5ce0b3292",
+      "sha256_16": "d475749ae4d86f28",
       "source": "precedent-team-maintainers"
     },
     {
@@ -131,7 +131,7 @@
       "source": "precedent-team-maintainers"
     }
   ],
-  "generated_at_utc": "2026-09-06T12:10:20+00:00",
+  "generated_at_utc": "2026-09-06T12:45:46+00:00",
   "generated_by": "tools/precedent_materialize.py",
   "note": "DERIVED ARTIFACT -- never hand-edit. Regenerate by re-running precedent_materialize.py with the same --repo/--user-config; this file records exactly what produced the snapshot so drift is visible, per generated-artifact-provenance.",
   "practices": [
@@ -798,6 +798,14 @@
       "slug": "registry-source-of-truth",
       "source": "precedent",
       "source_sha256_16": "61f30a8fb400e3f6"
+    },
+    {
+      "level": "universal",
+      "links_rewritten": false,
+      "sha256_16": "97856f52413f39cc",
+      "slug": "rename-updates-links",
+      "source": "precedent",
+      "source_sha256_16": "97856f52413f39cc"
     },
     {
       "level": "universal",
