@@ -22,7 +22,7 @@
     },
     {
       "path": "tools/checks/check_file_header.py",
-      "sha256_16": "11ba4369dafe2183",
+      "sha256_16": "ccd8e0c8bc677d09",
       "source": "precedent-individual"
     },
     {
@@ -77,22 +77,22 @@
     },
     {
       "path": "tools/checks/check_header_caps.py",
-      "sha256_16": "577b5a33385b8a52",
+      "sha256_16": "6f1595dd19c48846",
       "source": "precedent-team-maintainers"
     },
     {
       "path": "tools/checks/check_light_check.py",
-      "sha256_16": "0b773e29d5b7e213",
+      "sha256_16": "c3cdcbccc2a83281",
       "source": "precedent-team-maintainers"
     },
     {
       "path": "tools/checks/check_no_stale_counts.py",
-      "sha256_16": "9124f2b7b6f384ec",
+      "sha256_16": "a9ac6586c64d599b",
       "source": "precedent-team-maintainers"
     },
     {
       "path": "tools/checks/check_private_repo_scrub.py",
-      "sha256_16": "d475749ae4d86f28",
+      "sha256_16": "fa7142d9f9400aa0",
       "source": "precedent-team-maintainers"
     },
     {
@@ -141,7 +141,7 @@
       "source": "precedent-team-maintainers"
     }
   ],
-  "generated_at_utc": "2026-09-06T13:52:20+00:00",
+  "generated_at_utc": "2026-09-06T14:44:23+00:00",
   "generated_by": "tools/precedent_materialize.py",
   "note": "DERIVED ARTIFACT -- never hand-edit. Regenerate by re-running precedent_materialize.py with the same --repo/--user-config; this file records exactly what produced the snapshot so drift is visible, per generated-artifact-provenance.",
   "practices": [

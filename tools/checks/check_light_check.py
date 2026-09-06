@@ -141,6 +141,64 @@ def check_md_links(rel: str, text: str, findings: list[str]) -> None:
                 findings.append(f"{rel}:{lineno}: broken relative link to {target!r}")
 
 
+SHARED_BEGIN = "# --- shared:"
+SHARED_END = "# --- end shared:"
+
+
+def check_shared_blocks_agree(findings: list[str]) -> None:
+    """A block marked `# --- shared:<id> ---` is byte-identical everywhere.
+
+    Some helpers genuinely have to be COPIED rather than imported: a check
+    script's own contract is that it runs standalone, with no arguments and
+    no sibling imports, and precedent_materialize.py vendors `check_*.py`
+    files only -- a shared module placed beside them would not travel. So
+    the copies are deliberate, and the risk is that they drift.
+
+    They already had. All four copies of the scope helper were written in
+    one pass on 2026-09-06 and one of them had picked up a different
+    comment within the day -- behaviour identical, but that is what drift
+    looks like on day one, and nothing was watching. Marked blocks are
+    compared here because a consuming repo is where every copy lands in
+    one directory; in their own source repos they never meet.
+
+    Compares the marked text only, so the code around it is free to differ
+    -- these are different checks, and only the shared part is shared."""
+    blocks: dict = {}
+    for rel in tracked_files():
+        if "/checks/" not in rel or not rel.endswith(".py"):
+            continue
+        try:
+            lines = (ROOT / rel).read_text(encoding="utf-8").splitlines()
+        except (UnicodeDecodeError, OSError):
+            continue
+        ident, buf = None, []
+        for line in lines:
+            if line.startswith(SHARED_END):
+                if ident is not None:
+                    blocks.setdefault(ident, {})["\n".join(buf)] = \
+                        blocks.setdefault(ident, {}).get("\n".join(buf), []) + [rel]
+                ident, buf = None, []
+            elif line.startswith(SHARED_BEGIN):
+                ident = line[len(SHARED_BEGIN):].split()[0].rstrip("-— ")
+                buf = []
+            elif ident is not None:
+                buf.append(line)
+        if ident is not None:
+            findings.append(f"{rel}: a `{SHARED_BEGIN}{ident}` block is never closed "
+                            f"with `{SHARED_END}{ident} ---`")
+
+    for ident, variants in sorted(blocks.items()):
+        if len(variants) > 1:
+            where = "; ".join(
+                f"{', '.join(sorted(files))}" for files in variants.values())
+            findings.append(
+                f"shared block {ident!r} has {len(variants)} different "
+                f"versions across the files that carry it ({where}). These "
+                f"are copies on purpose -- a check script runs standalone "
+                f"and cannot import a sibling -- so they have to be kept "
+                f"byte-identical by hand. Reconcile them.")
+
+
 def find_violations() -> list[str]:
     findings: list[str] = []
     for rel in tracked_files():
@@ -161,6 +219,7 @@ def find_violations() -> list[str]:
         elif rel.endswith((".yml", ".yaml")):
             check_yaml_file(rel, text, findings)
 
+    check_shared_blocks_agree(findings)
     return findings
 
 

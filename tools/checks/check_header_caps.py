@@ -41,6 +41,7 @@ ATX_RE = re.compile(r"^(#{1,6})\s+(.*\S)\s*$")
 WORD_RE = re.compile(r"[A-Za-z][A-Za-z'-]*")
 
 
+# --- shared:scope-helper — keep byte-identical across every copy ---
 # --- scope: this repo's own content only ---------------------------------
 #
 # A check runs in two very different places. In the SOURCE repo that
@@ -122,6 +123,7 @@ def not_ours(rel) -> bool:
     rel = str(rel).replace("\\", "/")
     return (rel.startswith(_FOREIGN) or rel in _MATERIALIZED
             or _looks_generated(rel))
+# --- end shared:scope-helper ---
 
 
 def rule_text() -> str:
