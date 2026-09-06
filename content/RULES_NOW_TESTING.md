@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-03 11:05:52 (Buenos Aires) by Morgan F, to version 15 -->
+<!-- Last updated: 2026-09-05 21:37:23 (Buenos Aires) by Morgan F, to version 16 -->
 
 # Rules now testing — the current state of what we're trying
 
@@ -184,6 +184,6 @@ record.)*
 - [AI_GOVERNANCE_TO_COCREATE.md](AI_GOVERNANCE_TO_COCREATE.md) —
   standalone essay promoted out of the brainstorm: how AI systems
   themselves should be configured, built, and run.
-- [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md) — one-page
+- [THREE_PILLARS.md](THREE_PILLARS.md) — one-page
   pitch: the three ideas this repo argues are unique specifically taken
   together.

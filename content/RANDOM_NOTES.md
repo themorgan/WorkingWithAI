@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-01 16:35:00 (Buenos Aires) by Morgan F, to version 15 -->
+<!-- Last updated: 2026-09-05 21:37:23 (Buenos Aires) by Morgan F, to version 16 -->
 
 # Random notes — how to work with AI
 
@@ -140,7 +140,7 @@ might connect.
 > explosive.
 
 **Update, same day:** the three-part uniqueness thesis is now promoted —
-see [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md), a
+see [THREE_PILLARS.md](THREE_PILLARS.md), a
 one-page pitch naming the same three ideas (linked from
 [OUR_PHILOSOPHY.md](OUR_PHILOSOPHY.md),
 [COMPANY_BUILDING_RULES.md](COMPANY_BUILDING_RULES.md), and
@@ -385,6 +385,6 @@ moved here instead of staying in that essay.*
   themselves should be configured, built, and run.
 - [RULES_NOW_TESTING.md](RULES_NOW_TESTING.md) — pipeline stage 2: the
   practical rules actually being tried in real work right now.
-- [THE_REVOLUTIONARY_FORMULA.md](THE_REVOLUTIONARY_FORMULA.md) — one-page
+- [THREE_PILLARS.md](THREE_PILLARS.md) — one-page
   pitch: the three ideas this repo argues are unique specifically taken
   together.

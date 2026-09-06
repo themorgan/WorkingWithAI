@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-04 12:13:55 (Buenos Aires) by Morgan F, to version 14 -->
+<!-- Last updated: 2026-09-05 21:37:23 (Buenos Aires) by Morgan F, to version 15 -->
 
 # Canonical names
 
@@ -9,7 +9,7 @@ wins — fix the documents.
 | Name | What it is | Defined in |
 |---|---|---|
 | **the brainstorm** | This repo's one deliverable: the running list of ideas, prompts, and workflows for working with AI. | [RANDOM_NOTES.md](content/RANDOM_NOTES.md) |
-| **the revolutionary formula** | The three ideas — groups of people collaborating (not individuals working alone with a model), protocols generated automatically, chat as the only intermediary for touching any document or artifact — that this repo argues are unique specifically when combined. | [THE_REVOLUTIONARY_FORMULA.md](content/THE_REVOLUTIONARY_FORMULA.md) |
+| **the three pillars** | The three ideas — groups of people collaborating (not individuals working alone with a model), protocols generated automatically, chat as the only intermediary for touching any document or artifact — that this repo argues are unique specifically when combined. | [THREE_PILLARS.md](content/THREE_PILLARS.md) |
 | **the pipeline** (three-stage) | How a brainstorm idea becomes company-wide policy: discover (the brainstorm) → try it for real (**the rules now testing**) → roll out everywhere (precedent-team-maintainers, or precedent-individual for the rare Morgan-specific rule). | [README.md](README.md) |
 | **the rules now testing** | Pipeline stage 2: the practical checklist actually in force in real work now, each rule tagged Trial, Ready to promote, or Promoted. | [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md) |
 | **promote** / **promotion** | Moving a rule from *Trial* to *Ready to promote* to landed in precedent-team-maintainers (or precedent-individual) — pipeline stage 2 to stage 3. | [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md) "Promotion" |

@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-05 09:13:36 (Buenos Aires) by Morgan F, to version 54 -->
+<!-- Last updated: 2026-09-05 21:37:23 (Buenos Aires) by Morgan F, to version 55 -->
 
 # Repo TODO — open analyses, verifications, and decisions
 
@@ -1226,7 +1226,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   checklist, not the log; (4) cut rule 6's "email Morgan to change this
   config" example and a few secondary citations for length, keeping the
   rule-number cite on every item.
-- [x] **Write [THE_REVOLUTIONARY_FORMULA.md](content/THE_REVOLUTIONARY_FORMULA.md)
+- [x] **Write [THREE_PILLARS.md](content/THREE_PILLARS.md)
   and add a new [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md) point for
   group collaboration.** Decided 2026-09-01 → done, doc. Promoted
   [RANDOM_NOTES.md](content/RANDOM_NOTES.md)'s three-part uniqueness thesis into a
@@ -1252,7 +1252,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   doc-recipe.** Decided 2026-09-01 → done, doc. Five separate asks in one
   round:
 
-  (1) [THE_REVOLUTIONARY_FORMULA.md](content/THE_REVOLUTIONARY_FORMULA.md)'s
+  (1) [THREE_PILLARS.md](content/THREE_PILLARS.md)'s
   second bullet is now "Protocols Generated Automatically (Then Reviewed
   By Humans)."
 
@@ -1286,7 +1286,7 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   [COMPANY_BUILDING_RULES.md](content/COMPANY_BUILDING_RULES.md),
   [AI_GOVERNANCE_TO_COCREATE.md](content/AI_GOVERNANCE_TO_COCREATE.md),
   [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md),
-  [THE_REVOLUTIONARY_FORMULA.md](content/THE_REVOLUTIONARY_FORMULA.md)) now
+  [THREE_PILLARS.md](content/THREE_PILLARS.md)) now
   ends with a uniform "## See also" section listing the other seven,
   replacing whatever one-off closing pointer (or none) it had before.
   Then all eight moved into a new `docs/` subdirectory, so this repo's
@@ -1313,14 +1313,14 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   [content/doc-recipes/GLOSSARY.recipe.md](content/doc-recipes/GLOSSARY.recipe.md)
   so this doesn't get re-litigated as a tidiness call next time root looks
   cluttered; (2) gave
-  [THE_REVOLUTIONARY_FORMULA.md](content/THE_REVOLUTIONARY_FORMULA.md)'s own
+  [THREE_PILLARS.md](content/THREE_PILLARS.md)'s own
   "See also" bare links with no descriptions, unlike the other seven,
   since a full description list would work against that document's own
   point of being very short; (3) `TODO.md`'s own historical entries got
   their links repointed to `docs/` (a broken link is a broken link
   regardless of when the prose was written) without touching any of the
   historical wording itself; (4) added
-  [THE_REVOLUTIONARY_FORMULA.md](content/THE_REVOLUTIONARY_FORMULA.md) to
+  [THREE_PILLARS.md](content/THREE_PILLARS.md) to
   [README.md](README.md)'s "What's here" list, missing since that
   document was created — an oversight from the earlier round, not a new
   ask this round.
@@ -1339,3 +1339,37 @@ reviewed -- the update taken, or deliberately deferred with a reason.
   while its own links to the moved files were repointed to `content/`
   to keep resolving, same precedent as that entry's own judgment call
   (3).
+- [x] **Rename `THE_REVOLUTIONARY_FORMULA.md` to `THREE_PILLARS.md`.**
+  Decided 2026-09-05 → done, same day. Morgan's ask: the old name read as
+  a sales pitch rather than a description of what the document actually
+  is — three named ideas. File renamed via `git mv`, title changed from
+  "The revolutionary formula" to "Three pillars" (only the title, per the
+  file's own brevity — the body already reads fine either way), file
+  header version bumped. Every reference updated to match:
+  [AGENTS.md](AGENTS.md), [GLOSSARY.md](GLOSSARY.md) (canonical term
+  **the revolutionary formula** → **the three pillars**), [MAP.md](MAP.md),
+  [README.md](README.md), and this file's own historical entries above
+  (links repointed, same precedent as the `docs/`→`content/` move above —
+  a broken link is a broken link regardless of when the prose was
+  written), plus every "See also" cross-link in
+  [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md),
+  [REASONS_WHY.md](content/REASONS_WHY.md),
+  [HUMANS_AT_OUR_BEST.md](content/HUMANS_AT_OUR_BEST.md),
+  [RANDOM_NOTES.md](content/RANDOM_NOTES.md),
+  [COMPANY_BUILDING_RULES.md](content/COMPANY_BUILDING_RULES.md),
+  [AI_GOVERNANCE_TO_COCREATE.md](content/AI_GOVERNANCE_TO_COCREATE.md), and
+  [RULES_NOW_TESTING.md](content/RULES_NOW_TESTING.md). Same round, Morgan
+  also asked to standardize content docs on `_` rather than a mix of `_`
+  and `-` between words in filenames — checked every filename under
+  `content/` plus the root-level content-adjacent docs
+  ([AGENTS.md](AGENTS.md), [GLOSSARY.md](GLOSSARY.md), [MAP.md](MAP.md),
+  [README.md](README.md), [TODO.md](TODO.md),
+  [GETTING_STARTED.md](GETTING_STARTED.md)): all already use `_` between
+  words. The only `-` in this area is `content/doc-recipes/` (and root
+  `doc-recipes/`), which stays as-is — that directory name is fixed by the
+  [`doc-recipe`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/doc-recipe.md)
+  practice itself (`doc-recipes/<name>.recipe.md`), not a naming choice
+  local to this repo, and durable-list anchor slugs (e.g.
+  `groups-not-individuals`), which are hyphenated by the
+  [`durable-list-anchors`](https://github.com/themorgan/precedent-team-maintainers/blob/main/practices/durable-list-anchors.md)
+  practice's own convention. Nothing else needed changing.

@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-04 12:22:06 (Buenos Aires) by Morgan F, to version 29 -->
+<!-- Last updated: 2026-09-05 21:37:23 (Buenos Aires) by Morgan F, to version 30 -->
 
 # Repository instructions — read me first
 
@@ -12,7 +12,7 @@ keeps this repo well-run.
 |---|---|
 | The theory behind this repo — named, explained, not argued for | [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md) |
 | The less obvious benefits those ideas produce | [REASONS_WHY.md](content/REASONS_WHY.md) |
-| The one-page pitch for why this repo's approach is unique | [THE_REVOLUTIONARY_FORMULA.md](content/THE_REVOLUTIONARY_FORMULA.md) |
+| The one-page pitch for why this repo's approach is unique | [THREE_PILLARS.md](content/THREE_PILLARS.md) |
 | What humans are good at — the one full list | [HUMANS_AT_OUR_BEST.md](content/HUMANS_AT_OUR_BEST.md) |
 | Canonical names — use these, don't invent new ones | [GLOSSARY.md](GLOSSARY.md) |
 | The brainstorm itself | [RANDOM_NOTES.md](content/RANDOM_NOTES.md) |

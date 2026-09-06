@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-05 09:13:36 (Buenos Aires) by Morgan F, to version 21 -->
+<!-- Last updated: 2026-09-05 21:37:23 (Buenos Aires) by Morgan F, to version 22 -->
 
 # Repository map — where to find things
 
@@ -22,7 +22,7 @@ Companions: [AGENTS.md](AGENTS.md) (workflow + conventions), [TODO.md](TODO.md)
 | `content/` | This repo's main content documents — the brainstorm, its promoted essays, and the theory behind them — kept apart from the technical documents below about running the repo itself. |
 | [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md) | Orientation for a newcomer: the handful of underlying theoretical ideas everything else here assumes, named and explained on their own terms. |
 | [REASONS_WHY.md](content/REASONS_WHY.md) | Orientation's companion: the less obvious benefits those ideas actually produce in practice. |
-| [THE_REVOLUTIONARY_FORMULA.md](content/THE_REVOLUTIONARY_FORMULA.md) | One-page pitch: the three ideas — one each from [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md), [COMPANY_BUILDING_RULES.md](content/COMPANY_BUILDING_RULES.md), and [REASONS_WHY.md](content/REASONS_WHY.md) — that this repo argues are unique specifically taken together. |
+| [THREE_PILLARS.md](content/THREE_PILLARS.md) | One-page pitch: the three ideas — one each from [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md), [COMPANY_BUILDING_RULES.md](content/COMPANY_BUILDING_RULES.md), and [REASONS_WHY.md](content/REASONS_WHY.md) — that this repo argues are unique specifically taken together. |
 | [HUMANS_AT_OUR_BEST.md](content/HUMANS_AT_OUR_BEST.md) | The one list of what humans are good at, gathered from the shorter versions scattered across [OUR_PHILOSOPHY.md](content/OUR_PHILOSOPHY.md) and [COMPANY_BUILDING_RULES.md](content/COMPANY_BUILDING_RULES.md). |
 | [RANDOM_NOTES.md](content/RANDOM_NOTES.md) | **The deliverable.** The brainstorm itself — pipeline stage 1. |
 | [COMPANY_BUILDING_RULES.md](content/COMPANY_BUILDING_RULES.md) | Standalone essay promoted out of the brainstorm: rules for building a company around AI. |
