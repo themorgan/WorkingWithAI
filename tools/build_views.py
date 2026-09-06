@@ -81,12 +81,177 @@ def _approx_tokens(text):
     return int(len(WORD_RE.findall(text)) * 1.3)
 
 
-def load_practices(practices_dir=None):
+# A practice that is not active is still resolvable BY SLUG -- so a
+# `supersedes:` reference points somewhere real -- but it is not in force, and
+# nothing that presents the catalogue as current may show it. Defined here,
+# in the lower-level module, and imported by precedent_resolve as
+# bv.IN_FORCE_STATUS, so the loader and the resolver cannot disagree about
+# what "in force" means. (precedent_resolve imports this module, never the
+# other way round -- putting the constant there would be a cycle.)
+IN_FORCE_STATUS = 'active'
+
+# THE TWO WAYS A PRACTICE STOPS APPLYING HERE ARE NOT THE SAME THING, and
+# collapsing them into one word is what let a live rule be dropped
+# (2026-09-06; see spec/PRACTICE_FORMAT.md "Status" and this repo's
+# practices/mistakes-become-rules.md).
+#
+#   deduplicated  The COPY here is redundant. The rule itself is fully in
+#                 force, from somewhere else -- another source's practice,
+#                 or the engine. `in_force_at:` says where, and the check
+#                 resolves it. This is the common, cheap, verifiable path.
+#   retired       Nobody wants this rule anywhere. `in_force_at: none`,
+#                 plus a Story line saying why. Rare and deliberate.
+#
+# The distinction exists because "retire" invites the question "does
+# something similar exist?", which is answerable by reading two files and
+# feeling that they rhyme -- and that is exactly how a routine check was
+# dropped on the authority of an unrelated occasional one. "Deduplicate"
+# cannot be answered by resemblance: it forces the only question that
+# matters, which is what the surviving copy is and whether it resolves in
+# force.
+DEDUPLICATED_STATUS = 'deduplicated'
+RETIRED_STATUS = 'retired'
+
+# Every status this engine recognizes. A practice carrying anything else is
+# a typo or a newer engine's vocabulary, and is reported rather than
+# silently treated as one of these (see verify_harness.py's
+# check_status_contract) -- but it is still NOT IN FORCE, because
+# `is_in_force` tests for `active` rather than testing against this list.
+# Failing closed is the only safe direction: a status nobody here
+# understands must never be loaded as if it were current.
+KNOWN_STATUSES = (IN_FORCE_STATUS, DEDUPLICATED_STATUS, RETIRED_STATUS)
+
+
+def practice_status(fm):
+    """A practice's declared status, decoded, defaulting to in-force.
+
+    `status:` is written unquoted in every practice file this repo has, but
+    it is a frontmatter string like any other and a hand-authored one may
+    arrive quoted -- so it goes through _json_str rather than being read
+    raw. Two tools used to compare `fm.get('status') == 'retired'` directly
+    and would have missed both a quoted value and, once this vocabulary
+    landed, every `deduplicated` practice."""
+    return _json_str(fm.get('status', IN_FORCE_STATUS)) or IN_FORCE_STATUS
+
+
+def is_in_force(fm):
+    """Whether this practice's rule applies here, now.
+
+    The one predicate every loading channel must use. It is deliberately
+    `== IN_FORCE_STATUS` and not `not in (DEDUPLICATED_STATUS,
+    RETIRED_STATUS)`: an unrecognized status fails closed."""
+    return practice_status(fm) == IN_FORCE_STATUS
+
+
+# `in_force_at:` takes a slug, or one of these two literals.
+IN_FORCE_AT_ENGINE = 'engine'    # absorbed into the mechanism; no practice to load
+IN_FORCE_AT_NOWHERE = 'none'     # in force nowhere -- the retirement case
+
+
+def status_contract_violation(fm, sections=None, slug_in_force=None):
+    """-> a message naming what is wrong with this practice's `status:` /
+    `in_force_at:` pair, or None when the pair is sound.
+
+    WHY THE PAIR IS CHECKED AND NOT JUST THE STATUS. `status:` alone records
+    that a rule stopped applying here but never whether anything replaced it,
+    so "deduplicated safely" and "dropped and forgotten" were indistinguishable
+    to every check in the system -- the forwarding address existed only as
+    English prose in `## Story`, which no tool reads. That is the gap a live
+    rule fell through on 2026-09-06.
+
+    `slug_in_force` is a callable (slug) -> bool, INJECTED rather than
+    imported. The real answer comes from precedent_resolve.resolve() against
+    the actually-declared sources, and precedent_resolve imports this module,
+    so reaching for it here would be a cycle. Passing None checks the SHAPE
+    only -- that a forwarding address is present and well-formed -- and
+    deliberately does not check that it resolves, which is the entire point
+    of the field. A caller that can resolve must pass the callable; one that
+    cannot must say so rather than reporting a shape check as the real one."""
+    status = practice_status(fm)
+    target = _json_str(fm.get('in_force_at', '')) or ''
+
+    if status not in KNOWN_STATUSES:
+        return (f"status: {status!r} is not a status this engine knows "
+                f"({', '.join(KNOWN_STATUSES)}). It is treated as not in "
+                f"force, which may not be what was meant.")
+
+    if status == IN_FORCE_STATUS:
+        if target:
+            return (f"status: active carries in_force_at: {target!r}. A rule "
+                    f"in force HERE has no forwarding address; one of the two "
+                    f"is wrong.")
+        return None
+
+    if not target:
+        return (f"status: {status} with no in_force_at:. Not optional on "
+                f"anything that is not active -- it is what tells a "
+                f"deduplication apart from a rule dropped and forgotten.")
+
+    if status == DEDUPLICATED_STATUS:
+        if target == IN_FORCE_AT_NOWHERE:
+            return (f"status: deduplicated with in_force_at: none. "
+                    f"Deduplicated means the rule IS in force, elsewhere; if "
+                    f"it is in force nowhere, that is status: retired, and "
+                    f"needs the evidence retirement needs.")
+        if target == IN_FORCE_AT_ENGINE:
+            return None
+        if slug_in_force is None:
+            return None          # shape is sound; resolution not checked here
+        if not slug_in_force(target):
+            return (f"status: deduplicated names in_force_at: {target!r}, but "
+                    f"that slug does not resolve IN FORCE against the declared "
+                    f"sources. A surviving copy that is itself dropped, "
+                    f"shadowed or unreachable is not a surviving copy -- this "
+                    f"is the deduplication that silently loses a rule.")
+        return None
+
+    # status == RETIRED_STATUS
+    if target != IN_FORCE_AT_NOWHERE:
+        return (f"status: retired with in_force_at: {target!r}. Retired means "
+                f"the rule is wanted nowhere, so the only legal value is "
+                f"'none'. If the rule survives at {target!r}, this is "
+                f"status: deduplicated.")
+    story = (sections or {}).get('story', '').strip()
+    if not story:
+        return ("status: retired with an empty ## Story. Retirement is the "
+                "rare, deliberate case and is the one status no mechanism can "
+                "verify for you, so it must say in prose why nobody wants "
+                "this rule anywhere.")
+    return None
+
+
+def load_practices(practices_dir=None, in_force_only=True):
+    """Every practice file in the directory, minus the ones not in force.
+
+    WHY THE FILTER EXISTS (2026-09-06). This function read every *.md and
+    returned it, and this module never looked at `status:` anywhere -- so a
+    retired practice went on being emitted into the AGENTS.md loader block,
+    MAP.md and GLOSSARY.md exactly like an active one. Retirement was
+    cosmetic for the one channel that decides what a session actually loads.
+
+    Invisible in BestPractice, whose own catalogue has no retired practice.
+    Found 2026-09-06 in a private team set with three of them -- all three
+    were listed in the AGENTS.md its own README calls "what a session
+    actually loads", months after retirement, including one retired that
+    same day. precedent_resolve.py had this right all along and prints
+    `not in force: <slug> ... is status: retired`; the generated views did
+    not, so the two channels disagreed and only the quieter one was read.
+
+    A dropped practice is announced rather than silently skipped -- a
+    retirement that vanishes without a word is the same silence in a
+    smaller place."""
     practices_dir = practices_dir if practices_dir is not None else PRACTICES_DIR
-    out = []
+    out, dropped = [], []
     for f in sorted(practices_dir.glob('*.md')):
         fm, sections = sp._read_practice_file(f)
+        status = practice_status(fm)
+        if in_force_only and not is_in_force(fm):
+            dropped.append((fm.get('slug', f.stem), status))
+            continue
         out.append((fm, sections, f))
+    for slug, status in dropped:
+        print(f"build_views: {slug} is status: {status}, so it is not in "
+              f"force and is left out of the generated views.", file=sys.stderr)
     return out
 
 
@@ -222,18 +387,18 @@ def build_loader_block(practices, source_levels=None):
                                         for fm, _s in resident)
         count_detail += ' (' + ', '.join(f"{by_level[l]} {l}" for l in
                                           sorted(by_level) if by_level[l]) + ')'
-    lines.append(f"### Resident block (~{token_count} of {RESIDENT_BUDGET_TOKENS} token budget, "
+    lines.append(f"## Resident block (~{token_count} of {RESIDENT_BUDGET_TOKENS} token budget, "
                  f"{count_detail})")
     lines.append('')
     lines.append(resident_text)
     lines.append('')
-    lines.append("### Occasion index")
+    lines.append("## Occasion index")
     lines.append('')
     lines.append("```")
     lines.append(index_text)
     lines.append("```")
     lines.append('')
-    lines.append("### Standing instruction")
+    lines.append("## Standing instruction")
     lines.append('')
     lines.append("Before starting work of a kind named in the occasion index above, run "
                  "`python3 tools/precedent_show.py SLUG` for each listed slug to load its "
@@ -291,6 +456,27 @@ def render_agents_md(practices, agents_md=None, source_levels=None):
     return pre + block + post
 
 
+
+def _upstream_doc_pointer():
+    """The " see X for the format and Y for the design" tail of MAP.md's
+    catalogue line -- only when those documents actually exist here.
+
+    This ran unconditionally and named two of BestPractice's OWN documents,
+    which no vendoree has. Nothing noticed while only BestPractice generated
+    a MAP.md; the moment an engine refresh brought this generator to three
+    practice sets (2026-09-06), each one generated a map with two broken
+    relative links, and each one's own light check reported them -- findings
+    against a file the repo did not write, naming files it is not supposed
+    to have. A generator shared across repositories cannot assume the
+    generating repo's own prose."""
+    tail = []
+    if (ROOT / 'spec' / 'PRACTICE_FORMAT.md').is_file():
+        tail.append("[spec/PRACTICE_FORMAT.md](spec/PRACTICE_FORMAT.md) for the format")
+    if (ROOT / 'PRACTICE_ENGINE_PLAN.md').is_file():
+        tail.append("[PRACTICE_ENGINE_PLAN.md](PRACTICE_ENGINE_PLAN.md) for the design")
+    return (" See " + " and ".join(tail) + ".") if tail else ""
+
+
 def render_map_md(practices):
     by_tier = collections.Counter(fm.get('tier') for fm, _s, _f in practices)
     lines = [
@@ -309,8 +495,7 @@ def render_map_md(practices):
         '',
         f"`practices/` holds {len(practices)} practice files "
         f"({by_tier.get('resident', 0)} resident, {by_tier.get('on-demand', 0)} on-demand). "
-        "One file per practice; see [spec/PRACTICE_FORMAT.md](spec/PRACTICE_FORMAT.md) for "
-        "the format and [PRACTICE_ENGINE_PLAN.md](PRACTICE_ENGINE_PLAN.md) for the design.",
+        "One file per practice." + _upstream_doc_pointer(),
         '',
         "| Practice | Tier | Occasion / scope |",
         "|---|---|---|",
@@ -377,7 +562,8 @@ TOOLS_DESCRIPTIONS = {
     'precedent_paths.py': "The PATH-TRIGGERED channel — matches a touched file against every practice's `applies_to`",
     'precedent_promote.py': "Stage 3 (phase 5) — runs a candidate against the four promotion criteria",
     'precedent_resolve.py': "Resolves the universal, team and individual sources into one set, by precedence",
-    'precedent_retire.py': "Stage 6 (phase 5) — the periodic retirement report; proposes, never acts",
+    'precedent_migrate_status.py': "Classifies practices written under the old status vocabulary, where `retired` meant two different things; proposes, and refuses to guess a renamed successor",
+    'precedent_retire.py': "Stage 6 (phase 5) — the periodic removal report; proposes, never acts",
     'precedent_show.py': "Loads a practice's Rule/Detail/Why/Story/Install — the one code path that reads a practice file",
     'precedent_simulate.py': "One command over the reach/mechanical-correctness and synthetic-batch tiers, plus the running trend log",
     'precedent_sync_views.py': "One command for a consuming repo: precedent_materialize.py + build_views.py --agents-only, glued together",

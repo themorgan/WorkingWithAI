@@ -340,7 +340,7 @@ Do not hand-edit the block below — the next sync overwrites it.
 
 <!-- Regenerate with: python3 tools/build_views.py -- do not hand-edit this block, tools/verify_harness.py's regeneration check fails on drift. -->
 
-### Resident block (~659 of 2000 token budget, 10 of 110 practices (1 individual, 3 team, 6 universal))
+## Resident block (~659 of 2000 token budget, 10 of 110 practices (1 individual, 3 team, 6 universal))
 
 **bold-key-phrases.** People don't read; they skim, and bolding makes skimming easy. Bold the key phrases in a document by default, without being asked, scaling with length -- a long paragraph or document is where a skimmer most needs a spine to follow, a short note usually needs little or none.
 
@@ -378,7 +378,7 @@ the command — *"no unpushed commits on any branch"*, *"the gate passed"*,
 *"the file contains X"* — and then test that, independently of whatever the
 command printed.
 
-### Occasion index
+## Occasion index
 
 ```
 When a README or other key file just gained an operational instruction:
@@ -580,7 +580,7 @@ When writing or triaging an open item:
   todo-is-a-handoff — queue only for a stated blocked-on/out-of-scope reason — otherwise just do it
 ```
 
-### Standing instruction
+## Standing instruction
 
 Before starting work of a kind named in the occasion index above, run `python3 tools/precedent_show.py SLUG` for each listed slug to load its Rule. When editing a file, `python3 tools/precedent_paths.py FILE` prints any on-demand practice whose `applies_to` matches it, without needing the index at all. At a named moment — merging, reviewing, pushing, ending a turn — run `python3 tools/precedent_gate.py merge|review|push|reply`: some practices fire at a moment rather than in a file, and no path glob reaches those.
 

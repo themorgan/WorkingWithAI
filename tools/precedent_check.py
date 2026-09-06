@@ -1246,6 +1246,28 @@ def _doc_references_are_links(ctx):
     return out
 
 
+@check('heading-outline', 'change',
+       'a changed document never jumps a heading level -- no heading is more '
+       'than one level deeper than the one before it',
+       'whether a heading sits at the RIGHT level for its meaning; only '
+       'whether the outline it makes is well-formed. A section demoted by '
+       'accident to a level that happens not to skip reads as fine here.')
+def _heading_outline(ctx):
+    dl = _doc_lint()
+    files = _md_in_scope(ctx)
+    if not files:
+        raise NotApplicable('no changed markdown file is in scope')
+    out = []
+    for f in files:
+        # One detector, two callers -- doc_lint reports these in the light
+        # check and this gate fails on them, from the same function.
+        for line, frm, to, txt in dl.scan_heading_skips(f):
+            out.append(Finding(f'{f}:{line}',
+                               f'h{frm} -> h{to}, with no h{frm + 1} between '
+                               f'them: {txt}'))
+    return out
+
+
 @check('headline-capitalization', 'change',
        'a changed outward-facing document has every heading in New York '
        'Times headline capitalization',
@@ -1256,8 +1278,11 @@ def _doc_references_are_links(ctx):
 def _headline_capitalization(ctx):
     sys.path.insert(0, str(ROOT / 'tools'))
     import title_case
+    # title_case.is_outward() is the one definition of "outward-facing"
+    # -- everything except its INTERNAL_DIRS/INTERNAL_FILES. This gate
+    # asks it rather than carrying a second copy of the boundary.
     scope = [f for f in ctx.changed
-             if f.startswith('documentation/') and f.endswith('.md')
+             if f.endswith('.md') and title_case.is_outward(f)
              and (ROOT / f).exists()]
     if not scope:
         raise NotApplicable('no changed outward-facing document is in scope')

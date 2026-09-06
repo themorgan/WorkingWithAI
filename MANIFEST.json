@@ -139,9 +139,14 @@
       "path": "tools/checks/tests/test_session_trailer.sh",
       "sha256_16": "3148a8e6abbd5756",
       "source": "precedent-team-maintainers"
+    },
+    {
+      "path": "tools/checks/tests/run_all.sh",
+      "sha256_16": "14f51ed8f854489f",
+      "source": "(generated)"
     }
   ],
-  "generated_at_utc": "2026-09-06T17:39:26+00:00",
+  "generated_at_utc": "2026-09-06T19:57:26+00:00",
   "generated_by": "tools/precedent_materialize.py",
   "note": "DERIVED ARTIFACT -- never hand-edit. Regenerate by re-running precedent_materialize.py with the same --repo/--user-config; this file records exactly what produced the snapshot so drift is visible, per generated-artifact-provenance.",
   "practices": [

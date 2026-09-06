@@ -183,6 +183,15 @@ ENGINE_FILES = [
     'precedent_paths.py',
     'precedent_show.py',
     'split_practices.py',
+    # Classifies practices carrying the OLD status vocabulary, where
+    # `retired` meant both "the copy here is redundant" and "nobody wants
+    # this rule anywhere" (2026-09-06). The legacy records are in the
+    # private sets, never in BestPractice's own catalogue, so a migration
+    # that only existed upstream could not reach the repos that need it.
+    # It is also the only compliance signal a SOURCE set has for this:
+    # verify_harness.py is deliberately not vendored, so
+    # check_status_contract never runs there.
+    'precedent_migrate_status.py',
     'precedent_vendor_engine.py',
 ]
 
@@ -473,6 +482,34 @@ def _local_drift(dest_tools, manifest):
     return drifted
 
 
+def _untracked_engine_files(dest_tools, manifest):
+    """Engine files present on disk that the manifest does not record -- a
+    hand-copy dropped in beside a properly vendored engine.
+
+    _local_drift() above walks the manifest and asks "is each recorded file
+    still what we wrote?" That direction is blind to a file nobody recorded,
+    and the blind spot is not hypothetical. 2026-09-06, in
+    precedent-team-maintainers: its engine was a faithful, internally
+    consistent vendoring of one upstream commit -- seven files, every hash
+    matching -- and beside it sat a hand-copied `build_codeowners.py` from a
+    LATER upstream commit. build_views.py scans `tools/*.py` and requires a
+    description for each, so the newer stray broke the older engine outright:
+    `build_views.py` failed, and that repo could not regenerate its own
+    AGENTS.md at all. Every mechanism reported healthy -- `status` compared
+    only recorded files and saw no drift -- because the one file causing it
+    was invisible to all of them.
+
+    Deliberately keyed on the engine's OWN file lists rather than on "any
+    .py we did not vendor": a repo's own tools/ legitimately holds its own
+    scripts, and flagging those would make this noise. A name that appears
+    in ENGINE_FILES or CONSUMER_ENGINE_FILES but not in this repo's manifest
+    is the precise signature of a hand-drop -- and `refresh` is its fix,
+    since vendoring the file properly is exactly what records it."""
+    recorded = set(manifest.get('files', []))
+    known = set(ENGINE_FILES) | set(CONSUMER_ENGINE_FILES)
+    return sorted(n for n in (known - recorded) if (dest_tools / n).is_file())
+
+
 def _clone_or_die(arg):
     clone = pathlib.Path(arg).resolve()
     if not (clone / '.git').exists():
@@ -487,6 +524,14 @@ def status(clone):
     drift = _local_drift(dest_tools, manifest)
     for name, why in drift:
         print(f"  LOCAL DRIFT: {name} -- {why}")
+    untracked = _untracked_engine_files(dest_tools, manifest)
+    for name in untracked:
+        print(f"  UNTRACKED ENGINE FILE: {name} is an engine file this "
+              f"manifest does not record -- a hand-copy dropped in beside "
+              f"the vendored engine. It can be from a different upstream "
+              f"commit than the rest, which is how a correctly vendored "
+              f"engine ends up unable to run at all. `refresh` vendors it "
+              f"properly and records it.")
 
     # _rev, not _git: plain rev-parse of a missing ref prints the REF NAME, so
     # this used to bind clone_head='origin/precedent-beta-v01' -- truthy, and
@@ -504,13 +549,13 @@ def status(clone):
               f"whether this vendored engine is current is UNKNOWN -- this is not "
               f"'confirmed current'. Fetch that branch in the clone, or point at a "
               f"clone of {SOURCE_REPO}.")
-        return 1 if drift else 0
+        return 1 if (drift or untracked) else 0
     print(f"clone origin/{SOURCE_BRANCH}: {clone_head}"
           + ("  (== recorded)" if clone_head == recorded else "  (!= recorded)"))
     if clone_head != recorded:
         print(f"NOTICE: BestPractice's {SOURCE_BRANCH} has moved since this engine was "
               f"last vendored -- run `refresh` to pick it up.")
-    return 1 if drift else 0
+    return 1 if (drift or untracked) else 0
 
 
 def _source_tools_at(clone, kind=DEFAULT_KIND, ref=None, fetch=True):
@@ -588,6 +633,42 @@ def _source_tools_at(clone, kind=DEFAULT_KIND, ref=None, fetch=True):
     return commit, tmp
 
 
+def _warn_legacy_status_records(dest):
+    """Say when this repo still holds practices written under the OLD status
+    vocabulary, at the moment the new one arrives.
+
+    A refresh is exactly when the vocabulary changes underneath a set, and
+    the set has no other way to find out: verify_harness.py is not vendored,
+    so check_status_contract never runs here. Without this the new engine
+    simply starts treating `retired` records differently -- correctly, but
+    silently -- and the one thing a legacy record cannot tell anyone is
+    whether its rule survives somewhere. Same principle build_views already
+    applies when it drops a practice from the generated views: the drop is
+    announced rather than silently skipped.
+
+    A notice, never a gate. Refreshing the engine must not fail because the
+    CATALOGUE needs a separate, human-decided migration -- that is the same
+    separation _warn_catalogue_skew exists to respect."""
+    try:
+        sys.path.insert(0, str(ROOT / 'tools'))
+        import precedent_migrate_status as pms
+        records = pms.legacy_records(pathlib.Path(dest) / 'practices')
+    except Exception:                                        # noqa: BLE001
+        return                                               # never break a refresh
+    if not records:
+        return
+    slugs = ', '.join(fm.get('slug', f.stem) for f, fm, _s in records)
+    print(f"\nNOTICE: {len(records)} practice(s) here still carry the pre-2026-09-06 "
+          f"status vocabulary, where `retired` meant BOTH 'the copy here is "
+          f"redundant, the rule is in force elsewhere' AND 'nobody wants this "
+          f"rule anywhere': {slugs}.")
+    print("  The engine you just vendored treats them as not in force -- which is "
+          "correct either way -- but they carry no `in_force_at:`, so nothing can "
+          "say which kind they are, and precedent_show.py will decline to guess.")
+    print("  Classify them:  python3 tools/precedent_migrate_status.py "
+          "--repo . --against <sibling-source-dirs>")
+
+
 def _warn_catalogue_skew(dest, engine_commit):
     """Say when the engine just moved past the catalogue it runs against.
 
@@ -597,6 +678,35 @@ def _warn_catalogue_skew(dest, engine_commit):
     class that loses content. The cost of that separation is a skew nobody
     was told about: engine code that cites a practice slug the vendored
     catalogue predates.
+
+    THE REMEDY THIS NOTICE NAMES IS DELIBERATELY NOT `checkin.py update`.
+    Its first version suggested exactly that, and the suggestion was worse
+    than silence: checkin.py's `_default_branch()` resolves
+    `refs/remotes/origin/HEAD` unconditionally, so on every consumer pinned
+    to `precedent-beta-v01` -- which is all of them, until the phase-7
+    fold-in -- following the advice mirrors `main` over the vendored tree
+    and DELETES the very practices this notice says are missing. Caught
+    2026-09-06 by the consumer session that read the notice, recognized the
+    trap, and did the manual mirror instead; spec/MIGRATING_EXISTING_INSTALLS.md's
+    "The default-branch gotcha" is the same finding from the other side.
+    UPDATE, later the same day: checkin.py HAS since been taught the pin.
+    All four of its commands -- `fresh`, `update`, `record`, `push` -- now
+    read `upstream.branch` from the consuming repo's own
+    `process/manifest.json` and fall back to the clone's default only when
+    no pin is recorded, and `record` no longer checks the clone out either.
+    Seven harness cases assert it, each with a negative control.
+
+    The remedy named below still points at the manual mirror anyway, and
+    that is a deliberate hold rather than an oversight. What these two
+    documents guard against is an UNATTENDED job overwriting a repo's
+    vendored tree; the fix that would let them relax is hours old at the
+    time of writing, and the two error directions are not symmetric --
+    telling people the automation is safe when it is not costs a silent
+    overnight wipe, while staying cautious costs a stale sentence. Morgan's
+    call, 2026-09-06: record that the pin works, keep the manual remedy,
+    and revisit once the fix has survived real sync cycles. So this is now
+    a "not yet", not a "cannot" -- do not read it as the latter and do not
+    quietly flip it either; that flip is a decision, and it has an owner.
 
     Reached a real consumer on 2026-09-06. A refresh took the engine to a
     commit whose `precedent_resolve.py` cites `source-naming` three times,
@@ -627,8 +737,9 @@ def _warn_catalogue_skew(dest, engine_commit):
           f"at {recorded[:12]}. Engine code can cite practices that "
           f"catalogue does not carry yet -- if a check reports a slug as "
           f"'not a real practice', this skew is why. Take the catalogue "
-          f"update too (INSTALL.md section 2), or run "
-          f"`python3 process/upstream/tools/checkin.py update <clone>`.")
+          f"update too -- INSTALL.md section 2, which for a repo pinned to "
+          f"a named branch means the manual mirror it describes, NOT "
+          f"`checkin.py update`.")
 
 
 def refresh(clone, force=False, ref=None):
@@ -667,7 +778,34 @@ def refresh(clone, force=False, ref=None):
         # hadn't moved, because this short-circuit ran before --force ever got a
         # chance to matter. --force exists specifically to repair a hand-edited
         # file; "the upstream commit is unchanged" must not override that.
-        if new_commit == manifest.get('source_commit') and not force:
+        # An equal commit is not enough to call this current: the vendored
+        # FILE SET has to match this kind's list too. Without that second
+        # half, a repo whose engine predates a newly-added engine file could
+        # never acquire it -- and would be told it was current forever.
+        #
+        # THE TRAP, reproduced end to end 2026-09-06 across all three of this
+        # account's practice sets. `refresh` runs the VENDOREE's own copy of
+        # this tool, which carries the file list it was vendored with. A
+        # first run therefore writes the OLD set, replaces this file with the
+        # new one, and stamps the NEW commit into the manifest. A second run
+        # -- now executing the newer tool, which does know about the added
+        # file -- hit this short-circuit on the matching commit and reported
+        # "nothing to do", so the file never arrived and the manifest
+        # asserted current the whole time. build_codeowners.py joined the
+        # engine on 2026-09-06 for a stated reason (a team set with declared
+        # approvers and no way to enforce them); none of the three sets ever
+        # received it, and someone hand-copied it into one of them, which is
+        # what broke that repo's build_views.py. The hand-copy was a symptom.
+        # Refresh still takes two passes when the tool must replace itself
+        # first -- that is inherent to a self-updating tool -- but the second
+        # pass now converges instead of lying.
+        wanted_set = set(KINDS[kind]) | {'routing_scope.json'}
+        set_incomplete = sorted(
+            n for n in wanted_set
+            if n not in set(manifest.get('files', []))
+            or not (dest_tools / n).is_file())
+        if new_commit == manifest.get('source_commit') and not force \
+                and not set_incomplete:
             print(f"precedent_vendor_engine refresh: already current with {SOURCE_BRANCH} "
                   f"@ {new_commit[:12]} -- nothing to do.")
             # Reported here too, and this is the case that matters MOST: a
@@ -677,7 +815,14 @@ def refresh(clone, force=False, ref=None):
             # only reported after a write -- so the second pass of a
             # self-replacing refresh, and every later re-run, stayed silent.
             _warn_catalogue_skew(ROOT, new_commit)  # ROOT, not `dest` -- see below
+            _warn_legacy_status_records(ROOT)
             return 0
+
+        if set_incomplete and new_commit == manifest.get('source_commit'):
+            print(f"NOTICE: the recorded commit already matches, but this "
+                  f"repo's vendored engine is missing {len(set_incomplete)} "
+                  f"file(s) this kind now includes "
+                  f"({', '.join(set_incomplete)}) -- refreshing anyway.")
 
         self_before = _sha256(HERE) if HERE.is_file() else None
         written = _write_engine_files(dest_tools, engine_dir, new_commit, kind)
@@ -693,6 +838,7 @@ def refresh(clone, force=False, ref=None):
     # concurrently and identically by two sessions; the harness case for the
     # already-current branch came from this one.
     _warn_catalogue_skew(ROOT, new_commit)
+    _warn_legacy_status_records(ROOT)
 
     # THE SECOND PASS, and why it is not optional. The file list for a kind
     # lives in THIS module, and a refresh runs the copy that is already
